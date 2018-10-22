@@ -1,0 +1,16 @@
+{
+  "schemaVersion" :1 ,
+  "dockerfileLines" :[
+    "FROM node:9.11.2-alpine",
+    "RUN mkdir -p /usr/src/app",
+    "WORKDIR /usr/src/app",
+    "COPY ./src/package.json /usr/src/app/",
+    "RUN npm install && npm cache clean --force",
+    "COPY ./src /usr/src/app",
+    "RUN npm run deepinstall",
+    "ENV NODE_ENV production",
+    "ENV PORT 80",
+    "EXPOSE 80",
+    "CMD [ \"npm\", \"start\" ]"
+    ]
+ }

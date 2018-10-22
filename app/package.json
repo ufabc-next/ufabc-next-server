@@ -1,0 +1,94 @@
+{
+  "name": "Nexthea",
+  "version": "1.0.0",
+  "description": "Back-end of nexthea app",
+  "main": "index.js",
+  "author": "Felipe Augusto",
+  "license": "MIT",
+  "scripts": {
+    "build:docker": "docker build -t edu-web ../",
+    "test": "NODE_ENV=test node ./test",
+    "start": "apidoc -i api/ -o doc/ && forever --minUptime=5000 --spinSleepTime=5000 server.js",
+    "start:watch": "apidoc -i api/ -o doc/ && forever --watch --watchFolder ./ ./server.js --colors",
+    "start:docker": "yarn build:docker && docker run -it -p 8010:8010 edu-web",
+    "populate": "node populate/index.js",
+    "coverage": "NODE_ENV=test nyc yarn test"
+  },
+  "dependencies": {
+    "api-query-params": "^4.5.1",
+    "apidoc": "^0.17.6",
+    "axios": "^0.18.0",
+    "bcryptjs": "^2.4.3",
+    "bluebird": "^3.5.1",
+    "body-parser": "^1.17.2",
+    "cachegoose": "^7.0.0",
+    "cacheman": "^2.2.1",
+    "chalk": "^2.0.1",
+    "compression": "^1.7.0",
+    "difflib": "^0.2.4",
+    "dotenv": "^6.0.0",
+    "express": "^4.15.3",
+    "express-history-api-fallback": "^2.2.1",
+    "express-unless": "^0.5.0",
+    "flat": "^4.1.0",
+    "forever": "^0.15.3",
+    "ip": "^1.1.5",
+    "jsonwebtoken": "^8.3.0",
+    "lodash": "^4.17.10",
+    "mathjs": "^5.1.1",
+    "method-override": "^2.3.9",
+    "mongo-tenant": "^1.5.0",
+    "mongoose": "^5.2.1",
+    "mongoose-lean-virtuals": "^0.3.0",
+    "mongoose-timestamp": "^0.6.0",
+    "morgan": "^1.8.2",
+    "nyc": "^13.1.0",
+    "pdf2json": "^1.1.7",
+    "raven": "^2.6.3",
+    "redis": "^2.8.0",
+    "require-smart": "^1.1.2",
+    "ua-parser-js": "^0.7.18",
+    "uuid": "^3.3.2"
+  },
+  "devDependencies": {
+    "mocha": "^5.2.0",
+    "sinon": "^6.1.0"
+  },
+  "engines": {
+    "node": ">= 8.0.0",
+    "npm": ">= 3.0.0"
+  },
+  "nyc": {
+    "check-coverage": false,
+    "lines": 75,
+    "statements": 75,
+    "functions": 75,
+    "branches": 50,
+    "watermarks": {
+      "lines": [
+        75,
+        90
+      ],
+      "functions": [
+        75,
+        90
+      ],
+      "branches": [
+        75,
+        80
+      ],
+      "statements": [
+        75,
+        90
+      ]
+    },
+    "reporter": [
+      "text",
+      "text-summary"
+    ],
+    "exclude": [
+      "app/**/*.spec.js",
+      "app/**/spec.js"
+    ]
+  }
+}

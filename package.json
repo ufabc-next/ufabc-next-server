@@ -1,0 +1,21 @@
+{
+  "name": "ufabc-matricula-server",
+  "version": "1.0.0",
+  "description": "ufabc-matricula-server",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "install-app": "cd app && npm install && cd ../",
+    "build-web": "cd web && npm install && npm run build && cd ../ rm -rf web",
+    "start": "node app/server.js",
+    "deepinstall": "npm run install-app",
+    "deploy": "captainduckduck deploy"
+  },
+  "engines": {
+    "node": ">= 8.0.0",
+    "npm": ">= 3.0.0"
+  },
+  "dependencies": {
+    "captainduckduck": "^1.0.15"
+  }
+}

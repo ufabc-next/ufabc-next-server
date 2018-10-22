@@ -1,0 +1,54 @@
+[
+  {
+    "year": 2018,
+    "quad": 1,
+    "ra": "11028914",
+    "codigo": "NA2ESTG017-17SB",
+    "disciplina": "Introdução aos Processos de",
+    "campus": "sao bernardo",
+    "turno": "noturno",
+    "turma": "A2",
+    "teoria": "Guilherme Canuto Da Silva",
+    "pratica": "Guilherme Canto Da Silva",
+    "identifier": "79788a4ea84a724f1c6106fd8b33ecda"
+  },
+  {
+    "year": 2018,
+    "quad": 1,
+    "ra": "11028914",
+    "codigo": "NAESTG009-17SB",
+    "disciplina": "Gestão de Operações",
+    "campus": "sao bernardo",
+    "turno": "noturno",
+    "turma": "A",
+    "teoria": "Ricardo Reolon Jorge",
+    "pratica": null,
+    "identifier": "b2046666ce07017174cf138316167be7"
+  },
+  {
+    "year": 2018,
+    "quad": 1,
+    "ra": "11028914",
+    "codigo": "NAESTG011-17SB",
+    "disciplina": "Estatística Aplicada a Sistemas de Gestão",
+    "campus": "sao bernardo",
+    "turno": "noturno",
+    "turma": "A",
+    "teoria": "Patricia Belfiore Favero",
+    "pratica": "Patricia Teixeira Leite Asano",
+    "identifier": "fbe1fc70127f1073e8e4d981744edecb"
+  },
+  {
+    "year": 2018,
+    "quad": 1,
+    "ra": "11086610",
+    "codigo": "NAESTS003-17SB",
+    "disciplina": "Introdução à Astronáutica",
+    "campus": "sao bernardo",
+    "turno": "noturno",
+    "turma": "A",
+    "teoria": "Carlos Renato Huaura Solorzano",
+    "pratica": null,
+    "identifier": "48186a9d78c7994fc8120c1113d9c4aa"
+  }
+]
