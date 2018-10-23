@@ -2,6 +2,7 @@ const redis = require('redis')
 const bluebird = require('bluebird')
 const Cacheman = require('cacheman')
 const requireSmart = require('require-smart')
+const url = require('url')
 
 module.exports = async (app) => {
   const OPTIONS = { url: app.config.REDIS_URL }
@@ -35,13 +36,16 @@ module.exports = async (app) => {
     sub.subscribe(handler)
   })
 
+  const parsedRedis = url.parse(app.config.REDIS_URL, false, true)
+
   // return pub sub
   return {
     pub: pub,
     sub: sub,
     cache: new Cacheman(app.config.CACHE_NAME, {
       engine: 'redis',
-      url: app.config.REDIS_URL
+      port: parsedRedis.port,
+      host: parsedRedis.hostname
     })
   }
 }

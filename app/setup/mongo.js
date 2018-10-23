@@ -1,5 +1,6 @@
 const mongoose = require('mongoose')
 const cachegoose = require('cachegoose')
+const url = require('url')
 
 /*
  * Connects to MongoDB 
@@ -15,10 +16,13 @@ module.exports = async (app) => {
   // open connection
   let conn = await mongoose.createConnection(app.config.MONGO_URL, driverOptions)
 
+  const parsedRedis = url.parse(app.config.REDIS_URL, false, true)
+
   // creates a cache layer
   cachegoose(mongoose, {
     engine: 'redis',
-    url: app.config.REDIS_URL
+    port: parsedRedis.port,
+    host: parsedRedis.hostname
   })
 
   return conn
