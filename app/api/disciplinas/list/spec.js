@@ -14,7 +14,7 @@ describe('GET /v1/disciplinas', function() {
   var models, context, helpData, pdfData
   
   beforeEach(async function () {
-    models = await populate({ operation: 'both', only: ['disciplinas'] })
+    models = await populate({ operation: 'both', only: ['disciplinas', 'subjects'] })
 
     context = {
       query: {},

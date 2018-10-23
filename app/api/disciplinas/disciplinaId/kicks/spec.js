@@ -18,7 +18,7 @@ describe('GET /v1/disciplinas/:disciplina-id/kicks', function() {
   const Disciplinas = app.models.disciplinas.bySeason(season)
   
   beforeEach(async function () {
-    models = await populate({ operation : 'both', only: ['disciplinas'] })
+    models = await populate({ operation : 'both', only: ['disciplinas', 'alunos'] })
     context = {
       query: {},
       params: {}
