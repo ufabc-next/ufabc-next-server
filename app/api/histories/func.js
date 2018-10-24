@@ -23,6 +23,6 @@ module.exports = async function (context) {
   }
 
   return jwt.sign(payload, app.config.JWT_SECRET, {
-    expiresIn: '1 month'
+    expiresIn: '30d'
   })
 }
