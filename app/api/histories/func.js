@@ -22,9 +22,6 @@ module.exports = async function (context) {
     hash: crypto.createHash('md5').update(JSON.stringify(history.disciplinas)).digest('hex')
   }
 
-  await jwt.verify(tokenString, app.config.JWT_SECRET)
-  let user = jwt.decode(tokenString, { complete: true }) || {}
-
   return jwt.sign(payload, app.config.JWT_SECRET, {
     expiresIn: '1 month'
   })
