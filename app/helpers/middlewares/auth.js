@@ -1,31 +1,41 @@
-const _ = require('lodash')
-const Axios = require('axios')
 const assert = require('assert')
 const unless = require('express-unless')
+const jwt = require('jsonwebtoken')
 
-const app = require('../../app')
-const errors = require('../../errors')
+const app = require('@/app')
+const errors = require('@/errors')
 
 const Forbidden = errors.Forbidden
 const Unauthorized = errors.Unauthorized
 
-// only studnts
 module.exports = async (req, res, next) => {
-  // Find aluno-id header
-  let aluno = null
-  if ('aluno_id' in req.headers) {
-    aluno = req.headers['aluno_id']
-  } else if ('x-aluno_id' in req.headers) {
-    aluno = req.headers['x-aluno_id']
-  } else if (req.query && '_aluno_id' in req.query) {
-    aluno = req.query['_aluno_id']
-  } else {
-    // Bad request if no header was found
-    let error = new errors.BadRequest('Você deve especificar o header `aluno-id`')
-    return next(error)
-  }
+  try {
 
-  req.aluno = await app.models.aluno.findOne({ aluno_id: aluno })
+    /*
+     * Check for Bearer token (JWT format)
+     */
+    let authorization = req.headers.authorization
+    if (authorization && authorization.startsWith('Bearer ')) {
+      let tokenString = req.headers.authorization.replace('Bearer ', '')
+
+    // verify user
+    await jwt.verify(tokenString, app.config.JWT_SECRET)
+    let history = jwt.decode(tokenString, { complete: true }) || {}
+
+    req.history = await app.models.histories.findOne({ ra: history.payload.ra })
+      
+    } else {
+      // Default is to throw...
+      throw new errors.BadRequest('Header de autenticação inválido ou não fornecido')
+    }
+
+
+    next()
+    // console.timeEnd('auth')
+  } catch (e) {
+    next(e) 
+    // console.timeEnd('auth')
+  }
 }
 
 

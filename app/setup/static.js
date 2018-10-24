@@ -28,5 +28,9 @@ module.exports = async (app) => {
 
     next()
   })
+
   app.server.use(static)
+  app.server.use('/snapshot', express.static(app.config.snapshotFolder, {
+    maxAge: app.config.maxAge,
+  }))
 }

@@ -1,7 +1,7 @@
-var mongoose = require('mongoose')
+const mongoose = require('mongoose')
 const Schema = require('mongoose').Schema
 
-var CursoSchema = Schema({
+const CursoSchema = Schema({
   id_curso : Number,
   nome_curso : String,
   cp: Number,
@@ -10,7 +10,7 @@ var CursoSchema = Schema({
   turno : String
 })
 
-var Model = module.exports = Schema({
+const Model = module.exports = Schema({
   aluno_id: Number,
   cursos: [CursoSchema],
 

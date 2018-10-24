@@ -20,6 +20,9 @@ module.exports = async (app) => {
     })
   }
 
+  // Protect Private routes
+  api.use('/private', app.helpers.middlewares.private)
+
   // Locate route files from api folder
   let cwd = path.join(__dirname, '../api')
   let routerPaths = glob.sync('**/*route.js', { cwd })

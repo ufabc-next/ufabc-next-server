@@ -73,11 +73,11 @@ async function populate(options) {
   // only show this when running from terminal
   if(options == null) {
     if(context == 'remote') {
-      process.env.MONGO_URI = process.env.POPULATE_REMOTE
+      process.env.MONGO_URL = process.env.POPULATE_REMOTE
     }
 
     if(context == 'local' || context == null) {
-      process.env.MONGO_URI = process.env.POPULATE_LOCAL
+      process.env.MONGO_URL = process.env.POPULATE_LOCAL
     }
 
     console.info('Bootstrapping basic components...');
@@ -92,6 +92,8 @@ async function populate(options) {
       'redirect'
     ])
   }
+
+  console.log(app.config.MONGO_URL)
 
   if (operation == 'add') {
     return await createDatabases(app, COMMUNITY, only, until)

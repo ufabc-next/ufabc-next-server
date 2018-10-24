@@ -54,7 +54,7 @@ async function serve(){
   console.info(TAG, '           env:', chalk.white(app.config.ENV))
 
   try {
-    let mongoUrl = new (require('url').URL)(app.config.MONGO_URI);
+    let mongoUrl = new (require('url').URL)(app.config.MONGO_URL);
     console.info(TAG, '    mongo host:', chalk.white(mongoUrl.hostname))
     console.info(TAG, '    mongo   db:', chalk.white(mongoUrl.pathname))
   } catch (e) {}

@@ -33,7 +33,7 @@ async function test() {
   ])
 
   // Security Checks before starting tests
-  if (app.config.MONGO_URI && !app.config.MONGO_URI.includes('localhost') && app.config.MONGO_URI.length > 45) {
+  if (app.config.MONGO_URL && !app.config.MONGO_URL.includes('localhost') && app.config.MONGO_URL.length > 45) {
     throw new Error(chalk.red('You cannot test on a non local MongoDB.\n'
       + 'It would have cleaned ALL THE DATA and fucked up everything.\n'
       + 'BE FUCKING CAREFULL WITH PRODUCTION!!!!\n'

@@ -12,7 +12,7 @@ module.exports = async(app) => {
 
   const agenda = new Agenda({
     db: {
-      address: app.config.MONGO_URI,
+      address: app.config.MONGO_URL,
       collection: 'agenda'
     },
     defaultLockLifetime: FIVE_MINUTES,

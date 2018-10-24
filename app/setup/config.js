@@ -19,7 +19,8 @@ module.exports = async(app) => {
   config.PROTOCOL = getEnv('PROTOCOL', 'http://')
   config.JWT_SECRET = getEnv('JWT_SECRET', 'DEV_JWT_KEY')
   config.MONGO_URL = getEnv('MONGO_URL', `mongodb://localhost:27017/ufabc-matricula-extension-${config.ENV}`)
-  
+  config.MONGO_URI = config.MONGO_URL
+
   // Config Redis
   config.REDIS_URL = getEnv('REDIS_URL', 'redis://localhost:6379')
   config.CACHE_NAME = getEnv('CACHE_NAME', 'ufabc-matricula-extension')
@@ -35,6 +36,9 @@ module.exports = async(app) => {
   config.distFolder= getEnv('DIST_FOLDER', path.join(__dirname, '../../dist'))
   config.docFolder= getEnv('DOC_FOLDER', path.join(__dirname, '../doc'))
   config.maxAge =  1 * HOUR
+
+  // Matricula snapshot
+  config.snapshotFolder = getEnv('DIST_FOLDER', path.join(__dirname, '../snapshot'))
 
   // state
   config.isProduction = config.ENV == 'production'

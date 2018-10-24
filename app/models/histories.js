@@ -9,16 +9,16 @@ const Model = module.exports = Schema({
   coefficients: Object,
 })
 
-Model.pre('findOneAndUpdate', async function () {
-  this._update.disciplinas = _(this._update.disciplinas).castArray().compact().value()
-  this._update.coefficients = app.helpers.calculate.coefficients(this._update.disciplinas)
+async function updateEnrollments(doc) {
+  doc.disciplinas = _(doc.disciplinas).castArray().compact().value()
+  doc.coefficients = app.helpers.calculate.coefficients(doc.disciplinas)
 
   const keys = ['ra', 'year', 'quad', 'disciplina']
 
   // calculate an identifier for all disciplinas on user history
-  this._update.disciplinas.map(d => {
+  doc.disciplinas.map(d => {
     const key = {
-      ra: this._update.ra,
+      ra: doc.ra,
       year: d.ano,
       quad: d.periodo,
       disciplina: d.disciplina
@@ -31,16 +31,16 @@ Model.pre('findOneAndUpdate', async function () {
   let enrollments = await app.models.enrollments.find({
     $or: [
       {
-        ra: this._update.ra,
+        ra: doc.ra,
         cr_acumulado: { $exists: false },
       }, {
-        ra: this._update.ra,
+        ra: doc.ra,
         cr_acumulado: null,
       }, {
-        ra: this._update.ra,
+        ra: doc.ra,
         conceito: null,
       }, {
-        ra: this._update.ra,
+        ra: doc.ra,
         conceito: { $exists: false },
       }
     ]
@@ -48,8 +48,8 @@ Model.pre('findOneAndUpdate', async function () {
 
   // update enrollment information with user history information
   const promises = enrollments.map(async f => {
-    let disc = _.find(this._update.disciplinas, { identifier: app.helpers.transform.identifier(f, keys) })
-    let acc = getLastPeriod(this._update.coefficients, f.year, f.quad)
+    let disc = _.find(doc.disciplinas, { identifier: app.helpers.transform.identifier(f, keys) })
+    let acc = getLastPeriod(doc.coefficients, f.year, f.quad)
 
     // this means that disc was locked???
     if(!disc) {
@@ -62,6 +62,10 @@ Model.pre('findOneAndUpdate', async function () {
   })
   
   await Promise.all(promises)
+}
+
+Model.pre('findOneAndUpdate', async function () {
+  await updateEnrollments(this._update)
 })
 
 function getLastPeriod(disciplines, year, quad, begin) {

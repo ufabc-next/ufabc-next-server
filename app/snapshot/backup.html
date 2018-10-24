@@ -1,0 +1,501 @@
+
+<!DOCTYPE html >
+<html>
+<head>
+  <title>Matrícula | UFABC</title>
+  <link href="assets/custom.css?1469623870" media="screen" rel="stylesheet" type="text/css" />
+  <link href="assets/bootstrap.min.css?1446547471" media="screen" rel="stylesheet" type="text/css" />
+
+
+  <script src="assets/jquery.min.js?1446547508" type="text/javascript"></script>
+  <script src="assets/bootstrap.min.js?1446547508" type="text/javascript"></script>
+<script src="assets/model.js?1469623894" type="text/javascript"></script>
+<script src="assets/controller.js?1458838949" type="text/javascript"></script>
+<script src="assets/carregamento.js?1446547508" type="text/javascript"></script>
+
+  <meta name="csrf-param" content="authenticity_token"/>
+<meta name="csrf-token" content="/ai2DWSakSWtrL89mY+rqDOE7UPKSP1Vdp7HbZZ8fYM="/>
+  <meta name="description" content="UFABC - Sistema de matrículas">
+  <meta name=viewport content="width=device-width, initial-scale=1"/>
+</head>
+
+<body>
+  <div id="fundopreto"></div>
+  <div class="conflito container-fluid alert alert-danger">
+    <div class="fechar" onclick="fecharalerta()"><span id="fechar">X</span></div>
+    <div class="row">
+      <div class="col-md-3"></div>
+      <div class="col-md-6">
+        <p id="conflito">Não é possível a matrícula em mais de uma disciplina no mesmo horário.</p>
+      </div>
+      <div class="col-md-3"></div>
+    </div>
+  </div>
+    
+  <div class="container-fluid">
+    <div class="row-fluid">
+      <div class="col-md-12">
+          <div id="wrapper-barra-brasil"> </div>          
+          </div>
+    </div>
+  </div>
+
+  <header>
+    <div id="container-fluid">
+      <div class="row-fluid">
+        <div class="col-md-12">
+          <h1>Sistema de Matrículas</h1> 
+          <p id="ufabc">Universidade Federal do ABC</p>
+        </div>
+      
+        <div class="sobre"> </div>
+      </div>
+    </div>
+  </header>
+      
+      
+      <div id="menu">
+        
+      </div>
+
+      <!-- Usuário logado -->
+      <span id="usuario_top">
+        
+      
+        <b>felipe.santos92 |
+        <a href="/logout">(sair)</a></b>
+      
+       
+      </span>
+     
+  <div id="meio">
+      <div id="sessao"></div>
+<script src="assets/todasDisciplinas.js" type="text/javascript"></script>
+<script src="assets/matriculas.js" type="text/javascript"></script>
+<script src="assets/contagemMatriculas.js" type="text/javascript"></script>
+
+  <script src="assets/contagemMatriculasIngressantes.js" type="text/javascript"></script>
+
+<script language='javascript'>
+  cursoAluno = 16;
+  todasMatriculas = matriculas[1286];
+  alunoIngressante = false;
+  periodoMatricula = true;
+  periodoSegundoQuadrimestre = false;
+  var matriculaFixa = [];
+  
+  
+Effect.Pulsate('responda', { pulses: 10, duration: 8.0 });  
+
+</script>
+
+<div align="right" >
+<p><a href="/matricula2">Versão Anterior</a></p>
+</div>
+
+<div class="container-fluid">
+
+<br>
+<p>Prezado(a) aluno(a), <b>Felipe Augusto dos Santos</b>,</p>
+<p>Limite de créditos: <b>27</b></p>
+<p style="width: 99%;">
+  Selecione uma ou mais turmas, confira os horários e conflitos clicando em "Tabela de Horários" localizada no canto inferior direito da página e/ou visualizando as que acendem em vermelho ou amarelo claro, e clique em "Salvar" para dar procedimento à sua solicitação de matrícula.
+</p>
+  <article class="col-md-12">
+
+  
+
+  <div class="container-fluid">
+  <div class="row">
+    <div class=" botao col-md-4 col-md-offset-4"><div class="botao alert alert-danger" role="alert" onclick="avisosimportantes()">Ver avisos
+
+importantes</div>
+  <div class="avisosimportantes">
+  
+<p> Disciplinas  que terão turmas ministradas na modalidade <u><b>semi-presencial</b></u>:</p>  
+<p> - <b>DSBCM0505-15SA</b> - Processamento da Informação S-diurno (Santo André)</p>
+<p> - <b>DSBCM0505-15SB</b> - Processamento da Informação S-diurno (São Bernardo do Campo)</p>
+
+<p> Serão ministradas em <u><b>inglês</b></u> as turmas:</p>
+<p> - <b>DA1BCJ0205-15SA</b> - Fenômenos Térmicos A1-diurno (Santo André)</p>
+<p> - <b>DA2BCJ0205-15SA</b> - Fenômenos Térmicos A2-diurno (Santo André)</p>
+<p> - <b>DA3BCJ0205-15SA</b> - Fenômenos Térmicos A3-diurno (Santo André)</p>
+<p> - <b>DA2BCN0407-15SA</b> - Funções de Várias Variáveis A2-diurno (Santo André)</p>
+<p> - <b>DB1BCK0104-15SA</b> - Interações Atômicas e Moleculares B1-diurno (Santo André)</p>
+<p> - <b>DAESZT006-13SB</b> - Mercado Imobiliário A-diurno (São Bernardo do Campo)</p>
+<p> - <b>DA1BCL0307-15SA</b> - Transformações Químicas A1-diurno (Santo André)</p>
+<p> - <b>DA2BCL0307-15SA</b> - Transformações Químicas A2-diurno (Santo André)</p>
+<p> - <b>DA3BCL0307-15SA</b> - Transformações Químicas A3-diurno (Santo André)</p>
+  </div>
+</div>
+    <div class="col-md-12">
+    
+      <label id="escolha" for="curso">Escolha o curso</label>
+    
+      <select class="form-control" id="curso" name="curso" onchange="organizaDisciplinas()"><option value="16" selected="selected">Bacharelado em Ciência da Computação</option>
+<option value="20">Bacharelado em Ciência e Tecnologia</option>
+<option value="17">Bacharelado em Ciências Biológicas</option>
+<option value="1">Bacharelado em Ciências Econômicas</option>
+<option value="22">Bacharelado em Ciências e Humanidades</option>
+<option value="10">Bacharelado em Filosofia</option>
+<option value="28">Bacharelado em Física</option>
+<option value="21">Bacharelado em Matemática</option>
+<option value="24">Bacharelado em Neurociência</option>
+<option value="11">Bacharelado em Planejamento Territorial</option>
+<option value="31">Bacharelado em Políticas Públicas</option>
+<option value="3">Bacharelado em Políticas Públicas</option>
+<option value="14">Bacharelado em Química</option>
+<option value="27">Bacharelado em Relações Internacionais</option>
+<option value="26">Engenharia Aeroespacial</option>
+<option value="6">Engenharia Ambiental e Urbana</option>
+<option value="18">Engenharia Biomédica</option>
+<option value="7">Engenharia de Energia</option>
+<option value="23">Engenharia de Gestão</option>
+<option value="8">Engenharia de Informação</option>
+<option value="2">Engenharia de Instrumentação, Automação e Robótica</option>
+<option value="15">Engenharia de Materiais</option>
+<option value="19">ENGENHARIAS</option>
+<option value="13">Licenciatura em Ciências Biológicas</option>
+<option value="5">Licenciatura em Filosofia</option>
+<option value="25">Licenciatura em Física</option>
+<option value="9">Licenciatura em Matemática</option>
+<option value="4">Licenciatura em Química</option></select>
+
+    </div>
+  </div>
+  <div class="row" style="display: none;">
+  <div class="col-md-2 mostrarfiltros">
+  <span id="mostrarfiltros" class="btn btn-success" onclick="mostrarfiltros()">Mostrar filtros</span>
+  </div>
+  <div class="col-md-10"></div>
+  </div>
+  </div>
+
+  <div class="container-fluid" id="filtros">
+  <p class="bg-success">Os filtros podem ser utilizados simultaneamente.</p>
+  <p class="bg-warning">Em computadores antigos ou dispositivos com baixo processamento, aplicar os filtros pode demorar um pouco.</p>
+  <div class="row">
+
+    
+  </div>
+  <div class="row">
+  <div class="col-md-2 busca">
+    <label for="busca">Buscar por nome</label>
+    <input type="text" class="form-control" id="busca">
+  </div>
+  <div class="col-md-2">
+    <label for="filtracampus">Filtrar por câmpus</label><br>
+    <input type="checkbox" id="sa">Santo André<br>
+    <input type="checkbox" id="sbc">São Bernardo do Campo
+
+  </div>
+  <div class="col-md-2">
+        <label for="filtraturno">Filtrar por turno</label><br>
+        <input type="checkbox" id="matutino">Matutino<br>
+        <input type="checkbox" id="noturno">Noturno
+  </div>
+  <div class="col-md-6">
+    <input type="checkbox" id="maisvagas">
+    <label for="maisvagas">Mostrar apenas disciplinas com mais vagas do que requisições
+    </label>
+
+  </div>
+  <div class="col-md-2">
+    
+  </div>
+  </div>
+  <div class="row">
+  <div class="col-md-1">
+  <span id="aplicarfiltros" class="btn btn-success" onclick="aplicarfiltros()">Aplicar filtros</span>
+  </div>
+  <div class="col-md-11"></div>
+    
+  </div>
+  
+  </div>
+  
+  
+  <br>
+  <p class="bg-danger">Devido ao processo de cadastramento dos novos projetos pedagógicos, algumas disciplinas estão aparecendo com a categoria incorreta. Considere o que está no projeto de seu curso.</p>
+
+
+  <form action="https:/matricula" method="post"><div style="margin:0;padding:0;display:inline"><input name="authenticity_token" type="hidden" value="/ai2DWSakSWtrL89mY+rqDOE7UPKSP1Vdp7HbZZ8fYM=" /></div>
+
+      <h2>Disciplinas Obrigatórias</h2>
+      
+      <div id="disciplinasobrigatorias" class="">
+
+        <table class="table" id="tabeladisciplinas">
+          
+          <tr>
+            <th style="width:20px">Selecionar</th>
+            <th style="width:100px">Código</th>
+            <th>Discipina (Campus)</th>
+            <th style="width: 30px">Vagas</th>
+            <th style="width:30px;">Requisições</th>
+            <th style="width:100px;">T-P-I</th>
+            <th style="width: 350px;">Horário</th>
+          </tr>
+
+        </table>
+        
+        
+          
+
+        
+
+      </div>
+
+      <h2>Disciplinas de opção limitada</h2>
+
+      <div id="disciplinaslimitadas" class="">
+
+        <table class="table" id="tabeladisciplinas">
+          
+          <tr>
+            <th style="width:20px">Selecionar</th>
+            <th style="width:100px">Código</th>
+            <th>Discipina (Campus)</th>
+            <th style="width: 30px">Vagas</th>
+            <th style="width:30px;">Requisições</th>
+            <th style="width:100px;">T-P-I</th>
+            <th style="width: 350px;">Horário</th>
+          </tr>
+
+        </table>
+        
+        
+          
+
+        
+
+      </div>
+      <h2>Disciplinas livres</h2>
+      <div id="disciplinaslivres" class="">
+
+
+        <table class="table" id="tabeladisciplinas">
+          
+          <tr>
+            <th style="width:20px">Selecionar</th>
+            <th style="width:100px">Código</th>
+            <th>Discipina (Campus)</th>
+            <th style="width: 30px">Vagas</th>
+            <th style="width:30px;">Requisições</th>
+            <th style="width:100px;">T-P-I</th>
+            <th style="width: 350px;">Horário</th>
+          </tr>
+
+        </table>
+        
+        
+          
+
+        
+
+      </div>
+          <input id="_ra" name="[ra]" type="hidden" value="11086610" />
+          <center><script type="text/javascript">
+  var RecaptchaOptions = {"theme": "white"};
+</script>
+<script type="text/javascript" src="http://www.google.com/recaptcha/api/challenge?k=6Leh8gsTAAAAABIZmQP1bCNXu-2evL898dNH9NAz&amp;lang="></script>
+<noscript>
+  <iframe src="http://www.google.com/recaptcha/api/noscript?k=6Leh8gsTAAAAABIZmQP1bCNXu-2evL898dNH9NAz" height="300" width="500" style="border:none;"></iframe><br/>
+  <textarea name="recaptcha_challenge_field" rows="3" cols="40"></textarea>
+  <input type="hidden" name="recaptcha_response_field" value="manual_challenge"/></noscript>
+</center>
+          
+          <input type="submit" value="Enviar" id="enviar" class="btn btn-success">
+          
+
+    </form>
+    
+
+    <div id="chamarcalendario">
+      <div id="btncalendario" onclick="clicar()"><p> Tabela de horários </p></div>
+        <div id="disciplinaspegas" style="display: none;"><p id="limite">Seu limite é: <span id="limite">27</span> créditos</p><p id="pegas">Você selecionou: <span id="atualiza"></span> créditos</p></div>
+        <div id="calendario" style="display: none;">
+    
+            <table id="calendario1quinzenal" style="float: left;">
+            <tbody id="segundo" style="">
+              <tr><th style="background-color: #ccc; border-top: 2px solid black !important; border-bottom: 2px solid black !important; " colspan="7">Primeira quinzena</th>
+              </tr>
+              <tr>
+              <th></th>
+              <th>2ª</th>
+              <th>3ª</th>
+              <th>4ª</th>
+              <th>5ª</th>
+              <th>6ª</th>
+              <th>Sáb</th>
+              </tr>
+              <tr>
+            </tbody>
+          </table>
+          <table id="calendario2quinzenal" style="float: right;">
+            <tbody id="terceiro" style="">
+              <tr><th style="background-color: #ccc; border-top: 2px solid black !important; border-bottom: 2px solid black !important; " colspan="7">Segunda quinzena</th>
+              </tr>
+              <tr>
+              <th></th>
+              <th>2ª</th>
+              <th>3ª</th>
+              <th>4ª</th>
+              <th>5ª</th>
+              <th>6ª</th>
+              <th>Sáb</th>
+
+              
+              </tr>             
+            </tbody>
+          </table>
+        <p id="mudarcalendario" class="btn btn-success" onclick="quinzenal()" style="display: none;">Alterar para visualização quinzenal</p>
+        
+      </div>
+    </div>
+
+
+  </article>
+
+</div>
+
+
+<script type="text/javascript">
+
+//Contador
+
+var tempo = new Number();
+
+// Tempo em segundos
+
+tempo = '1118.0' ;
+
+ 
+
+function startCountdown(){
+
+ 
+
+    // Se o tempo não for zerado
+
+    if((tempo - 1) >= 0){
+
+ 
+
+        // Pega a parte inteira dos minutos
+
+        var min = parseInt(tempo/60);
+
+        // Calcula os segundos restantes
+
+        var seg = tempo%60;
+
+ 
+
+        // Formata o número menor que dez, ex: 08, 07, ...
+
+        if(min < 10){
+
+            min = "0"+min;
+
+            min = min.substr(0, 2);
+
+        }
+
+        if(seg <=9){
+
+            seg = "0"+seg;
+
+        }
+
+ 
+
+        // Cria a variável para formatar no estilo hora/cronômetro
+
+        horaImprimivel = /*'00:' +*/ min + ':' + seg;
+
+        //JQuery pra setar o valor
+
+        $("#sessao").html('<p class="tempo">' +"Tempo restante" + '</p>' + horaImprimivel);
+
+ 
+
+        // Define que a função será executada novamente em 1000ms = 1 segundo
+
+        setTimeout('startCountdown()',1000);
+
+ 
+
+        // diminui o tempo
+
+        tempo--;
+
+ 
+
+    // Quando o contador chegar a zero faz esta ação
+
+    } else {
+
+        $('body')[0].innerHTML = "";
+        $('body')[0].innerHTML = '<div class="sessaoencerrada col-md-offset-4 col-md-4">Sua conexão expirou.<br><a href="https://matricula.ufabc.edu.br">Faça o login novamente.</a> </div>'
+
+    }
+    
+
+ 
+
+}
+
+ 
+
+// Chama a função ao carregar a tela
+
+startCountdown();
+
+function avisosimportantes() {
+
+if($('div.avisosimportantes')[0].style.display == "") {
+
+$('div.avisosimportantes')[0].style.display = "block";
+
+}
+
+else if($('div.avisosimportantes')[0].style.display == "block") {
+
+
+$('div.avisosimportantes')[0].style.display = "";
+
+}
+
+
+
+}
+
+    
+</script>
+
+
+  </div>
+<!-- Rodape -->
+<footer>
+  <div class="container-fluid">
+    <div class="row">
+      <div class="footerpreferences">
+      </div>
+      </div>
+    </div>
+  </div>
+</footer>
+    </div>
+    
+    <div id="bg_bottom">
+          </div>
+        </div>
+
+      </div>
+    </div>
+   
+  </body>
+
+</html>
+
