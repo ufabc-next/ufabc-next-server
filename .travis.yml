@@ -17,7 +17,7 @@ jobs:
     - stage: test
       before_install: cd app
       install: yarn install
-      script: yarn test
+      script: yarn coverage
       after_script: cd ../
     - stage: deploy_test
       if: branch = master

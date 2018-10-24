@@ -6,7 +6,6 @@ const Axios = require('axios')
 const _ = require('lodash')
 
 const func = require('./func')
-const rule = require('./rule')
 
 describe('GET /v1/disciplinas/sync', function() {
   var models, context
@@ -40,22 +39,6 @@ describe('GET /v1/disciplinas/sync', function() {
       assert.equal(disciplina.disciplina_id, 2538)
 
       stub.restore()
-    })
-  })
-
-  describe('rule', function () {
-    it('works if has permissions', async function () {
-      context.query.access_key = app.config.ACCESS_KEY
-      await rule(context)
-    })
-
-    it('throws if permission is wrong', async function () {
-      context.query.access_key = 'wrong permissions'
-      await assertFuncThrows('Forbidden', rule, context)
-    })
-
-    it('throws if permissions is missing', async function () {
-      await assertFuncThrows('Forbidden', rule, context)
     })
   })
 })

@@ -93,8 +93,6 @@ async function populate(options) {
     ])
   }
 
-  console.log(app.config.MONGO_URL)
-
   if (operation == 'add') {
     return await createDatabases(app, COMMUNITY, only, until)
   }
