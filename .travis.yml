@@ -1,0 +1,29 @@
+language: node_js
+
+node_js:
+  - "9.11.2"
+
+services:
+  - mongodb
+  - redis-server
+
+cache:
+  directories:
+    - node_modules
+    - $HOME/.npm
+
+jobs:
+  include:
+    - stage: test
+      before_install: cd app
+      install: yarn install
+      script: yarn test
+      after_script: cd ../
+    - stage: deploy_test
+      if: branch = master
+      install: yarn install
+      script: yarn deploy -s -h https://captain.cdd.naoseiprogramar.com.br -a ufabc-matricula-test -p $CDD_PASSWORD -b master
+    - stage: deploy_prod
+      if: branch = production
+      install: yarn install
+      script: yarn deploy -s -h https://captain.cdd.naoseiprogramar.com.br -a ufabc-matricula -p $CDD_PASSWORD -b production
