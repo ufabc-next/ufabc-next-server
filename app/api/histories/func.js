@@ -13,12 +13,13 @@ module.exports = async function (context) {
   const history = await app.models.histories.findOneAndUpdate({
     ra: ra
   }, context.body, {
-    upsert: true
+    upsert: true,
+    new: true
   })
 
   const payload = {
     ra: history.ra,
-    hash: crypto.createHash('md5').update(JSON.stringify(payload.disciplinas)).digest('hex')
+    hash: crypto.createHash('md5').update(JSON.stringify(history.disciplinas)).digest('hex')
   }
 
   await jwt.verify(tokenString, app.config.JWT_SECRET)
