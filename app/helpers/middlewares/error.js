@@ -28,8 +28,9 @@ module.exports = (err, req, res, next) => {
     
     // Get user agent
     const ua = _.pick(parser(req.headers['user-agent']), ['browser', 'os'])
-    ua.os.name = ua.os.name.replace('Mac OS', 'Mac OS X')
-    ua.user = _.pick(req.user, ['id', 'email', 'name'])
+    if(ua.os && ua.os.name) {
+      ua.os.name = ua.os.name.replace('Mac OS', 'Mac OS X')
+    }
 
     Raven.captureException(err, { contexts: ua })
   }
