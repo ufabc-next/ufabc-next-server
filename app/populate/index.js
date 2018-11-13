@@ -77,7 +77,7 @@ async function populate(options) {
     }
 
     if(context == 'local' || context == null) {
-      process.env.MONGO_URL = process.env.POPULATE_LOCAL
+      process.env.MONGO_URL = process.env.POPULATE_LOCAL || process.env.MONGO_URL
     }
 
     console.info('Bootstrapping basic components...');

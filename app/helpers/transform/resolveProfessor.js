@@ -35,6 +35,8 @@ module.exports = function resolveProfessor(name, teachers, extraMappings) {
     'Hana Paula Masuda Ana Paula De': 'Hana Paula Masuda'
   }
 
+  name =  _.startCase(_.camelCase(name))
+
   _.extend(mapping, extraMappings || {})
 
   if(!name) return null

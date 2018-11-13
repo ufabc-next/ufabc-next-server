@@ -29,8 +29,8 @@ module.exports = async(app) => {
 
   config.ACCESS_KEY = getEnv('ACCESS_KEY', 'SOME_ACCESS_KEY')
 
-  config.MATRICULAS_URL = getEnv('MATRICULAS_URL', 'http://localhost:8000/matricula.ufabc.edu.br/assets/matriculas.js')
-  config.DISCIPLINAS_URL = getEnv('DISCIPLINAS_URL', 'http://localhost:8000/matricula.ufabc.edu.br/assets/todasDisciplinas.js')
+  config.MATRICULAS_URL = getEnv('MATRICULAS_URL', 'http://localhost:8011/snapshot/assets/matriculas.js')
+  config.DISCIPLINAS_URL = getEnv('DISCIPLINAS_URL', 'http://localhost:8011/snapshot/assets/todasDisciplinas.js')
 
   // Static assets (dist) configs
   config.distFolder= getEnv('DIST_FOLDER', path.join(__dirname, '../../dist'))
