@@ -28,6 +28,7 @@ module.exports = async (app) => {
       // find handler for this channel and pass message to him
       await HANDLERS[channel](JSON.parse(message))
     } catch(e){
+      console.log(e)
       Raven.captureException(e)
     }
   })

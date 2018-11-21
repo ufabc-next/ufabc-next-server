@@ -31,8 +31,8 @@ module.exports = async function (context) {
   if(enrollmentsHash != hash) {
     return {
       hash: enrollmentsHash,
-      teacherErrors,
-      subjectErrors,
+      teacherErrors: _.uniq(teacherErrors),
+      subjectErrors: _.uniq(subjectErrors),
       documents: enrollments.length
     }
   }
