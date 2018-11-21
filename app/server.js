@@ -32,6 +32,8 @@ const pipeline = [
   'models',
   // Load Redis,
   'redis',
+  // Load Agenda
+  'agenda',
   // Create base express server
   'server',
   // Add redirection behavior

@@ -2,6 +2,7 @@ const redis = require('redis')
 const bluebird = require('bluebird')
 const Cacheman = require('cacheman')
 const requireSmart = require('require-smart')
+const Raven = require('raven')
 const url = require('url')
 
 module.exports = async (app) => {
@@ -27,7 +28,7 @@ module.exports = async (app) => {
       // find handler for this channel and pass message to him
       await HANDLERS[channel](JSON.parse(message))
     } catch(e){
-      // TODO - call raven
+      Raven.captureException(e)
     }
   })
 
@@ -40,7 +41,9 @@ module.exports = async (app) => {
 
   // return pub sub
   return {
-    pub: pub,
+    publish(handler, payload) {
+      pub.publish(handler, JSON.stringify(payload))
+    },
     sub: sub,
     cache: new Cacheman(app.config.CACHE_NAME, {
       engine: 'redis',

@@ -14,7 +14,7 @@ module.exports = async(context, res) => {
 
   // get all subjects
   const ONE_HOUR = 60 * 60
-  const subjects = await app.models.subjects.find({}).lean(true).cache('subjects', ONE_HOUR)
+  const subjects = await app.models.subjects.find({}).lean(true).cache(ONE_HOUR, 'subjects')
 
   // check if subjects actually exists before creating the relation
   const err = app.helpers.validate.subjects(payload, subjects)

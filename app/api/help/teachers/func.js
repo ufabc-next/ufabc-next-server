@@ -9,6 +9,14 @@ module.exports = async function (context) {
     return
   }
 
+  const cacheKey = `help_${teacherId}`
+
+  let cached =  await app.redis.cache.get(cacheKey)
+  
+  if(cached){
+    return cached
+  }
+
   teacherId = mongoose.Types.ObjectId(teacherId)
 
   let stats = await app.models.enrollments.aggregate([
@@ -59,8 +67,11 @@ module.exports = async function (context) {
     .values()
     .value()
 
-  return {
+  const resp =  {
     general: _.merge(getMean(generalDistribution), { distribution: generalDistribution }),
     specific: await app.models.subjects.populate(stats, '_id')
   }
+
+  await app.redis.cache.set(cacheKey, resp, '1d')
+  return resp
 }

@@ -72,14 +72,6 @@ async function populate(options) {
   // ONLY SET PROCESS WHEN USING TERMINAL, NOT FROM CODE
   // only show this when running from terminal
   if(options == null) {
-    if(context == 'remote') {
-      process.env.MONGO_URL = process.env.POPULATE_REMOTE
-    }
-
-    if(context == 'local' || context == null) {
-      process.env.MONGO_URL = process.env.POPULATE_LOCAL || process.env.MONGO_URL
-    }
-
     console.info('Bootstrapping basic components...');
     console.info();
     await app.bootstrap([
@@ -91,6 +83,15 @@ async function populate(options) {
       'redis',
       'redirect'
     ])
+    
+    if(context == 'remote') {
+      process.env.MONGO_URL = process.env.POPULATE_REMOTE
+    }
+
+    if(context == 'local' || context == null) {
+      process.env.MONGO_URL = process.env.POPULATE_LOCAL || process.env.MONGO_URL
+    }
+
   }
 
   if (operation == 'add') {

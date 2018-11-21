@@ -71,7 +71,7 @@ function parsePDF(buffer, params) {
         if(index < params.startPage) return
         let lastCombined = 0
 
-        page.Texts.forEach(text => {
+        page.Texts.forEach((text, textIndex) => {
           let roundedY = Math.round(text.y)
           let roundedX = Math.round(text.x)
 
@@ -99,6 +99,15 @@ function parsePDF(buffer, params) {
             tmp[position++] = {
               text: decodeURIComponent(text.R[0].T),
               pos: roundedX,
+            }
+
+            // check if has more in this same cell
+            let nextText = page.Texts[textIndex + 1]
+            let nextCombined = Math.abs(Math.round(nextText.x) + Math.round(nextText.y))
+            let nextDiff = Math.abs(nextCombined - roudedCombined)
+
+            if(nextDiff < 2) {
+              tmp[position - 1].text += ' ' + decodeURIComponent(nextText.R[0].T)
             }
 
             results.push(tmp)

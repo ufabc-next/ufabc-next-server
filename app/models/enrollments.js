@@ -31,7 +31,6 @@ const Model = module.exports = Schema({
     type: Schema.Types.ObjectId,
     ref: 'teachers'
   },
-
   mainTeacher: {
     type: Schema.Types.ObjectId,
     ref: 'teachers'

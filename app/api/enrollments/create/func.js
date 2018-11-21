@@ -11,20 +11,18 @@ module.exports = async function (context) {
     throw new errors.BadRequest.MissingParameter('season')
   }
 
-  const Enrollments = app.models.enrollments.bySeason(season)
-
   // get all teachers
   const ONE_HOUR = 60 * 60
-  const teachers = await app.models.teachers.find({}).lean(true).cache('teachers', ONE_HOUR)
-  const subjects = await app.models.subjects.find({}).lean(true).cache('subjects', ONE_HOUR)
+  const teachers = await app.models.teachers.find({}).lean(true).cache(ONE_HOUR, 'teachers')
+  const subjects = await app.models.subjects.find({}).lean(true).cache(ONE_HOUR, 'subjects')
 
   enrollments = enrollments
-  .filter(d => d &&  Number.isInteger(parseInt(d.ra)))
-  .map(app.helpers.transform.disciplinas)
-  .map(d => _.merge(d, {
-    teoria: app.helpers.transform.resolveProfessor(d.teoria, teachers, teacherMappings),
-    pratica: app.helpers.transform.resolveProfessor(d.pratica, teachers, teacherMappings),
-  }))
+    .filter(d => d &&  Number.isInteger(parseInt(d.ra)))
+    .map(app.helpers.transform.disciplinas)
+    .map(d => _.merge(d, {
+      teoria: app.helpers.transform.resolveProfessor(d.teoria, teachers, teacherMappings),
+      pratica: app.helpers.transform.resolveProfessor(d.pratica, teachers, teacherMappings),
+    }))
 
   const teacherErrors = app.helpers.validate.teachers(enrollments)
   const subjectErrors = app.helpers.validate.subjects(enrollments, subjects, subjectMappings)
@@ -39,22 +37,12 @@ module.exports = async function (context) {
     }
   }
 
-  async function createEnrollments(enrollment){
-    return await Enrollments.findOneAndUpdate({
-      identifier: enrollment.identifier,
-      quad: parseInt(enrollment.quad),
-      year: parseInt(enrollment.year),
-      ra: parseInt(enrollment.ra),
-    }, enrollment, {
-      upsert: true
-    })
-  }
-
-  const start = Date.now()
-  await app.helpers.mapLimit(enrollments, createEnrollments, 15)
+  app.redis.publish('enrollmentCreate', {
+    season: season,
+    enrollments: enrollments
+  })
 
   return {
-    status: 'ok',
-    time: Date.now() - start,
+    status: 'published',
   }
 }

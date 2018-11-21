@@ -56,13 +56,20 @@ async function updateEnrollments(doc) {
       //console.log(f.disciplina, f.ra, f.year, f.quad)
     }
 
+    const cacheKey = `help_${f.mainTeacher}`
+    await app.redis.cache.del(cacheKey)
+
     _.extend(f, disc)
     _.extend(f, acc)
-    return f.save()
+    return await f.save()
   })
   
   await Promise.all(promises)
 }
+
+Model.method('updateEnrollments', async function () {
+  await updateEnrollments(this)
+})
 
 Model.pre('findOneAndUpdate', async function () {
   await updateEnrollments(this._update)

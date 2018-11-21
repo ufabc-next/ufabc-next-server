@@ -12,7 +12,7 @@ module.exports = async function (context) {
 
   // get all teachers
   const ONE_HOUR = 60 * 60
-  const teachers = await app.models.teachers.find({}).lean(true).cache('teachers', ONE_HOUR)
+  const teachers = await app.models.teachers.find({}).lean(true).cache(ONE_HOUR, 'teachers')
 
   // parse disciplinas
   disciplinas = (await app.helpers.parse.pdf(context.body))
@@ -30,7 +30,7 @@ module.exports = async function (context) {
     return {
       hash: disciplinaHash,
       payload: disciplinas,
-      errors: errors
+      errors: _.uniq(errors)
     }
   }
 
