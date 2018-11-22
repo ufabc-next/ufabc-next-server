@@ -69,11 +69,12 @@ module.exports = function convertDisciplina(d) {
 
   // fix disciplina
   obj.disciplina = disciplina.join(' ').trim()
-  //obj.ideal_quad = app.helpers.season.findIdeais().includes(obj.codigo)
 
   obj.disciplina_id = obj.id
-  obj.codigo = obj.codigo
-
+  if(obj.codigo != null) {
+    obj.ideal_quad = app.helpers.season.findIdeais().includes(obj.codigo)
+  }
+  
   if(obj.teoria == '0' || obj.teoria == '') obj.teoria = null
   if(obj.pratica == '0' || obj.pratica == '') obj.pratica = null
 
