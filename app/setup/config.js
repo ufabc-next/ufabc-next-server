@@ -10,7 +10,6 @@ const ip = require('ip')
 //  > process.env
 
 module.exports = async(app) => {
-
   let config = {}
   
   config.ENV = getEnv('NODE_ENV', 'dev')
