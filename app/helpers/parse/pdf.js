@@ -3,6 +3,7 @@ let fs = require('fs')
 const PDFParser = require("pdf2json")
 const Axios = require('axios')
 const errors = require('@/errors')
+const xlsx = require('xlsx')
 const { PassThrough } = require('stream')
 
 _.insert = function (arr, index, item) {
@@ -199,9 +200,16 @@ module.exports = async function (body) {
       position: 0,
       name: 'ra'
     }],
+    rename: [
+      { from: 'TURMA', as: 'nome' },
+      { from: 'DOCENTE TEORIA', as: 'teoria' },
+      { from: 'DOCENTE PRÁTICA', as: 'pratica' }
+    ],
     rowDifference: 5,
     allowedPercentage: 0.3
   })
+
+  const isPdf = params.link.endsWith('pdf')
 
   const response = await Axios({
     method: 'GET',
@@ -216,11 +224,28 @@ module.exports = async function (body) {
     response.data.pipe(forBuffer)
     forBuffer.on('data', chunk => buffers.push(chunk))
     forBuffer.on('finish', chunk => {
-      parsePDF(Buffer.concat(buffers), params).then(r => {
+
+      if(isPdf) {
+        parsePDF(Buffer.concat(buffers), params).then(r => {
         resolve(r)
-      }).catch(e => {
-        reject(e)
-      })
+        }).catch(e => {
+          reject(e)
+        })
+      } else {
+        const workbook = xlsx.read(Buffer.concat(buffers))
+        const sheet_name_list = workbook.SheetNames;
+        const data = xlsx.utils.sheet_to_json(workbook.Sheets[sheet_name_list[0]])
+
+        const parsed = data.map(d => {
+          params.rename.forEach(name => {
+            _.set(d, name.as, d[name.from])
+          })
+
+         return _.pick(d, _.map(params.rename, 'as'))
+        })
+
+        resolve(parsed)
+      }
     })
   })
 }
