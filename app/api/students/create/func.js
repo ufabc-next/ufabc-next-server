@@ -19,7 +19,7 @@ module.exports = async(context, res) => {
     c.quads = app.helpers.parse.toNumber(c.quads)
     c.nome_curso = c.curso
     c.ind_afinidade = (0.07 * c.cr) + (0.63 * c.cp) + (0.005 * c.quads)
-    c.id_curso = await app.helpers.courses.findId(c.nome_curso, season)
+    c.id_curso = c.curso_id
     return c
   })
 
