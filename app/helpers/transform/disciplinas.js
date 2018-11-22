@@ -1,4 +1,5 @@
 const _ = require('lodash')
+const app = require('@/app')
 const removeDiatrics = require('./removeDiacritics')
 
 // This convert an disciplina from the .json from matriculas.ufabc
