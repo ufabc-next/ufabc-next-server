@@ -18,6 +18,6 @@ module.exports = async function findIds(season) {
 
   return cursos.map(curso => ({
     name: curso._id,
-    curso_id: _.compact(curso.ids).length ? math.mean(_.compact(curso.ids)) : undefined
+    curso_id: _.compact(curso.ids).length ? math.mode(_.compact(curso.ids))[0] : undefined
   }))
 }
