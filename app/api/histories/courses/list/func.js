@@ -1,3 +1,4 @@
+const app = require('@/app')
 const cachegoose = require('cachegoose')
 
 module.exports = async function clearCacheKey(context) {
