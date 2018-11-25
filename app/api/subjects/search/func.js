@@ -6,7 +6,30 @@ module.exports = async function (context) {
 
   const regex = new RegExp(escapeRegex(q || ''), 'gi')
 
-  return await app.models.subjects.find({ search: regex }).limit(10).lean(true)
+  const resp =  await app.models.subjects.aggregate([
+    { $match: { search: regex } },
+    { $facet:
+      {
+        total: [ { $count: "total" }],
+        data: [
+          { $limit: 10 },
+        ]
+      }
+    },
+    { $addFields:
+      {
+        total: { $ifNull: [{ $arrayElemAt: [ "$total.total", 0 ] }, 0] },
+      }
+    },
+    {
+      $project: {
+        total: 1,
+        data: 1,
+      }
+    }
+  ])
+
+  return resp[0]
 }
 
 function escapeRegex(text) {

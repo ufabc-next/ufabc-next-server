@@ -1,7 +1,8 @@
 const _ = require('lodash')
 const app = require('@/app')
 
-module.exports = async function findIds(season) {
+module.exports = async function getUsageStats(context) {
+  let { season } = context.query
   if(!season) season = app.helpers.season.findSeasonKey()
 
   const Alunos = app.models.alunos.bySeason(season)
