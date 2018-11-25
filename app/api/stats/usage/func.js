@@ -1,4 +1,5 @@
 const _ = require('lodash')
+const ms = require('ms')
 const app = require('@/app')
 
 module.exports = async function getUsageStats(context) {
@@ -8,7 +9,7 @@ module.exports = async function getUsageStats(context) {
   const Alunos = app.models.alunos.bySeason(season)
 
   return {
-    users: await Alunos.count({}).cache('2m'),
-    help: await app.models.enrollments.count({ conceito: { $exists: true }}).cache('2m')
+    users: await Alunos.count({}).cache(ms('2m')),
+    help: await app.models.enrollments.count({ conceito: { $exists: true }}).cache(ms('2m'))
   }
 }
