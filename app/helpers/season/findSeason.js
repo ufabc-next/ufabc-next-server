@@ -4,19 +4,20 @@ function findQuadFromDate(month) {
   if([6, 7, 8, 9].includes(month)) return 3
 }
 
-module.exports = function findSeason(date) {
+module.exports = function findSeason(date = new Date()) {
+  const month = date.getMonth()
   return {
     1 : {
       quad: 1,
-      year: new Date().getFullYear() + 1
+      year: date.getFullYear() + (month < 6 ? 0 : 1)
     },
     2 : {
       quad: 2,
-      year: new Date().getFullYear()
+      year: date.getFullYear()
     },
     3 : {
       quad: 3,
-      year: new Date().getFullYear()
+      year: date.getFullYear()
     },
-  }[findQuadFromDate(date || new Date().getMonth())]
+  }[findQuadFromDate(date.getMonth() || month)]
 }

@@ -9,7 +9,7 @@ module.exports = async function getUsageStats(context) {
   const Alunos = app.models.alunos.bySeason(season)
 
   return {
-    users: await Alunos.count({}).cache(ms('2m')),
-    help: await app.models.enrollments.count({ conceito: { $exists: true }}).cache(ms('2m'))
+    users: await Alunos.count({})
+    help: await app.models.enrollments.count({ conceito: { $exists: true }})
   }
 }
