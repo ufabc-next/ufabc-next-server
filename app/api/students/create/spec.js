@@ -11,11 +11,13 @@ const func = require('./func')
 const sync = require('@/api/disciplinas/sync/func')
 
 describe('POST /v1/students', function() {
-  var context, disciplina
+  let context, disciplina, models
 
   const season = app.helpers.season.findSeasonKey()
   
   beforeEach(async function () {
+    models = await populate({ operation : 'both', only: ['disciplinas', 'subjects', 'alunos'] })
+
     context = {
       query: {},
       body: {
@@ -33,6 +35,12 @@ describe('POST /v1/students', function() {
         }]
       }
     }
+
+    let file = app.helpers.test.getDisciplinas()
+    file.data = app.helpers.test.sample(file.data, 1)
+    let stub = sinon.stub(Axios, 'get').returns(file)
+    await sync()
+    stub.restore()
   })
 
   describe('func', function () {
@@ -41,6 +49,15 @@ describe('POST /v1/students', function() {
      
       assert.equal(resp.aluno_id, context.body.aluno_id)
       assert.equal(resp.season, season)
+    })
+
+    it('returns if kicks are already in place', async function () {
+      const disciplina = await app.models.disciplinas.findOne({})
+      disciplina.before_kick = [1,2,3]
+      await disciplina.save()
+
+      let resp = await func(context)
+      assert(!resp)
     })
 
     it('throws if missing aluno_id', async function () {
