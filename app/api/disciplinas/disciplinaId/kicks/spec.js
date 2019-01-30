@@ -39,7 +39,7 @@ describe('GET /v1/disciplinas/:disciplina-id/kicks', function() {
       context.params.disciplinaId = disciplina.disciplina_id
       let resp = await func(context)
      
-      assert.equal(resp.length, 2)
+      assert.equal(resp.length, 3)
       assert(resp.every(s => 'kicked' in s))
     })
 
@@ -56,7 +56,7 @@ describe('GET /v1/disciplinas/:disciplina-id/kicks', function() {
       context.params.disciplinaId = disciplina.disciplina_id
       let resp = await func(context)
      
-      assert.equal(resp.length, 2)
+      assert.equal(resp.length, 3)
       assert(resp.every(s => !('kicked' in s)))
     })
   })

@@ -12,6 +12,13 @@ module.exports = async(context, res) => {
 
   const season = app.helpers.season.findSeasonKey()
   const Alunos = app.models.alunos.bySeason(season)
+  const Disciplinas = app.models.disciplinas.bySeason(season)
+
+  // check if already passed, if so does no update this user anymore
+  const isPrevious = await Disciplinas.count({ before_kick: { $exists: true, $ne: [] }})
+  if(isPrevious) {
+    return await Alunos.findOne({ aluno_id: aluno_id })
+  }
 
   let cursos = (context.body.cursos || []).map(async c => {
     c.cr = app.helpers.parse.toNumber(c.cr)
