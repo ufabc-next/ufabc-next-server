@@ -32,7 +32,8 @@ module.exports = async function (context) {
     order[turnoIndex] = (disciplina.turno == 'diurno') ? 'asc' : 'desc'
   }
 
-  let result = resolveMatriculas(disciplina)
+  const isAfterKick = _(disciplina.after_kick).castArray().compact().value().length
+  const result = resolveMatriculas(disciplina, isAfterKick)
 
   const resultMap = new Map([...result.map(r => [r.aluno_id, r])])
   let students = await Alunos.aggregate([
@@ -63,7 +64,6 @@ module.exports = async function (context) {
 
   return _(students)
     .orderBy(kicks, order)
-    .uniqBy('aluno_id')
     .value()
 }
 
@@ -72,10 +72,18 @@ function kickRule(disciplina) {
   return ['reserva', 'turno', 'ik'].concat(coeffRule)
 }
 
-function resolveMatriculas(disciplina) {
-  let kicked = _.difference(disciplina.before_kick || [], disciplina.after_kick || [])
-  if(!kicked || !kicked.length) return (disciplina.alunos_matriculados || []).map(d => ({ aluno_id: d }))
+function resolveMatriculas(disciplina, isAfterKick) {
+  // if kick has not arrived, not one has been kicked
+  if(!isAfterKick) {
+    return (disciplina.alunos_matriculados || []).map(d => ({
+      aluno_id: d
+    }))
+  }
 
+  // check diff between before_kick and after_kick
+  let kicked = _.difference(disciplina.before_kick || [], disciplina.after_kick || [])
+
+  // return who has been kicked
   return disciplina.before_kick.map(d => ({
     aluno_id: d,
     kicked: kicked.includes(d)
