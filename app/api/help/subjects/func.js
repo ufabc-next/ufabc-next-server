@@ -74,6 +74,7 @@ module.exports = async function (context) {
     .value()
 
   return {
+    subject: await app.models.subjects.findOne({ _id: subjectId }).lean(true),
     general: _.merge(getMean(generalDistribution), { distribution: generalDistribution }),
     specific: await app.models.teachers.populate(stats, 'teacher')
   }
