@@ -11,6 +11,7 @@ const CursoSchema = Schema({
 })
 
 const Model = module.exports = Schema({
+  ra: Number,
   aluno_id: Number,
   cursos: [CursoSchema],
 

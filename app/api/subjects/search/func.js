@@ -4,7 +4,7 @@ const app = require('@/app')
 module.exports = async function (context) {
   const { q } = context.query
 
-  const regex = new RegExp(escapeRegex(q || ''), 'gi')
+  const regex = new RegExp(escapeRegex(_.startCase(_.camelCase(q))), 'gi')
 
   const resp =  await app.models.subjects.aggregate([
     { $match: { search: regex } },

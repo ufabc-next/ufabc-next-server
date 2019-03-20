@@ -10,13 +10,17 @@ const Model = module.exports = Schema({
 })
 
 async function updateEnrollments(doc) {
+  // if we are not updating or have disciplinas, returns right away
+  if(!doc.disciplinas) {
+    return
+  }
+
   doc.disciplinas = _(doc.disciplinas).castArray().compact().value()
   doc.coefficients = app.helpers.calculate.coefficients(doc.disciplinas)
 
   const keys = ['ra', 'year', 'quad', 'disciplina']
 
-  // calculate an identifier for all disciplinas on user history
-  doc.disciplinas.map(d => {
+  async function createOrUpdateEnrollment(d) {
     const key = {
       ra: doc.ra,
       year: d.ano,
@@ -24,47 +28,51 @@ async function updateEnrollments(doc) {
       disciplina: d.disciplina
     }
 
+    // calculate identifier for this discipline
     d.identifier = d.identifier || app.helpers.transform.identifier(key, keys)
-  })
 
-  // check if user has an enrollment that does not have data
-  let enrollments = await app.models.enrollments.find({
-    $or: [
-      {
-        ra: doc.ra,
-        cr_acumulado: { $exists: false },
-      }, {
-        ra: doc.ra,
-        cr_acumulado: null,
-      }, {
-        ra: doc.ra,
-        conceito: null,
-      }, {
-        ra: doc.ra,
-        conceito: { $exists: false },
-      }
-    ]
-  })
+    // find coef for this period
+    const coef = getLastPeriod(doc.coefficients, parseInt(d.ano), parseInt(d.periodo))
 
-  // update enrollment information with user history information
-  const promises = enrollments.map(async f => {
-    let disc = _.find(doc.disciplinas, { identifier: app.helpers.transform.identifier(f, keys) })
-    let acc = getLastPeriod(doc.coefficients, f.year, f.quad)
+    // find subjects
+    const ONE_HOUR = 60 * 60
+    const subjects = await app.models.subjects.find({}).lean(true).cache(ONE_HOUR, 'subjects')
 
-    // this means that disc was locked???
-    if(!disc) {
-      //console.log(f.disciplina, f.ra, f.year, f.quad)
+    // create enrollment payload
+    const enrollmentPayload = {
+      ra: key.ra,
+      year: key.year,
+      quad: key.quad,
+      disciplina: key.disciplina,
+      conceito: d.conceito,
+      creditos: d.creditos,
+      cr_acumulado: _.get(coef, 'cr_acumulado'),
+      ca_acumulado: _.get(coef, 'ca_acumulado')
     }
 
-    const cacheKey = `help_${f.mainTeacher}`
-    await app.redis.cache.del(cacheKey)
+    // find subject for this enrollment
+    app.helpers.validate.subjects(enrollmentPayload, subjects, {})
 
-    _.extend(f, disc)
-    _.extend(f, acc)
-    return await f.save()
-  })
-  
-  await Promise.all(promises)
+    // check if a enrollment already exists for this
+    const enrollment = await app.models.enrollments.findOneAndUpdate({
+      identifier: d.identifier
+    }, enrollmentPayload, {
+      new: true,
+      upsert: true
+    })
+
+    if(enrollment.mainTeacher) {
+      const cacheKey = `reviews_${enrollment.mainTeacher}`
+      await app.redis.cache.del(cacheKey)
+    }
+
+    if(enrollment.subject) {
+      const cacheKey = `reviews_${enrollment.subject}`
+      await app.redis.cache.del(cacheKey)
+    }
+  }
+
+  await app.helpers.mapLimit(doc.disciplinas, createOrUpdateEnrollment, 10)
 }
 
 Model.method('updateEnrollments', async function () {
@@ -73,6 +81,10 @@ Model.method('updateEnrollments', async function () {
 
 Model.pre('findOneAndUpdate', async function () {
   await updateEnrollments(this._update)
+})
+
+Model.post('save', async function () {
+  await updateEnrollments(this)
 })
 
 function getLastPeriod(disciplines, year, quad, begin) {
@@ -97,5 +109,6 @@ function getLastPeriod(disciplines, year, quad, begin) {
   if(resp == null) {
     return getLastPeriod(disciplines, year, quad, begin)
   }
+
   return resp
 }

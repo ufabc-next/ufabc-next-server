@@ -41,6 +41,8 @@ const Model = module.exports = Schema({
 })
 
 Model.index({ identifier: 1, ra: 1 })
+Model.index({ mainTeacher: 1, cr_acumulado: 1, conceito: 1 })
+Model.index({ subject: 1, cr_acumulado: 1, conceito: 1 })
 
 function pre(doc) {
   doc.mainTeacher = _.get(doc, 'teoria._id', doc.teoria) || _.get(doc, 'pratica._id', doc.pratica)

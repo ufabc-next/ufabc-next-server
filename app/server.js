@@ -40,8 +40,12 @@ const pipeline = [
   'redirect',
   // Create web app
   'static',
+  // Generater Router for Restify
+  'router',
   // Create api (/v1) routes and middlewares
   'api',
+  // Create oauth helpers
+  'oauth',
   // Bind to port and lift http app
   'lift',
 ]

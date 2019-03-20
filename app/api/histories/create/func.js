@@ -16,13 +16,4 @@ module.exports = async function (context) {
     upsert: true,
     new: true
   })
-
-  const payload = {
-    ra: history.ra,
-    hash: crypto.createHash('md5').update(JSON.stringify(history.disciplinas)).digest('hex')
-  }
-
-  return jwt.sign(payload, app.config.JWT_SECRET, {
-    expiresIn: '30d'
-  })
 }

@@ -19,4 +19,4 @@ services:
       - "5001:5001"
     restart: always
     links:
-      - redis 
+      - redis

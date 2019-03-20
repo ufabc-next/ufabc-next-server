@@ -22,6 +22,7 @@ module.exports = async function (context) {
       pratica: app.helpers.transform.resolveProfessor(d.pratica, teachers, mappings),
     }))
 
+  // check which teachers from pdf or xls are missing
   const errors = app.helpers.validate.teachers(disciplinas)
  
   // create hash

@@ -53,7 +53,14 @@ module.exports = async (app) => {
     }
   })
 
-  delete tmpRoute
+  tmpRoute = null
+
+  // Locate express-restify-mongoose files
+  let restPaths = glob.sync('**/*rest.js', { cwd })
+  let rest = restPaths.map(file => require(path.join(cwd, file)))
+
+  // Add rest to api
+  api.use(app.router)
 
   // Server errors and Not Found
   api.use('*', app.helpers.middlewares.notFound)
