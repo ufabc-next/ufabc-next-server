@@ -3,7 +3,7 @@ const mongoose = require('mongoose')
 const Schema = require('mongoose').Schema
 
 var Model = module.exports = Schema({
-  name : {
+  name: {
     type: String,
     required: true,
   },

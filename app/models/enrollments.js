@@ -22,7 +22,6 @@ const Model = module.exports = Schema({
   campus: String,
   turno: String,
   turma: String,
-  conceito: String,
   teoria: {
     type: Schema.Types.ObjectId,
     ref: 'teachers'
@@ -35,6 +34,8 @@ const Model = module.exports = Schema({
     type: Schema.Types.ObjectId,
     ref: 'teachers'
   },
+  // vem do portal
+  conceito: String,
   creditos: Number,
   ca_acumulado: Number,
   cr_acumulado: Number,
