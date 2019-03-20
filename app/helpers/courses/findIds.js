@@ -12,9 +12,11 @@ module.exports = async function findIds(season) {
   let cursos = await Alunos
     .aggregate([
       { $unwind: "$cursos" },
+      { $match: { "cursos.id_curso": { $ne: null } }},
+      { $project: { "cursos.id_curso": 1, "cursos.nome_curso": { $trim: { input: "$cursos.nome_curso" } } } },
       { $group: { _id: "$cursos.nome_curso", ids: { $push: "$cursos.id_curso" } } },
     ])
-    .cache('1d', cacheKey)
+    .cache('10m', cacheKey)
 
   return cursos.map(curso => ({
     name: curso._id,
