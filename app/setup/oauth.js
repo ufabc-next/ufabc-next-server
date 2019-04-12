@@ -20,7 +20,7 @@ async function facebook (context) {
   const faceUser = resp.data
 
   // check if user exists in database
-  let user = await App.models.user.findOne({ $or: [{
+  let user = await App.models.users.findOne({ $or: [{
     'oauth.email': faceUser.email
   }, {
     'oauth.facebook' : faceUser.id
@@ -29,7 +29,7 @@ async function facebook (context) {
   if(user) {
     user.set('oauth.facebook', faceUser.id)
   } else {
-    user = new App.models.user({
+    user = new App.models.users({
       oauth: {
         email: faceUser.email,
         facebook: faceUser.id
@@ -52,7 +52,7 @@ async function google (context) {
 
   const googleUser = resp.data
 
-  let user = await App.models.user.findOne({ $or: [{
+  let user = await App.models.users.findOne({ $or: [{
     'oauth.email': googleUser.emails[0].value
   }, {
     'oauth.facebook' : googleUser.id
