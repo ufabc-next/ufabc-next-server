@@ -27,7 +27,7 @@ module.exports = async(context, res) => {
     // find and update disciplina
     return await Disciplinas.findOneAndUpdate({
       disciplina_id: disciplina.disciplina_id,
-      identifier: app.helpers.tranform.identifier(disciplina)
+      identifier: app.helpers.transform.identifier(disciplina)
     }, disciplina, {
       upsert: true,
       new: true
