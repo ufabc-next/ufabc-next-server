@@ -35,10 +35,12 @@ module.exports = async function (context) {
     }
   }
 
+  const identifierKeys = ['disciplina', 'turno', 'campus', 'turma'] 
+
   async function updateDisciplinas(disciplina){
     // find and update disciplina
     return await Disciplinas.findOneAndUpdate({
-      identifier: app.helpers.transform.identifier(disciplina)
+      identifier: app.helpers.transform.identifier(disciplina, identifierKeys)
     }, {
       teoria: _.get(disciplina.teoria, '_id', null),
       pratica: _.get(disciplina.pratica, '_id', null)
