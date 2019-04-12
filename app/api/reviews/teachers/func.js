@@ -96,7 +96,7 @@ module.exports = async function (context) {
         numeric: 1,
         amount: 1,
         count: 1,
-        cr_professor: { $divide : ["$numericWeight", "$amount"]},
+        cr_professor: { $cond: [ { $eq: [ "$amount", 0 ] }, "N/A", { "$divide": ["$numericWeight", "$amount"] } ] },
       }
     }
   ])
