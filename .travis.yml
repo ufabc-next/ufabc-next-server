@@ -14,6 +14,12 @@ cache:
 
 jobs:
   include:
+    - stage: test
+      before_install: cd app
+      install: yarn install
+      script: yarn coverage
+      after_script: cd ../
+    - stage: deploy_test
     - stage: deploy
       if: branch = master
       install: yarn install
