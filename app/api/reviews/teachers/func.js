@@ -32,7 +32,7 @@ module.exports = async function (context) {
           subject: '$subject'
         },
         cr_medio: { $avg: "$cr_acumulado" },
-        total: { "$sum": 1 },
+        count: { "$sum": 1 },
         crs: { $push: "$cr_acumulado" },
         weight: {
           $first : {
@@ -64,7 +64,7 @@ module.exports = async function (context) {
       $project: {
         _id: 1,
         cr_medio: 1,
-        total: 1,
+        count: 1,
         weight: 1,
         crs: 1,
         amount: { $size: "$crs" },
@@ -77,7 +77,7 @@ module.exports = async function (context) {
           $push: {
             conceito: "$_id.conceito",
             weight: "$weight",
-            total: "$total",
+            count: "$count",
             cr_medio: "$cr_medio",
             numeric: { $multiply: ["$amount", "$cr_medio"] },
             numericWeight: { $multiply: ["$amount", "$weight"] },
@@ -87,7 +87,7 @@ module.exports = async function (context) {
         numericWeight: { $sum : { $multiply: ["$amount", "$weight"] } },
         numeric: { $sum : { $multiply: ["$amount", "$cr_medio"] } },
         amount: { $sum: "$amount" },
-        total: { $sum: "$total" }
+        count: { $sum: "$count" }
       }
     }, {
       $project: {
@@ -95,7 +95,7 @@ module.exports = async function (context) {
         numericWeight: 1,
         numeric: 1,
         amount: 1,
-        total: 1,
+        count: 1,
         cr_professor: { $divide : ["$numericWeight", "$amount"]},
       }
     }
@@ -108,7 +108,7 @@ module.exports = async function (context) {
   })
 
   function getMean(value, key) {
-    const total = _.sumBy(value, 'total')
+    const count = _.sumBy(value, 'count')
     const amount = _.sumBy(value, 'amount')
     const simpleSum = value.filter(v => v.cr_medio != null).map(v => v.amount * v.cr_medio)
 
@@ -116,7 +116,7 @@ module.exports = async function (context) {
       conceito: key,
       cr_medio: _.sum(simpleSum) / amount,
       cr_professor: _.sumBy(value, 'numericWeight') / amount,
-      total: total,
+      count: count,
       amount:  amount,
       numeric: _.sumBy(value, 'numeric'),
       numericWeight:  _.sumBy(value, 'numericWeight'),

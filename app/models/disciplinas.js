@@ -20,7 +20,10 @@ var Model = module.exports = Schema({
     ref: 'subjects'
   },
 
-  identifier: String,
+  identifier: {
+    type: String,
+    required: true
+  },
 
   // lista de alunos matriculados no momento
   alunos_matriculados: {
@@ -60,9 +63,5 @@ Model.pre('findOneAndUpdate', function () {
     const season = app.helpers.season.findSeason()
     this._update.year = season.year
     this._update.quad = season.quad
-  }
-  
-  if(!this._update.identifier) { 
-    this._update.identifier = app.helpers.transform.identifier(this._update)
   }
 })
