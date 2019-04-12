@@ -24,7 +24,9 @@ module.exports = async function (context) {
 
     teoria: 1,
     pratica: 1,
-  }).populate(['teoria', 'pratica']).lean(true)
+  }).populate(['teoria', 'pratica']) // .lean(true)
+
+  console.log(disciplinas[0])
 
   await app.redis.cache.set(cacheKey, disciplinas, '1d')
   return disciplinas
