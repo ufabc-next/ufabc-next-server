@@ -2,7 +2,7 @@ const app = require('@/app')
 const populateData = require('@/populate/data/histories')()
 const populate = require('@/populate')
 
-describe.only('MODELS histories', function() {
+describe('MODELS histories', function() {
   beforeEach(async function () {
     //await populate({ operation: 'remove' })
     await populate({ operation: 'both', only: ['subjects'] })

@@ -8,6 +8,15 @@ module.exports = async function (context) {
   }
 
   return await app.models.enrollments.find({
-    ra
+    ra,
+    conceito: { $in: ['A', 'B', 'C', 'D', 'O', 'F'] },
+  }, {
+    conceito: 1,
+    subject: 1,
+    disciplina: 1,
+    pratica: 1, 
+    teoria: 1,
+    year: 1,
+    quad: 1
   }).populate(['pratica', 'teoria', 'subject']).lean(true)
 }

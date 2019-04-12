@@ -71,7 +71,6 @@ async function google (context) {
 
   await user.save()
 
-  console.log('redirect', `${App.config.WEB_URL}/login?token=${user.generateJWT()}`)
   return {
     _redirect: `${App.config.WEB_URL}/login?token=${user.generateJWT()}`
   }

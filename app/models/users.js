@@ -17,6 +17,10 @@ const Model = module.exports = Schema({
   },
   email: {
     type: String,
+    validate: {
+      validator: v => v.indexOf('@aluno.ufabc.edu.br') =! -1,
+      message: props => `${props.value} não é um e-mail válido`
+    },
   },
   confirmed: {
     type: Boolean, 
@@ -25,7 +29,7 @@ const Model = module.exports = Schema({
   permissions: [String]
 })
 
-Model.virtual('filled').get(function () {
+Model.virtual('isFilled').get(function () {
   return this.ra && this.email
 })
 
@@ -35,4 +39,14 @@ Model.method('generateJWT', function () {
     'confirmed',
     'email',
     ]), app.config.JWT_SECRET)
+})
+
+Model.method('sendConfirmation', async function () {
+  !app.config.isTest && app.agenda.now('sendConfirmation', this.toObject({ virtuals: true }))
+})
+
+Model.pre('save', async function () {
+  if(this.isFilled && !this.confirmed) {
+    this.sendConfirmation()
+  }
 })

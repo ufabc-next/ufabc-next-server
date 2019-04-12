@@ -30,7 +30,6 @@ async function walkModels(app, schemas) {
     // check if we are dealing with a schema or a subfolder
     if (Schema instanceof mongoose.Schema) {
       // Applies basic plugins to all models
-
       Schema.plugin(PluginMongoTenant, app.config.mongoTenant)
       Schema.plugin(PluginTimestamp)
       Schema.plugin(mongooseLeanVirtuals)

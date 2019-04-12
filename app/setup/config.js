@@ -47,12 +47,12 @@ module.exports = async(app) => {
   config.isDev = !config.isProduction && !config.isTest
 
   config.mailer = {
-    sendgridKey : getEnv('SENDGRID_API_KEY', null),
-    secret : getEnv('MAILER_SECRET', config.JWT_SECRET),
+    API_KEY: getEnv('SENDGRID_KEY', 'SENDGRID_KEY'),
+    ENDPOINT: 'https://api.sendgrid.com/v3/mail/send',
+    EMAIL: getEnv('SENDGRID_EMAIL', 'contato@ufabcnext.com'),
     // configuration for the mail templates 
-    templates : {
-      invitation: '',
-      create: '',
+    TEMPLATES : {
+      CONFIRMATION: getEnv('EMAIL_TEMPLATE_CONFIMATION', null), 
     },
   }
 
