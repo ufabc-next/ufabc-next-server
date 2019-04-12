@@ -42,7 +42,7 @@
     "lodash": "^4.17.11",
     "mathjs": "^5.1.1",
     "method-override": "^2.3.9",
-    "mongo-tenant": "^1.5.0",
+    "mongo-tenant": "1.5.0",
     "mongoose": "^5.2.1",
     "mongoose-lean-virtuals": "^0.3.0",
     "mongoose-timestamp": "^0.6.0",

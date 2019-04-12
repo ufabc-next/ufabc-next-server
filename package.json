@@ -17,6 +17,7 @@
   },
   "dependencies": {
     "caprover": "^1.2.0",
-    "captainduckduck": "^1.0.15"
+    "captainduckduck": "^1.0.15",
+    "mongo-tenant": "1.5.0"
   }
 }
