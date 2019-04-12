@@ -9,9 +9,9 @@ module.exports = async function (context) {
 
   let cached =  await app.redis.cache.get(cacheKey)
   
-  if(cached){
-    return cached
-  }
+  // if(cached){
+  //   return cached
+  // }
 
   let disciplinas = await Disciplinas.find({}, {
     disciplina: 1,
