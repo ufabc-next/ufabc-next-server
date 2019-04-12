@@ -3,7 +3,7 @@ const app = require('@/app')
 
 module.exports = async function (context) {
   const season = app.helpers.season.findSeasonKey()
-  const Disciplinas = app.models.disciplinas.bySeason(season)
+  const Disciplinas = app.models.disciplinas // .bySeason(season)
 
   const cacheKey = `todasDisciplinas_${season}`
 
