@@ -20,11 +20,13 @@ module.exports = async(app) => {
   config.MONGO_URL = getEnv('MONGO_URL', `mongodb://localhost:27017/ufabc-matricula-extension-${config.ENV}`)
   config.MONGO_URI = config.MONGO_URL
 
+  config.WEB_URL = getEnv('WEB_URL', `http://${ip.address()}:${config.PORT}`)
+
   // Config Redis
   config.REDIS_URL = getEnv('REDIS_URL', 'redis://localhost:6379')
   config.CACHE_NAME = getEnv('CACHE_NAME', 'ufabc-matricula-extension')
 
-  config.SENTRY = getEnv('SENTRY', 'SENTRY_KEY')
+  config.SENTRY = getEnv('SENTRY', 'SENTRY_KEY') 
 
   config.ACCESS_KEY = getEnv('ACCESS_KEY', 'SOME_ACCESS_KEY')
 
@@ -45,13 +47,39 @@ module.exports = async(app) => {
   config.isDev = !config.isProduction && !config.isTest
 
   config.mailer = {
-    sendgridKey : getEnv('SENDGRID_API_KEY', null),
-    secret : getEnv('MAILER_SECRET', config.JWT_SECRET),
+    API_KEY: getEnv('SENDGRID_KEY', 'SENDGRID_KEY'),
+    ENDPOINT: 'https://api.sendgrid.com/v3/mail/send',
+    EMAIL: getEnv('SENDGRID_EMAIL', 'contato@ufabcnext.com'),
     // configuration for the mail templates 
-    templates : {
-      invitation: '',
-      create: '',
+    TEMPLATES : {
+      CONFIRMATION: getEnv('EMAIL_TEMPLATE_CONFIMATION', null), 
     },
+  }
+
+  config.GRANT_SECRET = getEnv('GRANT_SECRET',  'SOME_RANDOM_SECRET'),
+  config.GRANT_CONFIG = {
+    defaults: {
+      protocol: config.PROTOCOL,
+      host: config.HOST,
+    },
+    facebook: {
+      key: getEnv('OAUTH_FACEBOOK_KEY', 'OAUTH_FACEBOOK_KEY') ,
+      secret: getEnv('OAUTH_FACEBOOK_SECRET', 'OAUTH_FACEBOOK_SECRET'),
+      callback: "/oauth/facebook",
+      scope: [
+        "public_profile",
+        "email"
+      ]
+    },
+    google: {
+      key: getEnv('OAUTH_GOOGLE_KEY', 'OAUTH_GOOGLE_KEY'),
+      secret: getEnv('OAUTH_GOOGLE_SECRET', 'OAUTH_GOOGLE_SECRET'),
+      callback: "/oauth/google",
+      scope: [
+        "profile",
+        "email"
+      ]
+    }
   }
 
   // Configuration for Mongo Tenant plugin

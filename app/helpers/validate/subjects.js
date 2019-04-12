@@ -1,13 +1,13 @@
 const _ = require('lodash')
 
-module.exports = function(payload, subjects, extraMappings) {
+module.exports = function(payload, subjects, extraMappings = {}) {
   let mapping = {}
 
-  _.extend(mapping, extraMappings || {})
+  _.extend(mapping, extraMappings)
 
   const mapSubjects = _.map(subjects, 'search')
 
-  return payload.reduce((acc, d) => {
+  return _.castArray(payload).reduce((acc, d) => {
     const converted = _.startCase(_.camelCase(d.disciplina))
     const convertedMapping = _.startCase(_.camelCase(mapping[d.disciplina]))
 

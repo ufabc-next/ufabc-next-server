@@ -9,13 +9,14 @@
     "build-web": "cd web && npm install && npm run build && cd ../ rm -rf web",
     "start": "node app/server.js",
     "deepinstall": "npm run install-app",
-    "deploy": "captainduckduck deploy"
+    "deploy": "caprover deploy"
   },
   "engines": {
     "node": ">= 8.0.0",
     "npm": ">= 3.0.0"
   },
   "dependencies": {
+    "caprover": "^1.2.0",
     "captainduckduck": "^1.0.15"
   }
 }

@@ -1,6 +1,6 @@
 const app = require('@/app')
 
 module.exports = async(router) => {
-  router.get('/private/histories/sync',
+  router.post('/users/me/confirm',
     app.helpers.routes.func(require('./func.js')))
 }

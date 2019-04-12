@@ -1,12 +1,12 @@
 {
-  "schemaVersion" :1 ,
+  "schemaVersion" : 2,
   "dockerfileLines" :[
     "FROM node:9.11.2-alpine",
     "RUN mkdir -p /usr/src/app",
     "WORKDIR /usr/src/app",
-    "COPY ./src/package.json /usr/src/app/",
+    "COPY ./package.json /usr/src/app/",
     "RUN npm install && npm cache clean --force",
-    "COPY ./src /usr/src/app",
+    "COPY ./ /usr/src/app",
     "RUN npm run deepinstall",
     "ENV NODE_ENV production",
     "ENV PORT 80",

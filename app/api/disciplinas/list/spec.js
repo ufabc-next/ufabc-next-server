@@ -11,7 +11,7 @@ const func = require('./func')
 const sync = require('@/api/disciplinas/sync/func')
 
 describe('GET /v1/disciplinas', function() {
-  var models, context, helpData, pdfData
+  var models, context, pdfData
   
   beforeEach(async function () {
     models = await populate({ operation: 'both', only: ['disciplinas', 'subjects'] })

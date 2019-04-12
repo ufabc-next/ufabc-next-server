@@ -1,28 +1,18 @@
-const _ = require('lodash')
 const app = require('@/app')
-const crypto = require('crypto')
-const jwt = require('jsonwebtoken')
+const fs = require('fs')
+const path = require('path')
 
 module.exports = async function (context) {
-  const { ra } = context.body
+  const quad = 1
+  const year = 2015
 
-  if(!ra) {
-    return
-  }
+  var data = JSON.parse(fs.readFileSync(path.join(__dirname, `./processed/${year}.${quad}.json`), 'utf8'))
 
-  const history = await app.models.histories.findOneAndUpdate({
-    ra: ra
-  }, context.body, {
-    upsert: true,
-    new: true
+  app.agenda.now('updateStuff', {
+    json: data
   })
 
-  const payload = {
-    ra: history.ra,
-    hash: crypto.createHash('md5').update(JSON.stringify(history.disciplinas)).digest('hex')
+  return {
+    status: 'published'
   }
-
-  return jwt.sign(payload, app.config.JWT_SECRET, {
-    expiresIn: '30d'
-  })
 }
