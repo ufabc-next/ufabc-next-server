@@ -4,15 +4,18 @@ node_js:
   - "9.11.2"
 
 services:
-  - mongodb
   - redis-server
 
-addons:
-  apt:
-    sources:
-      - mongodb-4.0-precise
-    packages:
-      - mongodb-org-server
+env:
+  global:
+    - CI="travis"
+    - MONGODB=4.0.1
+
+before_script:
+  - wget http://fastdl.mongodb.org/linux/mongodb-linux-x86_64-${MONGODB}.tgz -O /tmp/mongodb.tgz
+  - tar -xvf /tmp/mongodb.tgz
+  - mkdir /tmp/data
+  - ${PWD}/mongodb-linux-x86_64-${MONGODB}/bin/mongod --dbpath /tmp/data --bind_ip 127.0.0.1 --auth &> /dev/null &
 
 cache:
   directories:
