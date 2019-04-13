@@ -20,9 +20,10 @@ module.exports = async (req, res, next) => {
 
     // verify user
     await jwt.verify(tokenString, app.config.JWT_SECRET)
-    let history = jwt.decode(tokenString, { complete: true }) || {}
+    let user = jwt.decode(tokenString, { complete: true }) || {}
+    console.log('DECODED JWT', user)
 
-    req.history = await app.models.histories.findOne({ ra: history.payload.ra })
+    req.user = await app.models.users.findOne({ _id: user.payload._id })
       
     } else {
       // Default is to throw...
