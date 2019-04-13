@@ -22,6 +22,8 @@ module.exports = async function (context) {
     identifier: 1,
     subject: 1,
 
+    vagas: 1,
+    requisicoes: 1,
     teoria: 1,
     pratica: 1,
   }).populate(['teoria', 'pratica']).lean(true)

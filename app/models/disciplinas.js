@@ -56,6 +56,10 @@ var Model = module.exports = Schema({
   },
 })
 
+Model.virtual('requisicoes').get(function () {
+  return (this.alunos_matriculados || []).length
+})
+
 Model.index({ identifier: 1 })
 
 Model.pre('findOneAndUpdate', function () {
