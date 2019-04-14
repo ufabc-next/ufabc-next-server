@@ -3,6 +3,8 @@ const errors = require('@/errors')
 const mongoose = require('mongoose')
 const Schema = require('mongoose').Schema
 
+const app = require('@/app')
+
 const Reactions = require('./reactions')
 
 var Model = module.exports = Schema({
@@ -26,7 +28,21 @@ var Model = module.exports = Schema({
     type: Boolean,
     default: true
   },
-})
+
+  mainTeacher: {
+    type: Schema.Types.ObjectId,
+    ref: 'teachers',
+    required: true
+  },
+
+  subject: {
+    type: Schema.Types.ObjectId,
+    ref: 'subjects',
+    required: true
+  },
+
+  reactionsCount: Object
+},{ toObject: { virtuals: true }})
 
 Model.pre('save', async function(){
 
@@ -43,4 +59,23 @@ Model.pre('save', async function(){
   if(!this.isNew && this.isModified('active') && this.active) {
     // TODO set all reactions to active true
   }
+})
+
+Model.static('analysisByReactions', async function(query, userId){
+  const Reactions = app.models.reactions
+
+  if(!userId) throw new errors.BadRequest(`Missing userId ${userId}`)
+
+  let response = await this.find(query).lean(true)
+
+  await Promise.all(response.map(async r => {
+    r.myReactions = {
+      like: !!(await Reactions.count({ analysis: r.id, user: userId, kind: 'like' })),
+      recommendation: !!(await Reactions.count({ analysis: r.id, user: userId, kind: 'recommendation' })),
+      star: !!(await Reactions.count({ analysis: r.id, user: userId, kind: 'star' }))
+    }
+    return r
+  }))
+
+  return response
 })

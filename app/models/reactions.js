@@ -35,6 +35,7 @@ var Model = module.exports = Schema({
 })
 
 Model.pre('save', async function(){
+  this.wasNew = this.isNew
 
   // Validate if reaction is equal
   let slug = `${this.kind}:${this.analysis._id}:${this.user._id}`
@@ -51,4 +52,24 @@ async function validateRules(reaction){
   if(this.kind == 'recommendation') {
     // TODO valida se usuario ja fez materia com aquele professor
   }
+}
+
+Model.post('save', async function(){
+  await computeReactions(this)
+})
+
+async function computeReactions(doc) {
+
+  const Analysis = app.models.analysis
+
+  let analyses = await Analysis.find({ active: true })
+
+  await Promise.all(analyses.map(async function(a)  {
+    a.reactionsCount = {
+      like: await doc.constructor.count({ analysis: a.id, kind: 'like' }),
+      recommendation: await doc.constructor.count({ analysis: a.id, kind: 'recommendation' }),
+      star: await doc.constructor.count({ analysis: a.id, kind: 'star' })
+    }
+    await a.save()
+  }))
 }

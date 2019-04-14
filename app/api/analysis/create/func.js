@@ -16,7 +16,9 @@ module.exports = async function(context){
   let analysis = new Analysis({
     comment: String(context.body.comment),
     identifier: enrollment.identifier,
-    enrollment: enrollment.id
+    enrollment: enrollment.id,
+    mainTeacher: enrollment.mainTeacher,
+    subject: enrollment.subject
   })
 
   analysis = await analysis.save()
