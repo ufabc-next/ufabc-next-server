@@ -13,11 +13,6 @@ var Model = module.exports = Schema({
     required: true
   },
 
-  identifier: {
-    type: String,
-    required: true
-  },
-
   enrollment: {
     type: Schema.Types.ObjectId,
     required: true,
@@ -38,6 +33,11 @@ var Model = module.exports = Schema({
   subject: {
     type: Schema.Types.ObjectId,
     ref: 'subjects',
+    required: true
+  },
+
+  disciplina: {
+    type: String,
     required: true
   },
 
@@ -70,9 +70,9 @@ Model.static('analysisByReactions', async function(query, userId){
 
   await Promise.all(response.map(async r => {
     r.myReactions = {
-      like: !!(await Reactions.count({ analysis: r.id, user: userId, kind: 'like' })),
-      recommendation: !!(await Reactions.count({ analysis: r.id, user: userId, kind: 'recommendation' })),
-      star: !!(await Reactions.count({ analysis: r.id, user: userId, kind: 'star' }))
+      like: !!(await Reactions.count({ analysis: String(r._id), user: String(userId), kind: 'like' })),
+      recommendation: !!(await Reactions.count({ analysis: String(r._id), user: String(userId), kind: 'recommendation' })),
+      star: !!(await Reactions.count({ analysis: String(r._id), user: String(userId), kind: 'star' }))
     }
     return r
   }))
