@@ -2,7 +2,7 @@ const errors = require('@/errors')
 const app = require('@/app')
 
 module.exports = async function(context){
-  const Analysis = app.models.analysis
+  const Comment = app.models.comment
   const Enrollment = app.models.enrollments
 
   if(!context.body.enrollment) throw new errors.BadRequest(`Missing enrollment`)
@@ -13,7 +13,7 @@ module.exports = async function(context){
 
   if(!enrollment) throw new errors.BadRequest(`This enrollment not exist: ${enrollment.id}`)
 
-  let analysis = new Analysis({
+  let comment = new Comment({
     comment: String(context.body.comment),
     enrollment: enrollment.id,
     mainTeacher: enrollment.mainTeacher,
@@ -21,7 +21,5 @@ module.exports = async function(context){
     subject: enrollment.subject
   })
 
-  analysis = await analysis.save()
-
-  return analysis
+  return await comment.save()
 }

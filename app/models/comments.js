@@ -61,7 +61,7 @@ Model.pre('save', async function(){
   }
 })
 
-Model.static('analysisByReactions', async function(query, userId){
+Model.static('commentsByReactions', async function(query, userId){
   const Reactions = app.models.reactions
 
   if(!userId) throw new errors.BadRequest(`Missing userId ${userId}`)
@@ -70,9 +70,9 @@ Model.static('analysisByReactions', async function(query, userId){
 
   await Promise.all(response.map(async r => {
     r.myReactions = {
-      like: !!(await Reactions.count({ analysis: String(r._id), user: String(userId), kind: 'like' })),
-      recommendation: !!(await Reactions.count({ analysis: String(r._id), user: String(userId), kind: 'recommendation' })),
-      star: !!(await Reactions.count({ analysis: String(r._id), user: String(userId), kind: 'star' }))
+      like: !!(await Reactions.count({ comment: String(r._id), user: String(userId), kind: 'like' })),
+      recommendation: !!(await Reactions.count({ comment: String(r._id), user: String(userId), kind: 'recommendation' })),
+      star: !!(await Reactions.count({ comment: String(r._id), user: String(userId), kind: 'star' }))
     }
     return r
   }))

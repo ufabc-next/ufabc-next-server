@@ -1,6 +1,6 @@
 const app = require('@/app')
 
 module.exports = async(router) => {
-  router.post('/analysis',
+  router.get('/comment/:teacherId',
     app.helpers.routes.func(require('./func.js')))
 }

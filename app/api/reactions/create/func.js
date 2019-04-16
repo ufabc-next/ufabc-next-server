@@ -3,16 +3,16 @@ const app = require('@/app')
 
 module.exports = async function(context){
   const Reaction = app.models.reactions
-  const Analysis = app.models.analysis
+  const Comment = app.models.comments
   const User = app.models.users
 
   if(!context.body.kind) throw new errors.BadRequest(`Missing kind`)
   if(!context.body.user) throw new errors.BadRequest(`Missing user`)
-  if(!context.body.analysis) throw new errors.BadRequest(`Missing analysis`)
+  if(!context.body.comment) throw new errors.BadRequest(`Missing comment`)
 
-  let analysis = await Analysis.findOne({ _id: String(context.body.analysis), active: true })
+  let comment = await Comment.findOne({ _id: String(context.body.comment), active: true })
 
-  if(!analysis) throw new errors.BadRequest(`Invalid analysis: ${context.body.analysis}`)
+  if(!comment) throw new errors.BadRequest(`Invalid comment: ${context.body.comment}`)
 
   let user = await User.findOne({ _id: String(context.body.user) })
 
@@ -20,7 +20,7 @@ module.exports = async function(context){
 
   let reaction = new Reaction({
     kind: context.body.kind,
-    analysis: analysis,
+    comment: comment,
     user: user,
   })
 

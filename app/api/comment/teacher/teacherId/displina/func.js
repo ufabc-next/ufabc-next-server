@@ -13,9 +13,9 @@ module.exports = async (context) => {
 
   if(!disciplina) throw new errors.BadRequest(`Missing disciplina: ${disciplina}`)
 
-  const Analysis = app.models.analysis
+  const Comment = app.models.comment
 
-  let analysis = await Analysis.analysisByReactions({ mainTeacher: teacherId, disciplina: disciplina }, userId )
+  let comment = await Comment.commentsByReactions({ mainTeacher: teacherId, disciplina: disciplina }, userId )
 
-  return analysis
+  return comment
 }

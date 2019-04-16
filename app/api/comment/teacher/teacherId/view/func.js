@@ -11,9 +11,9 @@ module.exports = async (context) => {
 
   if(!userId) throw new errors.BadRequest(`Missing userId: ${userId}`)
 
-  const Analysis = app.models.analysis
+  const Comment = app.models.comment
 
-  let analysis = await Analysis.analysisByReactions({ mainTeacher: teacherId }, userId)
+  let comment = await Comment.commentsByReactions({ mainTeacher: teacherId }, userId)
 
-  return analysis
+  return comment
 }
