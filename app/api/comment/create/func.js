@@ -2,7 +2,7 @@ const errors = require('@/errors')
 const app = require('@/app')
 
 module.exports = async function(context){
-  const Comment = app.models.comment
+  const Comment = app.models.comments
   const Enrollment = app.models.enrollments
 
   if(!context.body.enrollment) throw new errors.BadRequest(`Missing enrollment`)
