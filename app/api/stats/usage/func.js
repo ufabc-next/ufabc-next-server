@@ -9,7 +9,10 @@ module.exports = async function getUsageStats(context) {
   const Alunos = app.models.alunos.bySeason(season)
 
   return {
-    users: await Alunos.count({}),
-    help: await app.models.enrollments.count({ conceito: { $exists: true }})
+    currentAlunos: await Alunos.count({}),
+    totalAlunos: await app.models.alunos.count({}),
+    users: await app.models.users.count({}),
+    comments: await app.models.comments.count({}),
+    enrollemnts: await app.models.enrollments.count({ conceito: { $exists: true }})
   }
 }

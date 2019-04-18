@@ -56,9 +56,13 @@ Model.post('save', async function(){
   await computeReactions(this)
 })
 
+Model.post('remove', async function(){
+  await computeReactions(this)
+})
+
 async function computeReactions(doc) {
 
-  const Comment = app.models.comment
+  const Comment = app.models.comments
 
   let comments = await Comment.find({ active: true })
 

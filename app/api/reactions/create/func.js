@@ -6,13 +6,15 @@ module.exports = async function(context){
   const Comment = app.models.comments
   const User = app.models.users
 
+  const { commentId } = context.params
+
   if(!context.body.kind) throw new errors.BadRequest(`Missing kind`)
-  if(!context.body.user) throw new errors.BadRequest(`Missing user`)
-  if(!context.body.comment) throw new errors.BadRequest(`Missing comment`)
+  if(!context.body.user) throw new errors.BadRequest(`Missing user`) // TODO PEGAR DO AUTH DO GRIPPA
+  if(!commentId) throw new errors.BadRequest(`Missing commentId`)
 
-  let comment = await Comment.findOne({ _id: String(context.body.comment), active: true })
+  let comment = await Comment.findOne({ _id: String(commentId), active: true })
 
-  if(!comment) throw new errors.BadRequest(`Invalid comment: ${context.body.comment}`)
+  if(!comment) throw new errors.BadRequest(`Invalid comment: ${commentId}`)
 
   let user = await User.findOne({ _id: String(context.body.user) })
 
