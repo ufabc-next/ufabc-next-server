@@ -2,7 +2,15 @@ const _ = require('lodash')
 const app = require('@/app')
 
 module.exports = async function getDisciplinaStats(context) {
-  let { season, turno, curso_id, ratio, limit, page } = _.defaults(context.query, {
+  let {
+    season,
+    turno,
+    campus,
+    curso_id,
+    ratio,
+    limit,
+    page
+  } = _.defaults(context.query, {
     limit: 10,
     page: 0,
   })
@@ -15,6 +23,7 @@ module.exports = async function getDisciplinaStats(context) {
   // check if query has been made
   let match = { }
   if(turno) match.turno = turno
+  if(campus) match.campus = campus
   if(curso_id) {
     curso_id = parseInt(curso_id)
     // get ids of inter courses
