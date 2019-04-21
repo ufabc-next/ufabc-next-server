@@ -5,8 +5,6 @@ const Schema = require('mongoose').Schema
 
 const app = require('@/app')
 
-const Reactions = require('./reactions')
-
 var Model = module.exports = Schema({
   comment: {
     type: String,
@@ -46,6 +44,8 @@ var Model = module.exports = Schema({
 
 Model.pre('save', async function(){
 
+  const Reactions = app.models.reactions
+
   // Validate if this user has already comment is this enrollment
   if(this.isNew) {
     let enrollment = await this.constructor.findOne({ enrollment: this.enrollment, active: true })
@@ -53,11 +53,17 @@ Model.pre('save', async function(){
   }
 
   if(!this.isNew && this.isModified('active') && !this.active) {
-    // TODO set all reactions to active false
+    await Promise.all(await Reactions.find({ comment: this._id }).map(async reaction => {
+      reaction.active = false
+      await reaction.save()
+    }))
   }
 
   if(!this.isNew && this.isModified('active') && this.active) {
-    // TODO set all reactions to active true
+    await Promise.all(await Reactions.find({ comment: this._id }).map(async reaction => {
+      reaction.active = true
+      await reaction.save()
+    }))
   }
 })
 
