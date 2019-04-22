@@ -20,6 +20,10 @@ module.exports = async (app) => {
     })
   }
 
+  // Authenticate user
+  api.use(['/users/complete', '/help/teachers/:teacherId', '/reviews/teachers/:teacherId','/help/subjects/:subjectId', '/reviews/subjects/:subjectId'],
+    app.helpers.middlewares.auth)
+
   // Protect Private routes
   api.use('/private', app.helpers.middlewares.private)
 
