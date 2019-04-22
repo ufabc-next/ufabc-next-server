@@ -16,7 +16,8 @@ module.exports = async function(context){
     enrollment: enrollment.id,
     mainTeacher: enrollment.mainTeacher,
     disciplina: enrollment.disciplina,
-    subject: enrollment.subject
+    subject: enrollment.subject,
+    ra: enrollment.ra
   })
 
   return await comment.save()
