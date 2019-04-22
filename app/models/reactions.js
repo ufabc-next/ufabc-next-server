@@ -42,13 +42,17 @@ Model.pre('save', async function(){
     if(equalReaction) throw new errors.BadRequest(`You cannot react 2 identical times in the same comment`)
     this.slug = slug
   }
-
   await validateRules(this)
 })
 
 async function validateRules(reaction){
-  if(this.kind == 'recommendation') {
-    // TODO valida se usuario ja fez materia com aquele professor
+  const Enrollment = app.models.enrollments
+
+  if(reaction.kind == 'recommendation') {
+    let user = reaction.user
+    let comment = reaction.comment
+    let isValid = await Enrollment.findOne({ ra: user.ra, subject: comment.subject, mainTeacher: comment.mainTeacher })
+    if(!isValid) throw new errors.BadRequest(`You cannot react with kind recommendation is this comment`)
   }
 }
 
