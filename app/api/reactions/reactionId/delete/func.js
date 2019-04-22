@@ -6,7 +6,7 @@ module.exports = async (context) => {
 
   const { reactionId } = context.params
 
-  if(!reactionId) throw new errors.BadRequest(`Missing reactionId`)
+  app.helpers.validate.throwMissingParameter(['reactionId'], context.params)
 
   let reaction = await Reaction.findOne({ _id: String(reactionId), active: true })
 

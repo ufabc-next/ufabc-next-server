@@ -5,9 +5,7 @@ module.exports = async function(context){
   const Comment = app.models.comments
   const Enrollment = app.models.enrollments
 
-  if(!context.body.enrollment) throw new errors.BadRequest(`Missing enrollment`)
-
-  if(!context.body.comment) throw new errors.BadRequest(`Missing comment`)
+  app.helpers.validate.throwMissingParameter(['enrollment', 'comment'], context.body)
 
   let enrollment = await Enrollment.findById(String(context.body.enrollment))
 

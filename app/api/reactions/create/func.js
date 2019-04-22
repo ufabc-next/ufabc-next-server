@@ -8,9 +8,10 @@ module.exports = async function(context){
 
   const { commentId } = context.params
 
-  if(!context.body.kind) throw new errors.BadRequest(`Missing kind`)
+  app.helpers.validate.throwMissingParameter(['kind'], context.body)
+  app.helpers.validate.throwMissingParameter(['commentId'], context.params)
+
   if(!context.body.user) throw new errors.BadRequest(`Missing user`) // TODO PEGAR DO AUTH DO GRIPPA
-  if(!commentId) throw new errors.BadRequest(`Missing commentId`)
 
   let comment = await Comment.findOne({ _id: String(commentId), active: true })
 

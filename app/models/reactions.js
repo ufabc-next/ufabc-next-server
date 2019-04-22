@@ -68,14 +68,23 @@ async function computeReactions(doc) {
 
   const Comment = app.models.comments
 
-  let comments = await Comment.find({ active: true })
+  // let commentId = doc.comment._id ? doc.comment._id : doc.comment
 
-  await Promise.all(comments.map(async function(a)  {
-    a.reactionsCount = {
-      like: await doc.constructor.count({ comment: a.id, kind: 'like' }),
-      recommendation: await doc.constructor.count({ comment: a.id, kind: 'recommendation' }),
-      star: await doc.constructor.count({ comment: a.id, kind: 'star' })
-    }
-    await a.save()
-  }))
+  // let comments = await Comment.find({ _id: commentId })
+
+  // await Promise.all(comments.map(async function(a)  {
+  //   a.reactionsCount = {
+  //     like: await doc.constructor.count({ comment: a.id, kind: 'like' }),
+  //     recommendation: await doc.constructor.count({ comment: a.id, kind: 'recommendation' }),
+  //     star: await doc.constructor.count({ comment: a.id, kind: 'star' })
+  //   }
+  //   await a.save()
+  // }))
+
+  const commentId = doc.comment._id || doc.comment
+
+  await Comment.findOneAndUpdate(
+    { _id: commentId },
+    { [`reactionsCount.${doc.kind}`]: await doc.constructor.count({ comment: commentId, kind: doc.kind })}
+  )
 }
