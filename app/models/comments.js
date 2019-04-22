@@ -85,3 +85,5 @@ Model.static('commentsByReactions', async function(query, userId){
 
   return response
 })
+
+Model.index({ comment: 1, user: 1 })

@@ -88,3 +88,5 @@ async function computeReactions(doc) {
     { [`reactionsCount.${doc.kind}`]: await doc.constructor.count({ comment: commentId, kind: doc.kind })}
   )
 }
+
+Model.index({ comment: 1, kind: 1 })
