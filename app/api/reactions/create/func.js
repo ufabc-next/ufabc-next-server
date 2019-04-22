@@ -15,11 +15,11 @@ module.exports = async function(context){
 
   let comment = await Comment.findOne({ _id: String(commentId), active: true })
 
-  if(!comment) throw new errors.BadRequest(`Invalid comment: ${commentId}`)
+  if(!comment) throw new errors.BadRequest(`Comentário inválido: ${commentId}`)
 
   let user = await User.findOne({ _id: String(context.body.user) })
 
-  if(!user) throw new errors.BadRequest(`Invalid user: ${context.body.user}`)
+  if(!user) throw new errors.BadRequest(`Usuário inválido: ${context.body.user}`)
 
   let reaction = new Reaction({
     kind: context.body.kind,

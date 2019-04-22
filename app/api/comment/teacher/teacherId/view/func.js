@@ -11,7 +11,7 @@ module.exports = async (context) => {
 
   app.helpers.validate.throwMissingParameter(['teacherId'], context.params)
 
-  if(!userId) throw new errors.BadRequest(`Missing userId: ${userId}`)
+  if(!userId) throw new errors.BadRequest(`Missing userId: ${userId}`) // auth do grippa
 
   let comment = await Comment.commentsByReactions({ mainTeacher: teacherId, ...( subjectId && { subject: subjectId}) }, userId)
 

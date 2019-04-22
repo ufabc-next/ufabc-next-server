@@ -9,7 +9,7 @@ module.exports = async function(context){
 
   let enrollment = await Enrollment.findById(String(context.body.enrollment))
 
-  if(!enrollment) throw new errors.BadRequest(`This enrollment not exist: ${enrollment.id}`)
+  if(!enrollment) throw new errors.BadRequest(`Este vínculo não existe: ${enrollment.id}`)
 
   let comment = new Comment({
     comment: String(context.body.comment),

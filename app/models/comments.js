@@ -49,7 +49,7 @@ Model.pre('save', async function(){
   // Validate if this user has already comment is this enrollment
   if(this.isNew) {
     let enrollment = await this.constructor.findOne({ enrollment: this.enrollment, active: true })
-    if(enrollment) throw new errors.BadRequest(`You can only comment one time is this enrollment: ${this.enrollment}`)
+    if(enrollment) throw new errors.BadRequest(`Você só pode comentar uma vez neste vínculo: ${this.enrollment}`)
   }
 
   if(!this.isNew && this.isModified('active') && !this.active) {
@@ -70,7 +70,7 @@ Model.pre('save', async function(){
 Model.static('commentsByReactions', async function(query, userId){
   const Reactions = app.models.reactions
 
-  if(!userId) throw new errors.BadRequest(`Missing userId ${userId}`)
+  if(!userId) throw new errors.BadRequest(`Usuário não encontrado: ${userId}`)
 
   let response = await this.find(query).lean(true)
 

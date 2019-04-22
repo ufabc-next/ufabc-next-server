@@ -10,7 +10,7 @@ module.exports = async (context) => {
 
   let reaction = await Reaction.findOne({ _id: String(reactionId), active: true })
 
-  if(!reaction) throw new errors.BadRequest(`Reaction was not found: ${reactionId}`)
+  if(!reaction) throw new errors.BadRequest(`Nenhuma reação foi encontrada: ${reactionId}`)
 
   return await reaction.remove()
 }

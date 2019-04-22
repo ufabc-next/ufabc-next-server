@@ -39,7 +39,7 @@ Model.pre('save', async function(){
   let slug = `${this.kind}:${this.comment._id}:${this.user._id}`
   if(this.isNew) {
     let equalReaction = await this.constructor.findOne({ slug: slug })
-    if(equalReaction) throw new errors.BadRequest(`You cannot react 2 identical times in the same comment`)
+    if(equalReaction) throw new errors.BadRequest(`Você não pode reagir duas vezes iguais ao mesmo comentário`)
     this.slug = slug
   }
   await validateRules(this)
@@ -52,7 +52,7 @@ async function validateRules(reaction){
     let user = reaction.user
     let comment = reaction.comment
     let isValid = await Enrollment.findOne({ ra: user.ra, subject: comment.subject, mainTeacher: comment.mainTeacher })
-    if(!isValid) throw new errors.BadRequest(`You cannot react with kind recommendation is this comment`)
+    if(!isValid) throw new errors.BadRequest(`Você não pode recomendar este comentário`)
   }
 }
 

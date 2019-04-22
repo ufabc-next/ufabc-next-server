@@ -10,7 +10,7 @@ module.exports = async (context) => {
 
   let comment = await Comment.findOne({ _id: String(commentId), active: true })
 
-  if(!comment) throw new errors.BadRequest(`Analysis was not found: ${commentId}`)
+  if(!comment) throw new errors.BadRequest(`Comentário não encontrado: ${commentId}`)
 
   comment.active = false
 
