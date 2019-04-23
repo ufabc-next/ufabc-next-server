@@ -1,6 +1,6 @@
 module.exports = {
   public: [
-    'oauth.email'
+    'oauth.email',
   ],
 
   create: [
@@ -15,7 +15,6 @@ module.exports = {
 
   update: [
     'ra',
-    'email',
-    'confirmed',
+    'email'
   ],
 }

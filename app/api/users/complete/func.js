@@ -11,7 +11,7 @@ module.exports = async(context) => {
   }
 
   user.set(_.pick(context.body, Fields.update))
-
+  
   // Save
   try {
     await user.save()

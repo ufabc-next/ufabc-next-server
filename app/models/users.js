@@ -17,10 +17,10 @@ const Model = module.exports = Schema({
   },
   email: {
     type: String,
-    // validate: {
-    //   validator: v => v.indexOf('@aluno.ufabc.edu.br') =! -1,
-    //   message: props => `${props.value} não é um e-mail válido`
-    // },
+    validate: {
+      validator: v => v.indexOf('@aluno.ufabc.edu.br') != -1,
+      message: props => `${props.value} não é um e-mail válido`
+    },
   },
   confirmed: {
     type: Boolean, 
