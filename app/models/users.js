@@ -35,6 +35,7 @@ Model.virtual('isFilled').get(function () {
 
 Model.method('generateJWT', function () {
   return jwt.sign(_.pick(this, [
+    '_id',
     'ra',
     'confirmed',
     'email',
@@ -42,7 +43,8 @@ Model.method('generateJWT', function () {
 })
 
 Model.method('sendConfirmation', async function () {
-  !app.config.isTest && app.agenda.now('sendConfirmation', this.toObject({ virtuals: true }))
+  // !app.config.isTest && app.agenda.now('sendConfirmation', this.toObject({ virtuals: true }))
+  app.agenda.now('sendConfirmation', this.toObject({ virtuals: true }))
 })
 
 Model.pre('save', async function () {

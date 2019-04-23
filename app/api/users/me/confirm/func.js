@@ -8,9 +8,7 @@ module.exports = async(context) => {
   if(!token) {
     throw new errors.BadRequest.MissingParameter('token')
   }
-
-  let payload
-
+    
   try {
     payload = JSON.parse(app.helpers.crypt.decrypt(token))
   } catch(e) {
