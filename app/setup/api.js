@@ -21,7 +21,11 @@ module.exports = async (app) => {
   }
 
   // Authenticate user
-  api.use(['/users/complete', '/help/teachers/:teacherId', '/reviews/teachers/:teacherId','/help/subjects/:subjectId', '/reviews/subjects/:subjectId'],
+  api.use([
+    '/users/complete', 
+    '/users/me/resend',
+    '/enrollments',
+  ],
     app.helpers.middlewares.auth)
 
   // Protect Private routes
