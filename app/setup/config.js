@@ -20,7 +20,7 @@ module.exports = async(app) => {
   config.MONGO_URL = getEnv('MONGO_URL', `mongodb://localhost:27017/ufabc-matricula-extension-${config.ENV}`)
   config.MONGO_URI = config.MONGO_URL
 
-  config.WEB_URL = getEnv('WEB_URL', `http://${ip.address()}:${config.PORT}`)
+  config.WEB_URL = getEnv('WEB_URL', `http://${ip.address()}:${config.PORT}/app`)
 
   // Config Redis
   config.REDIS_URL = getEnv('REDIS_URL', 'redis://localhost:6379')
