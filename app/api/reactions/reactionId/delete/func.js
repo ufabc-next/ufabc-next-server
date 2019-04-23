@@ -6,11 +6,11 @@ module.exports = async (context) => {
 
   const { reactionId } = context.params
 
-  if(!reactionId) throw new errors.BadRequest(`Missing reactionId`)
+  app.helpers.validate.throwMissingParameter(['reactionId'], context.params)
 
   let reaction = await Reaction.findOne({ _id: String(reactionId), active: true })
 
-  if(!reaction) throw new errors.BadRequest(`Reaction was not found: ${reactionId}`)
+  if(!reaction) throw new errors.BadRequest(`Nenhuma reação foi encontrada: ${reactionId}`)
 
   return await reaction.remove()
 }

@@ -7,13 +7,13 @@ module.exports = async (context) => {
 
   const { commentId } = context.params
 
-  if(!commentId) throw new errors.BadRequest(`Missing commentId`)
+  app.helpers.validate.throwMissingParameter(['commentId'], context.params)
 
   let comment = await Comment.findOne({ _id: String(commentId) })
 
-  if(!comment) throw new errors.BadRequest(`Analysis was not found: ${commentId}`)
+  if(!comment) throw new errors.BadRequest(`Comentário não encontrado: ${commentId}`)
 
-  comment.set(_.pick(context.body, ['comment', 'active']))
+  comment.set(_.pick(context.body, ['active']))
 
   return await comment.save()
 }

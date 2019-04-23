@@ -3,17 +3,17 @@ const errors = require('@/errors')
 
 module.exports = async (context) => {
 
-  const { teacherId } = context.params
+  const { teacherId, subjectId } = context.params
 
-  const { userId } = context.query
+  const { userId } = context.query // TODO pegar da auth do grippa
 
-  if(!teacherId) throw new errors.BadRequest(`Missing teacherId: ${teacherId}`)
+  const Comment = app.models.comments
 
-  if(!userId) throw new errors.BadRequest(`Missing userId: ${userId}`)
+  app.helpers.validate.throwMissingParameter(['teacherId'], context.params)
 
-  const Comment = app.models.comment
+  if(!userId) throw new errors.BadRequest(`Missing userId: ${userId}`) // auth do grippa
 
-  let comment = await Comment.commentsByReactions({ mainTeacher: teacherId }, userId)
+  let comment = await Comment.commentsByReactions({ mainTeacher: teacherId, ...( subjectId && { subject: subjectId}) }, userId)
 
   return comment
 }

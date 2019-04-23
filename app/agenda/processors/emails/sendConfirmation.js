@@ -5,6 +5,7 @@ module.exports = function (agenda) {
 }
 
 async function sendConfirmation (user) {
+  console.log('sendConfirmation', user)
   // create a token in order for the user to confirm
   const token = app.helpers.crypt.encrypt(JSON.stringify({ email: user.email }))
 

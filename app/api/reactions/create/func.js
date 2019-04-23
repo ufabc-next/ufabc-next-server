@@ -6,17 +6,20 @@ module.exports = async function(context){
   const Comment = app.models.comments
   const User = app.models.users
 
-  if(!context.body.kind) throw new errors.BadRequest(`Missing kind`)
-  if(!context.body.user) throw new errors.BadRequest(`Missing user`)
-  if(!context.body.comment) throw new errors.BadRequest(`Missing comment`)
+  const { commentId } = context.params
 
-  let comment = await Comment.findOne({ _id: String(context.body.comment), active: true })
+  app.helpers.validate.throwMissingParameter(['kind'], context.body)
+  app.helpers.validate.throwMissingParameter(['commentId'], context.params)
 
-  if(!comment) throw new errors.BadRequest(`Invalid comment: ${context.body.comment}`)
+  if(!context.body.user) throw new errors.BadRequest(`Missing user`) // TODO PEGAR DO AUTH DO GRIPPA
+
+  let comment = await Comment.findOne({ _id: String(commentId), active: true })
+
+  if(!comment) throw new errors.BadRequest(`Comentário inválido: ${commentId}`)
 
   let user = await User.findOne({ _id: String(context.body.user) })
 
-  if(!user) throw new errors.BadRequest(`Invalid user: ${context.body.user}`)
+  if(!user) throw new errors.BadRequest(`Usuário inválido: ${context.body.user}`)
 
   let reaction = new Reaction({
     kind: context.body.kind,
