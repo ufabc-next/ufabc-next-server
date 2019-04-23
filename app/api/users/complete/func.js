@@ -11,7 +11,8 @@ module.exports = async(context) => {
   }
 
   user.set(_.pick(context.body, Fields.update))
-
+  user.confirmed = true
+  
   // Save
   try {
     await user.save()

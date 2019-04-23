@@ -8,16 +8,12 @@ module.exports = async(context) => {
   if(!token) {
     throw new errors.BadRequest.MissingParameter('token')
   }
-
-  let payload = {
-    email: 'lucas.grippa@aluno.ufabc.edu.br'
+    
+  try {
+    payload = JSON.parse(app.helpers.crypt.decrypt(token))
+  } catch(e) {
+    throw new errors.BadRequest('Token inválido')
   }
-  
-  // try {
-  //   payload = JSON.parse(app.helpers.crypt.decrypt(token))
-  // } catch(e) {
-  //   throw new errors.BadRequest('Token inválido')
-  // }
 
   let user = await app.models.users.findOne({ email : payload.email })
 
