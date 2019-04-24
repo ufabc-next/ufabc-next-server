@@ -1,6 +1,6 @@
 module.exports = {
   public: [
-    'oauth.email',
+    'oauth',
     'confirmed',
     'email',
     'ra',
