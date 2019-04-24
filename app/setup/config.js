@@ -100,6 +100,6 @@ module.exports = async(app) => {
   return config
 }
 
-function getEnv(env, defaults) {
+function getEnv(env, defaults) {  
   return process.env[env] || defaults
 }

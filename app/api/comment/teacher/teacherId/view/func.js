@@ -5,7 +5,7 @@ module.exports = async (context) => {
 
   const { teacherId, subjectId } = context.params
 
-  const { userId } = context.query // TODO pegar da auth do grippa
+  const { userId } = context.user._id
 
   const Comment = app.models.comments
 
