@@ -13,17 +13,11 @@ module.exports = async (app) => {
 }
 
 async function facebook (context) {
-  if(!app.config.isTest) {
-    const accessToken = context.query.access_token
-    const url = `https://graph.facebook.com/me?fields=id,name,email,picture&metadata=1&access_token=${accessToken}`
-    const resp = await Axios.get(url)
-    const faceUser = resp.data
-  } else {
-    const faceUser = {
-      email: 'test@test.com',
-    }
-  }
+  const accessToken = context.query.access_token
+  const url = `https://graph.facebook.com/me?fields=id,name,email,picture&metadata=1&access_token=${accessToken}`
+  const resp = await Axios.get(url)
 
+  const faceUser = resp.data
 
   // check if user exists in database
   let user = await App.models.users.findOne({ $or: [{
