@@ -22,6 +22,7 @@ module.exports = async (app) => {
 
   // Authenticate user
   api.use([
+    '/users/info', 
     '/users/complete', 
     '/users/me/resend',
     '/enrollments',

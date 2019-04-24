@@ -1,6 +1,10 @@
 module.exports = {
   public: [
     'oauth.email',
+    'confirmed',
+    'email',
+    'ra',
+    'createdAt'
   ],
 
   create: [
