@@ -72,12 +72,12 @@ Model.pre('save', async function(){
   }
 })
 
-Model.static('commentsByReactions', async function(query, userId){
+Model.static('commentsByReactions', async function(query, userId, populateFields = ['enrollment', 'subject']){
   const Reactions = app.models.reactions
 
   if(!userId) throw new errors.BadRequest(`Usuário não encontrado: ${userId}`)
 
-  let response = await this.find(query).lean(true)
+  let response = await this.find(query).lean(true).populate(populateFields)
 
   await Promise.all(response.map(async r => {
     r.myReactions = {
@@ -88,7 +88,9 @@ Model.static('commentsByReactions', async function(query, userId){
     return r
   }))
 
-  return response
+  return {
+    data: response,
+  }
 })
 
 Model.index({ comment: 1, user: 1 })

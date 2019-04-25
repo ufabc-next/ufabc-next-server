@@ -11,20 +11,20 @@ module.exports = async function(context){
   app.helpers.validate.throwMissingParameter(['kind'], context.body)
   app.helpers.validate.throwMissingParameter(['commentId'], context.params)
 
-  if(!context.body.user) throw new errors.BadRequest(`Missing user`) // TODO PEGAR DO AUTH DO GRIPPA
+  if(!context.user) throw new errors.BadRequest(`Missing user`)
 
   let comment = await Comment.findOne({ _id: String(commentId), active: true })
 
   if(!comment) throw new errors.BadRequest(`Comentário inválido: ${commentId}`)
 
-  let user = await User.findOne({ _id: String(context.body.user) })
+  let user = await User.findOne({ _id: String(context.user._id) })
 
-  if(!user) throw new errors.BadRequest(`Usuário inválido: ${context.body.user}`)
+  if(!user) throw new errors.BadRequest(`Usuário inválido: ${context.user._id}`)
 
   let reaction = new Reaction({
     kind: context.body.kind,
     comment: comment,
-    user: user,
+    user: user
   })
 
   reaction = await reaction.save()

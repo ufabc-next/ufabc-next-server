@@ -26,7 +26,8 @@ module.exports = async (app) => {
     '/users/complete', 
     '/users/me/resend',
     '/enrollments',
-    '/comment'
+    '/comment',
+    '/reactions'
   ], app.helpers.middlewares.auth)
 
   // Protect Private routes
