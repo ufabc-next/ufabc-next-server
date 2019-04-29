@@ -4,7 +4,7 @@ module.exports = function (app, ids) {
       "_id": '000000000000000000000001',
       "year": 2019,
       "quad": 1,
-      "ra": "11201822483",
+      "ra": "11201822479",
       "codigo": "NA2ESTG017-17SB",
       "disciplina": "Abordagens Tradicionais das Relações Internacionais",
       "campus": "sao bernardo",
@@ -15,7 +15,8 @@ module.exports = function (app, ids) {
       "identifier": "79788a4ea84a724f1c6106fd8b33ecda",
       "mainTeacher": ids.teachers[0]._id,
       "subject": ids.subjects[0]._id,
-      "conceito": "B"
+      "conceito": "B",
+      "creditos": 3
     },
   ]
 }

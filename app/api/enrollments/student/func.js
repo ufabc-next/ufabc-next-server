@@ -1,10 +1,10 @@
 const app = require('@/app')
 
 module.exports = async function (context) {
-  const { ra } = context.query
+  const { ra } = context.user
 
   if(!ra) {
-    return
+    return []
   }
 
   return await app.models.enrollments.find({
