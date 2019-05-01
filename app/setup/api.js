@@ -26,7 +26,7 @@ module.exports = async (app) => {
     '/users/complete', 
     '/users/me/resend',
     '/enrollments',
-    '/comment',
+    '/comments',
     '/reactions',
     '/histories/courses',
   ], app.helpers.middlewares.auth)

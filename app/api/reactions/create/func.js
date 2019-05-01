@@ -6,8 +6,10 @@ module.exports = async function(context){
   const Comment = app.models.comments
 
   const { commentId } = context.params
+  const { user } = context
 
-  app.helpers.validate.throwMissingParameter(['kind', 'commentId'], context.body)
+  app.helpers.validate.throwMissingParameter(['commentId'], context.params)
+  app.helpers.validate.throwMissingParameter(['kind'], context.body)
 
   let comment = await Comment.findOne({ _id: String(commentId), active: true }).lean(true)
   if(!comment) throw new errors.BadRequest(`Comentário inválido: ${commentId}`)

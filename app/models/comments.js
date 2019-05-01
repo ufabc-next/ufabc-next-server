@@ -67,7 +67,7 @@ Model.pre('save', async function(){
 })
 
 Model.post('save', async function () {
-  const Enrollment = app.models.enrollment
+  const Enrollment = app.models.enrollments
 
   await Enrollment.findOneAndUpdate(
     { _id: this.enrollment },
