@@ -3,7 +3,7 @@ const ms = require('ms')
 const app = require('@/app')
 
 function createGroup(totalPoints, inc){
-  const branches = [...Array(totalPoints - 1).keys()].map(k => ({
+  const branches = [...Array(totalPoints).keys()].map(k => ({
     case: { $lt: ["$value.cr_acumulado", inc * k ]}, then: inc * k
   }))
 
