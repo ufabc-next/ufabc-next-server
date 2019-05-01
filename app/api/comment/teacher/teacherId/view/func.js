@@ -19,8 +19,8 @@ module.exports = async (context) => {
   if(!userId) throw new errors.BadRequest(`Missing userId: ${userId}`)
 
   let comment = await Comment.commentsByReactions({ 
-    mainTeacher: teacherId, 
-    ...( subjectId && { subject: subjectId}) 
+    teacher: teacherId, 
+    ...( subjectId && { subject: subjectId }) 
   }, userId)
 
   return comment

@@ -5,20 +5,19 @@ module.exports = async function(context){
   const Comment = app.models.comments
   const Enrollment = app.models.enrollments
 
-  app.helpers.validate.throwMissingParameter(['enrollment', 'comment'], context.body)
+  app.helpers.validate.throwMissingParameter(['enrollment', 'comment', 'type'], context.body)
 
   let enrollment = await Enrollment.findById(String(context.body.enrollment))
 
   if(!enrollment) throw new errors.BadRequest(`Este vínculo não existe: ${enrollment.id}`)
 
-  let comment = new Comment({
+  return await Comment.create({
     comment: String(context.body.comment),
+    type: context.body.type,
     enrollment: enrollment.id,
-    mainTeacher: enrollment.mainTeacher,
+    teacher: enrollment[context.body.type],
     disciplina: enrollment.disciplina,
     subject: enrollment.subject,
     ra: enrollment.ra
   })
-
-  return await comment.save()
 }
