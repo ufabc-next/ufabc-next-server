@@ -17,6 +17,8 @@ module.exports = async function (context) {
     pratica: 1, 
     teoria: 1,
     year: 1,
-    quad: 1
+    quad: 1,
+    creditos: 1,
+    updatedAt: 1,
   }).populate(['pratica', 'teoria', 'subject']).lean(true)
 }
