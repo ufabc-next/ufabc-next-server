@@ -107,25 +107,6 @@ module.exports = function (app, ids) {
       "subject": ids.subjects[991]._id,
       "conceito": "A",
       "creditos": 3
-    },
-
-    {
-      "_id": '000000000000000000000007',
-      "year": 2019,
-      "quad": 1,
-      "ra": "11201822479",
-      "codigo": "NA2ESTG017-17SB",
-      "disciplina": "Acionamentos Elétricos",
-      "campus": "sao bernardo",
-      "turno": "noturno",
-      "turma": "A2",
-      "teoria": ids.teachers[0]._id,
-      "pratica": ids.teachers[0]._id,
-      "identifier": "79788a4ea84a724f1c6106fd8b33ecda",
-      "mainTeacher": ids.teachers[0]._id,
-      "subject": ids.subjects[1]._id,
-      "conceito": "B",
-      "creditos": 3
-    },
+    }
   ]
 }
