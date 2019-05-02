@@ -1,4 +1,3 @@
-const _ = require('lodash')
 const app = require('@/app')
 const errors = require('@/errors')
 
@@ -9,11 +8,11 @@ module.exports = async (context) => {
 
   app.helpers.validate.throwMissingParameter(['commentId'], context.params)
 
-  let comment = await Comment.findOne({ _id: String(commentId) })
+  let comment = await Comment.findOne({ _id: String(commentId), active: true })
 
   if(!comment) throw new errors.BadRequest(`Comentário não encontrado: ${commentId}`)
 
-  comment.set(_.pick(context.body, ['active']))
+  comment.comment = context.body.comment
 
   return await comment.save()
 }

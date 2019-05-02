@@ -51,7 +51,10 @@ async function validateRules(reaction){
   if(reaction.kind == 'recommendation') {
     let user = reaction.user
     let comment = reaction.comment
-    let isValid = await Enrollment.findOne({ ra: user.ra, subject: comment.subject, mainTeacher: comment.mainTeacher })
+    let isValid = await Enrollment.findOne({
+      ra: user.ra,
+      $or: [{ teoria: comment.teacher }, { pratica: comment.teacher }]
+    })
     if(!isValid) throw new errors.BadRequest(`Você não pode recomendar este comentário`)
   }
 }
@@ -65,7 +68,6 @@ Model.post('remove', async function(){
 })
 
 async function computeReactions(doc) {
-
   const Comment = app.models.comments
 
   // let commentId = doc.comment._id ? doc.comment._id : doc.comment

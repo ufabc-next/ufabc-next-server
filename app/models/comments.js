@@ -17,6 +17,12 @@ var Model = module.exports = Schema({
     ref: 'enrollments'
   },
 
+  type: {
+    type: String,
+    required: true,
+    enum: ['teoria', 'pratica']
+  },
+
   ra: {
     type: String,
     required: true
@@ -27,7 +33,7 @@ var Model = module.exports = Schema({
     default: true
   },
 
-  mainTeacher: {
+  teacher: {
     type: Schema.Types.ObjectId,
     ref: 'teachers',
     required: true
@@ -39,37 +45,29 @@ var Model = module.exports = Schema({
     required: true
   },
 
-  disciplina: {
-    type: String,
-    required: true
-  },
-
   reactionsCount: Object
 },{ toObject: { virtuals: true }})
 
 Model.pre('save', async function(){
-
-  const Reactions = app.models.reactions
-
   // Validate if this user has already comment is this enrollment
   if(this.isNew) {
-    let enrollment = await this.constructor.findOne({ enrollment: this.enrollment, active: true })
+    let enrollment = await this.constructor.findOne({
+      enrollment: this.enrollment,
+      active: true,
+      type: this.type
+    }).lean(true)
+
     if(enrollment) throw new errors.BadRequest(`Você só pode comentar uma vez neste vínculo: ${this.enrollment}`)
   }
+})
 
-  if(!this.isNew && this.isModified('active') && !this.active) {
-    await Promise.all(await Reactions.find({ comment: this._id }).map(async reaction => {
-      reaction.active = false
-      await reaction.save()
-    }))
-  }
+Model.post('save', async function () {
+  const Enrollment = app.models.enrollments
 
-  if(!this.isNew && this.isModified('active') && this.active) {
-    await Promise.all(await Reactions.find({ comment: this._id }).map(async reaction => {
-      reaction.active = true
-      await reaction.save()
-    }))
-  }
+  await Enrollment.findOneAndUpdate(
+    { _id: this.enrollment },
+    { $addToSet: { comments: [this.type] } }
+  )
 })
 
 Model.static('commentsByReactions', async function(query, userId, populateFields = ['enrollment', 'subject']){

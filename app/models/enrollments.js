@@ -34,6 +34,10 @@ const Model = module.exports = Schema({
     type: Schema.Types.ObjectId,
     ref: 'teachers'
   },
+  comments: [{
+    type: String,
+    enum: ['teoria', 'pratica'],
+  }],
   // vem do portal
   conceito: String,
   creditos: Number,
