@@ -9,12 +9,13 @@ module.exports = async (context) => {
 
   app.helpers.validate.throwMissingParameter(['kind', 'commentId'], context.params)
 
-  let res = await Reaction.findOne({
+  let reaction = await Reaction.findOne({
     comment: String(commentId),
     kind: kind,
     user: user._id,
     active: true
   })
 
-  await res.remove()
+  if(!reaction) throw new errors.BadRequest(`Reação não encontrada no comentário: ${commentId}`)
+  await reaction.remove()
 }

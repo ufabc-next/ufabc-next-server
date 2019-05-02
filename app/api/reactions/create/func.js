@@ -1,5 +1,6 @@
 const errors = require('@/errors')
 const app = require('@/app')
+const _ = require('lodash')
 
 module.exports = async function(context){
   const Reaction = app.models.reactions
@@ -14,9 +15,11 @@ module.exports = async function(context){
   let comment = await Comment.findOne({ _id: String(commentId), active: true }).lean(true)
   if(!comment) throw new errors.BadRequest(`Comentário inválido: ${commentId}`)
 
-  return await Reaction.create({
+  let reaction = await Reaction.create({
     kind: context.body.kind,
     comment: comment,
     user: user
   })
+
+  return _.omit(reaction, 'user')
 }

@@ -13,7 +13,7 @@ module.exports = async (context) => {
 
   app.helpers.validate.throwMissingParameter(['enrollmentId'], context.params)
 
-  return await app.models.enrollments.findOne({ _id: String(enrollmentId) }, {
+  let res = await app.models.enrollments.findOne({ _id: String(enrollmentId) }, {
     conceito: 1,
     subject: 1,
     disciplina: 1,
@@ -23,5 +23,13 @@ module.exports = async (context) => {
     quad: 1,
     creditos: 1,
     updatedAt: 1,
+    comments: 1,
   }).populate(['pratica', 'teoria', 'subject']).lean(true)
+
+  let comment = await app.models.comments.find({ enrollment: String(enrollmentId) })
+  comment.map((c) => {
+    res[c.type]['comment'] = c
+  })
+
+  return _.omit(res, 'ra')
 }

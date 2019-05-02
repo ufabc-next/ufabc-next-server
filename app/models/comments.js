@@ -45,11 +45,6 @@ var Model = module.exports = Schema({
     required: true
   },
 
-  disciplina: {
-    type: String,
-    required: true
-  },
-
   reactionsCount: Object
 },{ toObject: { virtuals: true }})
 
