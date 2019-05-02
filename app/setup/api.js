@@ -25,6 +25,7 @@ module.exports = async (app) => {
     '/users/info', 
     '/users/complete', 
     '/users/me/resend',
+    '/users/me/grades',
     '/enrollments',
     '/comments',
     '/reactions',
