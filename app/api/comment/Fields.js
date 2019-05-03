@@ -8,4 +8,6 @@ module.exports = [
   'enrollment.creditos',
   'enrollment.conceito',
   'enrollment.season',
+  'createdAt',
+  'updatedAt'
 ]
