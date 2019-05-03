@@ -9,6 +9,7 @@ const Model = module.exports = Schema({
     facebook: String,
     google: String,
     email: String,
+    picture: String
   },
   ra: {
     type: Number,
@@ -23,7 +24,7 @@ const Model = module.exports = Schema({
     },
   },
   confirmed: {
-    type: Boolean, 
+    type: Boolean,
     default: false,
   },
   permissions: [String]
