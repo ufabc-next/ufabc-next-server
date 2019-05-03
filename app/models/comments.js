@@ -70,12 +70,12 @@ Model.post('save', async function () {
   )
 })
 
-Model.static('commentsByReactions', async function(query, userId, populateFields = ['enrollment', 'subject']){
+Model.static('commentsByReactions', async function(query, userId, populateFields = ['enrollment', 'subject'], limit = 10, page = 0){
   const Reactions = app.models.reactions
 
   if(!userId) throw new errors.BadRequest(`Usuário não encontrado: ${userId}`)
 
-  let response = await this.find(query).lean(true).populate(populateFields)
+  let response = await this.find(query).lean(true).populate(populateFields).skip(page*limit).limit(limit)
 
   await Promise.all(response.map(async r => {
     r.myReactions = {
@@ -86,9 +86,7 @@ Model.static('commentsByReactions', async function(query, userId, populateFields
     return r
   }))
 
-  return {
-    data: response,
-  }
+  return response
 })
 
 Model.index({ comment: 1, user: 1 })
