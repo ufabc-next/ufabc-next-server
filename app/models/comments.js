@@ -11,6 +11,11 @@ var Model = module.exports = Schema({
     required: true
   },
 
+  viewers: {
+    type: Number,
+    default: 0
+  },
+
   enrollment: {
     type: Schema.Types.ObjectId,
     required: true,
@@ -68,6 +73,10 @@ Model.post('save', async function () {
     { _id: this.enrollment },
     { $addToSet: { comments: [this.type] } }
   )
+})
+
+Model.post('find', async function(doc){
+  await this.model.updateMany(this.getQuery(), { $inc: { viewers: 1 }})
 })
 
 Model.static('commentsByReactions', async function(query, userId, populateFields = ['enrollment', 'subject'], limit = 10, page = 0){
