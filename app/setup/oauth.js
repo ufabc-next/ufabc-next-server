@@ -6,7 +6,7 @@ const App = require('@/app')
 module.exports = async (app) => {
   app.server
     .use(session({ secret: app.config.GRANT_SECRET, saveUninitialized: true, resave: true }))
-    
+
     .use(grant(app.config.GRANT_CONFIG))
     .get('/oauth/facebook', app.helpers.routes.func(facebook))
     .get('/oauth/google', app.helpers.routes.func(google))
@@ -14,7 +14,7 @@ module.exports = async (app) => {
 
 async function facebook (context) {
   const accessToken = context.query.access_token
-  const url = `https://graph.facebook.com/me?fields=id,name,email,picture&metadata=1&access_token=${accessToken}`
+  const url = `https://graph.facebook.com/me?fields=id,name,email,picture.width(640)&metadata=1&access_token=${accessToken}`
   const resp = await Axios.get(url)
 
   const faceUser = resp.data
@@ -25,14 +25,15 @@ async function facebook (context) {
   }, {
     'oauth.facebook' : faceUser.id
   }]})
-  
+
   if(user) {
     user.set('oauth.facebook', faceUser.id)
   } else {
     user = new App.models.users({
       oauth: {
         email: faceUser.email,
-        facebook: faceUser.id
+        facebook: faceUser.id,
+        picture: faceUser.picture.data.url
       }
     })
   }
@@ -57,11 +58,11 @@ async function google (context) {
   }, {
     'oauth.facebook' : googleUser.id
   }]})
-  
+
   if(user) {
     user.set('oauth.google', googleUser.id)
   } else {
-    user = new App.models.user({
+    user = new App.models.users({
       oauth: {
         email: googleUser.emails[0].value,
         google: googleUser.id

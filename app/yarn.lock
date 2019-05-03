@@ -3535,7 +3535,7 @@ moment-timezone@^0.5.x, moment-timezone@~0.5.0:
   resolved "https://registry.yarnpkg.com/moment/-/moment-2.22.2.tgz#3c257f9839fc0e93ff53149632239eb90783ff66"
   integrity sha1-PCV/mDn8DpP/UxSWMiOeuQeD/2Y=
 
-mongo-tenant@^1.5.0:
+mongo-tenant@1.5.0:
   version "1.5.0"
   resolved "https://registry.yarnpkg.com/mongo-tenant/-/mongo-tenant-1.5.0.tgz#53b968636591484e40c4d8d9447b5a605d168c1d"
   integrity sha512-7ppebSMyJ3SMLZS2v8VRdhB00f6riFGSWHBBAKXzooSpRxsY/TnbKycdi9qH8fg8PkD/bnhrDiq6KZtOarmWEQ==

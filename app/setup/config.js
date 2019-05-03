@@ -14,13 +14,14 @@ module.exports = async(app) => {
   
   config.ENV = getEnv('NODE_ENV', 'dev')
   config.PORT = getEnv('PORT') || getEnv('NODE_PORT', 8011)
-  config.HOST = getEnv('HOST', `${ip.address()}:${config.PORT}`)
-  config.PROTOCOL = getEnv('PROTOCOL', 'http://')
+  // config.HOST = getEnv('HOST', `${ip.address()}:${config.PORT}`)
+  config.HOST = getEnv('HOST', `localhost:${config.PORT}`)
+  config.PROTOCOL = getEnv('PROTOCOL', 'http')
   config.JWT_SECRET = getEnv('JWT_SECRET', 'DEV_JWT_KEY')
   config.MONGO_URL = getEnv('MONGO_URL', `mongodb://localhost:27017/ufabc-matricula-extension-${config.ENV}`)
   config.MONGO_URI = config.MONGO_URL
 
-  config.WEB_URL = getEnv('WEB_URL', `http://${ip.address()}:${config.PORT}/app`)
+  config.WEB_URL = getEnv('WEB_URL', `http://localhost:7500/app`)
 
   // Config Redis
   config.REDIS_URL = getEnv('REDIS_URL', 'redis://localhost:6379')
@@ -100,6 +101,6 @@ module.exports = async(app) => {
   return config
 }
 
-function getEnv(env, defaults) {
+function getEnv(env, defaults) {  
   return process.env[env] || defaults
 }

@@ -1,7 +1,7 @@
 {
   "name": "ufabc-matricula",
   "version": "1.0.0",
-  "description": "Back-end of nexthea app",
+  "description": "Back-end of ufabc next app",
   "main": "index.js",
   "author": "Felipe Augusto",
   "license": "MIT",

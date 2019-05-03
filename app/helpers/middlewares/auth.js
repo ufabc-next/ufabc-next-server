@@ -10,7 +10,6 @@ const Unauthorized = errors.Unauthorized
 
 module.exports = async (req, res, next) => {
   try {
-
     /*
      * Check for Bearer token (JWT format)
      */
@@ -18,15 +17,15 @@ module.exports = async (req, res, next) => {
     if (authorization && authorization.startsWith('Bearer ')) {
       let tokenString = req.headers.authorization.replace('Bearer ', '')
 
-    // verify user
-    await jwt.verify(tokenString, app.config.JWT_SECRET)
-    let user = jwt.decode(tokenString, { complete: true }) || {}
+      // verify user
+      await jwt.verify(tokenString, app.config.JWT_SECRET)
+      let user = jwt.decode(tokenString, { complete: true }) || {} 
 
-    req.user = await app.models.users.findOne({ _id: user.payload._id })
-    if(!req.user) {
-      throw new errors.Unauthorized('Usuário não existe')
-    }
-      
+      req.user = await app.models.users.findOne({ _id: user.payload._id })
+      if(!req.user) {
+        throw new errors.Unauthorized('Usuário não existe')
+      }
+        
     } else {
       // Default is to throw...
       throw new errors.BadRequest('Header de autenticação inválido ou não fornecido')

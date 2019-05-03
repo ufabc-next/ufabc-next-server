@@ -4,7 +4,7 @@ module.exports = async function (context) {
   const { ra } = context.user
 
   if(!ra) {
-    return
+    return []
   }
 
   return await app.models.enrollments.find({
@@ -17,6 +17,9 @@ module.exports = async function (context) {
     pratica: 1, 
     teoria: 1,
     year: 1,
-    quad: 1
+    quad: 1,
+    creditos: 1,
+    updatedAt: 1,
+    comments: 1,
   }).populate(['pratica', 'teoria', 'subject']).lean(true)
 }

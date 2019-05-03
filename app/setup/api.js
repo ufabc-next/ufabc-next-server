@@ -22,11 +22,16 @@ module.exports = async (app) => {
 
   // Authenticate user
   api.use([
-    '/users/complete', 
+    '/users/info',
+    '/users/complete',
     '/users/me/resend',
+    '/users/me/grades',
     '/enrollments',
-  ],
-    app.helpers.middlewares.auth)
+    '/comments',
+    '/reactions',
+    '/histories/courses',
+    '/users/me'
+  ], app.helpers.middlewares.auth)
 
   // Protect Private routes
   api.use('/private', app.helpers.middlewares.private)
@@ -45,7 +50,7 @@ module.exports = async (app) => {
   for (let route of routers) {
     await route(tmpRoute)
   }
-  
+
   // Order routes by path priority
   app.helpers.routes.order(tmpRoute)
 

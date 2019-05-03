@@ -1,7 +1,9 @@
-module.exports = function (app, ids) {
-  return  [
+module.exports = function(app, ids) {
+  return [
     {
-      email: "test@aluno.ufabc.edu.br",
-    }
+      confirmed: true,
+      ra: '11201822483',
+      email: "felipe.tiozo@aluno.ufabc.edu.br",
+    },
   ]
 }

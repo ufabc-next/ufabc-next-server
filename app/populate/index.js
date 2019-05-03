@@ -83,7 +83,7 @@ async function populate(options) {
       'redis',
       'redirect'
     ])
-    
+
     if(context == 'remote') {
       process.env.MONGO_URL = process.env.POPULATE_REMOTE
     }
@@ -125,26 +125,26 @@ _.mixin({
 // give models priorities
 // it is necessary because some models needs ids (or models) from another models
 const modelPriority = {
-  roles: 0,
-  entreprises: 1
+  teachers: 1,
+  subjects: 2
 }
 
 async function createDatabases(app, COMMUNITY, only, until){
   // load models from data folder and sort them by priority
-  
+
   const data = _.sortKeysBy(requireSmart('./data'), function(prev, next) {
     return modelPriority[next]
   })
 
   // store all the ids for every model
   let ids = {}
-  
+
   for (let model in data) {
     if(only != null && !only.includes(model)) continue
     let generateData = data[model]
 
     // must pass the ids to generateData(ids), because some models need it
-    let dataModels = generateData(app, ids) 
+    let dataModels = generateData(app, ids)
 
     // avoid wrong device sign up on dev enviroment
     // this can cause Firebase FCM problems
@@ -167,7 +167,7 @@ async function createDatabases(app, COMMUNITY, only, until){
       Model = app.models[model]
     }
 
-    let shouldIndex = Model.schema.plugins.some(p => _.get(p.opts, 'indexAutomatically', false))    
+    let shouldIndex = Model.schema.plugins.some(p => _.get(p.opts, 'indexAutomatically', false))
 
     // wait for everything being properly indexed in elasticsearch
     let saved = dataModels.map(data => {

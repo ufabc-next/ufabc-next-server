@@ -36,7 +36,14 @@ module.exports = async function getGradeStats(context) {
     { $sort: { point : 1 } }
   ])
 
-  return {
-    distribution
-  }
+
+  let normalizedDistribution = distribution.map((interval) => {
+    interval._id = interval._id.toFixed(2)
+    interval.point = interval.point .toFixed(2)
+    return interval
+  })
+
+  console.log('DIST', normalizedDistribution)
+
+  return normalizedDistribution
 }

@@ -33,7 +33,7 @@ module.exports = async (app) => {
   server.disable('x-powered-by')
   server.use((req, res, next) => {
     // Apply custom header to response
-    res.setHeader('X-Powered-By', 'Tenda Digital')
+    res.setHeader('X-Powered-By', 'UFABC Next')
 
     // Expose remoteAddress to other middlewares
     let ip = (

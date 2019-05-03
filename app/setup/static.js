@@ -23,7 +23,7 @@ module.exports = async (app) => {
     // Check if should upgrade to https
     if (protocol != 'https') {
       let target = `https://${host}${req.url}`
-      return res.redirect(target)
+      // return res.redirect(target)
     }
 
     next()
