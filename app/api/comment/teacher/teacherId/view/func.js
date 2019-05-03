@@ -25,5 +25,5 @@ module.exports = async (context) => {
     ...( subjectId && { subject: subjectId })
   }, userId, ['enrollment', 'subject'], limit, page)
 
-  return { data: pickFields(comment, Fields), total: comment.length }
+  return { data: pickFields(comment.data, Fields), total: comment.total }
 }

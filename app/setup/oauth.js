@@ -61,7 +61,7 @@ async function google (context) {
   if(user) {
     user.set('oauth.google', googleUser.id)
   } else {
-    user = new App.models.user({
+    user = new App.models.users({
       oauth: {
         email: googleUser.emails[0].value,
         google: googleUser.id
