@@ -75,7 +75,7 @@ Model.static('commentsByReactions', async function(query, userId, populateFields
 
   if(!userId) throw new errors.BadRequest(`Usuário não encontrado: ${userId}`)
 
-  let response = await this.find(query).lean(true).populate(populateFields).skip(page*limit).limit(limit)
+  let response = await this.find(query).lean(true).populate(populateFields).skip(Number(page*limit)).limit(Number(limit))
 
   await Promise.all(response.map(async r => {
     r.myReactions = {
@@ -86,7 +86,7 @@ Model.static('commentsByReactions', async function(query, userId, populateFields
     return r
   }))
 
-  return response
+  return { data: response, total: await this.count(query)}
 })
 
 Model.index({ comment: 1, user: 1 })

@@ -4,5 +4,8 @@ module.exports = [
   'subject',
   '_id',
   'myReactions',
-  'reactionsCount'
+  'reactionsCount',
+  'enrollment.creditos',
+  'enrollment.conceito',
+  'enrollment.season',
 ]
