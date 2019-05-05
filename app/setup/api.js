@@ -22,10 +22,11 @@ module.exports = async (app) => {
 
   // Authenticate user
   api.use([
-    '/users/info', 
-    '/users/complete', 
+    '/users/info',
+    '/users/complete',
     '/users/me/resend',
     '/users/me/grades',
+    '/users/me/delete',
     '/enrollments',
     '/comments',
     '/reactions',
@@ -49,7 +50,7 @@ module.exports = async (app) => {
   for (let route of routers) {
     await route(tmpRoute)
   }
-  
+
   // Order routes by path priority
   app.helpers.routes.order(tmpRoute)
 

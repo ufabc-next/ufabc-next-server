@@ -1,5 +1,7 @@
 const app = require('@/app')
 const errors = require('@/errors')
+const Fields = require('@/api/comment/Fields')
+const pickFields = require('@/helpers/parse/pickFields')
 
 module.exports = async (context) => {
   const Comment = app.models.comments
@@ -14,5 +16,5 @@ module.exports = async (context) => {
 
   comment.active = false
 
-  return await comment.save()
+  return pickFields(await comment.save(), Fields)
 }

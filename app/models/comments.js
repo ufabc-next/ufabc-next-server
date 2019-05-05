@@ -11,6 +11,11 @@ var Model = module.exports = Schema({
     required: true
   },
 
+  viewers: {
+    type: Number,
+    default: 0
+  },
+
   enrollment: {
     type: Schema.Types.ObjectId,
     required: true,
@@ -70,12 +75,21 @@ Model.post('save', async function () {
   )
 })
 
-Model.static('commentsByReactions', async function(query, userId, populateFields = ['enrollment', 'subject']){
+Model.post('find', async function(doc){
+  await this.model.updateMany(this.getQuery(), { $inc: { viewers: 1 }})
+})
+
+Model.static('commentsByReactions', async function(query, userId, populateFields = ['enrollment', 'subject'], limit = 10, page = 0){
   const Reactions = app.models.reactions
 
   if(!userId) throw new errors.BadRequest(`Usuário não encontrado: ${userId}`)
 
-  let response = await this.find(query).lean(true).populate(populateFields)
+  let response = await this.find(query)
+    .lean(true)
+    .populate(populateFields)
+    .skip(Number(page*limit))
+    .limit(Number(limit))
+    .sort({ 'reactionsCount.recommendation': -1, 'reacitonsCount.likes': -1 })
 
   await Promise.all(response.map(async r => {
     r.myReactions = {
@@ -86,9 +100,8 @@ Model.static('commentsByReactions', async function(query, userId, populateFields
     return r
   }))
 
-  return {
-    data: response,
-  }
+  return { data: response, total: await this.count(query)}
 })
 
 Model.index({ comment: 1, user: 1 })
+Model.index({ reactionsCount: -1 })

@@ -113,9 +113,9 @@ module.exports = function (app, ids) {
       "_id": '000000000000000000000007',
       "year": 2019,
       "quad": 1,
-      "ra": "11201822479",
+      "ra": "11201822481",
       "codigo": "NA2ESTG017-17SB",
-      "disciplina": "Acionamentos Elétricos",
+      "disciplina": "Abordagens Tradicionais das Relações Internacionais",
       "campus": "sao bernardo",
       "turno": "noturno",
       "turma": "A2",
@@ -123,8 +123,8 @@ module.exports = function (app, ids) {
       "pratica": ids.teachers[0]._id,
       "identifier": "79788a4ea84a724f1c6106fd8b33ecda",
       "mainTeacher": ids.teachers[0]._id,
-      "subject": ids.subjects[1]._id,
-      "conceito": "B",
+      "subject": ids.subjects[0]._id,
+      "conceito": "A",
       "creditos": 3
     },
   ]

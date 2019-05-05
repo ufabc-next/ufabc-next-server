@@ -1,6 +1,8 @@
+const _ = require('lodash')
 const app = require('@/app')
 const errors = require('@/errors')
-const _ = require('lodash')
+const Fields = require('@/api/comment/Fields')
+const pickFields = require('@/helpers/parse/pickFields')
 
 module.exports = async (context) => {
 
@@ -18,10 +20,10 @@ module.exports = async (context) => {
 
   if(!userId) throw new errors.BadRequest(`Missing userId: ${userId}`)
 
-  let comment = await Comment.commentsByReactions({ 
-    teacher: teacherId, 
-    ...( subjectId && { subject: subjectId }) 
-  }, userId)
+  let comment = await Comment.commentsByReactions({
+    teacher: teacherId,
+    ...( subjectId && { subject: subjectId })
+  }, userId, ['enrollment', 'subject'], limit, page)
 
-  return comment
+  return { data: pickFields(comment.data, Fields), total: comment.total }
 }

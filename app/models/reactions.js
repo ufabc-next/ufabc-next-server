@@ -47,15 +47,21 @@ Model.pre('save', async function(){
 
 async function validateRules(reaction){
   const Enrollment = app.models.enrollments
+  const User = app.models.users
+  const Comment = app.models.comments
 
   if(reaction.kind == 'recommendation') {
-    let user = reaction.user
-    let comment = reaction.comment
+    const isValidId = mongoose.Types.ObjectId.isValid
+
+    const user = isValidId(reaction.user) ? await User.findById(reaction.user) : reaction.user
+
+    const comment = isValidId(reaction.comment) ? await Comment.findById(reaction.comment) : reaction.comment
+
     let isValid = await Enrollment.findOne({
       ra: user.ra,
       $or: [{ teoria: comment.teacher }, { pratica: comment.teacher }]
     })
-    if(!isValid) throw new errors.BadRequest(`Você não pode recomendar este comentário`)
+    if(!isValid) throw new errors.BadRequest(`Você não pode recomendar este comentário, pois não fez nenhuma matéria com este professor`)
   }
 }
 
