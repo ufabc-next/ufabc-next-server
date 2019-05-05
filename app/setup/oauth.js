@@ -18,14 +18,16 @@ async function facebook (context) {
   const resp = await Axios.get(url)
 
   const faceUser = resp.data
+  
+  if(!faceUser.id) {
+    throw new Error('Missing faceUser.id')
+  }
 
   // check if user exists in database
-  let user = await App.models.users.findOne({ $or: [{
-    'oauth.email': faceUser.email
-  }, {
+  let user = await App.models.users.findOne({
     'oauth.facebook' : faceUser.id
-  }]})
-
+  })
+  
   if(user) {
     user.set('oauth.facebook', faceUser.id)
   } else {
