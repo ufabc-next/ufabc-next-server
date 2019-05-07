@@ -89,7 +89,7 @@ Model.static('commentsByReactions', async function(query, userId, populateFields
     .populate(populateFields)
     .skip(Number(page*limit))
     .limit(Number(limit))
-    .sort({ 'reactionsCount.recommendation': -1, 'reacitonsCount.likes': -1 })
+    .sort({ 'reactionsCount.recommendation': -1, 'reactionsCount.likes': -1, 'enrollment.year': -1, 'enrollment.quad': -1 })
 
   await Promise.all(response.map(async r => {
     r.myReactions = {
