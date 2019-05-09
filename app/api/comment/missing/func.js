@@ -15,7 +15,7 @@ module.exports = async (context) => {
 
   const User = app.models.users
 
-  let user = await User.findOne({ _id: userId })
+  let user = await User.findOne({ _id: userId, active: true })
 
   if(!user) throw new errors.BadRequest(`Usuário inválido: ${userId}`)
 

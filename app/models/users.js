@@ -19,13 +19,19 @@ const Model = module.exports = Schema({
   email: {
     type: String,
     validate: {
-      validator: v => v.indexOf('@aluno.ufabc.edu.br') != -1,
+      validator: v => v.indexOf('ufabc.edu.br') != -1,
       message: props => `${props.value} não é um e-mail válido`
     },
+    unique: true,
+    partialFilterExpression: { email: { $exists: true }}
   },
   confirmed: {
     type: Boolean,
     default: false,
+  },
+  active: {
+    type: Boolean,
+    default: true
   },
   permissions: [String]
 })

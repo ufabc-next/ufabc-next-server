@@ -19,13 +19,18 @@ module.exports = async (req, res, next) => {
 
       // verify user
       await jwt.verify(tokenString, app.config.JWT_SECRET)
-      let user = jwt.decode(tokenString, { complete: true }) || {} 
+      let user = jwt.decode(tokenString, { complete: true }) || {}
 
       req.user = await app.models.users.findOne({ _id: user.payload._id })
-      if(!req.user) {
-        throw new errors.Unauthorized('Usuário não existe')
+
+      if(!req.user.active) {
+        throw new errors.BadRequest('Essa conta foi desativada')
       }
-        
+
+      if(!req.user) {
+        throw new errors.Unauthorized('Usuário não existe ou foi desativado')
+      }
+
     } else {
       // Default is to throw...
       throw new errors.BadRequest('Header de autenticação inválido ou não fornecido')
