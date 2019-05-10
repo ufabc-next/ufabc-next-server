@@ -76,8 +76,8 @@ module.exports = function (app, ids) {
 
     {
       "_id": '000000000000000000000005',
-      "year": 2019,
-      "quad": 1,
+      "year": 2018,
+      "quad": 2,
       "ra": "11201822479",
       "codigo": "NA2ESTG017-17SB",
       "disciplina": "Ciência, Tecnologia e Sociedade",
