@@ -55,11 +55,13 @@ async function google (context) {
 
   const googleUser = resp.data
 
-  let user = await App.models.users.findOne({ $or: [{
-    'oauth.email': googleUser.emails[0].value
-  }, {
-    'oauth.facebook' : googleUser.id
-  }]})
+  if(!googleUser.id) {
+    throw new Error('Missing googleUser.id')
+  }
+
+  let user = await App.models.users.findOne({
+    'oauth.google' : googleUser.id
+  })
 
   if(user) {
     user.set('oauth.google', googleUser.id)
