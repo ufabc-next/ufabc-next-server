@@ -10,7 +10,11 @@ module.exports = function (agenda) {
 }
 
 async function syncMatricula (context) {
-  await sync({ query: {} })
+  try {
+    await sync({ query: {} })
+  } catch(e) {
+    console.log(e)
+  }
 }
 
 module.exports.syncMatricula = syncMatricula
