@@ -3,11 +3,14 @@ const difflib = require('difflib')
 const errors = require('@/errors')
 
 module.exports = function resolveProfessor(name, teachers, mappings = {}) {
+  if (name in mappings) { 
+    return mappings[name]
+  }
+
   name =  _.startCase(_.camelCase(name))
 
   const foundTeacher =
     _.find(teachers, { name: name }) ||
-    _.find(teachers, { name: mappings[name] }) ||
     _.find(teachers, (teacher) => (teacher.alias || []).includes(name))
 
   if(!name) return null
