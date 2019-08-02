@@ -7,7 +7,7 @@ const _ = require('lodash')
 
 const func = require('./func')
 
-describe('GET /v1/disciplinas/sync', function() {
+describe('POST /v1/disciplinas/sync', function() {
   var models, context
   
   beforeEach(async function () {

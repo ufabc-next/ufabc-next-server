@@ -5,7 +5,7 @@ const Axios = require('axios')
 const https = require("https")
 
 module.exports = async(context = {}, res) => {
-  const { mappings } = context.query || {}
+  const { mappings } = context.body || {}
   const season = app.helpers.season.findSeasonKey()
   const Disciplinas = app.models.disciplinas.bySeason(season)
 
