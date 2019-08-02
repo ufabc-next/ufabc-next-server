@@ -4,7 +4,8 @@ const errors = require('@/errors')
 const Axios = require('axios')
 const https = require("https")
 
-module.exports = async(context, res) => {
+module.exports = async(context = {}, res) => {
+  const { mappings } = context.query || {}
   const season = app.helpers.season.findSeasonKey()
   const Disciplinas = app.models.disciplinas.bySeason(season)
 
