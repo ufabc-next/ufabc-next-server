@@ -25,7 +25,7 @@ module.exports = async(context = {}, res) => {
   const subjects = await app.models.subjects.find({}).lean(true).cache(ONE_HOUR, 'subjects')
 
   // check if subjects actually exists before creating the relation
-  const err = app.helpers.validate.subjects(payload, subjects)
+  const err = app.helpers.validate.subjects(payload, subjects, mappings)
   
   if(err.length) {
     throw new errors.BadRequest.MissingSubject(_.uniq(err))
