@@ -28,7 +28,7 @@ module.exports = async(context = {}, res) => {
   const err = app.helpers.validate.subjects(payload, subjects)
   
   if(err.length) {
-    throw new errors.BadRequest(_.uniq(err))
+    throw new errors.BadRequest.MissingSubject(_.uniq(err))
   }
     
   async function updateDisciplinas(disciplina){  
