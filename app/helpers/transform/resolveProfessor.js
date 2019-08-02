@@ -2,14 +2,12 @@ const _ = require('lodash')
 const difflib = require('difflib')
 const errors = require('@/errors')
 
-module.exports = function resolveProfessor(name, teachers, extraMappings) {
+module.exports = function resolveProfessor(name, teachers, mappings) {
   name =  _.startCase(_.camelCase(name))
-
-  _.extend(mapping, extraMappings || {})
 
   const foundTeacher =
     _.find(teachers, { name: name }) ||
-    _.find(teachers, { name: mapping[name] }) ||
+    _.find(teachers, { name: mappings[name] }) ||
     _.find(teachers, (teacher) => (teacher.alias || []).includes(name))
 
   if(!name) return null
