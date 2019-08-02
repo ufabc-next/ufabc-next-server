@@ -8,6 +8,7 @@ var Model = module.exports = Schema({
     required: true
   },
   search: String,
+  creditos: Number
 })
 
 Model.pre('save', function () {
