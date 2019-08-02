@@ -7,6 +7,7 @@ var Model = module.exports = Schema({
     type: String,
     required: true,
   },
+  alias: [String]
 })
 
 Model.pre('save', async function () {
