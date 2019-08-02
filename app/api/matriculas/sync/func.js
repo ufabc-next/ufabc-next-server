@@ -2,6 +2,7 @@ const _ = require('lodash')
 const app = require('@/app')
 const errors = require('@/errors')
 const Axios = require('axios')
+const https = require('https')
 
 module.exports = async(context, res) => {
   const season = app.helpers.season.findSeasonKey()
@@ -20,8 +21,14 @@ module.exports = async(context, res) => {
   // update current enrolled students
   const isSync = operationField == 'alunos_matriculados'
 
+  const instance = Axios.create({
+    httpsAgent: new https.Agent({  
+      rejectUnauthorized: false
+    })
+  });
+
   // fetch matriculas and parse into an undestandable way
-  const matriculas = await Axios.get(app.config.MATRICULAS_URL)
+  const matriculas = await instance.get(app.config.MATRICULAS_URL)
   let payload = app.helpers.parse.var2json(matriculas.data)
   payload = app.helpers.transform.transformMatriculas(payload)
 

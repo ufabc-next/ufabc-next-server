@@ -2,12 +2,19 @@ const _ = require('lodash')
 const app = require('@/app')
 const errors = require('@/errors')
 const Axios = require('axios')
+const https = require("https")
 
 module.exports = async(context, res) => {
   const season = app.helpers.season.findSeasonKey()
   const Disciplinas = app.models.disciplinas.bySeason(season)
 
-  const disciplinas = await Axios.get(app.config.DISCIPLINAS_URL)
+  const instance = Axios.create({
+    httpsAgent: new https.Agent({  
+      rejectUnauthorized: false
+    })
+  });
+
+  const disciplinas = await instance.get(app.config.DISCIPLINAS_URL)
   const payload = app.helpers.parse
     .var2json(disciplinas.data)
     .map(app.helpers.transform.disciplinas)
