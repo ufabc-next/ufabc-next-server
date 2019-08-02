@@ -2,7 +2,7 @@ const _ = require('lodash')
 const difflib = require('difflib')
 const errors = require('@/errors')
 
-module.exports = function resolveProfessor(name, teachers, mappings) {
+module.exports = function resolveProfessor(name, teachers, mappings = {}) {
   name =  _.startCase(_.camelCase(name))
 
   const foundTeacher =
