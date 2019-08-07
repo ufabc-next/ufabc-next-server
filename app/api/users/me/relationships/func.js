@@ -1,11 +1,11 @@
 const app = require('@/app')
 const errors = require('@/errors')
 
-const MAX_BREADTH = 5
-const MAX_DEPTH = 3
-
 module.exports = async function(context) {
-  const RA = context.query.ra
+  const RA = String(context.user.ra)
+
+  var MAX_BREADTH = Math.min(Math.max(context.query.depth, 1), 5) || 5
+  var MAX_DEPTH = Math.min(Math.max(context.query.depth, 1), 3) || 3
 
   let nodes = [ { data: { id: RA, label: RA, 'color': '#f9b928' }} ]
   let edges = []
@@ -17,7 +17,7 @@ module.exports = async function(context) {
   async function searchRelationships(mainStudent, DEPTH) {
     if(DEPTH > MAX_DEPTH) return
 
-    let students = await enrollmentsByRA(mainStudent)
+    let students = await enrollmentsByRA(mainStudent, MAX_BREADTH)
 
     addStudents(students, mainStudent, DEPTH)
 
@@ -70,7 +70,7 @@ function replaceNodesColor(nodes) {
   return nodes
 }
 
-async function enrollmentsByRA(RA) {
+async function enrollmentsByRA(RA, MAX_BREADTH) {
   const Groups = app.models.groups
 
   var usersGroups = await Groups.find({ users: RA })
