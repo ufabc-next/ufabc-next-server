@@ -4,7 +4,7 @@ const errors = require('@/errors')
 module.exports = async function(context) {
   const RA = String(context.user.ra)
 
-  var MAX_BREADTH = Math.min(Math.max(context.query.depth, 1), 5) || 5
+  var MAX_BREADTH = Math.min(Math.max(context.query.breadth, 1), 5) || 5
   var MAX_DEPTH = Math.min(Math.max(context.query.depth, 1), 3) || 3
 
   let nodes = [ { data: { id: RA, label: RA, 'color': '#f9b928' }} ]
