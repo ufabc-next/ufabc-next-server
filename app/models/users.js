@@ -59,3 +59,5 @@ Model.pre('save', async function () {
     this.sendConfirmation()
   }
 })
+
+Model.index({ ra: -1 })
