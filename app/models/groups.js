@@ -5,13 +5,11 @@ const Schema = require('mongoose').Schema
 
 const Model = module.exports = Schema({
   disciplina: {
-    type: String,
-    required: true
+    type: String
   },
 
   season: {
-    type: String,
-    required: true
+    type: String
   },
 
   mainTeacher: {
