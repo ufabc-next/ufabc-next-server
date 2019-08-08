@@ -4,7 +4,7 @@ const errors = require('@/errors')
 const Axios = require('axios')
 
 module.exports = async(context, res) => {
-  const { aluno_id } = context.body
+  const { aluno_id, ra, login } = context.body
 
   if(!aluno_id) {
     throw new errors.BadRequest.MissingParameter('aluno_id')
@@ -33,7 +33,9 @@ module.exports = async(context, res) => {
   return await Alunos.findOneAndUpdate({
     aluno_id: aluno_id
   }, {
-    cursos: await Promise.all(cursos)
+    cursos: await Promise.all(cursos),
+    ra: ra,
+    login: login
   }, {
     new: true,
     upsert: true

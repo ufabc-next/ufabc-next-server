@@ -12,6 +12,7 @@ const CursoSchema = Schema({
 
 const Model = module.exports = Schema({
   ra: Number,
+  login: String,
   aluno_id: Number,
   cursos: [CursoSchema],
 
