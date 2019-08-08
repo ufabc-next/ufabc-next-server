@@ -25,3 +25,4 @@ const Model = module.exports = Schema({
 })
 
 Model.index({ users: -1 })
+Model.index({ mainTeacher: -1, season: -1, disciplina: -1 })
