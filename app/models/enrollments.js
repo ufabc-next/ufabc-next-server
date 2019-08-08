@@ -52,14 +52,41 @@ Model.index({ mainTeacher: 1, subject: 1, cr_acumulado: 1, conceito: 1 })
 
 function pre(doc) {
   if('teoria' in doc || 'pratica' in doc ) {
+
     doc.mainTeacher = _.get(doc, 'teoria._id', doc.teoria) || _.get(doc, 'pratica._id', doc.pratica)
   }
 }
 
-Model.pre('save', function () {
+Model.pre('save', async function () {
   pre(this)
+
+  await addEnrollmentToGroup(this)
 })
 
 Model.pre('findOneAndUpdate', function () {
   pre(this._update)
 })
+
+async function addEnrollmentToGroup(doc) {
+  /*
+   * If is a new enrollment, must create a new
+   * group or insert doc.ra in group.users
+   */
+  const Groups = app.models.groups
+
+  if (doc.mainTeacher && doc.isNew) {
+    await Groups.update(
+      {
+        disciplina: doc.disciplina,
+        season: doc.season,
+        mainTeacher: doc.mainTeacher
+      },
+      {
+        $push: { users: doc.ra }
+      },
+      {
+        upsert: true
+      }
+    )
+  }
+}
