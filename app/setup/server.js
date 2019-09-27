@@ -55,7 +55,7 @@ module.exports = async (app) => {
   })
   
   // Allow cors
-  // server.use(app.helpers.middlewares.cors)
+  server.use(app.helpers.middlewares.cors)
 
   requireAll({
     dirname: path.join(__dirname, '../api/forest'),
