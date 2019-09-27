@@ -3,6 +3,8 @@ const morgan = require('morgan')
 const express = require('express')
 const bodyParser = require('body-parser')
 const compression = require('compression')
+const requireAll = require('require-all')
+const path = require('path')
 const methodOverride = require('method-override')
 
 const logFormat = '[server] [:date[iso]] :status :res[content-length] :response-time ms :method :url :remote-addr'
@@ -45,8 +47,22 @@ module.exports = async (app) => {
     next()
   })
 
+  // Install forest
+  require('lumber-forestadmin').run(server, {
+    envSecret: process.env.FOREST_ENV_SECRET,
+    authSecret: process.env.FOREST_AUTH_SECRET,
+    mongoose: app.mongo,  
+  })
+  
   // Allow cors
-  server.use(app.helpers.middlewares.cors)
+  // server.use(app.helpers.middlewares.cors)
+
+  requireAll({
+    dirname: path.join(__dirname, '../api/forest'),
+    recursive: true,
+    resolve: Module => server.use('/forest', Module)
+  })
+  
 
   return server
 }
