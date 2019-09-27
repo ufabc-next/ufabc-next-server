@@ -48,20 +48,20 @@ module.exports = async (app) => {
   })
 
   // Install forest
-  require('lumber-forestadmin').run(server, {
-    envSecret: process.env.FOREST_ENV_SECRET,
-    authSecret: process.env.FOREST_AUTH_SECRET,
-    mongoose: app.mongo,  
-  })
+  // require('lumber-forestadmin').run(server, {
+  //   envSecret: process.env.FOREST_ENV_SECRET,
+  //   authSecret: process.env.FOREST_AUTH_SECRET,
+  //   mongoose: app.mongo,  
+  // })
   
   // Allow cors
   server.use(app.helpers.middlewares.cors)
 
-  requireAll({
-    dirname: path.join(__dirname, '../api/forest'),
-    recursive: true,
-    resolve: Module => server.use('/forest', Module)
-  })
+  // requireAll({
+  //   dirname: path.join(__dirname, '../api/forest'),
+  //   recursive: true,
+  //   resolve: Module => server.use('/forest', Module)
+  // })
   
 
   return server
