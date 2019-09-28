@@ -27,7 +27,7 @@ async function updateEnrollments (payload) {
       // check if a enrollment already exists for this
       const enrollment = await app.models.enrollments.findOneAndUpdate({
         identifier: identifier
-      }, _.omit(doc, ['identifier']), {
+      }, _.omit(doc, ['identifier', 'id', '_id']), {
         new: true,
         upsert: true
       })

@@ -26,12 +26,10 @@ module.exports = async function (context) {
     .filter(enrollment => enrollment.ra && enrollment.disciplina)
     .map(e => _.extend(e, { year, quad }))
     .map(e => _.extend(e, {
-      ...(disciplinasMap.get(app.helpers.transform.identifier(e)) || {}),
+      ...(_.omit(disciplinasMap.get(app.helpers.transform.identifier(e)) || {}, ['id', '_id'])),
       identifier: app.helpers.transform.identifier(e, keys),
       disciplina_identifier: app.helpers.transform.identifier(e),
     }))
-    // test
-    .filter(d => d.ra == "11201822479")
   
   const enrollmentsHash = crypto.createHash('md5').update(JSON.stringify(enrollments)).digest('hex')
   if(enrollmentsHash != hash) {
