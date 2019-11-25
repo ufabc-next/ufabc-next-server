@@ -27,9 +27,9 @@ module.exports = async (req, res, next) => {
         throw new errors.BadRequest('Essa conta foi desativada')
       }
       
-      if(!req.user.confirmed) {
-        throw new errors.Unauthorized('Usuário ainda não foi confirmado')
-      }
+      // if(!req.user.confirmed) {
+      //   throw new errors.Unauthorized('Usuário ainda não foi confirmado')
+      // }
 
       if(!req.user) {
         throw new errors.Unauthorized('Usuário não existe ou foi desativado')
