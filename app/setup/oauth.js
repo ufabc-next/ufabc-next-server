@@ -13,6 +13,8 @@ module.exports = async (app) => {
 }
 
 async function facebook (context) {
+  const { inApp = false, userId = null } = _.get(context.session, 'grant.dynamic', {})
+
   const accessToken = context.query.access_token
   const url = `https://graph.facebook.com/me?fields=id,name,email,picture.width(640)&metadata=1&access_token=${accessToken}`
   const resp = await Axios.get(url)
@@ -41,12 +43,17 @@ async function facebook (context) {
   }
 
   await user.save()
+  
   return {
-    _redirect: `${App.config.WEB_URL}/login?token=${user.generateJWT()}`
+    _redirect: inApp == 'true'
+      ? `ufabcnext://login?token=${await user.generateJWT()}&`
+      :`${App.config.WEB_URL}/login?token=${user.generateJWT()}`
   }
 }
 
-async function google (context) {
+async function google(context) {
+  const { inApp = false, userId = null } = _.get(context.session, 'grant.dynamic', {})
+
   const accessToken = context.query.access_token
   const url = 'https://www.googleapis.com/plus/v1/people/me'
   const resp = await Axios.get(url, { headers: {
@@ -77,6 +84,8 @@ async function google (context) {
   await user.save()
 
   return {
-    _redirect: `${App.config.WEB_URL}/login?token=${user.generateJWT()}`
+    _redirect: inApp == 'true'
+      ? `ufabcnext://login?token=${await user.generateJWT()}&`
+      :`${App.config.WEB_URL}/login?token=${user.generateJWT()}`
   }
 }
