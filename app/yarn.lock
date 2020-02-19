@@ -138,7 +138,7 @@
 
 "@types/debug@0.0.29":
   version "0.0.29"
-  resolved "https://verdaccio.sv.felipeaugusto.dev/@types%2fdebug/-/debug-0.0.29.tgz#a1e514adfbd92f03a224ba54d693111dbf1f3754"
+  resolved "https://registry.yarnpkg.com/@types%2fdebug/-/debug-0.0.29.tgz#a1e514adfbd92f03a224ba54d693111dbf1f3754"
   integrity sha1-oeUUrfvZLwOiJLpU1pMRHb8fN1Q=
 
 abbrev@1:
@@ -328,7 +328,7 @@ array-flatten@1.1.1:
 
 array-flatten@^2.1.0:
   version "2.1.2"
-  resolved "https://verdaccio.sv.felipeaugusto.dev/array-flatten/-/array-flatten-2.1.2.tgz#24ef80a28c1a893617e2149b0c6d0d788293b099"
+  resolved "https://registry.yarnpkg.com/array-flatten/-/array-flatten-2.1.2.tgz#24ef80a28c1a893617e2149b0c6d0d788293b099"
   integrity sha512-hNfzcOV8W4NdualtqBFPyVO+54DSJuZGY9qT4pRroB6S9e3iiido2ISIC5h9R2sPJ8H3FHCIiEnsv1lPXO3KtQ==
 
 array-union@^1.0.1:
@@ -389,7 +389,7 @@ async@2.6.1, async@^2.0.1, async@^2.5.0:
 
 async@^1.5.0:
   version "1.5.2"
-  resolved "https://verdaccio.sv.felipeaugusto.dev/async/-/async-1.5.2.tgz#ec6a61ae56480c0c3cb241c95618e20892f9672a"
+  resolved "https://registry.yarnpkg.com/async/-/async-1.5.2.tgz#ec6a61ae56480c0c3cb241c95618e20892f9672a"
   integrity sha1-7GphrlZIDAw8skHJVhjiCJL5Zyo=
 
 async@~1.0.0:
@@ -404,7 +404,7 @@ asynckit@^0.4.0:
 
 atob@2.1.2:
   version "2.1.2"
-  resolved "https://verdaccio.sv.felipeaugusto.dev/atob/-/atob-2.1.2.tgz#6d9517eb9e030d2436666651e86bd9f6f13533c9"
+  resolved "https://registry.yarnpkg.com/atob/-/atob-2.1.2.tgz#6d9517eb9e030d2436666651e86bd9f6f13533c9"
   integrity sha512-Wm6ukoaOGJi/73p/cl2GvLjTI5JM1k/O14isD73YML8StrH/7/lRFgmg8nICZgD3bZZvjwCGxtMOD3wWNAu8cg==
 
 auto-bind@^1.1.0:
@@ -802,7 +802,7 @@ babel-register@^6.26.0:
 
 babel-runtime@7.0.0-beta.3:
   version "7.0.0-beta.3"
-  resolved "https://verdaccio.sv.felipeaugusto.dev/babel-runtime/-/babel-runtime-7.0.0-beta.3.tgz#7c750de5514452c27612172506b49085a4a630f2"
+  resolved "https://registry.yarnpkg.com/babel-runtime/-/babel-runtime-7.0.0-beta.3.tgz#7c750de5514452c27612172506b49085a4a630f2"
   integrity sha512-jlzZ8RACjt0QGxq+wqsw5bCQE9RcUyWpw987mDY3GYxTpOQT2xoyNoG++oVCHzr/nACLBIprfVBNvv/If1ZYcg==
   dependencies:
     core-js "^2.4.0"
@@ -864,7 +864,7 @@ balanced-match@^1.0.0:
 
 base32-encode@1.1.0:
   version "1.1.0"
-  resolved "https://verdaccio.sv.felipeaugusto.dev/base32-encode/-/base32-encode-1.1.0.tgz#e9ec64a135628d071c3c960f9a95d1aaf0ad81e9"
+  resolved "https://registry.yarnpkg.com/base32-encode/-/base32-encode-1.1.0.tgz#e9ec64a135628d071c3c960f9a95d1aaf0ad81e9"
   integrity sha512-fQWhpkWtaOPr+wvXWYDu1AfRbtIIzWDt3yDDNXLENWPwFyyxDJfVaJoOc1ks1TQckogPiHmb+0iZLQFPkZw8kg==
 
 basic-auth@~2.0.0:
@@ -893,17 +893,17 @@ binary-extensions@^1.0.0:
 
 bitwise-xor@0.0.0:
   version "0.0.0"
-  resolved "https://verdaccio.sv.felipeaugusto.dev/bitwise-xor/-/bitwise-xor-0.0.0.tgz#040a8172b5bb8cc562b0b7119f230b2a1a780e3d"
+  resolved "https://registry.yarnpkg.com/bitwise-xor/-/bitwise-xor-0.0.0.tgz#040a8172b5bb8cc562b0b7119f230b2a1a780e3d"
   integrity sha1-BAqBcrW7jMVisLcRnyMLKhp4Dj0=
 
 bluebird@2.9.25:
   version "2.9.25"
-  resolved "https://verdaccio.sv.felipeaugusto.dev/bluebird/-/bluebird-2.9.25.tgz#6e36bd04064d9534c07160b9f7f26c5a738fe16a"
+  resolved "https://registry.yarnpkg.com/bluebird/-/bluebird-2.9.25.tgz#6e36bd04064d9534c07160b9f7f26c5a738fe16a"
   integrity sha1-bja9BAZNlTTAcWC59/JsWnOP4Wo=
 
 bluebird@3.3.4:
   version "3.3.4"
-  resolved "https://verdaccio.sv.felipeaugusto.dev/bluebird/-/bluebird-3.3.4.tgz#f780fe43e1a7a6510f67abd7d0d79533a40ddde6"
+  resolved "https://registry.yarnpkg.com/bluebird/-/bluebird-3.3.4.tgz#f780fe43e1a7a6510f67abd7d0d79533a40ddde6"
   integrity sha1-94D+Q+GnplEPZ6vX0NeVM6QN3eY=
 
 bluebird@3.5.0:
@@ -918,7 +918,7 @@ bluebird@^3.0.0, bluebird@^3.5.1:
 
 bluebird@^3.5.4:
   version "3.5.5"
-  resolved "https://verdaccio.sv.felipeaugusto.dev/bluebird/-/bluebird-3.5.5.tgz#a8d0afd73251effbbd5fe384a77d73003c17a71f"
+  resolved "https://registry.yarnpkg.com/bluebird/-/bluebird-3.5.5.tgz#a8d0afd73251effbbd5fe384a77d73003c17a71f"
   integrity sha512-5am6HnnfN+urzt4yfg7IgTbotDjIT/u8AJpEt0sIU9FtXfVeezXAPKswrG+xKUCOYAINpSdgZVDU6QFh+cuH3w==
 
 body-parser@1.18.2:
@@ -1174,7 +1174,7 @@ chalk@^2.0.0, chalk@^2.0.1:
 
 chalk@^2.4.2:
   version "2.4.2"
-  resolved "https://verdaccio.sv.felipeaugusto.dev/chalk/-/chalk-2.4.2.tgz#cd42541677a54333cf541a49108c1432b44c9424"
+  resolved "https://registry.yarnpkg.com/chalk/-/chalk-2.4.2.tgz#cd42541677a54333cf541a49108c1432b44c9424"
   integrity sha512-Mti+f9lpJNcwF4tWV8/OrTTtF1gZi+f8FqlyAdouralcFWFQWF2+NgCHShjkCb+IFBLq9buZwE1xckQU4peSuQ==
   dependencies:
     ansi-styles "^3.2.1"
@@ -1398,12 +1398,12 @@ complex.js@2.0.11:
 
 component-emitter@^1.2.0, component-emitter@^1.3.0:
   version "1.3.0"
-  resolved "https://verdaccio.sv.felipeaugusto.dev/component-emitter/-/component-emitter-1.3.0.tgz#16e4070fba8ae29b679f2215853ee181ab2eabc0"
+  resolved "https://registry.yarnpkg.com/component-emitter/-/component-emitter-1.3.0.tgz#16e4070fba8ae29b679f2215853ee181ab2eabc0"
   integrity sha512-Rd3se6QB+sO1TwqZjscQrurpEPIfO0/yYnSin6Q/rD3mOutHvUrCAhJub3r90uNb+SESBuE0QYoB90YdfatsRg==
 
 compose-middleware@4.0.0:
   version "4.0.0"
-  resolved "https://verdaccio.sv.felipeaugusto.dev/compose-middleware/-/compose-middleware-4.0.0.tgz#1e7298257cd9c841485f3ca1de385d3e7da0dd0f"
+  resolved "https://registry.yarnpkg.com/compose-middleware/-/compose-middleware-4.0.0.tgz#1e7298257cd9c841485f3ca1de385d3e7da0dd0f"
   integrity sha512-8GBuTt6Q8ukt9XJ4Gka/PGAMHIZwtWgxN4kPnP+giUKUs9WFpCJGmEVk0Jij65UgoiVwC0hIHW5EQQghnIEUjQ==
   dependencies:
     "@types/debug" "0.0.29"
@@ -1491,7 +1491,7 @@ cookie@0.3.1:
 
 cookiejar@^2.1.0, cookiejar@^2.1.2:
   version "2.1.2"
-  resolved "https://verdaccio.sv.felipeaugusto.dev/cookiejar/-/cookiejar-2.1.2.tgz#dd8a235530752f988f9a0844f3fc589e3111125c"
+  resolved "https://registry.yarnpkg.com/cookiejar/-/cookiejar-2.1.2.tgz#dd8a235530752f988f9a0844f3fc589e3111125c"
   integrity sha512-Mw+adcfzPxcPeI+0WlvRrr/3lGVO0bD75SxX6811cxSh1Wbxx7xZBGK1eVtDf6si8rg2lhnUjsVLMFMfbRIuwA==
 
 core-assert@^0.2.0:
@@ -1514,7 +1514,7 @@ core-util-is@1.0.2, core-util-is@~1.0.0:
 
 cors@2.8.4:
   version "2.8.4"
-  resolved "https://verdaccio.sv.felipeaugusto.dev/cors/-/cors-2.8.4.tgz#2bd381f2eb201020105cd50ea59da63090694686"
+  resolved "https://registry.yarnpkg.com/cors/-/cors-2.8.4.tgz#2bd381f2eb201020105cd50ea59da63090694686"
   integrity sha1-K9OB8usgECAQXNUOpZ2mMJBpRoY=
   dependencies:
     object-assign "^4"
@@ -1522,7 +1522,7 @@ cors@2.8.4:
 
 cors@^2.8.5:
   version "2.8.5"
-  resolved "https://verdaccio.sv.felipeaugusto.dev/cors/-/cors-2.8.5.tgz#eac11da51592dd86b9f06f6e7ac293b3df875d29"
+  resolved "https://registry.yarnpkg.com/cors/-/cors-2.8.5.tgz#eac11da51592dd86b9f06f6e7ac293b3df875d29"
   integrity sha512-KIHbLJqu73RGr/hnbrO9uBeixNGuvSQjul/jdFvS/KFSIH1hWVd1ng7zOHx+YrEfInLG7q4n6GHQ9cDtxv/P6g==
   dependencies:
     object-assign "^4"
@@ -1584,7 +1584,7 @@ crypto-random-string@^1.0.0:
 
 csv-stringify@1.0.4:
   version "1.0.4"
-  resolved "https://verdaccio.sv.felipeaugusto.dev/csv-stringify/-/csv-stringify-1.0.4.tgz#bc18bab9ad4cef3195fd257980b58b479c42d3e5"
+  resolved "https://registry.yarnpkg.com/csv-stringify/-/csv-stringify-1.0.4.tgz#bc18bab9ad4cef3195fd257980b58b479c42d3e5"
   integrity sha1-vBi6ua1M7zGV/SV5gLWLR5xC0+U=
   dependencies:
     lodash.get "^4.0.0"
@@ -1641,7 +1641,7 @@ debug@3.1.0, debug@^3.1.0, debug@~3.1.0:
 
 debug@^4.1.1:
   version "4.1.1"
-  resolved "https://verdaccio.sv.felipeaugusto.dev/debug/-/debug-4.1.1.tgz#3b72260255109c6b589cee050f1d516139664791"
+  resolved "https://registry.yarnpkg.com/debug/-/debug-4.1.1.tgz#3b72260255109c6b589cee050f1d516139664791"
   integrity sha512-pYAIzeRo8J6KPEaJ0VWOh5Pzkbw/RetuzehGM7QRRX5he4fPHx2rdKMB256ehJCkX+XRQm16eZLqLNS8RSZXZw==
   dependencies:
     ms "^2.1.1"
@@ -1702,7 +1702,7 @@ delegates@^1.0.0:
 
 depd@1.1.0:
   version "1.1.0"
-  resolved "https://verdaccio.sv.felipeaugusto.dev/depd/-/depd-1.1.0.tgz#e1bd82c6aab6ced965b97b88b17ed3e528ca18c3"
+  resolved "https://registry.yarnpkg.com/depd/-/depd-1.1.0.tgz#e1bd82c6aab6ced965b97b88b17ed3e528ca18c3"
   integrity sha1-4b2Cxqq2ztlluXuIsX7T5SjKGMM=
 
 depd@1.1.1:
@@ -1798,7 +1798,7 @@ ecdsa-sig-formatter@1.0.10:
 
 ecdsa-sig-formatter@1.0.11:
   version "1.0.11"
-  resolved "https://verdaccio.sv.felipeaugusto.dev/ecdsa-sig-formatter/-/ecdsa-sig-formatter-1.0.11.tgz#ae0f0fa2d85045ef14a817daa3ce9acd0489e5bf"
+  resolved "https://registry.yarnpkg.com/ecdsa-sig-formatter/-/ecdsa-sig-formatter-1.0.11.tgz#ae0f0fa2d85045ef14a817daa3ce9acd0489e5bf"
   integrity sha512-nagl3RYrbNv6kQkeJIpt6NJZy8twLB/2vtz6yN9Z4vRKHN4/QZJIEbqohALSgwKdnksuY3k5Addp5lg8sVoVcQ==
   dependencies:
     safe-buffer "^5.0.1"
@@ -1959,7 +1959,7 @@ express-jwt-permissions@^1.2.3:
 
 express-jwt@5.3.1:
   version "5.3.1"
-  resolved "https://verdaccio.sv.felipeaugusto.dev/express-jwt/-/express-jwt-5.3.1.tgz#66f05c7dddb5409c037346a98b88965bb10ea4ae"
+  resolved "https://registry.yarnpkg.com/express-jwt/-/express-jwt-5.3.1.tgz#66f05c7dddb5409c037346a98b88965bb10ea4ae"
   integrity sha512-1C9RNq0wMp/JvsH/qZMlg3SIPvKu14YkZ4YYv7gJQ1Vq+Dv8LH9tLKenS5vMNth45gTlEUGx+ycp9IHIlaHP/g==
   dependencies:
     async "^1.5.0"
@@ -2000,7 +2000,7 @@ express-session@^1.15.6:
 
 express-unless@^0.3.0:
   version "0.3.1"
-  resolved "https://verdaccio.sv.felipeaugusto.dev/express-unless/-/express-unless-0.3.1.tgz#2557c146e75beb903e2d247f9b5ba01452696e20"
+  resolved "https://registry.yarnpkg.com/express-unless/-/express-unless-0.3.1.tgz#2557c146e75beb903e2d247f9b5ba01452696e20"
   integrity sha1-JVfBRudb65A+LSR/m1ugFFJpbiA=
 
 express-unless@^0.5.0:
@@ -2010,7 +2010,7 @@ express-unless@^0.5.0:
 
 express@4.16.2:
   version "4.16.2"
-  resolved "https://verdaccio.sv.felipeaugusto.dev/express/-/express-4.16.2.tgz#e35c6dfe2d64b7dca0a5cd4f21781be3299e076c"
+  resolved "https://registry.yarnpkg.com/express/-/express-4.16.2.tgz#e35c6dfe2d64b7dca0a5cd4f21781be3299e076c"
   integrity sha1-41xt/i1kt9ygpc1PIXgb4ymeB2w=
   dependencies:
     accepts "~1.3.4"
@@ -2119,7 +2119,7 @@ fast-json-stable-stringify@^2.0.0:
 
 fast-safe-stringify@^2.0.6:
   version "2.0.7"
-  resolved "https://verdaccio.sv.felipeaugusto.dev/fast-safe-stringify/-/fast-safe-stringify-2.0.7.tgz#124aa885899261f68aedb42a7c080de9da608743"
+  resolved "https://registry.yarnpkg.com/fast-safe-stringify/-/fast-safe-stringify-2.0.7.tgz#124aa885899261f68aedb42a7c080de9da608743"
   integrity sha512-Utm6CdzT+6xsDk2m8S6uL8VHxNwI6Jub+e9NYTcAms28T84pTa25GJQV9j0CY0N1rM8hK4x6grpF2BQf+2qwVA==
 
 figures@^2.0.0:
@@ -2147,7 +2147,7 @@ fill-range@^2.1.0:
 
 finalhandler@1.1.0:
   version "1.1.0"
-  resolved "https://verdaccio.sv.felipeaugusto.dev/finalhandler/-/finalhandler-1.1.0.tgz#ce0b6855b45853e791b2fcc680046d88253dd7f5"
+  resolved "https://registry.yarnpkg.com/finalhandler/-/finalhandler-1.1.0.tgz#ce0b6855b45853e791b2fcc680046d88253dd7f5"
   integrity sha1-zgtoVbRYU+eRsvzGgARtiCU91/U=
   dependencies:
     debug "2.6.9"
@@ -2262,7 +2262,7 @@ foreground-child@^1.5.6:
 
 forest-express-mongoose@^3.2.0:
   version "3.2.4"
-  resolved "https://verdaccio.sv.felipeaugusto.dev/forest-express-mongoose/-/forest-express-mongoose-3.2.4.tgz#8a721355c60b45e742818d37fc70f0695c54c116"
+  resolved "https://registry.yarnpkg.com/forest-express-mongoose/-/forest-express-mongoose-3.2.4.tgz#8a721355c60b45e742818d37fc70f0695c54c116"
   integrity sha512-f28YlJKtV6AR/zXqnwUg/IHkqN+ZJi8DlGzitVgESfbyLe4BoGeLO0PF29H9iVNo+UNU4xbz/QIaCto9XDshbQ==
   dependencies:
     babel-runtime "7.0.0-beta.3"
@@ -2274,7 +2274,7 @@ forest-express-mongoose@^3.2.0:
 
 forest-express-sequelize@^3.2.0:
   version "3.3.5"
-  resolved "https://verdaccio.sv.felipeaugusto.dev/forest-express-sequelize/-/forest-express-sequelize-3.3.5.tgz#19f1a9559e7bd6aaa898ba562fd259f41c9418f7"
+  resolved "https://registry.yarnpkg.com/forest-express-sequelize/-/forest-express-sequelize-3.3.5.tgz#19f1a9559e7bd6aaa898ba562fd259f41c9418f7"
   integrity sha512-aSbsVe0qNHOlomFXF2OSY858K9619+icRrKH/b+gOszMa+UZruAXU5AvZ2kr5M89Y9R8YbmMLNMwLX7hW/8xVg==
   dependencies:
     babel-runtime "7.0.0-beta.3"
@@ -2288,7 +2288,7 @@ forest-express-sequelize@^3.2.0:
 
 forest-express@3.2.4:
   version "3.2.4"
-  resolved "https://verdaccio.sv.felipeaugusto.dev/forest-express/-/forest-express-3.2.4.tgz#48a89f3064f11e3f0a9f1cf95d1021761cd9aec5"
+  resolved "https://registry.yarnpkg.com/forest-express/-/forest-express-3.2.4.tgz#48a89f3064f11e3f0a9f1cf95d1021761cd9aec5"
   integrity sha512-aHX87ehU4i/RYBeDB0k6M/Glj2Zd4FGS/cbUgaQ3CgdyWJhhQCu/4D8TVazHH7s8SO7nhQq1zt+GwdZEil8K7Q==
   dependencies:
     babel-runtime "7.0.0-beta.3"
@@ -2319,7 +2319,7 @@ forest-express@3.2.4:
 
 forest-express@3.2.6:
   version "3.2.6"
-  resolved "https://verdaccio.sv.felipeaugusto.dev/forest-express/-/forest-express-3.2.6.tgz#c8ae5f0f992f8a7acf2e168ac4bb31f78ef4e6fd"
+  resolved "https://registry.yarnpkg.com/forest-express/-/forest-express-3.2.6.tgz#c8ae5f0f992f8a7acf2e168ac4bb31f78ef4e6fd"
   integrity sha512-r0cCuLO9TIqc1AkqLNtsnqLdYSSt5kDhwkXrr4DXqTe5/whk9cF4j/o60qCr9Y6r8SxzMx/lYDwHKrAqbw5UxA==
   dependencies:
     babel-runtime "7.0.0-beta.3"
@@ -2350,7 +2350,7 @@ forest-express@3.2.6:
 
 forest-ip-utils@1.0.1:
   version "1.0.1"
-  resolved "https://verdaccio.sv.felipeaugusto.dev/forest-ip-utils/-/forest-ip-utils-1.0.1.tgz#4c53a4c1e16f20beed71ee862315e18b34508d0c"
+  resolved "https://registry.yarnpkg.com/forest-ip-utils/-/forest-ip-utils-1.0.1.tgz#4c53a4c1e16f20beed71ee862315e18b34508d0c"
   integrity sha512-m/pXGliPvJ6pt5/kyTgNT3X4AKHBdeKJX+cg1RVHWrQiqvD7Qs6WbSaP8/l1nJz1FhrLC/EQJAWXTj/kdJjDEQ==
   dependencies:
     ip-address "^5.8.9"
@@ -2395,7 +2395,7 @@ forever@^0.15.3:
 
 form-data@^2.3.1, form-data@^2.3.3:
   version "2.5.1"
-  resolved "https://verdaccio.sv.felipeaugusto.dev/form-data/-/form-data-2.5.1.tgz#f2cbec57b5e59e23716e128fe44d4e5dd23895f4"
+  resolved "https://registry.yarnpkg.com/form-data/-/form-data-2.5.1.tgz#f2cbec57b5e59e23716e128fe44d4e5dd23895f4"
   integrity sha512-m21N3WOmEEURgk6B9GLOE4RuWOFf28Lhh9qGYeNlGq4VDXUlJy2th2slBNU8Gp8EzloYZOibZJ7t5ecIrFSjVA==
   dependencies:
     asynckit "^0.4.0"
@@ -2413,7 +2413,7 @@ form-data@~2.3.2:
 
 formidable@^1.1.1, formidable@^1.2.1:
   version "1.2.1"
-  resolved "https://verdaccio.sv.felipeaugusto.dev/formidable/-/formidable-1.2.1.tgz#70fb7ca0290ee6ff961090415f4b3df3d2082659"
+  resolved "https://registry.yarnpkg.com/formidable/-/formidable-1.2.1.tgz#70fb7ca0290ee6ff961090415f4b3df3d2082659"
   integrity sha512-Fs9VRguL0gqGHkXS5GQiMCr1VhZBxz0JnJs4JmMp/2jL18Fmbzvv7vOFRU+U8TBkHEE/CX1qDXzJplVULgsLeg==
 
 forwarded@~0.1.2:
@@ -2702,7 +2702,7 @@ hosted-git-info@^2.1.4:
 
 http-errors@1.6.1:
   version "1.6.1"
-  resolved "https://verdaccio.sv.felipeaugusto.dev/http-errors/-/http-errors-1.6.1.tgz#5f8b8ed98aca545656bf572997387f904a722257"
+  resolved "https://registry.yarnpkg.com/http-errors/-/http-errors-1.6.1.tgz#5f8b8ed98aca545656bf572997387f904a722257"
   integrity sha1-X4uO2YrKVFZWv1cplzh/kEpyIlc=
   dependencies:
     depd "1.1.0"
@@ -2732,7 +2732,7 @@ http-errors@1.6.3, http-errors@~1.6.2, http-errors@~1.6.3:
 
 http-errors@1.7.2:
   version "1.7.2"
-  resolved "https://verdaccio.sv.felipeaugusto.dev/http-errors/-/http-errors-1.7.2.tgz#4f5029cf13239f31036e5b2e55292bcfbcc85c8f"
+  resolved "https://registry.yarnpkg.com/http-errors/-/http-errors-1.7.2.tgz#4f5029cf13239f31036e5b2e55292bcfbcc85c8f"
   integrity sha512-uUQBt3H/cSIVfch6i1EuPNy/YsRSOUBXTVfZ+yR7Zjez3qjBz6i9+i4zjNaoqcoFVI4lQJ5plg63TvGfRSDCRg==
   dependencies:
     depd "~1.1.2"
@@ -2828,12 +2828,12 @@ indent-string@^3.0.0, indent-string@^3.1.0:
 
 inflected@2.0.4:
   version "2.0.4"
-  resolved "https://verdaccio.sv.felipeaugusto.dev/inflected/-/inflected-2.0.4.tgz#323770961ccbe992a98ea930512e9a82d3d3ef77"
+  resolved "https://registry.yarnpkg.com/inflected/-/inflected-2.0.4.tgz#323770961ccbe992a98ea930512e9a82d3d3ef77"
   integrity sha512-HQPzFLTTUvwfeUH6RAGjD8cHS069mBqXG5n4qaxX7sJXBhVQrsGgF+0ZJGkSuN6a8pcUWB/GXStta11kKi/WvA==
 
 inflected@^1.1.6:
   version "1.1.7"
-  resolved "https://verdaccio.sv.felipeaugusto.dev/inflected/-/inflected-1.1.7.tgz#c393df6e28472d0d77b3082ec3aa2091f4bc96f9"
+  resolved "https://registry.yarnpkg.com/inflected/-/inflected-1.1.7.tgz#c393df6e28472d0d77b3082ec3aa2091f4bc96f9"
   integrity sha1-w5PfbihHLQ13swguw6ogkfS8lvk=
 
 inflight@^1.0.4:
@@ -2851,7 +2851,7 @@ inherits@2, inherits@2.0.3, inherits@^2.0.1, inherits@~2.0.1, inherits@~2.0.3:
 
 inherits@^2.0.3:
   version "2.0.4"
-  resolved "https://verdaccio.sv.felipeaugusto.dev/inherits/-/inherits-2.0.4.tgz#0fa2c64f932917c3433a0ded55363aae37416b7c"
+  resolved "https://registry.yarnpkg.com/inherits/-/inherits-2.0.4.tgz#0fa2c64f932917c3433a0ded55363aae37416b7c"
   integrity sha512-k/vGaX4/Yla3WzyMCvTQOXYeIHvqOKtnqBduzTHpzpQZzAskKMhZ2K+EnBiSM9zGSoIFeMpXKxa4dYeZIQqewQ==
 
 ini@1.x.x, ini@^1.3.4, ini@~1.3.0:
@@ -2873,7 +2873,7 @@ invert-kv@^1.0.0:
 
 ip-address@^5.8.9:
   version "5.9.4"
-  resolved "https://verdaccio.sv.felipeaugusto.dev/ip-address/-/ip-address-5.9.4.tgz#4660ac261ad61bd397a860a007f7e98e4eaee386"
+  resolved "https://registry.yarnpkg.com/ip-address/-/ip-address-5.9.4.tgz#4660ac261ad61bd397a860a007f7e98e4eaee386"
   integrity sha512-dHkI3/YNJq4b/qQaz+c8LuarD3pY24JqZWfjB8aZx1gtpc2MDILu9L9jpZe1sHpzo/yWFweQVn+U//FhazUxmw==
   dependencies:
     jsbn "1.1.0"
@@ -2882,7 +2882,7 @@ ip-address@^5.8.9:
 
 ip6@0.0.4:
   version "0.0.4"
-  resolved "https://verdaccio.sv.felipeaugusto.dev/ip6/-/ip6-0.0.4.tgz#44c5a9db79e39d405201b4d78d13b3870e48db31"
+  resolved "https://registry.yarnpkg.com/ip6/-/ip6-0.0.4.tgz#44c5a9db79e39d405201b4d78d13b3870e48db31"
   integrity sha1-RMWp23njnUBSAbTXjROzhw5I2zE=
 
 ip@^1.1.5:
@@ -2892,7 +2892,7 @@ ip@^1.1.5:
 
 ipaddr.js@1.2:
   version "1.2.0"
-  resolved "https://verdaccio.sv.felipeaugusto.dev/ipaddr.js/-/ipaddr.js-1.2.0.tgz#8aba49c9192799585bdd643e0ccb50e8ae777ba4"
+  resolved "https://registry.yarnpkg.com/ipaddr.js/-/ipaddr.js-1.2.0.tgz#8aba49c9192799585bdd643e0ccb50e8ae777ba4"
   integrity sha1-irpJyRknmVhb3WQ+DMtQ6K53e6Q=
 
 ipaddr.js@1.6.0:
@@ -2902,7 +2902,7 @@ ipaddr.js@1.6.0:
 
 ipaddr.js@1.9.0:
   version "1.9.0"
-  resolved "https://verdaccio.sv.felipeaugusto.dev/ipaddr.js/-/ipaddr.js-1.9.0.tgz#37df74e430a0e47550fe54a2defe30d8acd95f65"
+  resolved "https://registry.yarnpkg.com/ipaddr.js/-/ipaddr.js-1.9.0.tgz#37df74e430a0e47550fe54a2defe30d8acd95f65"
   integrity sha512-M4Sjn6N/+O6/IXSJseKqHoFc+5FdGJ22sXqnjTpdZweHK64MzEPAyQZyEU3R/KRv2GLoa7nNtg/C2Ev6m7z+eA==
 
 irregular-plurals@^1.0.0:
@@ -3280,7 +3280,7 @@ js-yaml@^3.12.0, js-yaml@^3.8.2:
 
 jsbn@1.1.0:
   version "1.1.0"
-  resolved "https://verdaccio.sv.felipeaugusto.dev/jsbn/-/jsbn-1.1.0.tgz#b01307cb29b618a1ed26ec79e911f803c4da0040"
+  resolved "https://registry.yarnpkg.com/jsbn/-/jsbn-1.1.0.tgz#b01307cb29b618a1ed26ec79e911f803c4da0040"
   integrity sha1-sBMHyym2GKHtJux56RH4A8TaAEA=
 
 jsbn@~0.1.0:
@@ -3330,7 +3330,7 @@ json5@^0.5.1:
 
 jsonapi-serializer@3.6.4:
   version "3.6.4"
-  resolved "https://verdaccio.sv.felipeaugusto.dev/jsonapi-serializer/-/jsonapi-serializer-3.6.4.tgz#70b61c2eb6e9366e1b49cf18a01fd4a04473791e"
+  resolved "https://registry.yarnpkg.com/jsonapi-serializer/-/jsonapi-serializer-3.6.4.tgz#70b61c2eb6e9366e1b49cf18a01fd4a04473791e"
   integrity sha512-n0FVi4Cs7Gzk6dH9kn+8to7yGYhVpdsFRtMHi3SaC80EWap2wjCcXPioSlq0hnqzdEFXtay0hRR4yRqXkLTJSA==
   dependencies:
     inflected "^1.1.6"
@@ -3338,7 +3338,7 @@ jsonapi-serializer@3.6.4:
 
 jsonapi-serializer@3.6.5, jsonapi-serializer@^3.6.4:
   version "3.6.5"
-  resolved "https://verdaccio.sv.felipeaugusto.dev/jsonapi-serializer/-/jsonapi-serializer-3.6.5.tgz#8e61c8062affc748732857b5c8646d6d0f75503a"
+  resolved "https://registry.yarnpkg.com/jsonapi-serializer/-/jsonapi-serializer-3.6.5.tgz#8e61c8062affc748732857b5c8646d6d0f75503a"
   integrity sha512-UmBU9JnWVi2H2vZcPTSsPsA7+SUIkuGXwjXbx2GWW7crbZr/pYgQPUH3MSmOQYvpAIYlg5oIomnS4F9eM8g5cQ==
   dependencies:
     inflected "^1.1.6"
@@ -3358,7 +3358,7 @@ jsonify@~0.0.0:
 
 jsonwebtoken@8.5.1, jsonwebtoken@^8.1.0:
   version "8.5.1"
-  resolved "https://verdaccio.sv.felipeaugusto.dev/jsonwebtoken/-/jsonwebtoken-8.5.1.tgz#00e71e0b8df54c2121a1f26137df2280673bcc0d"
+  resolved "https://registry.yarnpkg.com/jsonwebtoken/-/jsonwebtoken-8.5.1.tgz#00e71e0b8df54c2121a1f26137df2280673bcc0d"
   integrity sha512-XjwVfRS6jTMsqYs0EsuJ4LGxXV14zQybNd4L2r0UvbVnSF9Af8x7p5MzbJ90Ioz/9TI41/hTCvznF/loiSzn8w==
   dependencies:
     jws "^3.2.2"
@@ -3418,7 +3418,7 @@ jwa@^1.1.5:
 
 jwa@^1.4.1:
   version "1.4.1"
-  resolved "https://verdaccio.sv.felipeaugusto.dev/jwa/-/jwa-1.4.1.tgz#743c32985cb9e98655530d53641b66c8645b039a"
+  resolved "https://registry.yarnpkg.com/jwa/-/jwa-1.4.1.tgz#743c32985cb9e98655530d53641b66c8645b039a"
   integrity sha512-qiLX/xhEEFKUAJ6FiBMbes3w9ATzyk5W7Hvzpa/SLYdxNtng+gcurvrI7TbACjIXlsJyr05/S1oUhZrc63evQA==
   dependencies:
     buffer-equal-constant-time "1.0.1"
@@ -3435,7 +3435,7 @@ jws@^3.1.5:
 
 jws@^3.2.2:
   version "3.2.2"
-  resolved "https://verdaccio.sv.felipeaugusto.dev/jws/-/jws-3.2.2.tgz#001099f3639468c9414000e99995fa52fb478304"
+  resolved "https://registry.yarnpkg.com/jws/-/jws-3.2.2.tgz#001099f3639468c9414000e99995fa52fb478304"
   integrity sha512-YHlZCB6lMTllWDtSPHz/ZXTsi8S00usEV6v1tjq8tOUZzw7DpSDWVXjXDre6ed1w/pd495ODpHZYSdkRTsa0HA==
   dependencies:
     jwa "^1.4.1"
@@ -3642,12 +3642,12 @@ lodash.once@^4.0.0:
 
 lodash.set@^4.0.0:
   version "4.3.2"
-  resolved "https://verdaccio.sv.felipeaugusto.dev/lodash.set/-/lodash.set-4.3.2.tgz#d8757b1da807dde24816b0d6a84bea1a76230b23"
+  resolved "https://registry.yarnpkg.com/lodash.set/-/lodash.set-4.3.2.tgz#d8757b1da807dde24816b0d6a84bea1a76230b23"
   integrity sha1-2HV7HagH3eJIFrDWqEvqGnYjCyM=
 
 lodash@4.17.13:
   version "4.17.13"
-  resolved "https://verdaccio.sv.felipeaugusto.dev/lodash/-/lodash-4.17.13.tgz#0bdc3a6adc873d2f4e0c4bac285df91b64fc7b93"
+  resolved "https://registry.yarnpkg.com/lodash/-/lodash-4.17.13.tgz#0bdc3a6adc873d2f4e0c4bac285df91b64fc7b93"
   integrity sha512-vm3/XWXfWtRua0FkUyEHBZy8kCPjErNBT9fJx8Zvs+U6zjqPbTUOpkaoum3O5uiA8sm+yNMHXfYkTUHFoMxFNA==
 
 lodash@^4.15.0, lodash@^4.17.11:
@@ -3657,7 +3657,7 @@ lodash@^4.15.0, lodash@^4.17.11:
 
 lodash@^4.16.3, lodash@^4.17.15:
   version "4.17.15"
-  resolved "https://verdaccio.sv.felipeaugusto.dev/lodash/-/lodash-4.17.15.tgz#b447f6670a0455bbfeedd11392eff330ea097548"
+  resolved "https://registry.yarnpkg.com/lodash/-/lodash-4.17.15.tgz#b447f6670a0455bbfeedd11392eff330ea097548"
   integrity sha512-8xOcRHvCjnocdS5cpwXQXVzmmh5e5+saE2QGoeQmbKmRS6J3VQppPOIt0MnmE+4xlZoumy0GPG0D0MVIQbNA1A==
 
 lodash@^4.17.10, lodash@^4.17.4, lodash@~4.17.4:
@@ -3692,7 +3692,7 @@ lowercase-keys@^1.0.0:
 
 lru-cache@2.2.x:
   version "2.2.4"
-  resolved "https://verdaccio.sv.felipeaugusto.dev/lru-cache/-/lru-cache-2.2.4.tgz#6c658619becf14031d0d0b594b16042ce4dc063d"
+  resolved "https://registry.yarnpkg.com/lru-cache/-/lru-cache-2.2.4.tgz#6c658619becf14031d0d0b594b16042ce4dc063d"
   integrity sha1-bGWGGb7PFAMdDQtZSxYELOTcBj0=
 
 lru-cache@^4.0.1, lru-cache@~4.1.x:
@@ -3705,7 +3705,7 @@ lru-cache@^4.0.1, lru-cache@~4.1.x:
 
 lumber-forestadmin@^1.2.2:
   version "1.2.2"
-  resolved "https://verdaccio.sv.felipeaugusto.dev/lumber-forestadmin/-/lumber-forestadmin-1.2.2.tgz#c340dff6ca8ef9b38b15063e688c0b81abe219c8"
+  resolved "https://registry.yarnpkg.com/lumber-forestadmin/-/lumber-forestadmin-1.2.2.tgz#c340dff6ca8ef9b38b15063e688c0b81abe219c8"
   integrity sha512-ZJkvkH5XiRR1r6+5qIEzOLBQfyHfeZmYWVUjgN+9QbN6V62c/Z0Q4mjzz6KkofTEkj/Lxfmck5nKFVfccXBUsg==
   dependencies:
     atob "2.1.2"
@@ -3913,12 +3913,12 @@ mime@1.4.1:
 
 mime@^1.4.1:
   version "1.6.0"
-  resolved "https://verdaccio.sv.felipeaugusto.dev/mime/-/mime-1.6.0.tgz#32cd9e5c64553bd58d19a568af452acff04981b1"
+  resolved "https://registry.yarnpkg.com/mime/-/mime-1.6.0.tgz#32cd9e5c64553bd58d19a568af452acff04981b1"
   integrity sha512-x0Vn8spI+wuJ1O6S7gnbaQg8Pxh4NNHb7KSINmEWKiPE4RKOplvijn+NkmYmmRgP68mc70j2EbeTFRsrswaQeg==
 
 mime@^2.4.4:
   version "2.4.4"
-  resolved "https://verdaccio.sv.felipeaugusto.dev/mime/-/mime-2.4.4.tgz#bd7b91135fc6b01cde3e9bae33d659b63d8857e5"
+  resolved "https://registry.yarnpkg.com/mime/-/mime-2.4.4.tgz#bd7b91135fc6b01cde3e9bae33d659b63d8857e5"
   integrity sha512-LRxmNwziLPT828z+4YkNzloCFC2YM4wrB99k+AV5ZbEyfGNWfG8SO1FUXLmLDBSo89NrJZ4DIWeLjy1CHGhMGA==
 
 mimic-fn@^1.0.0:
@@ -3989,7 +3989,7 @@ mocha@^5.2.0:
 
 moment-timezone@0.5.14:
   version "0.5.14"
-  resolved "https://verdaccio.sv.felipeaugusto.dev/moment-timezone/-/moment-timezone-0.5.14.tgz#4eb38ff9538b80108ba467a458f3ed4268ccfcb1"
+  resolved "https://registry.yarnpkg.com/moment-timezone/-/moment-timezone-0.5.14.tgz#4eb38ff9538b80108ba467a458f3ed4268ccfcb1"
   integrity sha1-TrOP+VOLgBCLpGekWPPtQmjM/LE=
   dependencies:
     moment ">= 2.9.0"
@@ -4003,12 +4003,12 @@ moment-timezone@^0.5.x, moment-timezone@~0.5.0:
 
 moment@2.19.4:
   version "2.19.4"
-  resolved "https://verdaccio.sv.felipeaugusto.dev/moment/-/moment-2.19.4.tgz#17e5e2c6ead8819c8ecfad83a0acccb312e94682"
+  resolved "https://registry.yarnpkg.com/moment/-/moment-2.19.4.tgz#17e5e2c6ead8819c8ecfad83a0acccb312e94682"
   integrity sha512-1xFTAknSLfc47DIxHDUbnJWC+UwgWxATmymaxIPQpmMh7LBm7ZbwVEsuushqwL2GYZU0jie4xO+TK44hJPjNSQ==
 
 moment@2.24.0:
   version "2.24.0"
-  resolved "https://verdaccio.sv.felipeaugusto.dev/moment/-/moment-2.24.0.tgz#0d055d53f5052aa653c9f6eb68bb5d12bf5c2b5b"
+  resolved "https://registry.yarnpkg.com/moment/-/moment-2.24.0.tgz#0d055d53f5052aa653c9f6eb68bb5d12bf5c2b5b"
   integrity sha512-bV7f+6l2QigeBBZSM/6yTNq4P2fNpSWj/0e7jQcy87A8e7o2nAfP/34/2ky5Vw4B9S446EtIhodAzkFCcR4dQg==
 
 "moment@>= 2.9.0":
@@ -4453,7 +4453,7 @@ osenv@^0.1.4:
 
 otplib@10.0.0:
   version "10.0.0"
-  resolved "https://verdaccio.sv.felipeaugusto.dev/otplib/-/otplib-10.0.0.tgz#bf7f85a7552fa0440ada189f6d85f32850260120"
+  resolved "https://registry.yarnpkg.com/otplib/-/otplib-10.0.0.tgz#bf7f85a7552fa0440ada189f6d85f32850260120"
   integrity sha512-6YoW3o3pOfvEBCNTtohJFy8znAAlqBJqJYS6raikkqEL1xTwKW0avHXl7PklR4/3qgAnM9Z5xH7ZN54Z4Z3S9g==
   dependencies:
     thirty-two "1.0.2"
@@ -4804,7 +4804,7 @@ prompt@0.2.14:
 
 proxy-addr@~2.0.2:
   version "2.0.5"
-  resolved "https://verdaccio.sv.felipeaugusto.dev/proxy-addr/-/proxy-addr-2.0.5.tgz#34cbd64a2d81f4b1fd21e76f9f06c8a45299ee34"
+  resolved "https://registry.yarnpkg.com/proxy-addr/-/proxy-addr-2.0.5.tgz#34cbd64a2d81f4b1fd21e76f9f06c8a45299ee34"
   integrity sha512-t/7RxHXPH6cJtP0pRG6smSr9QJidhB+3kXu0KgXnbGYMgzEnUxRQ4/LDdfOwZEMyIh3/xHb8PX3t+lfL9z+YVQ==
   dependencies:
     forwarded "~0.1.2"
@@ -4857,7 +4857,7 @@ qs@^6.5.1, qs@^6.6.0:
 
 qs@^6.7.0:
   version "6.9.0"
-  resolved "https://verdaccio.sv.felipeaugusto.dev/qs/-/qs-6.9.0.tgz#d1297e2a049c53119cb49cca366adbbacc80b409"
+  resolved "https://registry.yarnpkg.com/qs/-/qs-6.9.0.tgz#d1297e2a049c53119cb49cca366adbbacc80b409"
   integrity sha512-27RP4UotQORTpmNQDX8BHPukOnBP3p1uUJY5UnDhaJB+rMt9iMsok724XL+UHU23bEFOHRMQ2ZhI99qOWUMGFA==
 
 random-bytes@~1.0.0:
@@ -4881,7 +4881,7 @@ range-parser@~1.2.0:
 
 range_check@^1.4.0:
   version "1.4.0"
-  resolved "https://verdaccio.sv.felipeaugusto.dev/range_check/-/range_check-1.4.0.tgz#cd87c7ac62c40ba9df69b8703c604f60c3748635"
+  resolved "https://registry.yarnpkg.com/range_check/-/range_check-1.4.0.tgz#cd87c7ac62c40ba9df69b8703c604f60c3748635"
   integrity sha1-zYfHrGLEC6nfabhwPGBPYMN0hjU=
   dependencies:
     ip6 "0.0.4"
@@ -5001,7 +5001,7 @@ readable-stream@^2.0.2, readable-stream@^2.0.5, readable-stream@^2.0.6, readable
 
 readable-stream@^3.4.0:
   version "3.4.0"
-  resolved "https://verdaccio.sv.felipeaugusto.dev/readable-stream/-/readable-stream-3.4.0.tgz#a51c26754658e0a3c21dbf59163bd45ba6f447fc"
+  resolved "https://registry.yarnpkg.com/readable-stream/-/readable-stream-3.4.0.tgz#a51c26754658e0a3c21dbf59163bd45ba6f447fc"
   integrity sha512-jItXPLmrSR8jmTRmRWJXCnGJsfy85mB3Wd/uINMXA65yrnFo0cPClFIUWzo2najVNSl+mx7/4W8ttlLWJe99pQ==
   dependencies:
     inherits "^2.0.3"
@@ -5174,7 +5174,7 @@ request@^2.87.0:
 
 require-all@3.0.0, require-all@^3.0.0:
   version "3.0.0"
-  resolved "https://verdaccio.sv.felipeaugusto.dev/require-all/-/require-all-3.0.0.tgz#473d49704be310115ce124f77383b1ebd8671312"
+  resolved "https://registry.yarnpkg.com/require-all/-/require-all-3.0.0.tgz#473d49704be310115ce124f77383b1ebd8671312"
   integrity sha1-Rz1JcEvjEBFc4ST3c4Ox69hnExI=
 
 require-directory@^2.1.1:
@@ -5271,7 +5271,7 @@ safe-buffer@^5.0.1, safe-buffer@^5.1.2, safe-buffer@~5.1.0, safe-buffer@~5.1.1:
 
 safe-buffer@~5.2.0:
   version "5.2.0"
-  resolved "https://verdaccio.sv.felipeaugusto.dev/safe-buffer/-/safe-buffer-5.2.0.tgz#b74daec49b1148f88c64b68d49b1e815c1f2f519"
+  resolved "https://registry.yarnpkg.com/safe-buffer/-/safe-buffer-5.2.0.tgz#b74daec49b1148f88c64b68d49b1e815c1f2f519"
   integrity sha512-fZEwUGbVl7kouZs1jCdMLdt95hdIv0ZeHg6L7qPeciMZhZ+/gdesW4wgTARkrFWEpspjEATAzUGPG8N2jJiwbg==
 
 "safer-buffer@>= 2.1.2 < 3", safer-buffer@^2.0.2, safer-buffer@^2.1.0, safer-buffer@~2.1.0:
@@ -5313,7 +5313,7 @@ semver-diff@^2.0.0:
 
 semver@5.4.1:
   version "5.4.1"
-  resolved "https://verdaccio.sv.felipeaugusto.dev/semver/-/semver-5.4.1.tgz#e059c09d8571f0540823733433505d3a2f00b18e"
+  resolved "https://registry.yarnpkg.com/semver/-/semver-5.4.1.tgz#e059c09d8571f0540823733433505d3a2f00b18e"
   integrity sha512-WfG/X9+oATh81XtllIo/I8gOiY9EXRdv1cQdyykeXK17YcUW3EXUAi2To4pcH6nZtJPr7ZOpM5OMyWJZm+8Rsg==
 
 semver@^5.5.0:
@@ -5323,12 +5323,12 @@ semver@^5.5.0:
 
 semver@^5.6.0:
   version "5.7.1"
-  resolved "https://verdaccio.sv.felipeaugusto.dev/semver/-/semver-5.7.1.tgz#a954f931aeba508d307bbf069eff0c01c96116f7"
+  resolved "https://registry.yarnpkg.com/semver/-/semver-5.7.1.tgz#a954f931aeba508d307bbf069eff0c01c96116f7"
   integrity sha512-sauaDf/PZdVgrLTNYHRtpXa1iRiKcaebiKQ1BJdpQlWH2lCvexQdX55snPFyK7QzpudqbCI0qXFfOasHdyNDGQ==
 
 semver@^6.1.1:
   version "6.3.0"
-  resolved "https://verdaccio.sv.felipeaugusto.dev/semver/-/semver-6.3.0.tgz#ee0a64c8af5e8ceea67687b133761e1becbd1d3d"
+  resolved "https://registry.yarnpkg.com/semver/-/semver-6.3.0.tgz#ee0a64c8af5e8ceea67687b133761e1becbd1d3d"
   integrity sha512-b39TBaTSfV6yBrapU89p5fKekE2m/NwnDocOVruQFS1/veMgdzuPcnOM34M6CwxW8jH/lxEa5rBoDeUwu5HHTw==
 
 semver@~5.3.0:
@@ -5338,7 +5338,7 @@ semver@~5.3.0:
 
 send@0.16.1:
   version "0.16.1"
-  resolved "https://verdaccio.sv.felipeaugusto.dev/send/-/send-0.16.1.tgz#a70e1ca21d1382c11d0d9f6231deb281080d7ab3"
+  resolved "https://registry.yarnpkg.com/send/-/send-0.16.1.tgz#a70e1ca21d1382c11d0d9f6231deb281080d7ab3"
   integrity sha512-ElCLJdJIKPk6ux/Hocwhk7NFHpI3pVm/IZOYWqUmoxcgeyM+MpxHHKhb8QmlJDX1pU6WrgaHBkVNm73Sv7uc2A==
   dependencies:
     debug "2.6.9"
@@ -5381,7 +5381,7 @@ serialize-error@~2.1.0:
 
 serve-static@1.13.1:
   version "1.13.1"
-  resolved "https://verdaccio.sv.felipeaugusto.dev/serve-static/-/serve-static-1.13.1.tgz#4c57d53404a761d8f2e7c1e8a18a47dbf278a719"
+  resolved "https://registry.yarnpkg.com/serve-static/-/serve-static-1.13.1.tgz#4c57d53404a761d8f2e7c1e8a18a47dbf278a719"
   integrity sha512-hSMUZrsPa/I09VYFJwa627JJkNs0NrfL1Uzuup+GqHfToR2KcsXFymXSV90hoyw3M+msjFuQly+YzIH/q0MGlQ==
   dependencies:
     encodeurl "~1.0.1"
@@ -5421,7 +5421,7 @@ setprototypeof@1.1.0:
 
 setprototypeof@1.1.1:
   version "1.1.1"
-  resolved "https://verdaccio.sv.felipeaugusto.dev/setprototypeof/-/setprototypeof-1.1.1.tgz#7e95acb24aa92f5885e0abef5ba131330d4ae683"
+  resolved "https://registry.yarnpkg.com/setprototypeof/-/setprototypeof-1.1.1.tgz#7e95acb24aa92f5885e0abef5ba131330d4ae683"
   integrity sha512-JvdAWfbXeIGaZ9cILp38HntZSFSo3mWg6xGcJJsd+d4aRMOqauag1C63dJfDw7OaMYwEbHMOxEZ1lqVRYP2OAw==
 
 sha1@^1.1.1:
@@ -5561,7 +5561,7 @@ spdx-license-ids@^3.0.0:
 
 sprintf-js@1.1.2:
   version "1.1.2"
-  resolved "https://verdaccio.sv.felipeaugusto.dev/sprintf-js/-/sprintf-js-1.1.2.tgz#da1765262bf8c0f571749f2ad6c26300207ae673"
+  resolved "https://registry.yarnpkg.com/sprintf-js/-/sprintf-js-1.1.2.tgz#da1765262bf8c0f571749f2ad6c26300207ae673"
   integrity sha512-VE0SOVEHCk7Qc8ulkWw3ntAzXuqf7S2lvwQaDLRnUeIEaKNQJzV6BwmLKhOqT61aGhfUMrXeaBk+oDGCzvhcug==
 
 sprintf-js@~1.0.2:
@@ -5608,7 +5608,7 @@ stack-utils@^1.0.0:
 
 statuses@~1.3.1:
   version "1.3.1"
-  resolved "https://verdaccio.sv.felipeaugusto.dev/statuses/-/statuses-1.3.1.tgz#faf51b9eb74aaef3b3acf4ad5f61abf24cb7b93e"
+  resolved "https://registry.yarnpkg.com/statuses/-/statuses-1.3.1.tgz#faf51b9eb74aaef3b3acf4ad5f61abf24cb7b93e"
   integrity sha1-+vUbnrdKrvOzrPStX2Gr8ky3uT4=
 
 statuses@~1.4.0:
@@ -5635,7 +5635,7 @@ string-width@^1.0.1:
 
 string_decoder@^1.1.1:
   version "1.3.0"
-  resolved "https://verdaccio.sv.felipeaugusto.dev/string_decoder/-/string_decoder-1.3.0.tgz#42f114594a46cf1a8e30b0a84f56c78c3edac21e"
+  resolved "https://registry.yarnpkg.com/string_decoder/-/string_decoder-1.3.0.tgz#42f114594a46cf1a8e30b0a84f56c78c3edac21e"
   integrity sha512-hkRX8U1WjJFd8LsDJ2yQ/wWWxaopEsABU1XfkM8A+j0+85JAGppt16cr1Whg6KIbb4okU6Mql6BOj+uup/wKeA==
   dependencies:
     safe-buffer "~5.2.0"
@@ -5709,12 +5709,12 @@ strip-json-comments@~2.0.1:
 
 superagent-promise@^1.1.0:
   version "1.1.0"
-  resolved "https://verdaccio.sv.felipeaugusto.dev/superagent-promise/-/superagent-promise-1.1.0.tgz#baf22d8bbdd439a9b07dd10f8c08f54fe2503533"
+  resolved "https://registry.yarnpkg.com/superagent-promise/-/superagent-promise-1.1.0.tgz#baf22d8bbdd439a9b07dd10f8c08f54fe2503533"
   integrity sha1-uvIti73UOamwfdEPjAj1T+JQNTM=
 
 superagent@3.7.0:
   version "3.7.0"
-  resolved "https://verdaccio.sv.felipeaugusto.dev/superagent/-/superagent-3.7.0.tgz#bd58bfde2cbc5305adb9ccbb6dacba18408629d6"
+  resolved "https://registry.yarnpkg.com/superagent/-/superagent-3.7.0.tgz#bd58bfde2cbc5305adb9ccbb6dacba18408629d6"
   integrity sha512-/8trxO6NbLx4YXb7IeeFTSmsQ35pQBiTBsLNvobZx7qBzBeHYvKCyIIhW2gNcWbLzYxPAjdgFbiepd8ypwC0Gw==
   dependencies:
     component-emitter "^1.2.0"
@@ -5730,7 +5730,7 @@ superagent@3.7.0:
 
 superagent@^5.0.2:
   version "5.1.0"
-  resolved "https://verdaccio.sv.felipeaugusto.dev/superagent/-/superagent-5.1.0.tgz#9ce4f38bee64d65a56166423b573222fa1b8f041"
+  resolved "https://registry.yarnpkg.com/superagent/-/superagent-5.1.0.tgz#9ce4f38bee64d65a56166423b573222fa1b8f041"
   integrity sha512-7V6JVx5N+eTL1MMqRBX0v0bG04UjrjAvvZJTF/VDH/SH2GjSLqlrcYepFlpTrXpm37aSY6h3GGVWGxXl/98TKA==
   dependencies:
     component-emitter "^1.3.0"
@@ -5828,7 +5828,7 @@ text-table@^0.2.0:
 
 thirty-two@1.0.2:
   version "1.0.2"
-  resolved "https://verdaccio.sv.felipeaugusto.dev/thirty-two/-/thirty-two-1.0.2.tgz#4ca2fffc02a51290d2744b9e3f557693ca6b627a"
+  resolved "https://registry.yarnpkg.com/thirty-two/-/thirty-two-1.0.2.tgz#4ca2fffc02a51290d2744b9e3f557693ca6b627a"
   integrity sha1-TKL//AKlEpDSdEueP1V2k8prYno=
 
 through2@^2.0.0:
@@ -5871,7 +5871,7 @@ tiny-emitter@2.0.2:
 
 tmp@0.0.x:
   version "0.0.33"
-  resolved "https://verdaccio.sv.felipeaugusto.dev/tmp/-/tmp-0.0.33.tgz#6d34335889768d21b2bcda0aa277ced3b1bfadf9"
+  resolved "https://registry.yarnpkg.com/tmp/-/tmp-0.0.33.tgz#6d34335889768d21b2bcda0aa277ced3b1bfadf9"
   integrity sha512-jRCJlojKnZ3addtTOjdIqoRuPEKBvNXcGYqzO6zWZX8KfKEpnGY5jfggJQ3EjKuu8D4bJRr0y+cYJFmYbImXGw==
   dependencies:
     os-tmpdir "~1.0.2"
@@ -5888,7 +5888,7 @@ to-fast-properties@^2.0.0:
 
 toidentifier@1.0.0:
   version "1.0.0"
-  resolved "https://verdaccio.sv.felipeaugusto.dev/toidentifier/-/toidentifier-1.0.0.tgz#7e1be3470f1e77948bc43d94a3c8f4d7752ba553"
+  resolved "https://registry.yarnpkg.com/toidentifier/-/toidentifier-1.0.0.tgz#7e1be3470f1e77948bc43d94a3c8f4d7752ba553"
   integrity sha512-yaOH/Pk/VEhBWWTlhI+qXxDFXlejDGcQipMlyxda9nthulaxLZUNcUqFxokp0vcYnvteJln5FNQDRrxj3YcbVw==
 
 tough-cookie@~2.4.3:
@@ -6035,7 +6035,7 @@ urlgrey@^0.4.4:
 
 useragent@2.1.13:
   version "2.1.13"
-  resolved "https://verdaccio.sv.felipeaugusto.dev/useragent/-/useragent-2.1.13.tgz#bba43e8aa24d5ceb83c2937473e102e21df74c10"
+  resolved "https://registry.yarnpkg.com/useragent/-/useragent-2.1.13.tgz#bba43e8aa24d5ceb83c2937473e102e21df74c10"
   integrity sha1-u6Q+iqJNXOuDwpN0c+EC4h33TBA=
   dependencies:
     lru-cache "2.2.x"
@@ -6070,7 +6070,7 @@ uuid@3.0.0:
 
 uuid@3.0.1:
   version "3.0.1"
-  resolved "https://verdaccio.sv.felipeaugusto.dev/uuid/-/uuid-3.0.1.tgz#6544bba2dfda8c1cf17e629a3a305e2bb1fee6c1"
+  resolved "https://registry.yarnpkg.com/uuid/-/uuid-3.0.1.tgz#6544bba2dfda8c1cf17e629a3a305e2bb1fee6c1"
   integrity sha1-ZUS7ot/ajBzxfmKaOjBeK7H+5sE=
 
 uuid@^3.2.1, uuid@^3.3.2:
@@ -6158,7 +6158,7 @@ winston@0.8.x, winston@~0.8.1:
 
 winston@2.2.0:
   version "2.2.0"
-  resolved "https://verdaccio.sv.felipeaugusto.dev/winston/-/winston-2.2.0.tgz#2c853dd87ab552a8e8485d72cbbf9a2286f029b7"
+  resolved "https://registry.yarnpkg.com/winston/-/winston-2.2.0.tgz#2c853dd87ab552a8e8485d72cbbf9a2286f029b7"
   integrity sha1-LIU92Hq1UqjoSF1yy7+aIobwKbc=
   dependencies:
     async "~1.0.0"
