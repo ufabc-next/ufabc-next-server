@@ -16,7 +16,7 @@ module.exports = async function(context) {
   }
 
   if(!device.token) {
-    throw new errors.BadRequest.MissingParameter('device.id')
+    throw new errors.BadRequest.MissingParameter('device.token')
   }
 
   if (!user) {
