@@ -60,7 +60,7 @@
     "xlsx": "^0.14.1"
   },
   "devDependencies": {
-    "codecov": "^3.1.0",
+    "codecov": "^3.6.5",
     "mocha": "^5.2.0",
     "sinon": "^6.1.0"
   },
