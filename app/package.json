@@ -34,6 +34,7 @@
     "express-restify-mongoose": "https://github.com/felipe-augusto/express-restify-mongoose",
     "express-session": "^1.15.6",
     "express-unless": "^0.5.0",
+    "express-useragent": "^1.0.13",
     "flat": "^4.1.0",
     "forever": "^0.15.3",
     "grant-express": "^4.5.0",
