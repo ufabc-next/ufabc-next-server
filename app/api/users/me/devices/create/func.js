@@ -1,7 +1,7 @@
 const errors = require('@/errors')
 
 const _ = require('lodash')
-const useragent = require('express-useragent')
+const useragent = require('useragent')
 
 module.exports = async function(context) {
   const { user } = context
@@ -28,7 +28,7 @@ module.exports = async function(context) {
   const newDevice = {
     id: device.id,
     token: device.token,
-    phone: agent.device
+    phone: agent.device.toString()
   }
 
   user.addDevice(newDevice)
