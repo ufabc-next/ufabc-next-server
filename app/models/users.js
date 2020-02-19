@@ -51,8 +51,8 @@ Model.method('addDevice', function(device) {
   this.devices = _.uniqBy(this.devices, 'id')
 })
 
-Model.method('removeDevice', function(device) {
-  this.devices = _.removeBy(this.devices,  { id: device.id })
+Model.method('removeDevice', function(deviceId) {
+  this.devices = _.removeBy(this.devices,  { id: deviceId })
 })
 
 Model.method('sendNotification', async function() {
