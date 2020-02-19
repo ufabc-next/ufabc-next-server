@@ -25,13 +25,13 @@ module.exports = async function(context) {
 
   const agent = useragent.parse(_.get(context, 'headers.user-agent', ''))
 
-  const device = {
+  const newDevice = {
     id: device.id,
     token: device.token,
     phone: agent.device
   }
 
-  user.addDevice(device)
+  user.addDevice(newDevice)
 
   await user.save()
 
