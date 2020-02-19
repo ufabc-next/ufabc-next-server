@@ -33,11 +33,30 @@ const Model = module.exports = Schema({
     type: Boolean,
     default: true
   },
-  permissions: [String]
+  permissions: [String],
+
+  devices: [{
+    phone: String,
+    token: String,
+    id: String
+  }]
 })
 
 Model.virtual('isFilled').get(function () {
   return this.ra && this.email
+})
+
+Model.method('addDevice', function(device) {
+  this.devices.unshift(device)
+  this.devices = _.uniqBy(this.devices, 'id')
+})
+
+Model.method('removeDevice', function(device) {
+  this.devices = _.removeBy(this.devices,  { id: device.id })
+})
+
+Model.method('sendNotification', async function() {
+
 })
 
 Model.method('generateJWT', function () {
