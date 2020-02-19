@@ -58,7 +58,9 @@ Model.method('removeDevice', function(deviceId) {
 Model.method('sendNotification', async function(title, body) {
   const sendNotification = app.helpers.notification.sendNotification
 
-  await sendNotification(title, body)
+  const devicesTokens = this.devices.map(device => device.token)
+
+  await sendNotification(title, body, devicesTokens)
 })
 
 Model.method('generateJWT', function () {

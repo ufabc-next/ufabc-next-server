@@ -1,6 +1,6 @@
 const Axios = require('axios')
 
-module.exports = async function(title, body) {
+module.exports = async function(title, body, devicesTokens) {
   const ENDPOINT = 'https://fcm.googleapis.com/fcm/send'
 
   const headers = {
@@ -9,7 +9,7 @@ module.exports = async function(title, body) {
   }
 
   const payload = {
-    'registration_ids': devices,
+    'registration_ids': devicesTokens,
     'priority' : 'high',
     'notification':{
       'title': title,
