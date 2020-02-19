@@ -55,8 +55,10 @@ Model.method('removeDevice', function(deviceId) {
   this.devices = _.removeBy(this.devices,  { id: deviceId })
 })
 
-Model.method('sendNotification', async function() {
+Model.method('sendNotification', async function(title, body) {
+  const sendNotification = app.helpers.notification.sendNotification
 
+  await sendNotification(title, body)
 })
 
 Model.method('generateJWT', function () {
