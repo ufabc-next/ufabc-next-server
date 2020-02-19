@@ -52,7 +52,7 @@ Model.method('addDevice', function(device) {
 })
 
 Model.method('removeDevice', function(deviceId) {
-  this.devices = _.removeBy(this.devices,  { id: deviceId })
+  this.devices = _.remove(this.devices,  { id: deviceId })
 })
 
 Model.method('sendNotification', async function(title, body) {
