@@ -37,8 +37,14 @@ const Model = module.exports = Schema({
 
   devices: [{
     phone: String,
-    token: String,
-    id: String
+    token:  {
+      type: String,
+      required: true
+    },
+    id: {
+      type: String,
+      required: true
+    }
   }]
 })
 
