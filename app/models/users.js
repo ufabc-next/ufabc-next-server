@@ -41,7 +41,7 @@ const Model = module.exports = Schema({
       type: String,
       required: true
     },
-    id: {
+    deviceId: {
       type: String,
       required: true
     }
@@ -54,11 +54,11 @@ Model.virtual('isFilled').get(function () {
 
 Model.method('addDevice', function(device) {
   this.devices.unshift(device)
-  this.devices = _.uniqBy(this.devices, 'id')
+  this.devices = _.uniqBy(this.devices, 'deviceId')
 })
 
 Model.method('removeDevice', function(deviceId) {
-  this.devices = _.remove(this.devices,  { id: deviceId })
+  this.devices = _.remove(this.devices,  { deviceId })
 })
 
 Model.method('sendNotification', async function(title, body) {

@@ -12,7 +12,7 @@ module.exports = async function(context) {
     throw new errors.NotFound('Usuário não encontrado')
   }
 
-  const isValidDevice = user.devices.find(device => device.id == deviceId)
+  const isValidDevice = user.devices.find(device => device.deviceId == deviceId)
 
   if(!isValidDevice) {
     throw new errors.BadRequest(`Invalid deviceId: ${deviceId}`)

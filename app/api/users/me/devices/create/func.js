@@ -26,7 +26,7 @@ module.exports = async function(context) {
   const agent = useragent.parse(_.get(context, 'headers.user-agent', ''))
 
   const newDevice = {
-    id: device.id,
+    deviceId: device.deviceId,
     token: device.token,
     phone: agent.device.toString()
   }
