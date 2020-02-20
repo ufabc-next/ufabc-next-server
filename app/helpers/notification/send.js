@@ -1,3 +1,4 @@
+const app = require('@/app')
 const Axios = require('axios')
 
 module.exports = async function(title, body, devicesTokens) {
@@ -5,7 +6,7 @@ module.exports = async function(title, body, devicesTokens) {
 
   const headers = {
     'Content-Type' : 'application/json',
-    'Authorization' : process.env.GOOGLE_FCM_KEY
+    'Authorization' : app.config.GOOGLE_FCM_KEY
   }
 
   const payload = {
