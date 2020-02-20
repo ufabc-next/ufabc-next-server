@@ -7,6 +7,9 @@ const Model = module.exports = Schema({
   ra : Number,
   disciplinas: Object,
   coefficients: Object,
+
+  curso: String,
+  grade: String
 })
 
 async function updateEnrollments(doc) {
