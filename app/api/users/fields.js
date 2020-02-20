@@ -4,7 +4,8 @@ module.exports = {
     'confirmed',
     'email',
     'ra',
-    'createdAt'
+    'createdAt',
+    'devices'
   ],
 
   create: [
