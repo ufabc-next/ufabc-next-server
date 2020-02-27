@@ -3,9 +3,6 @@ const assert = require('assert')
 const populate = require('@/populate')
 const sinon = require('sinon')
 const Axios = require('axios')
-const _ = require('lodash')
-const path = require('path')
-const fs = require('fs')
 
 const func = require('./func')
 const rule = require('./rule')
@@ -13,7 +10,7 @@ const rule = require('./rule')
 const sync = require('@/api/disciplinas/sync/func')
 
 describe('PUT /v1/disciplinas/teachers', function() {
-  var models, context, helpData, pdfData
+  var context
   
   beforeEach(async function () {
     context = {
@@ -26,7 +23,7 @@ describe('PUT /v1/disciplinas/teachers', function() {
 
   describe('func', function () {
     beforeEach(async function () {
-      models = await populate({ operation : 'both' })
+      await populate({ operation : 'both' })
 
       let file = app.helpers.test.getDisciplinas()
       file.data = app.helpers.test.sample(file.data)

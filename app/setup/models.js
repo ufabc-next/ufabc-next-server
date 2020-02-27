@@ -1,15 +1,12 @@
 /*
  * Load models and register with Mongoose
  */
-const _ = require('lodash')
 const mongoose = require('mongoose')
 //const mongoosastic = require('mongoosastic')
 const requireSmart = require('require-smart')
 const PluginMongoTenant = require('mongo-tenant')
 const PluginTimestamp = require('mongoose-timestamp')
 const mongooseLeanVirtuals = require('mongoose-lean-virtuals')
-
-let model 
 
 module.exports = async (app) => {
   let schemas = requireSmart('../models', {

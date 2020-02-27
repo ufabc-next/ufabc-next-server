@@ -1,9 +1,7 @@
-const _ = require('lodash')
 const app = require('@/app')
 const errors = require('@/errors')
-const Axios = require('axios')
 
-module.exports = async(context, res) => {
+module.exports = async(context) => {
   const { aluno_id, ra, login } = context.body
 
   if(!aluno_id) {

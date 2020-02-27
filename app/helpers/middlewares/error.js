@@ -1,6 +1,5 @@
 const _ = require('lodash')
 const app = require('@/app')
-const errors = require('@/errors')
 const Raven = require('raven')
 const parser = require('ua-parser-js')
 

@@ -9,7 +9,7 @@ module.exports = function (agenda) {
   agenda.define('syncMatricula', app.helpers.agenda.wrap(syncMatricula))
 }
 
-async function syncMatricula (context) {
+async function syncMatricula () {
   try {
     await sync({ query: {} })
   } catch(e) {

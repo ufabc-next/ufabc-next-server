@@ -1,5 +1,3 @@
-const app = require('@/app')
-const path = require('path')
 const assert = require('assert')
 const func = require('./paginate')
 
@@ -10,7 +8,7 @@ describe('helpers.rest.paginate', function() {
       query: {}
     }
 
-    let resp = func(context, null, () => {} )
+    func(context, null, () => {} )
     assert.equal(context.erm.query.limit, 10)
     assert.equal(context.erm.query.skip, 0)
     assert.equal(context.query.limit, 10)
@@ -25,7 +23,7 @@ describe('helpers.rest.paginate', function() {
       }
     }
 
-    let resp = func(context, null, () => {} )
+    func(context, null, () => {} )
     assert.equal(context.erm.query.limit, 10)
     assert.equal(context.erm.query.skip, 0)
     assert.equal(context.query.limit, 10)
@@ -40,7 +38,7 @@ describe('helpers.rest.paginate', function() {
       }
     }
 
-    let resp = func(context, null, () => {} )
+    func(context, null, () => {} )
     
     assert.equal(context.erm.query.limit, 5)
     assert.equal(context.erm.query.skip, 45)

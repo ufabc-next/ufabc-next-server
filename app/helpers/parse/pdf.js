@@ -1,6 +1,5 @@
 const _ = require('lodash')
-let fs = require('fs')
-const PDFParser = require("pdf2json")
+const PDFParser = require('pdf2json')
 const Axios = require('axios')
 const errors = require('@/errors')
 const xlsx = require('xlsx')
@@ -16,7 +15,7 @@ function parsePDF(buffer, params) {
   pdfParser.parseBuffer(buffer)
 
   return new Promise((resolve, reject) => {
-     pdfParser.on("pdfParser_dataReady", function(pdfData) {
+    pdfParser.on('pdfParser_dataReady', function(pdfData) {
       function closest (num, arr) {
         var curr = arr[0]
         var diff = Math.abs (num - curr)
@@ -149,7 +148,7 @@ function parsePDF(buffer, params) {
       })
 
       const positionAverageArray = _(positionAverage)
-        .mapValues((value, key) => _.mean(value))
+        .mapValues((value) => _.mean(value))
         .values()
         .value()
 
@@ -158,7 +157,7 @@ function parsePDF(buffer, params) {
       sortedResults.forEach(result => {
         let tmp = _.values(result)
 
-        tmp = _.map(tmp, (value, key) => {
+        tmp = _.map(tmp, (value) => {
           value.pos = Math.floor(closest(value.pos, positionAverageArray))
           return value
         })
@@ -223,17 +222,17 @@ module.exports = async function (body) {
   return new Promise((resolve, reject) => {
     response.data.pipe(forBuffer)
     forBuffer.on('data', chunk => buffers.push(chunk))
-    forBuffer.on('finish', chunk => {
+    forBuffer.on('finish', () => {
 
       if(isPdf) {
         parsePDF(Buffer.concat(buffers), params).then(r => {
-        resolve(r)
+          resolve(r)
         }).catch(e => {
           reject(e)
         })
       } else {
         const workbook = xlsx.read(Buffer.concat(buffers))
-        const sheet_name_list = workbook.SheetNames;
+        const sheet_name_list = workbook.SheetNames
         const data = xlsx.utils.sheet_to_json(workbook.Sheets[sheet_name_list[0]])
 
         const parsed = data.map(d => {
@@ -241,7 +240,7 @@ module.exports = async function (body) {
             _.set(d, name.as, d[name.from])
           })
 
-         return _.pick(d, _.map(params.rename, 'as'))
+          return _.pick(d, _.map(params.rename, 'as'))
         })
 
         resolve(parsed)

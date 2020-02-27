@@ -27,7 +27,7 @@ async function updateStuff (payload) {
 
     try {
       // check if a enrollment already exists for this
-      const enrollment = await app.models.enrollments.findOneAndUpdate({
+      await app.models.enrollments.findOneAndUpdate({
         identifier: identifier
       }, {
         teoria: app.helpers.transform.resolveProfessor(doc.teoria, teachers),

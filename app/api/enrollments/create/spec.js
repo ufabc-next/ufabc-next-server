@@ -1,16 +1,11 @@
 const app = require('@/app')
-const assert = require('assert')
 const populate = require('@/populate')
-const sinon = require('sinon')
-const Axios = require('axios')
-const _ = require('lodash')
-const fs = require('fs')
 
 const func = require('./func')
 const rule = require('./rule')
 
 describe('POST /v1/enrollments', function() {
-  var models, context, enrollments
+  var context, enrollments
   
   beforeEach(async function () {
     enrollments = JSON.parse(app.helpers.test.getFixture('enrollments.json').data)
@@ -30,7 +25,7 @@ describe('POST /v1/enrollments', function() {
   describe('func', function () {
 
     beforeEach(async function () {
-      models = await populate({ operation : 'both', only: ['teachers', 'subjects', 'enrollments'] })
+      await populate({ operation : 'both', only: ['teachers', 'subjects', 'enrollments'] })
     })
 
     xit('create enrollments', async function () {

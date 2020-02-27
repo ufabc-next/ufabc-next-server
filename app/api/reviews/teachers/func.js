@@ -31,21 +31,21 @@ module.exports = async function (context) {
           conceito: '$conceito',
           subject: '$subject'
         },
-        cr_medio: { $avg: "$cr_acumulado" },
-        count: { "$sum": 1 },
-        crs: { $push: "$cr_acumulado" },
+        cr_medio: { $avg: '$cr_acumulado' },
+        count: { '$sum': 1 },
+        crs: { $push: '$cr_acumulado' },
         weight: {
           $first : {
             $switch: {
-             branches: [
-                { case: { $eq: ["$conceito", "A"]}, then: 4 },
-                { case: { $eq: ["$conceito", "B"]}, then: 3 },
-                { case: { $eq: ["$conceito", "C"]}, then: 2 },
-                { case: { $eq: ["$conceito", "D"]}, then: 1 },
-                { case: { $eq: ["$conceito", "O"]}, then: 0 },
-                { case: { $eq: ["$conceito", "F"]}, then: 0 }
-             ],
-             default: null
+              branches: [
+                { case: { $eq: ['$conceito', 'A']}, then: 4 },
+                { case: { $eq: ['$conceito', 'B']}, then: 3 },
+                { case: { $eq: ['$conceito', 'C']}, then: 2 },
+                { case: { $eq: ['$conceito', 'D']}, then: 1 },
+                { case: { $eq: ['$conceito', 'O']}, then: 0 },
+                { case: { $eq: ['$conceito', 'F']}, then: 0 }
+              ],
+              default: null
             }
           }
         },
@@ -54,9 +54,9 @@ module.exports = async function (context) {
       $addFields: {
         crs: {
           $filter: {
-            input: "$crs",
-            as: "d",
-            cond: { $ne: [ "$$d", null ] }
+            input: '$crs',
+            as: 'd',
+            cond: { $ne: [ '$$d', null ] }
           }
         }
       }
@@ -67,27 +67,27 @@ module.exports = async function (context) {
         count: 1,
         weight: 1,
         crs: 1,
-        amount: { $size: "$crs" },
+        amount: { $size: '$crs' },
       }
     },
     {
       $group: {
-        _id: "$_id.subject",
+        _id: '$_id.subject',
         distribution: {
           $push: {
-            conceito: "$_id.conceito",
-            weight: "$weight",
-            count: "$count",
-            cr_medio: "$cr_medio",
-            numeric: { $multiply: ["$amount", "$cr_medio"] },
-            numericWeight: { $multiply: ["$amount", "$weight"] },
-            amount: "$amount",
+            conceito: '$_id.conceito',
+            weight: '$weight',
+            count: '$count',
+            cr_medio: '$cr_medio',
+            numeric: { $multiply: ['$amount', '$cr_medio'] },
+            numericWeight: { $multiply: ['$amount', '$weight'] },
+            amount: '$amount',
           }
         },
-        numericWeight: { $sum : { $multiply: ["$amount", "$weight"] } },
-        numeric: { $sum : { $multiply: ["$amount", "$cr_medio"] } },
-        amount: { $sum: "$amount" },
-        count: { $sum: "$count" }
+        numericWeight: { $sum : { $multiply: ['$amount', '$weight'] } },
+        numeric: { $sum : { $multiply: ['$amount', '$cr_medio'] } },
+        amount: { $sum: '$amount' },
+        count: { $sum: '$count' }
       }
     }, {
       $project: {
@@ -96,7 +96,7 @@ module.exports = async function (context) {
         numeric: 1,
         amount: 1,
         count: 1,
-        cr_professor: { $cond: [ { $eq: [ "$amount", 0 ] }, "N/A", { "$divide": ["$numericWeight", "$amount"] } ] },
+        cr_professor: { $cond: [ { $eq: [ '$amount', 0 ] }, 'N/A', { '$divide': ['$numericWeight', '$amount'] } ] },
       }
     }
   ])

@@ -1,0 +1,44 @@
+{
+  "env": {
+    "es6": true,
+    "node": true,
+    "mocha": true
+  },
+  "extends": "eslint:recommended",
+  "parserOptions": {
+    "ecmaVersion": 2018
+  },
+  "globals": {
+    "assertFuncThrows": true
+  },
+  "rules": {
+    "indent": [
+      "error",
+      2
+    ],
+    "linebreak-style": [
+      "error",
+      "unix"
+    ],
+
+    "semi": [
+      "error",
+      "never"
+    ],
+    
+    "quotes": [2, "single", { "avoidEscape": true }]
+  },
+  "overrides": [
+    {
+      "files": [
+        "app.js",
+        "test.js",
+        "server.js"
+      ],
+      "rules": {
+        "no-console": "off"
+      }
+    }
+  ],
+  "ignorePatterns": ["**/node_modules/**", "**/snapshot/**", "**/fixtures/**"]
+}

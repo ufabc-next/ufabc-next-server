@@ -1,14 +1,13 @@
 const app = require('@/app')
 const restify = require('express-restify-mongoose')
-const guard = require('express-jwt-permissions')()
 
 restify.serve(app.router, app.models.users, {
   prefix: '',
   version: '',
-  access(req) {
+  access() {
     return 'protected'
   },
-  writeAccess(req) {
+  writeAccess() {
     return 'protected'
   },
   lean: { virtuals: true },

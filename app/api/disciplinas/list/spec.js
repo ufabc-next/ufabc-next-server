@@ -3,22 +3,13 @@ const assert = require('assert')
 const populate = require('@/populate')
 const sinon = require('sinon')
 const Axios = require('axios')
-const _ = require('lodash')
-const path = require('path')
-const fs = require('fs')
 
 const func = require('./func')
 const sync = require('@/api/disciplinas/sync/func')
 
 describe('GET /v1/disciplinas', function() {
-  var models, context, pdfData
-  
   beforeEach(async function () {
-    models = await populate({ operation: 'both', only: ['disciplinas', 'subjects'] })
-
-    context = {
-      query: {},
-    }
+    await populate({ operation: 'both', only: ['disciplinas', 'subjects'] })
   })
 
   describe('func', function () {

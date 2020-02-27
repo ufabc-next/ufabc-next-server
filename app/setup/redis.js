@@ -13,8 +13,8 @@ module.exports = async (app) => {
     skip: [/\..*\.js$/],
   })
 
-  bluebird.promisifyAll(redis.RedisClient.prototype);
-  bluebird.promisifyAll(redis.Multi.prototype);
+  bluebird.promisifyAll(redis.RedisClient.prototype)
+  bluebird.promisifyAll(redis.Multi.prototype)
 
   // create publisher connection
   const pub = redis.createClient(OPTIONS)

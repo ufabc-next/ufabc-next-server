@@ -29,7 +29,7 @@ module.exports = async function(context) {
   }
 
   function addStudents(students, mainStudent, DEPTH) {
-    students.map((student, index) => {
+    students.map((student) => {
       if(usedRAs.includes(student[0])) return
 
       nodes.push({
@@ -75,7 +75,7 @@ async function enrollmentsByRA(RA, MAX_BREADTH) {
 
   var usersGroups = await Groups.find({ users: RA })
 
-  if(!usersGroups) throw new errors.BadRequest(`Invalid user RA`)
+  if(!usersGroups) throw new errors.BadRequest('Invalid user RA')
 
   const allRelatedUsers = []
 

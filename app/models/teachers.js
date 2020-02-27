@@ -1,5 +1,4 @@
 const _ = require('lodash')
-const mongoose = require('mongoose')
 const Schema = require('mongoose').Schema
 
 var Model = module.exports = Schema({

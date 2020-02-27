@@ -1,8 +1,5 @@
 const app = require('@/app')
-const _ = require('lodash')
 const Schema = require('mongoose').Schema
-
-const mongoose = require('mongoose')
 
 var Model = module.exports = Schema({
   disciplina_id: Number,

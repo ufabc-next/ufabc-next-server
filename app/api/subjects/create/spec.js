@@ -6,10 +6,11 @@ const populate = require('@/populate')
 const subjectsList = require('@/api/subjects/list/func')
 
 describe('POST /v1/private/subjects', function() {
-  let context, models
+  let context
 
   beforeEach(async function () {
-    models = await populate({ operation : 'remove', only: ['subjects'] })
+    await populate({ operation : 'remove', only: ['subjects'] })
+    
     context = {
       query: {},
       body: {
@@ -22,7 +23,7 @@ describe('POST /v1/private/subjects', function() {
     const beforeSubjects = await subjectsList()
     assert.equal(beforeSubjects.length, 0)
 
-    const resp = await func(context)
+    await func(context)
 
     // wait to cache to be cleaned
     await app.helpers.sleep(50)

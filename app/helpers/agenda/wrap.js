@@ -1,4 +1,3 @@
-const app = require('@/app')
 const Raven = require('raven')
 
 module. exports = (fn) => {

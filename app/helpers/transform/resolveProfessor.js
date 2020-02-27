@@ -1,6 +1,5 @@
 const _ = require('lodash')
 const difflib = require('difflib')
-const errors = require('@/errors')
 
 module.exports = function resolveProfessor(name, teachers, mappings = {}) {
   if (name in mappings) { 
@@ -20,7 +19,7 @@ module.exports = function resolveProfessor(name, teachers, mappings = {}) {
   }
   else {
     let bestMatch = difflib.getCloseMatches(name, _.map(teachers, 'name'))[0]
-    let s = new difflib.SequenceMatcher(null, bestMatch, name);
+    let s = new difflib.SequenceMatcher(null, bestMatch, name)
     if(s.ratio() > 0.8) return _.find(teachers, { name: bestMatch })
     else {
       return { error : 'Missing Teacher: ' + name }

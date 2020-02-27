@@ -1,6 +1,5 @@
 const _ = require('lodash')
 const crypto = require('crypto')
-const clearString = require('./clearString')
 
 module.exports = function(disciplina, keys, silent = true) {
   keys = keys || ['disciplina', 'turno', 'campus', 'turma'] 

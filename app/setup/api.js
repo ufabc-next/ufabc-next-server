@@ -1,10 +1,8 @@
 const _ = require('lodash')
-const app = require('../app')
 const glob = require('glob')
 const path = require('path')
 const express = require('express')
 const fallback = require('express-history-api-fallback')
-const bodyParser = require('body-parser')
 
 /*
  * Load routes from api
@@ -71,7 +69,7 @@ module.exports = async (app) => {
 
   // Locate express-restify-mongoose files
   let restPaths = glob.sync('**/*rest.js', { cwd })
-  let rest = restPaths.map(file => require(path.join(cwd, file)))
+  restPaths.map(file => require(path.join(cwd, file)))
 
   // Add rest to api
   api.use(app.router)

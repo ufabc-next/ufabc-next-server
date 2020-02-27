@@ -22,7 +22,7 @@ module.exports = async function (arr, func, limit = 2, ...args) {
 
       // Once this has fulfilled, remove it from pending or set throw error flag
       promise
-        .then(v => pending.splice(pending.indexOf(promise), 1))
+        .then(() => pending.splice(pending.indexOf(promise), 1))
         .catch(e => { thrown = e })
     }
 
@@ -40,6 +40,6 @@ module.exports = async function (arr, func, limit = 2, ...args) {
 
   // Map results back
   let res = []
-  for (let p of all) res.push(await p);
+  for (let p of all) res.push(await p)
   return res
 }

@@ -36,7 +36,7 @@ module.exports = async function getDisciplinaStats(context) {
 
   // check if we are dealing with previous data or current
   const isPrevious = await Disciplinas.count({ before_kick: { $exists: true, $ne: [] }})
-  const dataKey = isPrevious ? "$before_kick" : "$alunos_matriculados"
+  const dataKey = isPrevious ? '$before_kick' : '$alunos_matriculados'
 
   const resp = await Disciplinas.aggregate([
     { $match:  match },
@@ -61,15 +61,15 @@ module.exports = async function getDisciplinaStats(context) {
         obrigatorias: 1,
         requisicoes: 1,
         turma: 1,
-        deficit: { $subtract: [ "$requisicoes", "$vagas" ] },
-        ratio: { $divide: [ "$requisicoes", "$vagas" ] } 
+        deficit: { $subtract: [ '$requisicoes', '$vagas' ] },
+        ratio: { $divide: [ '$requisicoes', '$vagas' ] } 
       }
     },
     ...isRatio(ratio),
     ...resolveStep(action, turno, curso_id),
     { $facet: 
       {
-        total: [ { $count: "total" }],
+        total: [ { $count: 'total' }],
         data: [
           { $sort : { [ratio != null ? 'ratio' : 'deficit'] : -1 } },
           { $skip: page * limit },
@@ -91,7 +91,7 @@ module.exports = async function getDisciplinaStats(context) {
     },
     { $addFields:
       {
-        total: { $ifNull: [{ $arrayElemAt: [ "$total.total", 0 ] }, 0] },
+        total: { $ifNull: [{ $arrayElemAt: [ '$total.total', 0 ] }, 0] },
         page: page
       }
     },
@@ -116,9 +116,9 @@ function getOverviewSteps() {
     { $group : 
       {
         _id: null,
-        vagas: { $sum : "$vagas" },
-        requisicoes: { $sum : "$requisicoes" },
-        deficit: { $sum : "$deficit" },
+        vagas: { $sum : '$vagas' },
+        requisicoes: { $sum : '$requisicoes' },
+        deficit: { $sum : '$deficit' },
       }
     }
   ]
@@ -128,10 +128,10 @@ function getDisciplineSteps() {
   return [
     { $group :
       {
-        _id: "$codigo",
-        disciplina: { $first: "$disciplina" },
-        vagas: { $sum : "$vagas" },
-        requisicoes: { $sum : "$requisicoes" } 
+        _id: '$codigo',
+        disciplina: { $first: '$disciplina' },
+        vagas: { $sum : '$vagas' },
+        requisicoes: { $sum : '$requisicoes' } 
       }
     },
     { $project:
@@ -140,8 +140,8 @@ function getDisciplineSteps() {
         vagas: 1,
         requisicoes:1,
         codigo: 1,
-        deficit: { $subtract: [ "$requisicoes", "$vagas" ] },
-        ratio: { $divide: [ "$requisicoes", "$vagas" ] },
+        deficit: { $subtract: [ '$requisicoes', '$vagas' ] },
+        ratio: { $divide: [ '$requisicoes', '$vagas' ] },
       }
     }
   ]
@@ -153,23 +153,23 @@ function getCourseSteps(turno, curso_id) {
   if(curso_id) match.obrigatorias = parseInt(curso_id)
 
   return [
-    { $unwind: "$obrigatorias" },
+    { $unwind: '$obrigatorias' },
     { $match: match },
     { $group : 
       {
-        _id : "$obrigatorias",
-        obrigatorias: { $first: "$obrigatorias" },
-        disciplina: { $first: "$disciplina" },
-        vagas : { $sum : "$vagas" },
-        requisicoes: { $sum : "$requisicoes" }
+        _id : '$obrigatorias',
+        obrigatorias: { $first: '$obrigatorias' },
+        disciplina: { $first: '$disciplina' },
+        vagas : { $sum : '$vagas' },
+        requisicoes: { $sum : '$requisicoes' }
       }
     },
     { $project:
       {
         vagas: 1,
         requisicoes: 1,
-        deficit: { $subtract: [ "$requisicoes", "$vagas" ] },
-        ratio: { $divide: [ "$requisicoes", "$vagas" ] },
+        deficit: { $subtract: [ '$requisicoes', '$vagas' ] },
+        ratio: { $divide: [ '$requisicoes', '$vagas' ] },
       }
     }
   ]

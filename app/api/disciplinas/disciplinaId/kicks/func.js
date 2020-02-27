@@ -38,7 +38,7 @@ module.exports = async function (context) {
   const resultMap = new Map([...result.map(r => [r.aluno_id, r])])
   let students = await Alunos.aggregate([
     { $match: { aluno_id: { $in: _.map(result, 'aluno_id' ) } } },
-    { $unwind: "$cursos" }
+    { $unwind: '$cursos' }
   ])
 
   const interIds = [

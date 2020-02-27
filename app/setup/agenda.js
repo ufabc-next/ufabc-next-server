@@ -23,7 +23,7 @@ module.exports = async(app) => {
   !app.config.isTest ? initialize(files, agenda) : null
 
   // wait agenda to be ready before returning
-  return new Promise((resolve, reject) => {
+  return new Promise((resolve) => {
     agenda.once('ready', async function () {
       const collection = _.get(agenda, '_collection.collection', null) || agenda._collection 
 

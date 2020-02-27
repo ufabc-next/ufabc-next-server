@@ -1,5 +1,5 @@
 module.exports = function slugify(text) {
-  text = text.toString().toLowerCase().trim();
+  text = text.toString().toLowerCase().trim()
 
   const sets = [
     {to: 'a', from: '[ÀÁÂÃÄÅÆĀĂĄẠẢẤẦẨẪẬẮẰẲẴẶ]'},
@@ -27,11 +27,11 @@ module.exports = function slugify(text) {
     {to: 'y', from: '[ÝŶŸỲỴỶỸ]'},
     {to: 'z', from: '[ŹŻŽ]'},
     {to: '-', from: '[·/_,:;\']'}
-  ];
+  ]
 
   sets.forEach(set => {
     text = text.replace(new RegExp(set.from,'gi'), set.to)
-  });
+  })
 
   return text
     .replace(/\s+/g, '-')    // Replace spaces with -

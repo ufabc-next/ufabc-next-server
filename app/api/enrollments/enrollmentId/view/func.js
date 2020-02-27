@@ -1,5 +1,4 @@
 const app = require('@/app')
-const errors = require('@/errors')
 const _ = require('lodash')
 
 module.exports = async (context) => {

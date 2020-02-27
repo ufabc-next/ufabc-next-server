@@ -1,4 +1,4 @@
-const _ = require('lodash');
+const _ = require('lodash')
 const app = require('@/app')
 
 module.exports = function (agenda) {
@@ -25,7 +25,7 @@ async function updateEnrollments (payload) {
 
     try {
       // check if a enrollment already exists for this
-      const enrollment = await app.models.enrollments.findOneAndUpdate({
+      await app.models.enrollments.findOneAndUpdate({
         identifier: identifier
       }, _.omit(doc, ['identifier', 'id', '_id']), {
         new: true,

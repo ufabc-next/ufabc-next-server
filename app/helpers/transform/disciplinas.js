@@ -16,7 +16,7 @@ module.exports = function convertDisciplina(d) {
   // handler horarios based on pdf or json
   if(obj.horarios && _.isObject(obj.horarios)) {
     let startHours = _.get(obj.horarios, '[0].horas', [])
-    let afterNoon = ['14:00', '15:00', '16:00', '17:00'].some(hour => startHours.includes(hour))
+    afterNoon = ['14:00', '15:00', '16:00', '17:00'].some(hour => startHours.includes(hour))
   } else if(obj.horarios && _.isString(obj.horarios)) {
     obj.horarios = removeLineBreaks(obj.horarios)
 
@@ -26,7 +26,7 @@ module.exports = function convertDisciplina(d) {
     if(matched.length % 2 == 0) {
       let hours = _.chunk(matched, 2)
       hours.forEach(m => {
-        let [start, end] = m.map(h => parseInt(h.split(':')[0]))
+        let [start] = m.map(h => parseInt(h.split(':')[0]))
         
         if(start >= 12 && start < 18) {
           afterNoon = true
@@ -97,12 +97,12 @@ function removeLineBreaks(str) {
 
 function extractTurno(d){
   const min = d.toLowerCase()
-  if(min.includes("diurno") || min.includes("matutino")) {
-    return "diurno"
+  if(min.includes('diurno') || min.includes('matutino')) {
+    return 'diurno'
   }
 
-  if(min.includes("noturno")) {
-    return "noturno"
+  if(min.includes('noturno')) {
+    return 'noturno'
   }
 
   return null
@@ -111,11 +111,11 @@ function extractTurno(d){
 function extractCampus(d) {
   const min = removeDiatrics(d.toLowerCase())
   if(/.*santo\s+andre.*/.test(min)) {
-    return "santo andre"
+    return 'santo andre'
   }
 
   if(/.*sao\s+bernardo.*/.test(min)) {
-    return "sao bernardo"
+    return 'sao bernardo'
   }
 
   return null

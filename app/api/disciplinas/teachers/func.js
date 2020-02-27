@@ -1,8 +1,6 @@
 const _ = require('lodash')
 const app = require('@/app')
 const crypto = require('crypto')
-const difflib = require('difflib')
-const clearString = app.helpers.transform.clearString
 
 module.exports = async function (context) {
   let { mappings, hash } = context.body
@@ -15,7 +13,7 @@ module.exports = async function (context) {
   const teachers = await app.models.teachers.find({}).lean(true).cache(ONE_HOUR, 'teachers')
 
   // parse disciplinas
-  disciplinas = (await app.helpers.parse.pdf(context.body))
+  let disciplinas = (await app.helpers.parse.pdf(context.body))
     .map(app.helpers.transform.disciplinas)
     .map(d => _.merge(d, {
       teoria: app.helpers.transform.resolveProfessor(d.teoria, teachers, mappings),

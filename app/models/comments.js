@@ -1,6 +1,4 @@
-const _ = require('lodash')
 const errors = require('@/errors')
-const mongoose = require('mongoose')
 const Schema = require('mongoose').Schema
 
 const app = require('@/app')
@@ -75,7 +73,7 @@ Model.post('save', async function () {
   )
 })
 
-Model.post('find', async function(doc){
+Model.post('find', async function(){
   await this.model.updateMany(this.getQuery(), { $inc: { viewers: 1 }})
 })
 

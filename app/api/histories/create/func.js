@@ -1,7 +1,4 @@
-const _ = require('lodash')
 const app = require('@/app')
-const crypto = require('crypto')
-const jwt = require('jsonwebtoken')
 
 module.exports = async function (context) {
   const { ra } = context.body
@@ -10,7 +7,7 @@ module.exports = async function (context) {
     return
   }
 
-  const history = await app.models.histories.findOneAndUpdate({
+  await app.models.histories.findOneAndUpdate({
     ra: ra
   }, context.body, {
     upsert: true,

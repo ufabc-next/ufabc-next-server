@@ -1,5 +1,4 @@
 const _ = require('lodash')
-const mongoose = require('mongoose')
 const Schema = require('mongoose').Schema
 const jwt = require('jsonwebtoken')
 const app = require('@/app')
@@ -75,7 +74,7 @@ Model.method('generateJWT', function () {
     'ra',
     'confirmed',
     'email',
-    ]), app.config.JWT_SECRET)
+  ]), app.config.JWT_SECRET)
 })
 
 Model.method('sendConfirmation', async function () {

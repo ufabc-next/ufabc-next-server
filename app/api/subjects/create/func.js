@@ -1,4 +1,3 @@
-const _ = require('lodash')
 const app = require('@/app')
 const cachegoose = require('cachegoose')
 

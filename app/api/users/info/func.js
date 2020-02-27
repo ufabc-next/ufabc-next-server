@@ -1,5 +1,4 @@
 const _ = require('lodash')
-const app = require('@/app')
 const errors = require('@/errors')
 const Fields = require('../fields')
 

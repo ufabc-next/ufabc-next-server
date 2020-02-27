@@ -1,4 +1,4 @@
-const mongoose = require('mongoose')
+const app = require('@/app')
 const Schema = require('mongoose').Schema
 
 const CursoSchema = Schema({

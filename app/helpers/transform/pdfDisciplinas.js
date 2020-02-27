@@ -27,12 +27,12 @@ module.exports = function parsePdfData(payload, mappings) {
 
   var pagesLenghts = []
 
-  Object.keys(columns).forEach((key, index) => {
+  Object.keys(columns).forEach((key) => {
     let propertyName = mappings.shift()
     let propertyColumn = columns[key]
     // keep track of array position, for
-    let pageNumber = 0
-    let pageLenght = null
+    // let pageNumber = 0
+    // let pageLenght = null
     let pagePositions = {}
 
     propertyColumn.forEach((page, i) => {

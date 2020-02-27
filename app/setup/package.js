@@ -1,5 +1,5 @@
 // Load package.json
 
-module.exports = async (app) => {
+module.exports = async () => {
   return require('../package')
 }

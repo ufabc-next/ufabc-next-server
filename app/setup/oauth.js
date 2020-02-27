@@ -28,7 +28,10 @@ async function facebook (context) {
 
   // check if user exists in database
   let user = await App.models.users.findOne({
-    'oauth.facebook' : faceUser.id
+    $or: [
+      { 'oauth.facebook': faceUser.id },
+      { _id: userId }
+    ]
   })
   
   if(user) {
@@ -68,7 +71,10 @@ async function google(context) {
   }
 
   let user = await App.models.users.findOne({
-    'oauth.google' : googleUser.id
+    $or: [
+      { 'oauth.google': googleUser.id },
+      { _id: userId }
+    ]
   })
 
   if(user) {

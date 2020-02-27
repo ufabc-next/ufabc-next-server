@@ -1,13 +1,8 @@
-const _ = require('lodash')
-const Axios = require('axios')
-const assert = require('assert')
 const unless = require('express-unless')
 
 const app = require('../../app')
 const errors = require('../../errors')
 
-const Forbidden = errors.Forbidden
-const Unauthorized = errors.Unauthorized
 
 // only studnts
 module.exports = async (req, res, next) => {

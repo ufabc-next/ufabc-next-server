@@ -1,6 +1,6 @@
 const app = require('@/app')
 
-module.exports = async function(context) {
+module.exports = async function() {
   const Groups = app.models.groups
   const Enrollments = app.models.enrollments
 

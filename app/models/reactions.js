@@ -1,4 +1,3 @@
-const _ = require('lodash')
 const mongoose = require('mongoose')
 const Schema = require('mongoose').Schema
 const errors = require('@/errors')
@@ -39,7 +38,7 @@ Model.pre('save', async function(){
   let slug = `${this.kind}:${this.comment._id}:${this.user._id}`
   if(this.isNew) {
     let equalReaction = await this.constructor.findOne({ slug: slug })
-    if(equalReaction) throw new errors.BadRequest(`Você não pode reagir duas vezes iguais ao mesmo comentário`)
+    if(equalReaction) throw new errors.BadRequest('Você não pode reagir duas vezes iguais ao mesmo comentário')
     this.slug = slug
   }
   await validateRules(this)
@@ -61,7 +60,7 @@ async function validateRules(reaction){
       ra: user.ra,
       $or: [{ teoria: comment.teacher }, { pratica: comment.teacher }]
     })
-    if(!isValid) throw new errors.BadRequest(`Você não pode recomendar este comentário, pois não fez nenhuma matéria com este professor`)
+    if(!isValid) throw new errors.BadRequest('Você não pode recomendar este comentário, pois não fez nenhuma matéria com este professor')
   }
 }
 

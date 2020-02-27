@@ -1,4 +1,3 @@
-const _ = require('lodash')
 const app = require('@/app')
 
 module.exports = async function getDisciplinasByStudent(context) {
@@ -9,7 +8,7 @@ module.exports = async function getDisciplinasByStudent(context) {
 
   // check if we are dealing with previous data or current
   const isPrevious = await Disciplinas.count({ before_kick: { $exists: true, $ne: [] }})
-  const dataKey = isPrevious ? "$before_kick" : "$alunos_matriculados"
+  const dataKey = isPrevious ? '$before_kick' : '$alunos_matriculados'
 
   return Disciplinas.aggregate([
     { $unwind: dataKey },
@@ -19,7 +18,7 @@ module.exports = async function getDisciplinasByStudent(context) {
     { $project:
       {
         students_number: 1,
-        disciplines_number: "$_id"
+        disciplines_number: '$_id'
       }
     }
   ])

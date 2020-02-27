@@ -3,20 +3,12 @@ const assert = require('assert')
 const populate = require('@/populate')
 const sinon = require('sinon')
 const Axios = require('axios')
-const _ = require('lodash')
 
 const func = require('./func')
 
 describe('POST /v1/disciplinas/sync', function() {
-  var models, context
-  
   beforeEach(async function () {
-    models = await populate({ operation : 'both', only: ['disciplinas'] })
-
-    context = {
-      query: {},
-      body: {},
-    }
+    await populate({ operation : 'both', only: ['disciplinas'] })
   })
 
   describe('func', function () {
@@ -25,7 +17,7 @@ describe('POST /v1/disciplinas/sync', function() {
       file.data = app.helpers.test.sample(file.data, 200)
       let stub = sinon.stub(Axios, 'get').returns(file)
 
-      let resp = await func()
+      await func()
 
       // check if is scoped by season
       let Disciplinas = app.models.disciplinas.bySeason('2018:2')

@@ -1,5 +1,3 @@
-const assert = require('assert')
-
 const rule = require('./rule')
 
 async function ruleAllowByContext(context) {

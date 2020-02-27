@@ -1,24 +1,18 @@
 const app = require('@/app')
 const assert = require('assert')
 const populate = require('@/populate')
-const sinon = require('sinon')
-const Axios = require('axios')
-const _ = require('lodash')
-const path = require('path')
-const fs = require('fs')
-
 const func = require('./func')
 const rule = require('./rule')
-const sync = require('@/api/disciplinas/sync/func')
 
 describe('GET /v1/disciplinas/:disciplina-id/kicks', function() {
-  var models, context, disciplina
+  var context
 
   const season = app.helpers.season.findSeasonKey()
   const Disciplinas = app.models.disciplinas.bySeason(season)
   
   beforeEach(async function () {
-    models = await populate({ operation : 'both', only: ['disciplinas', 'alunos'] })
+    await populate({ operation: 'both', only: ['disciplinas', 'alunos'] })
+    
     context = {
       query: {},
       params: {}

@@ -10,7 +10,7 @@ module.exports = async function (context) {
     { $match: { name: regex } },
     { $facet:
       {
-        total: [ { $count: "total" }],
+        total: [ { $count: 'total' }],
         data: [
           { $limit: 10 },
         ]
@@ -18,7 +18,7 @@ module.exports = async function (context) {
     },
     { $addFields:
       {
-        total: { $ifNull: [{ $arrayElemAt: [ "$total.total", 0 ] }, 0] },
+        total: { $ifNull: [{ $arrayElemAt: [ '$total.total', 0 ] }, 0] },
       }
     },
     {
@@ -33,5 +33,5 @@ module.exports = async function (context) {
 }
 
 function escapeRegex(text) {
-    return text.replace(/[-[\]{}()*+?.,\\^$|#\s]/g, "\\$&");
+  return text.replace(/[-[\]{}()*+?.,\\^$|#\s]/g, '\\$&')
 }

@@ -1,7 +1,6 @@
 const app = require('@/app')
-const cachegoose = require('cachegoose')
 
-module.exports = async function (message) {
+module.exports = async function () {
   // find all histories
   const histories = await app.models.histories.find({})
 

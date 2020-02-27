@@ -1,4 +1,3 @@
-const _ = require('lodash')
 const app = require('@/app')
 const errors = require('@/errors')
 
@@ -8,6 +7,8 @@ module.exports = async(context) => {
   if(!token) {
     throw new errors.BadRequest.MissingParameter('token')
   }
+
+  let payload = null
 
   try {
     payload = JSON.parse(app.helpers.crypt.decrypt(token))

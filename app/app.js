@@ -66,5 +66,5 @@ Module.prototype.require = function (name, ...args) {
     return originalRequire.apply(this, [absolute, ...args])
   }
 
-  return originalRequire.apply(this, arguments);
+  return originalRequire.apply(this, arguments)
 }

@@ -3,16 +3,15 @@ const assert = require('assert')
 const populate = require('@/populate')
 const sinon = require('sinon')
 const Axios = require('axios')
-const _ = require('lodash')
 
 const func = require('./func')
 const rule = require('./rule')
 
 describe('GET /v1/matriculas/sync', function() {
-  var models, context
+  var context
   
   beforeEach(async function () {
-    models = await populate({ operation : 'both', only: ['disciplinas'] })
+    await populate({ operation : 'both', only: ['disciplinas'] })
 
     context = {
       query: {},
@@ -34,7 +33,7 @@ describe('GET /v1/matriculas/sync', function() {
     })
 
     it('sync disciplines', async function () {
-      let resp = await func(context)
+      await func(context)
 
       // check if is scoped by season
       let Disciplinas = app.models.disciplinas.bySeason('2018:2')
@@ -52,7 +51,7 @@ describe('GET /v1/matriculas/sync', function() {
 
     it('update before_kick key', async function () {
       context.query.operation = 'before_kick'
-      let resp = await func(context)
+      await func(context)
 
       // check if is scoped by season
       let Disciplinas = app.models.disciplinas.bySeason('2018:2')
@@ -70,7 +69,7 @@ describe('GET /v1/matriculas/sync', function() {
 
     it('update after_kick key', async function () {
       context.query.operation = 'after_kick'
-      let resp = await func(context)
+      await func(context)
 
       // check if is scoped by season
       let Disciplinas = app.models.disciplinas.bySeason('2018:2')

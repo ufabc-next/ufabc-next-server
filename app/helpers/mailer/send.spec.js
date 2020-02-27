@@ -1,4 +1,3 @@
-const _ = require('lodash')
 const app = require('@/app')
 const Axios = require('axios')
 const sinon = require('sinon')
@@ -8,10 +7,10 @@ const populate = require('@/populate')
 const send = require('./send')
 
 describe('HELPER mailer/send', async function(){
-  let models, stub
+  let stub
 
   beforeEach(async function () {
-    models = await populate({ operation: 'both' })
+    await populate({ operation: 'both' })
     stub = sinon.stub(Axios, 'post')
   })
 

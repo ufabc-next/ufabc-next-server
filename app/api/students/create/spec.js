@@ -3,20 +3,17 @@ const assert = require('assert')
 const populate = require('@/populate')
 const sinon = require('sinon')
 const Axios = require('axios')
-const _ = require('lodash')
-const path = require('path')
-const fs = require('fs')
 
 const func = require('./func')
 const sync = require('@/api/disciplinas/sync/func')
 
 describe('POST /v1/students', function() {
-  let context, disciplina, models
+  let context
 
   const season = app.helpers.season.findSeasonKey()
   
   beforeEach(async function () {
-    models = await populate({ operation : 'both', only: ['disciplinas', 'subjects', 'alunos'] })
+    await populate({ operation : 'both', only: ['disciplinas', 'subjects', 'alunos'] })
 
     context = {
       query: {},

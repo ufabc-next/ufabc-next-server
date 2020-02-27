@@ -1,5 +1,3 @@
-const app = require('@/app')
-
 const DEFAULT_OPTIONS = {
   timezone: 'America/Sao_Paulo',
 }

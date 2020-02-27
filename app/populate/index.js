@@ -1,9 +1,7 @@
 // this file populates MongoDB test database with data
 const _ = require('lodash')
 const app = require('../app')
-const axios = require('axios')
 const bluebird = require('bluebird')
-const mongoose = require('mongoose')
 const requireSmart = require('require-smart')
 const cachegoose = require('cachegoose')
 require('dotenv').config()
@@ -14,7 +12,7 @@ require('dotenv').config()
   But if it's called from terminal we just need to run it
   So, we need to check if it's an import
   */
-  if (module.parent) {
+if (module.parent) {
   // exports function to requiree
   module.exports = (async function (){
     try {
@@ -62,18 +60,18 @@ async function populate(options) {
   // DO NOT CHANGE THIS
 
   if(!['add', 'remove', 'both'].includes(operation)) {
-    throw new Error("Wrong operation. Choose between: add, remove or both")
+    throw new Error('Wrong operation. Choose between: add, remove or both')
   }
 
   if(context != null && !['remote', 'local', null].includes(context)) {
-    throw new Error("Wrong context. Choose between: remote or local")
+    throw new Error('Wrong context. Choose between: remote or local')
   }
 
   // ONLY SET PROCESS WHEN USING TERMINAL, NOT FROM CODE
   // only show this when running from terminal
   if(options == null) {
-    console.info('Bootstrapping basic components...');
-    console.info();
+    console.info('Bootstrapping basic components...')
+    console.info()
     await app.bootstrap([
       'package',
       'config',
@@ -113,12 +111,12 @@ async function populate(options) {
 _.mixin({
   'sortKeysBy': function (obj, comparator) {
     var keys = _.sortBy(_.keys(obj), function (key) {
-      return comparator ? comparator(obj[key], key) : key;
-    });
+      return comparator ? comparator(obj[key], key) : key
+    })
 
     return _.zipObject(keys, _.map(keys, function (key) {
-      return obj[key];
-    }));
+      return obj[key]
+    }))
   }
 })
 
@@ -171,7 +169,7 @@ async function createDatabases(app, COMMUNITY, only, until){
 
     // wait for everything being properly indexed in elasticsearch
     let saved = dataModels.map(data => {
-      return new Promise(function (resolve, reject) {
+      return new Promise(function (resolve) {
         Model.create(data, (err, model) => {
           if(err){
             throw new Error(err)
@@ -209,20 +207,19 @@ async function createDatabases(app, COMMUNITY, only, until){
   return ids
 }
 
-async function isReady(Model){
-  let ready = false
-  while(!ready) {
-    let models = await Model.find({}).count()
-    ready = (models == 0) ? true : false
-  }
-}
+// async function isReady(Model){
+//   let ready = false
+//   while(!ready) {
+//     let models = await Model.find({}).count()
+//     ready = (models == 0) ? true : false
+//   }
+// }
 
 async function dumpDatabases(app, COMMUNITY, only, until) {
   const data = _.sortKeysBy(requireSmart('./data'), function(prev, next) {
     return modelPriority[next]
   })
 
-  let removables = []
 
   cachegoose.clearCache(null)
   await app.redis.cache.clear()
@@ -247,9 +244,7 @@ async function dumpDatabases(app, COMMUNITY, only, until) {
       }
     }
 
-    let removals
-
-    removals = await app.models[key].remove({})
+    await app.models[key].remove({})
 
     if(until != null && until.includes(key)) break
   }

@@ -1,4 +1,3 @@
-const path = require('path')
 const glob = require('glob')
 const chalk = require('chalk')
 const Mocha = require('mocha')
@@ -18,9 +17,9 @@ global.assertFuncThrows = async (expectedError, fun, ...context) => {
 }
 
 async function test() {
-  console.info();
-  console.info('Bootstrapping basic components...');
-  console.info();
+  console.info()
+  console.info('Bootstrapping basic components...')
+  console.info()
 
   await app.bootstrap([
     'package',
@@ -69,8 +68,8 @@ async function test() {
 
   // creating some helpers
   Object.defineProperty(Array.prototype, 'elToString', {
-      enumerable: false,
-      value: function(compare) { return this.sort().map(s => s.toString()) }
+    enumerable: false,
+    value: function() { return this.sort().map(s => s.toString()) }
   })
 }
 

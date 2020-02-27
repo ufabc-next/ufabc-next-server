@@ -1,5 +1,3 @@
-const _ = require('lodash')
-const ms = require('ms')
 const app = require('@/app')
 
 module.exports = async function getUsageStats(context) {
@@ -8,10 +6,10 @@ module.exports = async function getUsageStats(context) {
 
   const Alunos = app.models.alunos.bySeason(season)
   const Disciplinas = app.models.disciplinas.bySeason(season)  
-   const teachersCount = [
-    { $group: { _id: null, teoria: { $addToSet: "$teoria"}, pratica: { $addToSet: "$pratica"} }},  
-    { $project: { teachers: { $setUnion: [ "$teoria", "$pratica" ] } } },  
-    { $unwind: { path: "$teachers", preserveNullAndEmptyArrays: true } },  
+  const teachersCount = [
+    { $group: { _id: null, teoria: { $addToSet: '$teoria'}, pratica: { $addToSet: '$pratica'} }},  
+    { $project: { teachers: { $setUnion: [ '$teoria', '$pratica' ] } } },  
+    { $unwind: { path: '$teachers', preserveNullAndEmptyArrays: true } },  
     { $group: { _id: null, total: { $sum:1 } } },  
     { $project: { _id: 0 } }  
   ]  
@@ -23,15 +21,15 @@ module.exports = async function getUsageStats(context) {
 
   // check if we are dealing with previous data or current  
   const isPrevious = await Disciplinas.count({ before_kick: { $exists: true, $ne: [] }})  
-  const dataKey = isPrevious ? "$before_kick" : "$alunos_matriculados"  
-   const alunosCount = [  
+  const dataKey = isPrevious ? '$before_kick' : '$alunos_matriculados'  
+  const alunosCount = [  
     { $unwind: dataKey },  
     { $group: { _id: null, alunos: { $addToSet: dataKey} }},  
-    { $unwind:"$alunos" },  
+    { $unwind:'$alunos' },  
     { $group: { _id: null, total: { $sum:1 } }},  
   ]  
 
-   const disciplinaStats = await Disciplinas.aggregate([{  
+  const disciplinaStats = await Disciplinas.aggregate([{  
     $facet: {  
       teachers: teachersCount,  
       totalAlunos: alunosCount,  
@@ -39,9 +37,9 @@ module.exports = async function getUsageStats(context) {
     },   
   }, {  
     $addFields: {  
-      teachers: { $ifNull: [{ $arrayElemAt: [ "$teachers.total", 0 ] }, 0] },  
-      totalAlunos: { $ifNull: [{ $arrayElemAt: [ "$totalAlunos.total", 0 ] }, 0] },  
-      subjects: { $ifNull: [{ $arrayElemAt: [ "$subjects.total", 0 ] }, 0] },  
+      teachers: { $ifNull: [{ $arrayElemAt: [ '$teachers.total', 0 ] }, 0] },  
+      totalAlunos: { $ifNull: [{ $arrayElemAt: [ '$totalAlunos.total', 0 ] }, 0] },  
+      subjects: { $ifNull: [{ $arrayElemAt: [ '$subjects.total', 0 ] }, 0] },  
     }  
   }])
 

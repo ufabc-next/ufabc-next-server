@@ -3,7 +3,7 @@ const mongoose = require('mongoose')
 
 // this function receives an object and the fields it should pick
 // it walks recursively the fields to filter
-module.exports = function pickles(obj, fields, options) {
+module.exports = function pickles(obj, fields) {
   if(fields == null) {
     return obj
   }

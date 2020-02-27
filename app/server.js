@@ -2,7 +2,7 @@
 require('dotenv').config()
 if (process.env.GCLOUD_PROJECT && process.env.GCLOUD_CREDENTIALS) {
   console.log('trace-agent enabled')
-  let tracer = require('@google-cloud/trace-agent').start({
+  require('@google-cloud/trace-agent').start({
     projectId: process.env.GCLOUD_PROJECT,
     credentials: JSON.parse(process.env.GCLOUD_CREDENTIALS),
     // Enable Mongo Reporting
@@ -60,10 +60,12 @@ async function serve(){
   console.info(TAG, '           env:', chalk.white(app.config.ENV))
 
   try {
-    let mongoUrl = new (require('url').URL)(app.config.MONGO_URL);
+    let mongoUrl = new (require('url').URL)(app.config.MONGO_URL)
     console.info(TAG, '    mongo host:', chalk.white(mongoUrl.hostname))
     console.info(TAG, '    mongo   db:', chalk.white(mongoUrl.pathname))
-  } catch (e) {}
+  } catch (e) {
+    console.error(e)
+  }
 
   if (process.env.SHUTDOWN_ON_LIFT)
     process.exit(0)

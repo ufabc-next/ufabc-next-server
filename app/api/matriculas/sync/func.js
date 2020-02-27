@@ -1,10 +1,9 @@
 const _ = require('lodash')
 const app = require('@/app')
-const errors = require('@/errors')
 const Axios = require('axios')
 const https = require('https')
 
-module.exports = async(context, res) => {
+module.exports = async(context) => {
   const season = app.helpers.season.findSeasonKey()
   const Disciplinas = app.models.disciplinas.bySeason(season)
 
@@ -25,7 +24,7 @@ module.exports = async(context, res) => {
     httpsAgent: new https.Agent({  
       rejectUnauthorized: false
     })
-  });
+  })
 
   // fetch matriculas and parse into an undestandable way
   const matriculas = await instance.get(app.config.MATRICULAS_URL)

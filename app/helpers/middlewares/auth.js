@@ -1,12 +1,7 @@
-const assert = require('assert')
 const unless = require('express-unless')
 const jwt = require('jsonwebtoken')
-
 const app = require('@/app')
 const errors = require('@/errors')
-
-const Forbidden = errors.Forbidden
-const Unauthorized = errors.Unauthorized
 
 module.exports = async (req, res, next) => {
   try {

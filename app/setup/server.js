@@ -3,8 +3,6 @@ const morgan = require('morgan')
 const express = require('express')
 const bodyParser = require('body-parser')
 const compression = require('compression')
-const requireAll = require('require-all')
-const path = require('path')
 const methodOverride = require('method-override')
 
 const logFormat = '[server] [:date[iso]] :status :res[content-length] :response-time ms :method :url :remote-addr'

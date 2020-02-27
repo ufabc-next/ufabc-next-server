@@ -1,10 +1,7 @@
 const app = require('@/app')
 const errors = require('@/errors')
-const Fields = require('@/api/comment/Fields')
-const pickFields = require('@/helpers/parse/pickFields')
 
 module.exports = async (context) => {
-
   const { userId } = context.params
 
   app.helpers.validate.throwMissingParameter(['userId'], context.params)

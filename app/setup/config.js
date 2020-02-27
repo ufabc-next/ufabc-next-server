@@ -2,14 +2,13 @@ require('dotenv').config()
 
 const path = require('path')
 const HOUR = (1000 * 60 * 60)
-const ip = require('ip')
 
 // Load config variables and expose.
 // Load occurs from:
 //  > package.json
 //  > process.env
 
-module.exports = async(app) => {
+module.exports = async() => {
   let config = {}
   
   config.ENV = getEnv('NODE_ENV', 'dev')
@@ -21,7 +20,7 @@ module.exports = async(app) => {
   config.MONGO_URL = getEnv('MONGO_URL', `mongodb://localhost:27017/ufabc-matricula-extension-${config.ENV}`)
   config.MONGO_URI = config.MONGO_URL
 
-  config.WEB_URL = getEnv('WEB_URL', `http://localhost:7500/app/#`)
+  config.WEB_URL = getEnv('WEB_URL', 'http://localhost:7500/app/#')
 
   // Config Redis
   config.REDIS_URL = getEnv('REDIS_URL', 'redis://localhost:6379')
@@ -68,19 +67,19 @@ module.exports = async(app) => {
     facebook: {
       key: getEnv('OAUTH_FACEBOOK_KEY', 'OAUTH_FACEBOOK_KEY') ,
       secret: getEnv('OAUTH_FACEBOOK_SECRET', 'OAUTH_FACEBOOK_SECRET'),
-      callback: "/oauth/facebook",
+      callback: '/oauth/facebook',
       scope: [
-        "public_profile",
-        "email"
+        'public_profile',
+        'email'
       ]
     },
     google: {
       key: getEnv('OAUTH_GOOGLE_KEY', 'OAUTH_GOOGLE_KEY'),
       secret: getEnv('OAUTH_GOOGLE_SECRET', 'OAUTH_GOOGLE_SECRET'),
-      callback: "/oauth/google",
+      callback: '/oauth/google',
       scope: [
-        "profile",
-        "email"
+        'profile',
+        'email'
       ]
     }
   }
