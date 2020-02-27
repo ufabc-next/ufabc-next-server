@@ -14,7 +14,7 @@ module.exports = async (app) => {
 }
 
 async function facebook (context) {
-  const { inApp = false, userId = null } = _.get(context.session, 'grant.dynamic', {})
+  const { inApp = '', userId = '' } = _.get(context.session, 'grant.dynamic', {})
 
   const accessToken = context.query.access_token
   const url = `https://graph.facebook.com/me?fields=id,name,email,picture.width(640)&metadata=1&access_token=${accessToken}`
@@ -56,7 +56,7 @@ async function facebook (context) {
 }
 
 async function google(context) {
-  const { inApp = false, userId = null } = _.get(context.session, 'grant.dynamic', {})
+  const { inApp = '', userId = '' } = _.get(context.session, 'grant.dynamic', {})
 
   const accessToken = context.query.access_token
   const url = 'https://www.googleapis.com/plus/v1/people/me'
