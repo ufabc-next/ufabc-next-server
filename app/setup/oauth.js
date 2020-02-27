@@ -30,7 +30,7 @@ async function facebook (context) {
   let user = await App.models.users.findOne({
     $or: [
       { 'oauth.facebook': faceUser.id },
-      { _id: userId }
+      { _id: userId.split('?')[0] }
     ]
   })
   
@@ -49,7 +49,7 @@ async function facebook (context) {
   await user.save()
   
   return {
-    _redirect: inApp == 'true'
+    _redirect: inApp.split('?')[0] == 'true'
       ? `ufabcnext://login?token=${await user.generateJWT()}&`
       :`${App.config.WEB_URL}/login?token=${user.generateJWT()}`
   }
@@ -73,7 +73,7 @@ async function google(context) {
   let user = await App.models.users.findOne({
     $or: [
       { 'oauth.google': googleUser.id },
-      { _id: userId }
+      { _id: userId.split('?')[0] }
     ]
   })
 
@@ -91,7 +91,7 @@ async function google(context) {
   await user.save()
 
   return {
-    _redirect: inApp == 'true'
+    _redirect: inApp.split('?')[0] == 'true'
       ? `ufabcnext://login?token=${await user.generateJWT()}&`
       :`${App.config.WEB_URL}/login?token=${user.generateJWT()}`
   }
