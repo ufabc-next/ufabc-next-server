@@ -41,6 +41,11 @@ async function facebook (context) {
   
   if(user) {
     user.set('oauth.facebook', faceUser.id)
+
+    if (faceUser.email) {
+      user.set('oauth.emailFacebook', faceUser.email)
+    }
+
   } else {
     user = new App.models.users({
       oauth: {
@@ -89,6 +94,11 @@ async function google(context) {
 
   if(user) {
     user.set('oauth.google', googleUser.id)
+
+    if (googleUser.emails[0].value) {
+      user.set('oauth.emailGoogle', googleUser.emails[0].value)
+    }
+
   } else {
     user = new App.models.users({
       oauth: {

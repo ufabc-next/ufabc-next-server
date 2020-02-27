@@ -6,7 +6,9 @@ const app = require('@/app')
 const Model = module.exports = Schema({
   oauth: {
     facebook: String,
+    emailFacebook: String,
     google: String,
+    emailGoogle: String,
     email: String,
     picture: String
   },
