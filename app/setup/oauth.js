@@ -26,12 +26,17 @@ async function facebook (context) {
     throw new Error('Missing faceUser.id')
   }
 
+  const findConditions = [
+    { 'oauth.facebook': faceUser.id }
+  ]
+
+  if (userId) {
+    findConditions.push({ _id: userId.split('?')[0] })
+  }
+
   // check if user exists in database
   let user = await App.models.users.findOne({
-    $or: [
-      { 'oauth.facebook': faceUser.id },
-      { _id: userId.split('?')[0] }
-    ]
+    $or: findConditions
   })
   
   if(user) {
@@ -70,11 +75,16 @@ async function google(context) {
     throw new Error('Missing googleUser.id')
   }
 
+  const findConditions = [
+    { 'oauth.google': googleUser.id },
+  ]
+
+  if (userId) {
+    findConditions.push({ _id: userId.split('?')[0] })
+  }
+
   let user = await App.models.users.findOne({
-    $or: [
-      { 'oauth.google': googleUser.id },
-      { _id: userId.split('?')[0] }
-    ]
+    $or: findConditions
   })
 
   if(user) {
