@@ -40,7 +40,11 @@ module.exports = async function (context) {
     }
   }
 
-  app.agenda.now('updateEnrollments', { json: enrollments })
+  const chunks = _.chunk(enrollments, 3)
+  
+  app.agenda.now('updateEnrollments', { json: chunks[0] })
+  app.agenda.schedule('in 1 minutes', 'updateEnrollments', { json: chunks[1] })
+  app.agenda.schedule('in 2 minutes', 'updateEnrollments', { json: chunks[2] })
 
   return { published: true }
 }
