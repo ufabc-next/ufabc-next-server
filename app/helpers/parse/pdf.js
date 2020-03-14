@@ -235,6 +235,8 @@ module.exports = async function (body) {
         const sheet_name_list = workbook.SheetNames
         const data = xlsx.utils.sheet_to_json(workbook.Sheets[sheet_name_list[0]])
 
+        console.log('columns', _.keys(data[0]))
+
         const parsed = data.map(d => {
           params.rename.forEach(name => {
             _.set(d, name.as, d[name.from])
