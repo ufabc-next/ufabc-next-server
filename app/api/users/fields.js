@@ -1,5 +1,6 @@
 module.exports = {
   public: [
+    '_id',
     'oauth',
     'confirmed',
     'email',
