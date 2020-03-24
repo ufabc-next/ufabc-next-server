@@ -10,7 +10,7 @@ const HOUR = (1000 * 60 * 60)
 
 module.exports = async() => {
   let config = {}
-  
+
   config.ENV = getEnv('NODE_ENV', 'dev')
   config.PORT = getEnv('PORT') || getEnv('NODE_PORT', 8011)
   // config.HOST = getEnv('HOST', `${ip.address()}:${config.PORT}`)
@@ -26,7 +26,7 @@ module.exports = async() => {
   config.REDIS_URL = getEnv('REDIS_URL', 'redis://localhost:6379')
   config.CACHE_NAME = getEnv('CACHE_NAME', 'ufabc-matricula-extension')
 
-  config.SENTRY = getEnv('SENTRY', 'SENTRY_KEY') 
+  config.SENTRY = getEnv('SENTRY', 'SENTRY_KEY')
 
   config.ACCESS_KEY = getEnv('ACCESS_KEY', 'SOME_ACCESS_KEY')
 
@@ -52,11 +52,14 @@ module.exports = async() => {
     API_KEY: getEnv('SENDGRID_KEY', 'SENDGRID_KEY'),
     ENDPOINT: 'https://api.sendgrid.com/v3/mail/send',
     EMAIL: getEnv('SENDGRID_EMAIL', 'contato@ufabcnext.com'),
-    // configuration for the mail templates 
+    // configuration for the mail templates
     TEMPLATES : {
-      CONFIRMATION: getEnv('EMAIL_TEMPLATE_CONFIMATION', null), 
+      CONFIRMATION: getEnv('EMAIL_TEMPLATE_CONFIMATION', null),
+      RECOVERY: getEnv('EMAIL_TEMPLATE_RECOVERY', null)
     },
   }
+
+  config.RECOVERY_URL = getEnv('RECOVERY_URL', 'http://localhost:8011/connect')
 
   config.GRANT_SECRET = getEnv('GRANT_SECRET',  'SOME_RANDOM_SECRET'),
   config.GRANT_CONFIG = {
@@ -102,6 +105,6 @@ module.exports = async() => {
   return config
 }
 
-function getEnv(env, defaults) {  
+function getEnv(env, defaults) {
   return process.env[env] || defaults
 }
