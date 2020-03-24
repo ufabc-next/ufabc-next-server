@@ -20,7 +20,7 @@ module.exports = async function(context) {
   const TEMPLATE_ID = app.config.mailer.TEMPLATES.RECOVERY
   const RECOVERY_URL = app.config.RECOVERY_URL
 
-  const email = {
+  const payload = {
     recipient: user.email,
     body: {
       recovery_facebook: `${RECOVERY_URL}/facebook?userId=${user._id}`,
@@ -28,5 +28,5 @@ module.exports = async function(context) {
     }
   }
 
-  await mailer.send(email, {}, TEMPLATE_ID)
+  await mailer.send(payload, {}, TEMPLATE_ID)
 }
