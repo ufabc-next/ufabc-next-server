@@ -40,7 +40,7 @@ async function facebook (context) {
   })
   
   if(user) {
-    user.set('active', true)
+    if (userId) user.set('active', true)
     user.set('oauth.facebook', faceUser.id)
 
     if (faceUser.email) {
@@ -94,7 +94,7 @@ async function google(context) {
   })
 
   if(user) {
-    user.set('active', true)
+    if (userId) user.set('active', true)
     user.set('oauth.google', googleUser.id)
 
     if (googleUser.emails[0].value) {
