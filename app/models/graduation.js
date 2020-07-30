@@ -18,11 +18,3 @@ const Model = module.exports = Schema({
 })
 
 Model.index({ name: 1, grade: 1 })
-
-Model.pre('findOneAndUpdate', async function () {
-  const docToUpdate = await this.model.findOne(this.getQuery()).lean(true);
-
-  if(docToUpdate && docToUpdate.locked) {
-    this._update = _.omit(docToUpdate, 'createdAt')
-  }
-})

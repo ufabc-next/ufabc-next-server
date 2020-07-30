@@ -38,13 +38,16 @@ module.exports = async function (context) {
       graduation.credits_total = credits_total
     }
 
-    await app.models.graduation.findOneAndUpdate({
-      curso: curso,
-      grade: grade,
-    }, graduation, {
-      upsert: true,
-      new: true
-    })
+    const doc = await app.models.graduation.findOne({ curso: curso, grade: grade }).lean(true)
+    if(!doc || !doc.locked){
+      await app.models.graduation.findOneAndUpdate({
+        curso: curso,
+        grade: grade,
+      }, graduation, {
+        upsert: true,
+        new: true
+      })
+    }
   }
 
   await app.models.histories.findOneAndUpdate({
