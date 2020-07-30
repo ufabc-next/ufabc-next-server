@@ -76,10 +76,29 @@
       <span id="usuario_top">
         
       
-        <b>nome_aluno |
+        <b><span id="nome_aluno">nome_aluno</span> |
         <a href="/logout">(sair)</a></b>
       
        
+       <script type="text/javascript">
+        function getQueryVariable(variable) {
+          let query = window.location.search.substring(1);
+          let vars = query.split('&');
+          for (let i = 0; i < vars.length; i++) {
+            let pair = vars[i].split('=');
+            if (decodeURIComponent(pair[0]) == variable) {
+              return decodeURIComponent(pair[1]);
+            }
+          }
+          return null
+        }
+        var aluno = getQueryVariable('aluno')
+        if(aluno) {
+          let element = document.getElementById('nome_aluno')
+          element.textContent = aluno
+        }
+      </script>
+
       </span>
      
   <div id="meio">
@@ -380,14 +399,13 @@ importantes</div>
 
 
 <script type="text/javascript">
-
 //Contador
 
 var tempo = new Number();
 
 // Tempo em segundos
 
-tempo = '1118.0' ;
+tempo = Infinity //'1118.0' ;
 
  
 
@@ -435,7 +453,7 @@ function startCountdown(){
 
         //JQuery pra setar o valor
 
-        $("#sessao").html('<p class="tempo">' +"Tempo restante" + '</p>' + horaImprimivel);
+        // $("#sessao").html('<p class="tempo">' +"Tempo restante" + '</p>' + horaImprimivel);
 
  
 
