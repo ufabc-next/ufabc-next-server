@@ -19,37 +19,25 @@ module.exports = async(context) => {
     return await Alunos.findOne({ aluno_id: aluno_id })
   }
 
-  let cursos
+  let cpLastQuad
   if(season == '2020:3') {
     const history = await app.models.histories.findOne({ ra: ra }).lean(true)
-    let cp = app.helpers.parse.toNumber(c.cp)
-
-    let cpLastQuad = _.get(history, 'coefficients.2019.3.cp_acumulado', null)
+    cpLastQuad = _.get(history, 'coefficients.2019.3.cp_acumulado', null)
     if(cpLastQuad) {
-      cp = app.helpers.parse.toNumber(cpLastQuad)
+      cpLastQuad = app.helpers.parse.toNumber(cpLastQuad)
     }
-
-    cursos = (context.body.cursos || []).map(async c => {
-      c.cr = app.helpers.parse.toNumber(c.cr)
-      c.cp = cp,
-      c.cp_real = app.helpers.parse.toNumber(c.cp)
-      c.quads = app.helpers.parse.toNumber(c.quads)
-      c.nome_curso = c.curso
-      c.ind_afinidade = (0.07 * c.cr) + (0.63 * c.cp) + (0.005 * c.quads)
-      c.id_curso = c.curso_id
-      return c
-    })
-  } else {  
-    cursos = (context.body.cursos || []).map(async c => {
-      c.cr = app.helpers.parse.toNumber(c.cr)
-      c.cp = app.helpers.parse.toNumber(c.cp)
-      c.quads = app.helpers.parse.toNumber(c.quads)
-      c.nome_curso = c.curso
-      c.ind_afinidade = (0.07 * c.cr) + (0.63 * c.cp) + (0.005 * c.quads)
-      c.id_curso = c.curso_id
-      return c
-    })
   }
+
+  const cursos = (context.body.cursos || []).map(async c => {
+    c.cr = app.helpers.parse.toNumber(c.cr)
+    c.cp = cpLastQuad ? cpLastQuad : app.helpers.parse.toNumber(c.cp),
+    c.cp_real = app.helpers.parse.toNumber(c.cp)
+    c.quads = app.helpers.parse.toNumber(c.quads)
+    c.nome_curso = c.curso
+    c.ind_afinidade = (0.07 * c.cr) + (0.63 * c.cp) + (0.005 * c.quads)
+    c.id_curso = c.curso_id
+    return c
+  })
 
   return await Alunos.findOneAndUpdate({
     aluno_id: aluno_id
