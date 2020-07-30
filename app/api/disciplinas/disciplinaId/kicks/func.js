@@ -68,7 +68,11 @@ module.exports = async function (context) {
 }
 
 function kickRule(disciplina) {
-  const coeffRule = disciplina.ideal_quad ? ['cr', 'cp'] : ['cp', 'cr']
+  if(season == '2020:3') {
+    const coeffRule = ['cp', 'cr']
+  } else {
+    const coeffRule = disciplina.ideal_quad ? ['cr', 'cp'] : ['cp', 'cr']
+  }
   return ['reserva', 'turno', 'ik'].concat(coeffRule)
 }
 

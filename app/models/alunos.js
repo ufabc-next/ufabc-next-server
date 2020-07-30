@@ -5,6 +5,7 @@ const CursoSchema = Schema({
   id_curso : Number,
   nome_curso : String,
   cp: Number,
+  cp_real: Number,
   cr: Number,
   ind_afinidade : Number,
   turno : String
