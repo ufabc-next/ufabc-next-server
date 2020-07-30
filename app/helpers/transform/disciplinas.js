@@ -50,10 +50,14 @@ module.exports = function convertDisciplina(d) {
 
   splitted.map(function(item, i) {
     obj.campus = obj.campus || extractCampus(item)
-    obj.turno = obj.turno || (afterNoon ? 'tarde' : extractTurno(item))
+    obj.turno = obj.turno || extractTurno(item)
 
     if((obj.turno || obj.campus) && turnoIndex == null) turnoIndex = i
   })
+
+  if(afterNoon && !obj.turno) {
+    obj.turno = 'tarde'
+  }
 
   if(!obj.campus) {
     let secondPath = splitted.slice(turnoIndex + 1, splitted.length)
