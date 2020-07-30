@@ -1,18 +1,27 @@
 const app = require('@/app')
 
 module.exports = async function (context) {
-  const { ra, curso, grade, mandatory_credits_number, limited_credits_number, free_credits_number } = context.body
+  const { 
+    ra, 
+    curso, 
+    grade, 
+    mandatory_credits_number, 
+    limited_credits_number, 
+    free_credits_number, 
+    credits_total 
+  } = context.body
 
   if(!ra) {
     return
   }
 
-  if(!curso || !grade) {  
+  if(curso && grade) {  
     const graduation = {
+      locked: false,
       name: curso,
       grade: grade,
-
     }
+
     if(mandatory_credits_number > 0) {
       graduation.mandatory_credits_number = mandatory_credits_number
     }
@@ -25,10 +34,13 @@ module.exports = async function (context) {
       graduation.free_credits_number = free_credits_number 
     }
 
+    if(credits_total > 0){
+      graduation.credits_total = credits_total
+    }
+
     await app.models.graduation.findOneAndUpdate({
       curso: curso,
       grade: grade,
-      locked: false,
     }, graduation, {
       upsert: true,
       new: true

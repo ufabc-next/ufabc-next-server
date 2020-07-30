@@ -11,7 +11,15 @@ module.exports = async(context) => {
     throw new errors.NotFound('history')
   }
 
-  const coefficients = history.coefficients || app.helpers.calculate.coefficients(history.disciplinas || [])
+  let graduation = null
+  if(history.curso && history.grade) {
+    graduation = await app.models.graduation.findOne({
+      curso: history.curso,
+      grade: history.grade,
+    }).lean(true)
+  }
+
+  const coefficients = history.coefficients || app.helpers.calculate.coefficients(history.disciplinas || [], graduation)
 
   return normalizeHistory(coefficients)
 }

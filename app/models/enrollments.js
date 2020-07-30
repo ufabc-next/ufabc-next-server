@@ -42,6 +42,7 @@ const Model = module.exports = Schema({
   creditos: Number,
   ca_acumulado: Number,
   cr_acumulado: Number,
+  cp_acumulado: Number,
 })
 
 Model.index({ identifier: 1, ra: 1 })
