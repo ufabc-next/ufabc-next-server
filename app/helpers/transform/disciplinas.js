@@ -55,7 +55,7 @@ module.exports = function convertDisciplina(d) {
     if((obj.turno || obj.campus) && turnoIndex == null) turnoIndex = i
   })
 
-  if(afterNoon && obj.turno != 'noturno') {
+  if(afterNoon && !obj.turno) {
     obj.turno = 'tarde'
   }
 
