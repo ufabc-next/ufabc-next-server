@@ -18,7 +18,15 @@ async function updateEnrollments(doc) {
   }
 
   doc.disciplinas = _(doc.disciplinas).castArray().compact().value()
-  doc.coefficients = app.helpers.calculate.coefficients(doc.disciplinas)
+
+  let graduation = null
+  if(doc.curso && doc.grade) {
+    graduation = await app.models.graduation.findOne({
+      curso: doc.curso,
+      grade: doc.grade,
+    }).lean(true)
+  }
+  doc.coefficients = app.helpers.calculate.coefficients(doc.disciplinas, graduation)
 
   const keys = ['ra', 'year', 'quad', 'disciplina']
 
@@ -49,7 +57,8 @@ async function updateEnrollments(doc) {
       conceito: d.conceito,
       creditos: d.creditos,
       cr_acumulado: _.get(coef, 'cr_acumulado'),
-      ca_acumulado: _.get(coef, 'ca_acumulado')
+      ca_acumulado: _.get(coef, 'ca_acumulado'),
+      cp_acumulado: _.get(coef, 'cp_acumulado')
     }
 
     // find subject for this enrollment

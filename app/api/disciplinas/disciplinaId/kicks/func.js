@@ -68,7 +68,13 @@ module.exports = async function (context) {
 }
 
 function kickRule(disciplina) {
-  const coeffRule = disciplina.ideal_quad ? ['cr', 'cp'] : ['cp', 'cr']
+  const season = app.helpers.season.findSeasonKey()
+  let coeffRule = null
+  if(season == '2020:3') {
+    coeffRule = ['cp', 'cr']
+  } else {
+    coeffRule = disciplina.ideal_quad ? ['cr', 'cp'] : ['cp', 'cr']
+  }
   return ['reserva', 'turno', 'ik'].concat(coeffRule)
 }
 
