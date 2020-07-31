@@ -17,4 +17,4 @@ const Model = module.exports = Schema({
   credits_total: Number
 })
 
-Model.index({ name: 1, grade: 1 })
+Model.index({ curso: 1, grade: 1 })

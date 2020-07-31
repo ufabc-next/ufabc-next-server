@@ -1,5 +1,7 @@
 // Calcules CA/CR for every given point of student history
 // This is useful for discovering student CR/CA when he took a discipline
+const math = require('mathjs')
+
 module.exports = function calculateAlunoCoefficientsData(disciplinas, graduation) {
 
   var hash_disciplinas = {}
@@ -11,7 +13,6 @@ module.exports = function calculateAlunoCoefficientsData(disciplinas, graduation
 
   var unique = {}
   var uniqueDisc = {}
-  var executed_credits = 0
   var accumulated_credits = 0
   var accumulated_conceitos = 0
   var accumulated_unique = 0
@@ -37,21 +38,18 @@ module.exports = function calculateAlunoCoefficientsData(disciplinas, graduation
         var convertable = convertLetterToNumber(current_disciplina.conceito) * creditos
 
         const category = parseCategory(current_disciplina.categoria)
-        if(category) {
+
+        if(category && isAprovado(current_disciplina.conceito)) {        
           if(category == 'free') credits_free += creditos
           if(category == 'mandatory') credits_mandatory += creditos
           if(category == 'limited') credits_limited += creditos
         }
 
         if(isNaN(convertable) || convertable < 0) {
-          if(isAprovado(current_disciplina.conceito)) {
-              executed_credits += creditos
-           }
           continue
         }
 
         conceitos_quad += convertable
-        executed_credits += creditos
         period_credits += creditos
 
         if(isAprovado(current_disciplina.conceito)) {
@@ -97,11 +95,10 @@ module.exports = function calculateAlunoCoefficientsData(disciplinas, graduation
         'ca_acumulado' : ca_acumulado,
         'cr_quad' : cr_quad,
         'cr_acumulado' : cr_acumulado,
-        'cp_acumulado' : round(cp_acumulado, 3),
+        'cp_acumulado' : math.round(cp_acumulado, 3),
         'percentage_approved' : percentage_approved,
         'accumulated_credits': accumulated_credits,
-        'period_credits': period_credits,
-        'executed_credits': executed_credits
+        'period_credits': period_credits
       }
     }
   }
@@ -130,18 +127,6 @@ function parseCategory(category) {
   if(category === 'Livre Escolha') return 'free'
   else if(category === 'Obrigatória') return 'mandatory'
   else if(category === 'Opção Limitada') return 'limited'
-}
 
-const round = (num, places) => {
-  if (!("" + num).includes("e")) {
-    return +(Math.round(num + "e+" + places)  + "e-" + places);
-  } else {
-    let arr = ("" + num).split("e");
-    let sig = ""
-    if (+arr[1] + places > 0) {
-      sig = "+";
-    }
-
-    return +(Math.round(+arr[0] + "e" + sig + (+arr[1] + places)) + "e-" + places);
-  }
+  return null
 }
