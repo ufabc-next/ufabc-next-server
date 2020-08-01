@@ -29,7 +29,7 @@ module.exports = async(context) => {
     c.cr = app.helpers.parse.toNumber(c.cr)
     c.cp = app.helpers.parse.toNumber(cpLastQuad),
     c.quads = app.helpers.parse.toNumber(c.quads)
-    c.nome_curso = c.curso
+    c.nome_curso = c.curso.trim().replace('↵', '')
     c.ind_afinidade = (0.07 * c.cr) + (0.63 * c.cp) + (0.005 * c.quads)
     c.id_curso = c.curso_id
     return c
