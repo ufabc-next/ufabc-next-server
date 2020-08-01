@@ -64,6 +64,7 @@ module.exports = async function (context) {
 
   return _(students)
     .orderBy(kicks, order)
+    .uniqBy('aluno_id')
     .value()
 }
 

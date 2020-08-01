@@ -1,4 +1,5 @@
 const app = require('@/app')
+const _ = require('lodash')
 
 module.exports = async function (context) {
   const { 
@@ -56,4 +57,8 @@ module.exports = async function (context) {
     upsert: true,
     new: true
   })
+
+  return {
+    ok: Date.now()
+  }
 }
