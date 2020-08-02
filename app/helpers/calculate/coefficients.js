@@ -86,7 +86,7 @@ module.exports = function calculateAlunoCoefficientsData(disciplinas, graduation
         const totalLimitedCredits = Math.min(accumulated_credits_limited, graduation.limited_credits_number)
         const totalMandatoryCredits = Math.min(accumulated_credits_mandatory, graduation.mandatory_credits_number)
 
-        // excess limited credits are added to free
+        // excess limited credits are added to free credits
         let excessLimitedCredits = 0
         if(accumulated_credits_limited > graduation.limited_credits_number) {
           excessLimitedCredits = accumulated_credits_limited - totalLimitedCredits
