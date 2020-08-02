@@ -3,8 +3,8 @@ const DEFAULT_OPTIONS = {
 }
 
 module.exports = function (agenda) {
-  // agenda.on('ready', async function() {
-  //   agenda.every('2 minutes', 'syncMatriculas', {}, DEFAULT_OPTIONS)
-  //   agenda.start()
-  // })
+  agenda.on('ready', async function() {
+    agenda.every('2 minutes', 'syncMatriculas', {}, DEFAULT_OPTIONS)
+    agenda.start()
+  })
 }
