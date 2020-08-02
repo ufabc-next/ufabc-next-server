@@ -19,21 +19,18 @@ module.exports = async(context) => {
     return await Alunos.findOne({ aluno_id: aluno_id })
   }
 
-  let cpLastQuad = null
-  if(season == '2020:3') {
-    if(!ra && login) {
-      const user = await app.models.users.findOne({ email: login + '@aluno.ufabc.edu.br' }).lean(true)
-      ra = user && user.ra ? user.ra : null
-    }
-    const history = await app.models.histories.findOne({ ra: ra }).lean(true)
-    cpLastQuad = _.get(history, 'coefficients.2019.3.cp_acumulado', null)
-  }
-
   const cursos = (context.body.cursos || []).map(async c => {
+    let courseCleaned = c.curso.trim().replace('↵', '').replace(/\s+/g, ' ')
+    let cpLastQuad = null
+    if(season == '2020:3') {
+      const history = await app.models.historiesGraduations.findOne({ ra: ra, curso: courseCleaned })
+      cpLastQuad = _.get(history, 'coefficients.2019.3.cp_acumulado', c.cp)
+    }
+
     c.cr = app.helpers.parse.toNumber(c.cr)
-    c.cp = app.helpers.parse.toNumber(cpLastQuad || c.cp),
+    c.cp = app.helpers.parse.toNumber(cpLastQuad),
     c.quads = app.helpers.parse.toNumber(c.quads)
-    c.nome_curso = c.curso
+    c.nome_curso = courseCleaned
     c.ind_afinidade = (0.07 * c.cr) + (0.63 * c.cp) + (0.005 * c.quads)
     c.id_curso = c.curso_id
     return c

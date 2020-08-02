@@ -28,6 +28,19 @@ async function updateEnrollments(doc) {
   }
   doc.coefficients = app.helpers.calculate.coefficients(doc.disciplinas, graduation)
 
+  await app.models.historiesGraduations.findOneAndUpdate({
+    curso: doc.curso,
+    grade: doc.grade,
+    ra: doc.ra,
+  }, {
+    curso: doc.curso,
+    grade: doc.grade,
+    ra: doc.ra,
+    coefficients: doc.coefficients
+  }, {
+    upsert: true,
+  })
+
   const keys = ['ra', 'year', 'quad', 'disciplina']
 
   async function createOrUpdateEnrollment(d) {
