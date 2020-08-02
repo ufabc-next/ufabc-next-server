@@ -80,8 +80,8 @@ module.exports = function calculateAlunoCoefficientsData(disciplinas, graduation
       var cr_acumulado =  accumulated_credits == 0 ? 0 : accumulated_conceitos / accumulated_credits
       var percentage_approved = period_credits == 0 ? 0 : period_aprovados / period_credits
 
-      var cp_acumulado = null
-      if(graduation && graduation.credits_total && graduation.limited_credits_number && graduation.free_credits_number && graduation.mandatory_credits_number) {
+      var cp_acumulado = 0
+      if(!_.isNil(graduation) && _.isNumber(graduation.credits_total) && _.isNumber(graduation.limited_credits_number) && _.isNumber(graduation.free_credits_number) && _.isNumber(graduation.mandatory_credits_number)) {
         const totalLimitedCredits = Math.min(accumulated_credits_limited, graduation.limited_credits_number)
         const totalMandatoryCredits = Math.min(accumulated_credits_mandatory, graduation.mandatory_credits_number)
 
