@@ -82,9 +82,15 @@ module.exports = function calculateAlunoCoefficientsData(disciplinas, graduation
 
       var cp_acumulado = null
       if(graduation && graduation.credits_total && graduation.limited_credits_number && graduation.free_credits_number && graduation.mandatory_credits_number) {
-        const totalFreeCredits = Math.min(accumulated_credits_free, graduation.free_credits_number)
         const totalLimitedCredits = Math.min(accumulated_credits_limited, graduation.limited_credits_number)
         const totalMandatoryCredits = Math.min(accumulated_credits_mandatory, graduation.mandatory_credits_number)
+
+        // excess limited credits are added to free
+        let excessLimitedCredits = 0
+        if(accumulated_credits_limited > graduation.limited_credits_number) {
+          excessLimitedCredits = accumulated_credits_limited - totalLimitedCredits
+        }
+        const totalFreeCredits = Math.min(accumulated_credits_free + excessLimitedCredits, graduation.free_credits_number)
 
         const totalCredits = Math.max(totalFreeCredits, 0) + Math.max(totalLimitedCredits, 0) + Math.max(totalMandatoryCredits, 0)
         cp_acumulado = ((totalCredits * 1) / graduation.credits_total)
