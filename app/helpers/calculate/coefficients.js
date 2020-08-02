@@ -1,6 +1,7 @@
 // Calcules CA/CR for every given point of student history
 // This is useful for discovering student CR/CA when he took a discipline
 const math = require('mathjs')
+const _ = require('lodash')
 
 module.exports = function calculateAlunoCoefficientsData(disciplinas, graduation) {
 
@@ -101,7 +102,7 @@ module.exports = function calculateAlunoCoefficientsData(disciplinas, graduation
         'ca_acumulado' : ca_acumulado,
         'cr_quad' : cr_quad,
         'cr_acumulado' : cr_acumulado,
-        'cp_acumulado' : math.round(cp_acumulado, 3),
+        'cp_acumulado' : cp_acumulado ? math.round(cp_acumulado, 3) : cp_acumulado,
         'percentage_approved' : percentage_approved,
         'accumulated_credits': accumulated_credits,
         'period_credits': period_credits
