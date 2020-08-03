@@ -1969,7 +1969,7 @@ express-jwt@5.3.1:
 
 "express-restify-mongoose@https://github.com/felipe-augusto/express-restify-mongoose":
   version "5.0.0"
-  resolved "https://github.com/felipe-augusto/express-restify-mongoose#0fe7d0d74fd330d6498b9a055ec7b35c7189b318"
+  resolved "https://github.com/felipe-augusto/express-restify-mongoose#b71a1b17fecd5c21c355e477eea53132513697e3"
   dependencies:
     ensure-array "~1.0.0"
     is-coordinates "~2.0.0"

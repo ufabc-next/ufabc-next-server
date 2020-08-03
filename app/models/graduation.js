@@ -1,5 +1,3 @@
-const _ = require('lodash')
-const app = require('@/app')
 const Schema = require('mongoose').Schema
 
 const Model = module.exports = Schema({
@@ -14,7 +12,13 @@ const Model = module.exports = Schema({
   mandatory_credits_number: Number,
   limited_credits_number: Number,
   free_credits_number: Number,
-  credits_total: Number
+  credits_total: Number,
+
+  creditsBreakdown: [{
+    year: Number,
+    quad: Number,
+    choosableCredits: Number
+  }]
 })
 
 Model.index({ curso: 1, grade: 1 })
