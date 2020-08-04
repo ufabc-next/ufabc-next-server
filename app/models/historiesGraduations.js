@@ -9,7 +9,7 @@ module.exports = Schema({
   curso: String,
   grade: String,
   graduation: {
-    type: String,
-    ref: Schema.Types.ObjectId,
+    type: Schema.Types.ObjectId,
+    ref: 'graduation',
   }
 })
