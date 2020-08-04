@@ -3,7 +3,8 @@ const errors = require('@/errors')
 const _ = require('lodash')
 
 module.exports = async(context) => {
-  const { ra } = context.user.ra
+  const { ra } = context.user
+
   if(!ra) {
     throw new errors.BadRequest.MissingParameter('ra')
   }

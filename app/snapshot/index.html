@@ -31,6 +31,19 @@
     border: 1px solid transparent;
     border-radius: 4px;
   }
+  #login {
+    background: #2e7eed;
+    height: 36px;
+    width: 154px;
+    color: #fff;
+    border-radius: 4px;
+    border: none;
+    display: flex;
+    align-items: center;
+  }
+  #login > svg {
+    margin-right: 6px;
+  }
   #user-logged {
     background: #215096;
     width: 250px;
@@ -161,11 +174,13 @@
            `height=${700},` +
            'status=no,scrollbars=no,resizable=no,location=yes');
 
-        window.addEventListener("message", function receiveMessage(event) {
-          if(event && event.origin.indexOf('https://ufabcnext.com') == -1 && event.origin.indexOf('http://localhost:7500') == -1) return
+        window.addEventListener("message", (event) => {
+          if(event && event.origin && event.origin.indexOf('https://ufabcnext.com') == -1 && event.origin.indexOf('http://localhost:7500') == -1) return
 
           const token = event && event.data
-          if(token) {
+          console.log(token)
+          if(token && token != 'null') {
+            newWin.close()
             localStorage.setItem('token', token)
             fetch()
           }
@@ -209,7 +224,31 @@ Effect.Pulsate('responda', { pulses: 10, duration: 8.0 });
       Faça login no UFABC Next e utilize a <a href="https://chrome.google.com/webstore/detail/ufabc-next/gphjopenfpnlnffmhhhhdiecgdcopmhk?hl=pt-BR" target="_blank">extensão</a> para saber como foram seus chutes. (Caso você não utilizou a extensão durante o período de matrículas, não é possível realizar a simulação).
     </p>
     <div class="login-next">
-      <button onclick="login(event)" id="login">Login no Next</button>
+      <button onclick="login(event)" id="login">
+        <svg width="32" height="32" viewBox="0 0 803 647" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <g clip-path="url(#clip0)">
+        <path d="M329.774 553.136C315.001 562.409 295.73 552.163 295.105 534.703L278.66 75.7737C278.035 58.3307 296.491 46.7677 311.889 54.9549L716.611 270.144C732.009 278.331 732.809 300.132 718.052 309.396L329.774 553.136Z" fill="white" fill-opacity="0.41"/>
+        <g filter="url(#filter0_d)">
+        <path d="M143.753 553.136C128.98 562.41 109.709 552.163 109.084 534.703L92.6394 75.774C92.0144 58.331 110.47 46.768 125.868 54.9552L530.59 270.144C545.988 278.331 546.789 300.132 532.031 309.396L143.753 553.136Z" fill="white"/>
+        </g>
+        </g>
+        <defs>
+        <filter id="filter0_d" x="88.0916" y="52.2704" width="459.075" height="513.422" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+        <feFlood flood-opacity="0" result="BackgroundImageFix"/>
+        <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"/>
+        <feOffset dy="4.5324"/>
+        <feGaussianBlur stdDeviation="2.2662"/>
+        <feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.25 0"/>
+        <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow"/>
+        <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow" result="shape"/>
+        </filter>
+        <clipPath id="clip0">
+        <rect width="802.235" height="647" fill="white"/>
+        </clipPath>
+        </defs>
+        </svg>
+        Login no Next
+      </button>
 
       <div id="user-logged" style="display: none;">
         <div id="ra"></div>
@@ -224,6 +263,7 @@ Effect.Pulsate('responda', { pulses: 10, duration: 8.0 });
     }
 
       function isLogged(token) {
+        console.log(token)
         const user = jwtDecode(token)
 
         let raElement = document.getElementById('ra')
@@ -241,7 +281,7 @@ Effect.Pulsate('responda', { pulses: 10, duration: 8.0 });
         localStorage.setItem('token', null)
 
         const loginButton = document.getElementById('login')
-        loginButton.style.display = 'block'
+        loginButton.style.display = 'flex'
 
         const userLogged = document.getElementById('user-logged')
         userLogged.style.display = 'none'
@@ -254,7 +294,7 @@ Effect.Pulsate('responda', { pulses: 10, duration: 8.0 });
 
         const token = localStorage.getItem('token')
         var aluno_id = getQueryVariable('aluno_id') || null
-        if (!aluno_id && token) {
+        if (!aluno_id && token && token != 'null') {
           isLogged(token)
           try {
             loading = true
