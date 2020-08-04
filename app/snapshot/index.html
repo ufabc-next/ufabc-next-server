@@ -284,6 +284,9 @@ Effect.Pulsate('responda', { pulses: 10, duration: 8.0 });
 
         const userLogged = document.getElementById('user-logged')
         userLogged.style.display = 'none'
+
+        window.history.replaceState(null, null, window.location.pathname);
+        document.location.reload(true);
       }
 
       var nome_aluno = getQueryVariable('nome_aluno') || null
