@@ -16,7 +16,7 @@ module.exports = async(app) => {
       collection: 'agenda'
     },
     defaultLockLifetime: FIVE_MINUTES,
-    processEvery: '10 seconds'
+    processEvery: '5 seconds'
   })
 
   // only initialize jobs if we are not testing
