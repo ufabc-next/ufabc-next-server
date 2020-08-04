@@ -19,6 +19,12 @@ module.exports = async(context) => {
     return await Alunos.findOne({ aluno_id: aluno_id })
   }
 
+  if((context.body.cursos || []).some(curso => !c.curso_id)) {
+    return await Alunos.findOne({
+      aluno_id: aluno_id
+    })
+  }
+
   const cursos = (context.body.cursos || []).map(async c => {
     let courseCleaned = c.curso.trim().replace('↵', '').replace(/\s+/g, ' ')
     let cpLastQuad = null
@@ -32,10 +38,7 @@ module.exports = async(context) => {
     c.quads = app.helpers.parse.toNumber(c.quads)
     c.nome_curso = courseCleaned
     c.ind_afinidade = (0.07 * c.cr) + (0.63 * c.cp) + (0.005 * c.quads)
-
-    if(c.curso_id) {
-      c.id_curso = c.curso_id
-    }
+    c.id_curso = c.curso_id
     return c
   })
 
