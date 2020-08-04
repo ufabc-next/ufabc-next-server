@@ -4,6 +4,24 @@
 <head>
   <title>Matrícula | UFABC</title>
   <style type="text/css">
+    .simulacao-chutes {
+      margin-bottom: 20px;
+    }
+    .simulacao-chutes input{
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      height: 35px;
+      padding: 0px 8px;
+    }
+    .simulacao-chutes #submit {
+      background: #f0f0f0;
+      height: 35px;
+      width: 80px;
+      border-radius: 6px;
+    }
+    .simulacao-chutes > p > a {
+      color: #337ab7!important;
+    }
   .alerta-next {
     color: #a94442;
     background-color: #f2dede;
@@ -22,7 +40,7 @@
   <script src="https://matricula.ufabc.edu.br/javascripts/bootstrap.min.js?1446547508" type="text/javascript"></script>
 <script src="https://matricula.ufabc.edu.br/javascripts/model.js?1469623894" type="text/javascript"></script>
 <script src="https://matricula.ufabc.edu.br/javascripts/controller.js?1458838949" type="text/javascript"></script>
-<script src="https://matricula.ufabc.edu.br/javascripts/carregamento.js?1446547508" type="text/javascript"></script>
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 
   <meta name="csrf-param" content="authenticity_token"/>
 <meta name="csrf-token" content="/ai2DWSakSWtrL89mY+rqDOE7UPKSP1Vdp7HbZZ8fYM="/>
@@ -92,12 +110,56 @@
           }
           return null
         }
-        var aluno = getQueryVariable('aluno')
-        if(aluno) {
-          let element = document.getElementById('nome_aluno')
-          element.textContent = aluno
+        function insertParam(key, value) {
+          key = encodeURIComponent(key);
+          value = encodeURIComponent(value);
+
+          // kvp looks like ['key1=value1', 'key2=value2', ...]
+          var kvp = document.location.search.substr(1).split('&');
+          let i=0;
+
+          for(; i<kvp.length; i++){
+              if (kvp[i].startsWith(key + '=')) {
+                  let pair = kvp[i].split('=');
+                  pair[1] = value;
+                  kvp[i] = pair.join('=');
+                  break;
+              }
+          }
+
+          if(i >= kvp.length){
+              kvp[kvp.length] = [key,value].join('=');
+          }
+
+          // can return this or...
+          let params = kvp.join('&');
+
+          // reload page with new params
+          document.location.search = params;
+      }
+
+        async function fetch() {
+          var aluno = getQueryVariable('aluno') || null
+          if(aluno) {
+            let element = document.getElementById('nome_aluno')
+            element.textContent = aluno
+          }
+          var ra = getQueryVariable('ra')
+          var aluno_id = getQueryVariable('aluno_id') || null
+          if (ra && !aluno_id) {
+            const { data } = await axios.get('https://api.ufabcnext.com/v1/students/' + ra + '?login=' + aluno)
+
+            if(data.aluno_id) {
+              insertParam('aluno_id', data.aluno_id)
+            } else {
+              alert("RA e Login não encontrados")
+            }
+          }
         }
+
+        fetch()
       </script>
+      <script src="https://matricula.ufabc.edu.br/javascripts/carregamento.js?1446547508" type="text/javascript"></script>
 
       </span>
      
@@ -111,13 +173,12 @@
 
 <script language='javascript'>
   cursoAluno = 16;
-  todasMatriculas = matriculas[1286];
+  todasMatriculas = matriculas[ALUNO_ID_HERE];
   alunoIngressante = false;
   periodoMatricula = true;
   periodoSegundoQuadrimestre = false;
   var matriculaFixa = [];
-  
-  
+
 Effect.Pulsate('responda', { pulses: 10, duration: 8.0 });  
 
 </script>
@@ -128,10 +189,37 @@ Effect.Pulsate('responda', { pulses: 10, duration: 8.0 });
 
 <div class="container-fluid">
 
+  <div class="simulacao-chutes">
+    <h4>Simulação dos chutes. </h4>
+    <p>
+      Coloque seu login e RA abaixo e utilize a <a href="https://chrome.google.com/webstore/detail/ufabc-next/gphjopenfpnlnffmhhhhdiecgdcopmhk?hl=pt-BR" target="_blank">extensão</a> para saber como foram seus chutes. (Caso você não utilizou a extensão durante o período de matrículas, não é possível realizar a simulação).
+    </p>
+    <form method="GET">
+      <input type="text" id="aluno" name="aluno" placeholder="Login (tudo minusculo)">
+      <input type="text" id="ra" name="ra" placeholder="RA">
+      <button type="submit" id="submit">Simular</button>
+    </form>
+  </div>
+
+  <script type="text/javascript">
+    var aluno_query = getQueryVariable('aluno') || null
+    if(aluno_query) {
+      let inputAluno = document.getElementById('aluno')  
+      inputAluno.value = aluno_query
+    }
+    var ra_query = getQueryVariable('ra') || null
+    if(ra_query) {
+      let inputRA = document.getElementById('ra')  
+      inputRA.value = ra_query
+    }
+  </script>
+
   <div class="alerta-next">
     <b>Atenção:</b> Essa NÃO é a versão oficial do sistema de matrículas. 
     <br /><br />
   Essa página serve para acompanhar o status das matrículas quando o sistema oficial está fechado, ou seja, quando a matrícula fecha, você pode ver se a turma que você pegou está cheia ou não e quando os chutes saem, da para ver aqui também pois essa página consome informações do sistema oficial.</div>
+
+
 
 <br>
 <p>Prezado(a) aluno(a), <b>Nome do aluno da UFABC</b>,</p>
