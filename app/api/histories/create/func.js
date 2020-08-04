@@ -1,5 +1,5 @@
 const app = require('@/app')
-const _ = require('lodash')
+const moment = require('moment')
 
 module.exports = async function (context) {
   const { 
@@ -52,7 +52,10 @@ module.exports = async function (context) {
   }
 
   await app.models.histories.findOneAndUpdate({
-    ra: ra
+    ra: ra,
+    // only let update history once per hour
+    // since this creates too much propagation on enrollments
+    updatedAt: { $lte: moment().subtract(1, 'hour').toDate() }
   }, context.body, {
     upsert: true,
     new: true
