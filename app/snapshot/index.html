@@ -4,6 +4,9 @@
 <head>
   <title>Matrícula | UFABC</title>
   <style type="text/css">
+    .simulacao-chutes {
+      margin-bottom: 20px;
+    }
   .alerta-next {
     color: #a94442;
     background-color: #f2dede;
@@ -23,6 +26,7 @@
 <script src="https://matricula.ufabc.edu.br/javascripts/model.js?1469623894" type="text/javascript"></script>
 <script src="https://matricula.ufabc.edu.br/javascripts/controller.js?1458838949" type="text/javascript"></script>
 <script src="https://matricula.ufabc.edu.br/javascripts/carregamento.js?1446547508" type="text/javascript"></script>
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 
   <meta name="csrf-param" content="authenticity_token"/>
 <meta name="csrf-token" content="/ai2DWSakSWtrL89mY+rqDOE7UPKSP1Vdp7HbZZ8fYM="/>
@@ -80,7 +84,7 @@
         <a href="/logout">(sair)</a></b>
       
        
-       <script type="text/javascript">
+       <script async type="text/javascript">
         function getQueryVariable(variable) {
           let query = window.location.search.substring(1);
           let vars = query.split('&');
@@ -97,6 +101,17 @@
           let element = document.getElementById('nome_aluno')
           element.textContent = aluno
         }
+        var ra = getQueryVariable('ra')
+        var aluno_id = getQueryVariable('aluno_id')
+        if (ra) {
+          const { data } = await axios.get('https://api.ufabcnext.com/v1/students/' + ra)
+
+          if(data.aluno_id) {
+            aluno_id = data.aluno_id
+          } else {
+            alert("RA não encontrado")
+          }
+        }
       </script>
 
       </span>
@@ -111,7 +126,7 @@
 
 <script language='javascript'>
   cursoAluno = 16;
-  todasMatriculas = matriculas[1286];
+  todasMatriculas = matriculas[aluno_id];
   alunoIngressante = false;
   periodoMatricula = true;
   periodoSegundoQuadrimestre = false;
@@ -127,6 +142,15 @@ Effect.Pulsate('responda', { pulses: 10, duration: 8.0 });
 </div>
 
 <div class="container-fluid">
+
+  <div class="simulacao-chutes">
+    Fazer simulação dos chutes
+    <form method="GET">
+      <input type="text" id="aluno" name="aluno" placeholder="Login (tudo minusculo)">
+      <input type="text" id="ra" name="ra" placeholder="RA">
+      <button type="submit" id="submit">Enviar</button>
+    </form>
+  </div>
 
   <div class="alerta-next">
     <b>Atenção:</b> Essa NÃO é a versão oficial do sistema de matrículas. 
