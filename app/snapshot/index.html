@@ -110,6 +110,33 @@
           }
           return null
         }
+        function insertParam(key, value) {
+          key = encodeURIComponent(key);
+          value = encodeURIComponent(value);
+
+          // kvp looks like ['key1=value1', 'key2=value2', ...]
+          var kvp = document.location.search.substr(1).split('&');
+          let i=0;
+
+          for(; i<kvp.length; i++){
+              if (kvp[i].startsWith(key + '=')) {
+                  let pair = kvp[i].split('=');
+                  pair[1] = value;
+                  kvp[i] = pair.join('=');
+                  break;
+              }
+          }
+
+          if(i >= kvp.length){
+              kvp[kvp.length] = [key,value].join('=');
+          }
+
+          // can return this or...
+          let params = kvp.join('&');
+
+          // reload page with new params
+          document.location.search = params;
+      }
 
         async function fetch() {
           var aluno = getQueryVariable('aluno') || null
@@ -119,16 +146,15 @@
           }
           var ra = getQueryVariable('ra')
           var aluno_id = getQueryVariable('aluno_id') || null
-          if (ra) {
+          if (ra && !aluno_id) {
             const { data } = await axios.get('https://api.ufabcnext.com/v1/students/' + ra + '?login=' + aluno)
 
             if(data.aluno_id) {
-              aluno_id = data.aluno_id
+              insertParam('aluno_id', data.aluno_id)
             } else {
               alert("RA e Login não encontrados")
             }
           }
-          todasMatriculas = matriculas[aluno_id];
         }
 
         fetch()
@@ -147,10 +173,11 @@
 
 <script language='javascript'>
   cursoAluno = 16;
-            alunoIngressante = false;
-          periodoMatricula = true;
-          periodoSegundoQuadrimestre = false;
-          var matriculaFixa = [];
+  todasMatriculas = matriculas[ALUNO_ID_HERE];
+  alunoIngressante = false;
+  periodoMatricula = true;
+  periodoSegundoQuadrimestre = false;
+  var matriculaFixa = [];
 
 Effect.Pulsate('responda', { pulses: 10, duration: 8.0 });  
 
@@ -180,7 +207,7 @@ Effect.Pulsate('responda', { pulses: 10, duration: 8.0 });
       let inputAluno = document.getElementById('aluno')  
       inputAluno.value = aluno_query
     }
-    var ra_query = getQueryVariable('aluno') || null
+    var ra_query = getQueryVariable('ra') || null
     if(ra_query) {
       let inputRA = document.getElementById('ra')  
       inputRA.value = ra_query

@@ -1,4 +1,5 @@
 const express = require('express')
+const fs = require('fs')
 
 /*
  * Serve assets on app.config.DIST_FOLDER
@@ -23,6 +24,21 @@ module.exports = async (app) => {
   })
 
   app.server.use(static)
+  app.server.get('/snapshot', function(req, res) {
+    const { aluno_id } = req.query
+    fs.readFile(app.config.snapshotFolder + '/index.html', "utf8", function(err, data) {
+      if (err) {
+        console.log(err);
+        res.send(500)
+        return
+      }
+      let result = data
+      result = result.replace('ALUNO_ID_HERE', aluno_id)
+      res.writeHead(200, {'Content-Type': 'text/html; charset=UTF-8'});
+      res.write(result);
+      res.end();
+    });
+  })
   app.server.use('/snapshot', express.static(app.config.snapshotFolder, {
     maxAge: app.config.maxAge,
   }))
