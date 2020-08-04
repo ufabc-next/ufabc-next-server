@@ -19,7 +19,7 @@ module.exports = async(context) => {
     return await Alunos.findOne({ aluno_id: aluno_id })
   }
 
-  if((context.body.cursos || []).some(curso => !c.curso_id || c.curso_id == "null")) {
+  if((context.body.cursos || []).some(curso => !curso.curso_id || curso.curso_id == "null")) {
     return await Alunos.findOne({
       aluno_id: aluno_id
     })
