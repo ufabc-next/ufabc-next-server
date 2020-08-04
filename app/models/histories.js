@@ -11,14 +11,14 @@ const Model = module.exports = Schema({
 })
 
 Model.method('updateEnrollments', async function () {
-  app.agenda.now('updateUserEnrollments', this.toObject({ virtuals: true }))
+  // app.agenda.now('updateUserEnrollments', this.toObject({ virtuals: true }))
 })
 
 Model.pre('findOneAndUpdate', async function () {
-  app.agenda.now('updateUserEnrollments', this._update)
+  // app.agenda.now('updateUserEnrollments', this._update)
 })
 
 Model.post('save', async function () {
-  app.agenda.now('updateUserEnrollments', this.toObject({ virtuals: true }))
+  // app.agenda.now('updateUserEnrollments', this.toObject({ virtuals: true }))
 })
 
