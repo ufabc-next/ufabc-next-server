@@ -315,7 +315,7 @@ Effect.Pulsate('responda', { pulses: 10, duration: 8.0 });
 
             if(data.login && !nome_aluno) {
               insertParam('nome_aluno', data.login)
-            } else if (data.login && !nome_aluno) {
+            } else if (data.aluno_id && !aluno_id) {
               insertParam('aluno_id', data.aluno_id)
             } else if(!data || !data.aluno_id || !data.login){
               alert("RA e Login não encontrados")
