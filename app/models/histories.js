@@ -15,6 +15,7 @@ Model.method('updateEnrollments', async function () {
 })
 
 Model.pre('findOneAndUpdate', async function () {
+  console.log('historiesUpdate', Object.keys(this._update))
   // app.agenda.now('updateUserEnrollments', this._update)
 })
 
