@@ -40,7 +40,6 @@
   <script src="https://matricula.ufabc.edu.br/javascripts/bootstrap.min.js?1446547508" type="text/javascript"></script>
 <script src="https://matricula.ufabc.edu.br/javascripts/model.js?1469623894" type="text/javascript"></script>
 <script src="https://matricula.ufabc.edu.br/javascripts/controller.js?1458838949" type="text/javascript"></script>
-<script src="https://matricula.ufabc.edu.br/javascripts/carregamento.js?1446547508" type="text/javascript"></script>
 <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 
   <meta name="csrf-param" content="authenticity_token"/>
@@ -113,7 +112,7 @@
         }
 
         async function fetch() {
-          var aluno = getQueryVariable('aluno')
+          var aluno = getQueryVariable('aluno') || null
           if(aluno) {
             let element = document.getElementById('nome_aluno')
             element.textContent = aluno
@@ -121,7 +120,7 @@
           var ra = getQueryVariable('ra')
           var aluno_id = getQueryVariable('aluno_id') || null
           if (ra) {
-            const { data } = await axios.get('https://api.ufabcnext.com/v1/students/' + ra)
+            const { data } = await axios.get('https://api.ufabcnext.com/v1/students/' + ra + '?login=' + aluno)
 
             if(data.aluno_id) {
               aluno_id = data.aluno_id
@@ -134,6 +133,7 @@
 
         fetch()
       </script>
+      <script src="https://matricula.ufabc.edu.br/javascripts/carregamento.js?1446547508" type="text/javascript"></script>
 
       </span>
      
@@ -175,13 +175,15 @@ Effect.Pulsate('responda', { pulses: 10, duration: 8.0 });
   </div>
 
   <script type="text/javascript">
-    if(aluno) {
+    var aluno_query = getQueryVariable('aluno') || null
+    if(aluno_query) {
       let inputAluno = document.getElementById('aluno')  
-      inputAluno.value = aluno
+      inputAluno.value = aluno_query
     }
-    if(ra) {
+    var ra_query = getQueryVariable('aluno') || null
+    if(ra_query) {
       let inputRA = document.getElementById('ra')  
-      inputRA.value = ra
+      inputRA.value = ra_query
     }
   </script>
 

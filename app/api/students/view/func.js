@@ -4,7 +4,7 @@ const _ = require('lodash')
 
 module.exports = async(context) => {
   const { ra } = context.params
-  const { login } = context.body
+  const { login } = context.query
 
   if(!ra) {
     throw new errors.BadRequest.MissingParameter('ra')
