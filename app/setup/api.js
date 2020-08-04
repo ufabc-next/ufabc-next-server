@@ -30,7 +30,10 @@ module.exports = async (app) => {
     '/comments',
     '/reactions',
     '/histories/courses',
-    '/users/me/relationships'
+    '/users/me/relationships',
+    '/graduation',
+    '/subjectGraduations',
+    '/historiesGraduations'
   ], app.helpers.middlewares.auth)
 
   // Protect Private routes
