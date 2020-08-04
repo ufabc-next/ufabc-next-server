@@ -13,5 +13,5 @@ module.exports = async(context) => {
 
   return _.pick(await Alunos.findOne({
     ra: ra,
-  }), 'aluno_id')
+  }), ['aluno_id', 'login'])
 }

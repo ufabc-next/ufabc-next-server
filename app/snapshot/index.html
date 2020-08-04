@@ -42,7 +42,8 @@
     align-items: center;
   }
   #login > svg {
-    margin-right: 6px;
+    margin-left: 6px;
+    margin-right: 10px;
   }
   #user-logged {
     background: #215096;
@@ -178,7 +179,6 @@
           if(event && event.origin && event.origin.indexOf('https://ufabcnext.com') == -1 && event.origin.indexOf('http://localhost:7500') == -1) return
 
           const token = event && event.data
-          console.log(token)
           if(token && token != 'null') {
             newWin.close()
             localStorage.setItem('token', token)
@@ -263,7 +263,6 @@ Effect.Pulsate('responda', { pulses: 10, duration: 8.0 });
     }
 
       function isLogged(token) {
-        console.log(token)
         const user = jwtDecode(token)
 
         let raElement = document.getElementById('ra')
@@ -287,14 +286,19 @@ Effect.Pulsate('responda', { pulses: 10, duration: 8.0 });
         userLogged.style.display = 'none'
       }
 
-      let loading = false
+      var nome_aluno = getQueryVariable('nome_aluno') || null
+      if(nome_aluno) {
+        const loginElement = document.getElementById('nome_aluno')
+        loginElement.textContent = nome_aluno
+      }
 
+
+      let loading = false
       async function fetch() {
         if(loading) return
 
         const token = localStorage.getItem('token')
-        var aluno_id = getQueryVariable('aluno_id') || null
-        if (!aluno_id && token && token != 'null') {
+        if (token && token != 'null') {
           isLogged(token)
           try {
             loading = true
@@ -305,9 +309,15 @@ Effect.Pulsate('responda', { pulses: 10, duration: 8.0 });
             })
 
             loading = false
-            if(data.aluno_id) {
+
+            var aluno_id = getQueryVariable('aluno_id') || null
+            var nome_aluno = getQueryVariable('nome_aluno') || null
+
+            if(data.login && !nome_aluno) {
+              insertParam('nome_aluno', data.login)
+            } else if (data.login && !nome_aluno) {
               insertParam('aluno_id', data.aluno_id)
-            } else {
+            } else if(!data || !data.aluno_id || !data.login){
               alert("RA e Login não encontrados")
             }
           } catch (err) {
