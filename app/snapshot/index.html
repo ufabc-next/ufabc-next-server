@@ -31,6 +31,21 @@
     border: 1px solid transparent;
     border-radius: 4px;
   }
+  #user-logged {
+    background: #215096;
+    width: 250px;
+    padding: 8px;
+    border-radius: 4px;
+    color: #fff;
+  }
+  #logOut {
+    margin: 0 auto;
+    border: none;
+    background: #64acfa;
+    margin-top: 10px;
+    width: 72px;
+    border-radius: 4px;
+  }
   </style>
   <link href="https://matricula.ufabc.edu.br/stylesheets/custom.css?1469623870" media="screen" rel="stylesheet" type="text/css" />
   <link href="https://matricula.ufabc.edu.br/stylesheets/bootstrap.min.css?1446547471" media="screen" rel="stylesheet" type="text/css" />
@@ -42,6 +57,7 @@
 <script src="https://matricula.ufabc.edu.br/javascripts/controller.js?1458838949" type="text/javascript"></script>
 <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/lodash@4.17.19/lodash.min.js"></script>
+
   <meta name="csrf-param" content="authenticity_token"/>
 <meta name="csrf-token" content="/ai2DWSakSWtrL89mY+rqDOE7UPKSP1Vdp7HbZZ8fYM="/>
   <meta name="description" content="UFABC - Sistema de matrículas">
@@ -138,26 +154,24 @@
           document.location.search = params;
       }
 
-        async function fetch() {
-          var aluno = getQueryVariable('aluno') || null
-          if(aluno) {
-            let element = document.getElementById('nome_aluno')
-            element.textContent = aluno
-          }
-          var ra = getQueryVariable('ra')
-          var aluno_id = getQueryVariable('aluno_id') || null
-          if (ra && !aluno_id) {
-            const { data } = await axios.get('https://api.ufabcnext.com/v1/students/' + ra + '?login=' + aluno)
+      function login(e) { 
+        e.preventDefault()
+        const newWin = window.open('http://localhost:7500/app/#/', 'logInPopup', 
+           `width=${600},` + 
+           `height=${700},` +
+           'status=no,scrollbars=no,resizable=no,location=yes');
 
-            if(data.aluno_id) {
-              insertParam('aluno_id', data.aluno_id)
-            } else {
-              alert("RA e Login não encontrados")
-            }
-          }
-        }
+        window.addEventListener("message", function receiveMessage(event) {
+          if(event && event.origin.indexOf('https://ufabcnext.com') == -1 && event.origin.indexOf('http://localhost:7500') == -1) return
 
-        fetch()
+          const token = event && event.data
+          if(token) {
+            localStorage.setItem('token', token)
+            fetch()
+          }
+        }, false);
+      }
+
       </script>
       <script src="https://matricula.ufabc.edu.br/javascripts/carregamento.js?1446547508" type="text/javascript"></script>
 
@@ -192,26 +206,80 @@ Effect.Pulsate('responda', { pulses: 10, duration: 8.0 });
   <div class="simulacao-chutes">
     <h4>Simulação dos chutes. </h4>
     <p>
-      Coloque seu login e RA abaixo e utilize a <a href="https://chrome.google.com/webstore/detail/ufabc-next/gphjopenfpnlnffmhhhhdiecgdcopmhk?hl=pt-BR" target="_blank">extensão</a> para saber como foram seus chutes. (Caso você não utilizou a extensão durante o período de matrículas, não é possível realizar a simulação).
+      Faça login no UFABC Next e utilize a <a href="https://chrome.google.com/webstore/detail/ufabc-next/gphjopenfpnlnffmhhhhdiecgdcopmhk?hl=pt-BR" target="_blank">extensão</a> para saber como foram seus chutes. (Caso você não utilizou a extensão durante o período de matrículas, não é possível realizar a simulação).
     </p>
-    <form method="GET">
-      <input type="text" id="aluno" name="aluno" placeholder="Login (tudo minusculo)">
-      <input type="text" id="ra" name="ra" placeholder="RA">
-      <button type="submit" id="submit">Simular</button>
-    </form>
+    <div class="login-next">
+      <button onclick="login(event)" id="login">Login no Next</button>
+
+      <div id="user-logged" style="display: none;">
+        <div id="ra"></div>
+        <button onclick="logOut(event)" id="logOut">Sair</button>
+      </div>
+    </div>
   </div>
 
   <script type="text/javascript">
-    var aluno_query = getQueryVariable('aluno') || null
-    if(aluno_query) {
-      let inputAluno = document.getElementById('aluno')  
-      inputAluno.value = aluno_query
+    function jwtDecode(t) {
+      return JSON.parse(window.atob(t.split('.')[1]));
     }
-    var ra_query = getQueryVariable('ra') || null
-    if(ra_query) {
-      let inputRA = document.getElementById('ra')  
-      inputRA.value = ra_query
-    }
+
+      function isLogged(token) {
+        const user = jwtDecode(token)
+
+        let raElement = document.getElementById('ra')
+        raElement.textContent = 'Você está logado com o RA ' + user.ra
+
+        let loginButton = document.getElementById('login')
+        loginButton.style.display = 'none'
+
+        let userLogged = document.getElementById('user-logged')
+        userLogged.style.display = 'block'
+      }
+
+
+      function logOut() {
+        localStorage.setItem('token', null)
+
+        const loginButton = document.getElementById('login')
+        loginButton.style.display = 'block'
+
+        const userLogged = document.getElementById('user-logged')
+        userLogged.style.display = 'none'
+      }
+
+      let loading = false
+
+      async function fetch() {
+        if(loading) return
+
+        const token = localStorage.getItem('token')
+        var aluno_id = getQueryVariable('aluno_id') || null
+        if (!aluno_id && token) {
+          isLogged(token)
+          try {
+            loading = true
+            const { data } = await axios.get('https://api.ufabcnext.com/v1/students/aluno_id', {
+              headers: {
+                'Authorization': 'Bearer ' + token
+              }
+            })
+
+            loading = false
+            if(data.aluno_id) {
+              insertParam('aluno_id', data.aluno_id)
+            } else {
+              alert("RA e Login não encontrados")
+            }
+          } catch (err) {
+            loading = false
+            alert("Falha ao carregar seus dados")
+            // alert("Você não está logado")
+          }
+        }
+      }
+
+      fetch()
+
   </script>
 
   <div class="alerta-next">
