@@ -26,10 +26,11 @@ module.exports = async (app) => {
   app.server.use(static)
   app.server.get('/snapshot', function(req, res) {
     const { aluno_id } = req.query
-    console.log(aluno_id)
     fs.readFile(app.config.snapshotFolder + '/index.html', "utf8", function(err, data) {
       if (err) {
-        return console.log(err);
+        console.log(err);
+        res.send(500)
+        return
       }
       let result = data
       result = result.replace('ALUNO_ID_HERE', aluno_id)
