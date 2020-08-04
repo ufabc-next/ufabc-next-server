@@ -33,7 +33,8 @@ module.exports = async (app) => {
     '/users/me/relationships',
     '/graduation',
     '/subjectGraduations',
-    '/historiesGraduations'
+    '/historiesGraduations',
+    '/students/aluno_id'
   ], app.helpers.middlewares.auth)
 
   // Protect Private routes
