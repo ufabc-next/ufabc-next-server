@@ -7,6 +7,21 @@
     .simulacao-chutes {
       margin-bottom: 20px;
     }
+    .simulacao-chutes input{
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      height: 35px;
+      padding: 0px 8px;
+    }
+    .simulacao-chutes #submit {
+      background: #f0f0f0;
+      height: 35px;
+      width: 80px;
+      border-radius: 6px;
+    }
+    .simulacao-chutes > p > a {
+      color: #337ab7!important;
+    }
   .alerta-next {
     color: #a94442;
     background-color: #f2dede;
@@ -84,7 +99,7 @@
         <a href="/logout">(sair)</a></b>
       
        
-       <script async type="text/javascript">
+       <script type="text/javascript">
         function getQueryVariable(variable) {
           let query = window.location.search.substring(1);
           let vars = query.split('&');
@@ -96,22 +111,39 @@
           }
           return null
         }
-        var aluno = getQueryVariable('aluno')
-        if(aluno) {
-          let element = document.getElementById('nome_aluno')
-          element.textContent = aluno
-        }
-        var ra = getQueryVariable('ra')
-        var aluno_id = getQueryVariable('aluno_id')
-        if (ra) {
-          const { data } = await axios.get('https://api.ufabcnext.com/v1/students/' + ra)
 
-          if(data.aluno_id) {
-            aluno_id = data.aluno_id
-          } else {
-            alert("RA não encontrado")
+        async function fetch() {
+          var aluno = getQueryVariable('aluno')
+          if(aluno) {
+            let element = document.getElementById('nome_aluno')
+            element.textContent = aluno
+
+            let inputAluno = document.getElementById('aluno')  
+            inputAluno.value = aluno
           }
+          var ra = getQueryVariable('ra')
+          var aluno_id = getQueryVariable('aluno_id') || null
+          if (ra) {
+            let inputRA = document.getElementById('ra')  
+            inputRA.value = ra
+
+            const { data } = await axios.get('https://api.ufabcnext.com/v1/students/' + ra)
+
+            if(data.aluno_id) {
+              aluno_id = data.aluno_id
+            } else {
+              alert("RA e Login não encontrados")
+            }
+          }
+          cursoAluno = 16;
+          todasMatriculas = matriculas[aluno_id];
+          alunoIngressante = false;
+          periodoMatricula = true;
+          periodoSegundoQuadrimestre = false;
+          var matriculaFixa = [];
         }
+
+        fetch()
       </script>
 
       </span>
@@ -125,13 +157,6 @@
   <script src="https://matricula.ufabc.edu.br/cache/contagemMatriculasIngressantes.js?1479842272" type="text/javascript"></script>
 
 <script language='javascript'>
-  cursoAluno = 16;
-  todasMatriculas = matriculas[aluno_id];
-  alunoIngressante = false;
-  periodoMatricula = true;
-  periodoSegundoQuadrimestre = false;
-  var matriculaFixa = [];
-  
   
 Effect.Pulsate('responda', { pulses: 10, duration: 8.0 });  
 
@@ -144,11 +169,14 @@ Effect.Pulsate('responda', { pulses: 10, duration: 8.0 });
 <div class="container-fluid">
 
   <div class="simulacao-chutes">
-    Fazer simulação dos chutes
+    <h4>Simulação dos chutes. </h4>
+    <p>
+      Coloque seu login e RA abaixo e utilize a <a href="https://chrome.google.com/webstore/detail/ufabc-next/gphjopenfpnlnffmhhhhdiecgdcopmhk?hl=pt-BR" target="_blank">extensão</a> para saber como foram seus chutes. (Caso você não utilizou a extensão durante o período de matrículas, não é possível realizar a simulação).
+    </p>
     <form method="GET">
       <input type="text" id="aluno" name="aluno" placeholder="Login (tudo minusculo)">
       <input type="text" id="ra" name="ra" placeholder="RA">
-      <button type="submit" id="submit">Enviar</button>
+      <button type="submit" id="submit">Simular</button>
     </form>
   </div>
 
@@ -156,6 +184,8 @@ Effect.Pulsate('responda', { pulses: 10, duration: 8.0 });
     <b>Atenção:</b> Essa NÃO é a versão oficial do sistema de matrículas. 
     <br /><br />
   Essa página serve para acompanhar o status das matrículas quando o sistema oficial está fechado, ou seja, quando a matrícula fecha, você pode ver se a turma que você pegou está cheia ou não e quando os chutes saem, da para ver aqui também pois essa página consome informações do sistema oficial.</div>
+
+
 
 <br>
 <p>Prezado(a) aluno(a), <b>Nome do aluno da UFABC</b>,</p>
