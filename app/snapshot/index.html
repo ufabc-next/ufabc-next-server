@@ -117,16 +117,10 @@
           if(aluno) {
             let element = document.getElementById('nome_aluno')
             element.textContent = aluno
-
-            let inputAluno = document.getElementById('aluno')  
-            inputAluno.value = aluno
           }
           var ra = getQueryVariable('ra')
           var aluno_id = getQueryVariable('aluno_id') || null
           if (ra) {
-            let inputRA = document.getElementById('ra')  
-            inputRA.value = ra
-
             const { data } = await axios.get('https://api.ufabcnext.com/v1/students/' + ra)
 
             if(data.aluno_id) {
@@ -135,12 +129,7 @@
               alert("RA e Login não encontrados")
             }
           }
-          cursoAluno = 16;
           todasMatriculas = matriculas[aluno_id];
-          alunoIngressante = false;
-          periodoMatricula = true;
-          periodoSegundoQuadrimestre = false;
-          var matriculaFixa = [];
         }
 
         fetch()
@@ -157,7 +146,12 @@
   <script src="https://matricula.ufabc.edu.br/cache/contagemMatriculasIngressantes.js?1479842272" type="text/javascript"></script>
 
 <script language='javascript'>
-  
+  cursoAluno = 16;
+            alunoIngressante = false;
+          periodoMatricula = true;
+          periodoSegundoQuadrimestre = false;
+          var matriculaFixa = [];
+
 Effect.Pulsate('responda', { pulses: 10, duration: 8.0 });  
 
 </script>
@@ -179,6 +173,17 @@ Effect.Pulsate('responda', { pulses: 10, duration: 8.0 });
       <button type="submit" id="submit">Simular</button>
     </form>
   </div>
+
+  <script type="text/javascript">
+    if(aluno) {
+      let inputAluno = document.getElementById('aluno')  
+      inputAluno.value = aluno
+    }
+    if(ra) {
+      let inputRA = document.getElementById('ra')  
+      inputRA.value = ra
+    }
+  </script>
 
   <div class="alerta-next">
     <b>Atenção:</b> Essa NÃO é a versão oficial do sistema de matrículas. 
