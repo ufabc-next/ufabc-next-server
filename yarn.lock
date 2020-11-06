@@ -636,9 +636,9 @@ doctrine@^3.0.0:
     esutils "^2.0.2"
 
 dot-prop@^4.1.0:
-  version "4.2.0"
-  resolved "https://registry.yarnpkg.com/dot-prop/-/dot-prop-4.2.0.tgz#1f19e0c2e1aa0e32797c49799f2837ac6af69c57"
-  integrity sha512-tUMXrxlExSW6U2EXiiKGSBVdYgtV8qlHL+C10TsW4PURY/ic+eaysnSkwB4kA/mBlCyy/IKDJ+Lc3wbWeaXtuQ==
+  version "4.2.1"
+  resolved "https://registry.yarnpkg.com/dot-prop/-/dot-prop-4.2.1.tgz#45884194a71fc2cda71cbb4bceb3a4dd2f433ba4"
+  integrity sha512-l0p4+mIuJIua0mhxGoh4a+iNL9bmeK5DvnSVQa6T0OhrVmaEa1XScX5Etc673FePCJOArq/4Pa2cLGODUWTPOQ==
   dependencies:
     is-obj "^1.0.0"
 
@@ -791,7 +791,7 @@ extend@~3.0.2:
 
 external-editor@^2.0.4:
   version "2.2.0"
-  resolved "http://registry.npmjs.org/external-editor/-/external-editor-2.2.0.tgz#045511cfd8d133f3846673d1047c154e214ad3d5"
+  resolved "https://registry.npmjs.org/external-editor/-/external-editor-2.2.0.tgz#045511cfd8d133f3846673d1047c154e214ad3d5"
   integrity sha512-bSn6gvGxKt+b7+6TKEv1ZycHleA7aHhRHyAqJyp5pbUFuYYNIzpZnQDk7AsYckyWdEnTeAnay0aCy2aV6iTk9A==
   dependencies:
     chardet "^0.4.0"
@@ -916,7 +916,7 @@ functional-red-black-tree@^1.0.1:
 
 get-stream@^3.0.0:
   version "3.0.0"
-  resolved "http://registry.npmjs.org/get-stream/-/get-stream-3.0.0.tgz#8e943d1358dc37555054ecbe2edb05aa174ede14"
+  resolved "https://registry.npmjs.org/get-stream/-/get-stream-3.0.0.tgz#8e943d1358dc37555054ecbe2edb05aa174ede14"
   integrity sha1-jpQ9E1jcN1VQVOy+LtsFqhdO3hQ=
 
 getpass@^0.1.1:
@@ -961,7 +961,7 @@ globals@^12.1.0:
 
 got@^6.7.1:
   version "6.7.1"
-  resolved "http://registry.npmjs.org/got/-/got-6.7.1.tgz#240cd05785a9a18e561dc1b44b41c763ef1e8db0"
+  resolved "https://registry.npmjs.org/got/-/got-6.7.1.tgz#240cd05785a9a18e561dc1b44b41c763ef1e8db0"
   integrity sha1-JAzQV4WpoY5WHcG0S0HHY+8ejbA=
   dependencies:
     create-error-class "^3.0.0"
@@ -1158,7 +1158,7 @@ is-npm@^1.0.0:
 
 is-obj@^1.0.0:
   version "1.0.1"
-  resolved "http://registry.npmjs.org/is-obj/-/is-obj-1.0.1.tgz#3e4729ac1f5fde025cd7d83a896dab9f4f67db0f"
+  resolved "https://registry.yarnpkg.com/is-obj/-/is-obj-1.0.1.tgz#3e4729ac1f5fde025cd7d83a896dab9f4f67db0f"
   integrity sha1-PkcprB9f3gJc19g6iW2rn09n2w8=
 
 is-path-inside@^1.0.0:
@@ -1351,7 +1351,7 @@ minimist@0.0.8:
 
 minimist@^1.2.0:
   version "1.2.0"
-  resolved "http://registry.npmjs.org/minimist/-/minimist-1.2.0.tgz#a35008b20f41383eec1fb914f4cd5df79a264284"
+  resolved "https://registry.npmjs.org/minimist/-/minimist-1.2.0.tgz#a35008b20f41383eec1fb914f4cd5df79a264284"
   integrity sha1-o1AIsg9BOD7sH7kU9M1d95omQoQ=
 
 mkdirp@^0.5.1:
@@ -1870,7 +1870,7 @@ text-table@^0.2.0:
 
 through@^2.3.6:
   version "2.3.8"
-  resolved "http://registry.npmjs.org/through/-/through-2.3.8.tgz#0dd4c9ffaabc357960b1b724115d7e0e86a2e1f5"
+  resolved "https://registry.npmjs.org/through/-/through-2.3.8.tgz#0dd4c9ffaabc357960b1b724115d7e0e86a2e1f5"
   integrity sha1-DdTJ/6q8NXlgsbckEV1+Doai4fU=
 
 timed-out@^4.0.0:
