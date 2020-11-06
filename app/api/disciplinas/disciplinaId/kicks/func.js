@@ -71,7 +71,7 @@ module.exports = async function (context) {
 function kickRule(disciplina) {
   const season = app.helpers.season.findSeasonKey()
   let coeffRule = null
-  if(season == '2020:3') {
+  if(season == '2020:3' || season == '2021:1') {
     coeffRule = ['cp', 'cr']
   } else {
     coeffRule = disciplina.ideal_quad ? ['cr', 'cp'] : ['cp', 'cr']

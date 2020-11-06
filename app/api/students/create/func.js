@@ -28,7 +28,7 @@ module.exports = async(context) => {
   const cursos = (context.body.cursos || []).map(async c => {
     let courseCleaned = c.curso.trim().replace('↵', '').replace(/\s+/g, ' ')
     let cpLastQuad = null
-    if(season == '2020:3') {
+    if(season == '2020:3' || season == '2021:1') {
       const history = await app.models.historiesGraduations.findOne({ ra: ra, curso: courseCleaned })
       cpLastQuad = _.get(history, 'coefficients.2019.3.cp_acumulado', c.cp)
     }
