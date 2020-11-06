@@ -5,7 +5,7 @@ const crypto = require('crypto')
 module.exports = async function (context) {
   let { mappings, hash } = context.body
 
-  const season = app.helpers.season.findSeasonKey()
+  const season = context.body.season || app.helpers.season.findSeasonKey()
   const Disciplinas = app.models.disciplinas.bySeason(season)
 
   // get all teachers
