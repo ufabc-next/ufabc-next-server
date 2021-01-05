@@ -18,7 +18,7 @@
     "agenda": "^2.0.2",
     "api-query-params": "^4.5.1",
     "apidoc": "^0.17.6",
-    "axios": "^0.18.0",
+    "axios": "^0.21.1",
     "bcryptjs": "^2.4.3",
     "bluebird": "^3.5.1",
     "body-parser": "^1.17.2",
