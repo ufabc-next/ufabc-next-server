@@ -48,9 +48,9 @@ module.exports = async (context) => {
       cpLastQuad = _.get(history, "coefficients.2019.3.cp_acumulado", c.cp);
     }
 
-    c.cr = app.helpers.parse.toNumber(c.cr);
-    (c.cp = app.helpers.parse.toNumber(cpLastQuad)),
-      (c.quads = app.helpers.parse.toNumber(c.quads));
+    c.cr = _.isFinite(c.cr) ? app.helpers.parse.toNumber(c.cr) : 0;
+    c.cp = _.isFinite(c.cp) ? app.helpers.parse.toNumber(cpLastQuad) : 0;
+    c.quads = _.isFinite(c.quads) ? app.helpers.parse.toNumber(c.quads) : 0;
     c.nome_curso = courseCleaned;
     c.ind_afinidade = 0.07 * c.cr + 0.63 * c.cp + 0.005 * c.quads;
     c.id_curso = c.curso_id;
