@@ -53,7 +53,6 @@ app.bootstrap = async function bootstrap(pipeline, silently = false) {
     console.info(TAG, `${chalk.green(step)} ${fill} ${chalk.dim(liftDuration)}`)
 }
 
-
 /*
  * Allow @ to point to root directory in require
  */
