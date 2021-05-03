@@ -22,7 +22,8 @@ module.exports = async (app) => {
   cachegoose(mongoose, {
     engine: 'redis',
     port: parsedRedis.port,
-    host: parsedRedis.hostname
+    host: parsedRedis.hostname,
+    auth_pass: app.config.REDIS_PASSWORD,
   })
 
   return conn

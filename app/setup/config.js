@@ -24,6 +24,7 @@ module.exports = async() => {
 
   // Config Redis
   config.REDIS_URL = getEnv('REDIS_URL', 'redis://localhost:6379')
+  config.REDIS_PASSWORD = getEnv('REDIS_PASSWORD', '12345')
   config.CACHE_NAME = getEnv('CACHE_NAME', 'ufabc-matricula-extension')
 
   config.SENTRY = getEnv('SENTRY', 'SENTRY_KEY')
