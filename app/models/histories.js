@@ -11,7 +11,7 @@ const Model = module.exports = Schema({
   grade: String
 })
 
-// Model.index({ curso: 1, grade: 1 })
+Model.index({ curso: 1, grade: 1 })
 
 Model.method('updateEnrollments', async function () {
   app.agenda.now('updateUserEnrollments', this.toObject({ virtuals: true }))
