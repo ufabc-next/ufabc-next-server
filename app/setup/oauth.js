@@ -14,7 +14,7 @@ module.exports = async (app) => {
 }
 
 async function facebook (context) {
-  const { inApp = '', userId = '' } = _.get(context.session, 'grant.dynamic', {})
+  const { inApp = '', userId = '', env = '' } = _.get(context.session, 'grant.dynamic', {})
 
   const accessToken = context.query.access_token
   const url = `https://graph.facebook.com/me?fields=id,name,email,picture.width(640)&metadata=1&access_token=${accessToken}`
@@ -59,15 +59,17 @@ async function facebook (context) {
 
   await user.save()
   
+  const WEB_URL = env == "development" ? "http://localhost:7500" : App.config.WEB_URL
+
   return {
     _redirect: inApp.split('?')[0] == 'true'
       ? `ufabcnext://login?token=${await user.generateJWT()}&`
-      :`${App.config.WEB_URL}/login?token=${user.generateJWT()}`
+      :`${WEB_URL}/login?token=${user.generateJWT()}`
   }
 }
 
 async function google(context) {
-  const { inApp = '', userId = '' } = _.get(context.session, 'grant.dynamic', {})
+  const { inApp = '', userId = '', env = '' } = _.get(context.session, 'grant.dynamic', {})
 
   const accessToken = context.query.access_token
   const url = 'https://www.googleapis.com/plus/v1/people/me'
@@ -111,10 +113,12 @@ async function google(context) {
   }
 
   await user.save()
+  
+  const WEB_URL = env == "development" ? "http://localhost:7500" : App.config.WEB_URL
 
   return {
     _redirect: inApp.split('?')[0] == 'true'
       ? `ufabcnext://login?token=${await user.generateJWT()}&`
-      :`${App.config.WEB_URL}/login?token=${user.generateJWT()}`
+      :`${WEB_URL}/login?token=${user.generateJWT()}`
   }
 }
