@@ -55,7 +55,7 @@
     "redis": "^2.8.0",
     "require-all": "^3.0.0",
     "require-smart": "^1.1.2",
-    "ua-parser-js": "^0.7.18",
+    "ua-parser-js": "^0.7.24",
     "useragent": "^2.3.0",
     "uuid": "^3.3.2",
     "xlsx": "^0.14.1"
