@@ -17,4 +17,4 @@ Please also list any relevant details for your test configuration.
 
 - [ ] I have performed a self-review of my own code;
 - [ ] I have added tests that prove my fix is effective or that my feature works;
-- [ ] Add labels to distinguish the pull request. For example `bug`, `enhancement`, `ready-to-review` etc.
+- [ ] Add labels to distinguish the pull request. For example `bug`, `ready to review` etc.
