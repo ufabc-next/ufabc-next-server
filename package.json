@@ -5,7 +5,7 @@
   "main": "index.js",
   "license": "MIT",
   "scripts": {
-    "install-app": "cd app && npm install --legacy-peer-deps && cd ../",
+    "install-app": "cd app && npm install --force && cd ../",
     "build-web": "cd web && npm install && npm run build && cd ../ rm -rf web",
     "start": "node app/server.js",
     "deepinstall": "npm run install-app",
