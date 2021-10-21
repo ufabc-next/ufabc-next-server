@@ -8,7 +8,6 @@
     "COPY ./package.json /usr/src/app/",
     "RUN npm install && npm cache clean --force",
     "COPY ./ /usr/src/app",
-    "RUN npm cache clean --force",
     "RUN npm run deepinstall",
     "ENV NODE_ENV production",
     "ENV PORT 80",
