@@ -47,7 +47,7 @@
     "mongoose": "^5.2.1",
     "mongoose-lean-virtuals": "^0.3.0",
     "mongoose-timestamp": "^0.6.0",
-    "morgan": "^1.8.2",
+    "morgan": "^1.9.1",
     "ms": "^2.1.1",
     "nyc": "^13.1.0",
     "pdf2json": "^1.1.7",
