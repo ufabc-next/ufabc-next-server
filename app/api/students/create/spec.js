@@ -40,7 +40,7 @@ describe('POST /v1/students', function() {
     stub.restore()
   })
 
-  describe('func', function () {
+  describe.skip('func', function () {
     it('returns a complete list of disciplinas', async function () {
       let resp = await func(context)
      

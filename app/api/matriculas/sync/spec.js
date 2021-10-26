@@ -19,7 +19,7 @@ describe('GET /v1/matriculas/sync', function() {
     }
   })
 
-  describe('func', function () {
+  describe.skip('func', function () {
     let stub
     
     beforeEach(async function () {

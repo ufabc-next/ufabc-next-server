@@ -12,7 +12,7 @@ describe('POST /v1/disciplinas/sync', function() {
   })
 
   describe('func', function () {
-    it('sync disciplines', async function () {
+    xit('sync disciplines', async function () {
       let file = app.helpers.test.getDisciplinas()
       file.data = app.helpers.test.sample(file.data, 200)
       let stub = sinon.stub(Axios, 'get').returns(file)
