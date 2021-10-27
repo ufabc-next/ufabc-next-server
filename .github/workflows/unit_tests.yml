@@ -1,0 +1,37 @@
+
+name: Unit tests
+
+on:
+  push:
+    branches:
+    - master
+  pull_request:
+    branches:
+    - master
+
+jobs:
+  docker:
+    timeout-minutes: 10
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: checkout
+      uses: actions/checkout@v1
+
+    - name: start containers
+      run: cd app docker-compose -f "docker-compose.yaml" up -d --build
+
+    - name: install node
+      uses: actions/setup-node@v1
+      with:
+        node-version: 16.x
+
+    - name: install dependencies
+      run: cd app npm install
+
+    - name: unit tests
+      run: npm run test
+
+    - name: stop containers
+      if: always()
+      run: docker-compose -f "docker-compose.yaml" down
