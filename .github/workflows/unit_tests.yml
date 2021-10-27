@@ -27,10 +27,10 @@ jobs:
         node-version: 16.x
 
     - name: install dependencies
-      run: cd app & npm install
+      run: cd app && npm install
 
     - name: unit tests
-      run: cd app & npm run test
+      run: cd app && npm run test
 
     - name: stop containers
       if: always()
