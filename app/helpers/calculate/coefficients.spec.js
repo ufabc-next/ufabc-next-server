@@ -2,7 +2,7 @@ const assert = require('assert')
 
 const func = require('./coefficients')
 
-describe.only('helpers.calculate.coefficients', function () {
+describe('helpers.calculate.coefficients', function () {
   describe('isAprovado', function () {
     it('should return true when student is approved', function () {
       assert.equal(true, func.isAprovado('A'))
