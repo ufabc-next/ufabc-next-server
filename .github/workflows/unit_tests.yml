@@ -34,4 +34,4 @@ jobs:
 
     - name: stop containers
       if: always()
-      run: docker-compose -f "docker-compose.yaml" down
+      run: cd app && docker-compose -f "docker-compose.yaml" down
