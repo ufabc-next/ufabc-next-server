@@ -31,7 +31,7 @@
     "express": "^4.15.3",
     "express-history-api-fallback": "^2.2.1",
     "express-jwt-permissions": "^1.2.3",
-    "express-restify-mongoose": "git@github.com:felipe-augusto/express-restify-mongoose.git",
+    "express-restify-mongoose": "https://github.com/felipe-augusto/express-restify-mongoose",
     "express-session": "^1.15.6",
     "express-unless": "^0.5.0",
     "flat": "^4.1.0",
@@ -66,8 +66,7 @@
   },
   "engines": {
     "node": ">= 8.0.0",
-    "npm": ">= 3.0.0",
-    "yarn": ">=1.22.17"
+    "npm": ">= 3.0.0"
   },
   "nyc": {
     "check-coverage": false,
