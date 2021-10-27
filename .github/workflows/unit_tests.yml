@@ -30,7 +30,7 @@ jobs:
       run: cd app & npm install
 
     - name: unit tests
-      run: npm run test
+      run: cd app & npm run test
 
     - name: stop containers
       if: always()
