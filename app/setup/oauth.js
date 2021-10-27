@@ -59,7 +59,7 @@ async function facebook (context) {
 
   await user.save()
   
-  const WEB_URL = env == "development" ? "http://localhost:7500" : App.config.WEB_URL
+  const WEB_URL = env == 'development' ? 'http://localhost:7500' : App.config.WEB_URL
 
   return {
     _redirect: inApp.split('?')[0] == 'true'
@@ -114,7 +114,7 @@ async function google(context) {
 
   await user.save()
   
-  const WEB_URL = env == "development" ? "http://localhost:7500" : App.config.WEB_URL
+  const WEB_URL = env == 'development' ? 'http://localhost:7500' : App.config.WEB_URL
 
   return {
     _redirect: inApp.split('?')[0] == 'true'
