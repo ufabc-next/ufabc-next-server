@@ -12,7 +12,7 @@ on:
       - synchronize
 
 jobs:
-  docker:
+  unit-tests:
     timeout-minutes: 10
     runs-on: ubuntu-latest
 
