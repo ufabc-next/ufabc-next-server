@@ -17,23 +17,23 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - name: checkout
+    - name: Checkout
       uses: actions/checkout@v1
 
-    - name: start containers
+    - name: Start docker containers
       run: cd app && docker-compose -f "docker-compose.yaml" up -d --build
 
-    - name: install node
+    - name: Install node
       uses: actions/setup-node@v1
       with:
         node-version: 16.x
 
-    - name: install dependencies
+    - name: Install dependencies
       run: cd app && npm install
 
-    - name: unit tests
+    - name: Run unit tests
       run: cd app && npm run test
 
-    - name: stop containers
+    - name: Stop docker containers
       if: always()
       run: cd app && docker-compose -f "docker-compose.yaml" down
