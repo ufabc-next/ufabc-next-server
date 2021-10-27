@@ -52,9 +52,6 @@ jobs:
     - name: Install dependencies
       run: cd app && yarn install
 
-    - name: Check lint
-      run: npm run lint
-
     - name: Run unit tests
       run: cd app && yarn run test
 
