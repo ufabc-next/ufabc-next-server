@@ -20,6 +20,9 @@ jobs:
     - name: Checkout
       uses: actions/checkout@v1
 
+    - name: Install Yarn
+      run: npm install -g yarn
+
     - name: Start docker containers
       run: cd app && docker-compose -f "docker-compose.yaml" up -d --build
 
@@ -29,10 +32,10 @@ jobs:
         node-version: 16.x
 
     - name: Install dependencies
-      run: cd app && npm install
+      run: cd app && yarn install
 
     - name: Run unit tests
-      run: cd app && npm run test
+      run: cd app && yarn run test
 
     - name: Stop docker containers
       if: always()
