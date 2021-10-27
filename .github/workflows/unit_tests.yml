@@ -19,7 +19,7 @@ jobs:
       uses: actions/checkout@v1
 
     - name: start containers
-      run: cd app docker-compose -f "docker-compose.yaml" up -d --build
+      run: cd app && docker-compose -f "docker-compose.yaml" up -d --build
 
     - name: install node
       uses: actions/setup-node@v1
