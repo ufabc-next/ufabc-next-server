@@ -22,8 +22,8 @@ describe("POST /v1/comments", async function () {
       },
     };
   });
-  describe.only("func", async function () {
-    describe.only("with valid params", async function () {
+  describe("func", async function () {
+    describe("with valid params", async function () {
       it("create and return a filtered comment", async function () {
         const resp = await func(context);
 
@@ -41,7 +41,7 @@ describe("POST /v1/comments", async function () {
         assert(comment);
       });
     });
-    describe.only("with invalid params", async function () {
+    describe("with invalid params", async function () {
       it("should throw if enrollment is missing", async function () {
         delete context.body.enrollment;
         await assertFuncThrows("MissingParameter", func, context);
