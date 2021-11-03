@@ -21,7 +21,7 @@ describe('helpers.season.findIdeais', function() {
         const date = new Date("2021-04-01")
         const func = findIdeais(date)  
 
-        expectedCourses.forEach(function (course, index, expectedCourses) {
+        expectedCourses.forEach(function (course, index) {
             assert.equal(course, expectedCourses[index])
         })
     })
@@ -44,7 +44,7 @@ describe('helpers.season.findIdeais', function() {
         const date = new Date("2021-07-01")
         const func = findIdeais(date)  
 
-        expectedCourses.forEach(function (course, index, expectedCourses) {
+        expectedCourses.forEach(function (course, index) {
             assert.equal(course, expectedCourses[index])
         })
     })
@@ -64,7 +64,7 @@ describe('helpers.season.findIdeais', function() {
           const date = new Date("2021-11-21")
           const func = findIdeais(date)
 
-          expectedCourses.forEach(function (course, index, expectedCourses) {
+          expectedCourses.forEach(function (course, index) {
             assert.equal(course, expectedCourses[index])
         })
     })
