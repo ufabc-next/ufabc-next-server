@@ -3,8 +3,7 @@
 const math = require('mathjs')
 const _ = require('lodash')
 
-function calculateAlunoCoefficientsData(disciplinas, graduation) {
-
+module.exports = function calculateAlunoCoefficientsData(disciplinas, graduation) {
   var hash_disciplinas = {}
   disciplinas.forEach(function (disciplina) {
     hash_disciplinas[disciplina.ano] = hash_disciplinas[disciplina.ano] || {}
@@ -113,13 +112,13 @@ function calculateAlunoCoefficientsData(disciplinas, graduation) {
   return hash_disciplinas
 }
 
-function isAprovado (grade) {
+module.exports.isAprovado = function isAprovado(grade) {
   const disapprovingGrades = ['F', '0', 'O', 'I']
   
   return !disapprovingGrades.includes(grade)
 }
 
-function convertGradeToNumber(grade) {
+module.exports.convertGradeToNumber = function convertGradeToNumber(grade) {
   const gradeToNumberMap = {
     'A': 4,
     'B': 3,
@@ -135,7 +134,7 @@ function convertGradeToNumber(grade) {
   return gradeToNumberMap[grade]
 }
 
-function parseCategory(category) {
+module.exports.parseCategory = function parseCategory(category) {
   const categoryParser = {
     'Livre Escolha': 'free',
     'Obrigatória': 'mandatory',
@@ -144,5 +143,3 @@ function parseCategory(category) {
 
   return categoryParser[category]
 }
-
-module.exports = {calculateAlunoCoefficientsData, isAprovado, convertGradeToNumber, parseCategory}
