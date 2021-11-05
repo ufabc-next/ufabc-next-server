@@ -25,6 +25,7 @@ describe('helpers.season.findIdeais', function() {
             assert.equal(course, func[index])
         })
     })
+  })
 
     it('Should return second quad courses', function () {
         const expectedCourses = [
@@ -49,23 +50,20 @@ describe('helpers.season.findIdeais', function() {
         })
     })
 
-    it('Should return third quad courses', function () {
-        const expectedCourses = [
-            'BCJ0205-15', // FETERM
-            'BCM0505-15', // PI
-            'BCN0407-15', // FVV
-            'BCL0307-15', // TQ
-            'BCK0104-15', // IAM
-            'BIR0603-15', // CTS
-            'BHP0001-15', // ETICA E JUSTICA
-            'BHQ0301-15', // TERRITORIO E SOCIEDADE
-            // ESTUDO ÉTNICOS RACIAIS
-          ]
-          const date = new Date("2021-11-21")
-          const func = findIdeais(date)
+  it('Should return third quad courses', function () {
+    const expectedCourses = [
+      'BCJ0205-15', // FETERM
+      'BCM0505-15', // PI
+      'BCN0407-15', // FVV
+      'BCL0307-15', // TQ
+      'BCK0104-15', // IAM
+      'BIR0603-15', // CTS
+      'BHP0001-15', // ETICA E JUSTICA
+      'BHQ0301-15', // TERRITORIO E SOCIEDADE
+      // ESTUDO ÉTNICOS RACIAIS
+    ]
 
           expectedCourses.forEach(function (course,index) {
             assert.equal(course, func[index])
         })
     })
-})
