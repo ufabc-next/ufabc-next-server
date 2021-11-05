@@ -1,5 +1,4 @@
 const assert = require('assert')
-const findIdeais = require('./findIdeais')
 
 describe('helpers.season.findIdeais', function() {
 
