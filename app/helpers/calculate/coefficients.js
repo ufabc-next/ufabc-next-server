@@ -3,7 +3,7 @@
 const math = require('mathjs')
 const _ = require('lodash')
 
-function calculateAlunoCoefficientsData(disciplinas, graduation) {
+module.exports = function calculateAlunoCoefficientsData(disciplinas, graduation) {
 
   var hash_disciplinas = {}
   disciplinas.forEach(function (disciplina) {
@@ -145,5 +145,6 @@ function parseCategory(category) {
   return categoryParser[category]
 }
 
-module.exports.default = calculateAlunoCoefficientsData
-module.exports = {isAprovado, convertGradeToNumber, parseCategory}
+module.exports.isAprovado = isAprovado
+module.exports.convertGradeToNumber = convertGradeToNumber
+module.exports.parseCategory = parseCategory
