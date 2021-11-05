@@ -18,11 +18,11 @@ describe('helpers.season.findIdeais', function() {
             'BHQ0003-15', // INTEPRE. BRASIL
             'BHQ0001-15', // IDENT.E CULTURA
           ]
-        const date = new Date("2021-04-01")
+        const date = new Date("2021-04-10")
         const func = findIdeais(date)  
 
-        expectedCourses.forEach(function (course, index) {
-            assert.equal(course, expectedCourses[index])
+        expectedCourses.forEach(function (course,index) {
+            assert.equal(course, func[index])
         })
     })
 
@@ -41,11 +41,11 @@ describe('helpers.season.findIdeais', function() {
             'BHO0001-15', // INTRODUCAO AS HUMANIDADES
             'BHP0202-15', // PENSAMENTO CRITICO
           ]
-        const date = new Date("2021-07-01")
-        const func = findIdeais(date)  
+        const date = new Date("2021-07-10")
+        const func = findIdeais(date)
 
-        expectedCourses.forEach(function (course, index) {
-            assert.equal(course, expectedCourses[index])
+        expectedCourses.forEach(function (course,index) {
+            assert.equal(course, func[index])
         })
     })
 
@@ -64,8 +64,8 @@ describe('helpers.season.findIdeais', function() {
           const date = new Date("2021-11-21")
           const func = findIdeais(date)
 
-          expectedCourses.forEach(function (course, index) {
-            assert.equal(course, expectedCourses[index])
+          expectedCourses.forEach(function (course,index) {
+            assert.equal(course, func[index])
         })
     })
 })
