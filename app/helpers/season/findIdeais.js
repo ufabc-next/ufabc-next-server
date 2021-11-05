@@ -4,7 +4,8 @@ function findQuadFromDate(month) {
   if([6, 7, 8, 9].includes(month)) return 2
 }
 
-module.exports = function findIdeais(date) {
+module.exports = function findIdeais(date = new Date()) {
+  const month = date.getMonth()
   return {
     1 : 
     [
@@ -46,5 +47,5 @@ module.exports = function findIdeais(date) {
       'BHQ0301-15', // TERRITORIO E SOCIEDADE
       // ESTUDO ÉTNICOS RACIAIS
     ],
-  }[findQuadFromDate(date || new Date().getMonth())]
+  }[findQuadFromDate(month)]
 }
