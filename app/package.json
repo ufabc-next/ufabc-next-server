@@ -51,7 +51,7 @@
     "ms": "^2.1.1",
     "nyc": "^13.1.0",
     "raven": "^2.6.3",
-    "redis": "^2.8.0",
+    "redis": "^3.1.1",
     "require-all": "^3.0.0",
     "require-smart": "^1.1.2",
     "ua-parser-js": "^0.7.18",
