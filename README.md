@@ -5,7 +5,6 @@
 [![Build status](https://ci.appveyor.com/api/projects/status/lsob9vj7eyuejun2?svg=true)](https://ci.appveyor.com/project/JhonataSantana/ufabc-next-server)
 [![Codacy Badge](https://app.codacy.com/project/badge/Grade/c97a33d865fb4b35b257b538f1661ad7)](https://www.codacy.com/gh/UFABCNextOps/ufabc-next-server/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=UFABCNextOps/ufabc-next-server&amp;utm_campaign=Badge_Grade)
 [![codecov](https://codecov.io/gh/ufabc-next/ufabc-next-server/branch/master/graph/badge.svg)](https://codecov.io/gh/ufabc-next/ufabc-next-server) 
-[![Code Coverage](https://scrutinizer-ci.com/g/UFABCNextOps/ufabc-next-server/badges/coverage.png?b=master)](https://scrutinizer-ci.com/g/UFABCNextOps/ufabc-next-server/?branch=master) <img alt="GitHub Contributors" src="https://img.shields.io/github/contributors/ufabc-next/ufabc-next-server" />
 
 <img alt="Github License" src="https://img.shields.io/github/license/ufabc-next/ufabc-next-server" />
 
