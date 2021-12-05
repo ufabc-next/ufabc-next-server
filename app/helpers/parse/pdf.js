@@ -1,5 +1,5 @@
 const _ = require('lodash')
-const PDFParser = require('pdf2json')
+// const PDFParser = require('pdf2json')
 const Axios = require('axios')
 const errors = require('@/errors')
 const xlsx = require('xlsx')
@@ -10,7 +10,7 @@ _.insert = function (arr, index, item) {
 }
 
 function parsePDF(buffer, params) {
-  let pdfParser = new PDFParser()
+  let pdfParser = {}//new PDFParser()
 
   pdfParser.parseBuffer(buffer)
 

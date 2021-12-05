@@ -40,7 +40,8 @@ module.exports = async (context) => {
       season == "2020:3" ||
       season == "2021:1" ||
       season == "2021:2" ||
-      season == "2021:3"
+      season == "2021:3" ||
+      season == "2022:1"
     ) {
       const history = await app.models.historiesGraduations.findOne({
         ra: ra,
