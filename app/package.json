@@ -12,7 +12,7 @@
     "start:watch": "apidoc -i api/ -o doc/ && forever --watch --watchFolder ./ ./server.js --colors",
     "start:docker": "yarn build:docker && docker run -it -p 8010:8010 edu-web",
     "populate": "node populate/index.js",
-    "coverage": "NODE_ENV=test nyc npm run test && nyc report --reporter=text-lcov > coverage.lcov"
+    "coverage": "NODE_ENV=test nyc yarn test && nyc report --reporter=text-lcov > coverage.lcov && codecov"
   },
   "dependencies": {
     "agenda": "^2.0.2",
