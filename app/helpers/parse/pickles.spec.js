@@ -1,4 +1,4 @@
-const _ = require("lodash");
+const app = require("@/app");
 const assert = require("assert");
 const pickles = require("./pickles");
 
@@ -97,6 +97,22 @@ describe("helpers/parse/pickles", async function () {
       assert(!afterPickPayload[0].nested.invalid);
       assert(afterPickPayload[0].nested.array[0].valid);
       assert(!afterPickPayload[0].nested.array[0].invalid);
+    });
+    it("with an mongoose object", async function () {
+      const Disciplinas = app.models.disciplinas;
+      const disciplina = new Disciplinas({
+        alunos_matriculados: [1, 2, 3, 4, 5],
+      });
+
+      const fields = { public: ["requisicoes"] };
+
+      const afterPickPayload = pickles(disciplina, fields);
+
+      assert.equal(
+        afterPickPayload.requisicoes,
+        disciplina.alunos_matriculados.length
+      );
+      assert(!afterPickPayload.alunos_matriculados);
     });
   });
 });
