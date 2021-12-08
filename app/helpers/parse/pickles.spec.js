@@ -1,8 +1,8 @@
 const _ = require("lodash");
 const assert = require("assert");
-const pickFields = require("./pickFields");
+const pickles = require("./pickles");
 
-describe("helpers/parse/pickFields", async function () {
+describe("helpers/parse/pickles", async function () {
   describe("should return valid fields", async function () {
     it("with plain object", async function () {
       const payload = {
@@ -10,9 +10,9 @@ describe("helpers/parse/pickFields", async function () {
         invalid: "invalid",
       };
 
-      const fields = ["valid"];
+      const fields = { public: ["valid"] };
 
-      const afterPickPayload = pickFields(payload, fields);
+      const afterPickPayload = pickles(payload, fields);
 
       assert(afterPickPayload.valid);
       assert(!afterPickPayload.invalid);
@@ -27,9 +27,9 @@ describe("helpers/parse/pickFields", async function () {
         invalid: "invalid",
       };
 
-      const fields = ["valid", "nested.valid"];
+      const fields = { public: ["valid", "nested.valid"] };
 
-      const afterPickPayload = pickFields(payload, fields);
+      const afterPickPayload = pickles(payload, fields);
 
       assert(afterPickPayload.valid);
       assert(!afterPickPayload.invalid);
@@ -52,9 +52,12 @@ describe("helpers/parse/pickFields", async function () {
         invalid: "invalid",
       };
 
-      const fields = ["valid", "nested.valid", "nested.array.valid"];
+      const fields = {
+        public: ["valid", "nested"],
+        nested: { public: ["valid", "array"], array: { public: ["valid"] } },
+      };
 
-      const afterPickPayload = pickFields(payload, fields);
+      const afterPickPayload = pickles(payload, fields);
 
       assert(afterPickPayload.valid);
       assert(!afterPickPayload.invalid);
@@ -81,9 +84,12 @@ describe("helpers/parse/pickFields", async function () {
         },
       ];
 
-      const fields = ["valid", "nested.valid", "nested.array.valid"];
+      const fields = {
+        public: ["valid", "nested"],
+        nested: { public: ["valid", "array"], array: { public: ["valid"] } },
+      };
 
-      const afterPickPayload = pickFields(payload, fields);
+      const afterPickPayload = pickles(payload, fields);
 
       assert(afterPickPayload[0].valid);
       assert(!afterPickPayload[0].invalid);
