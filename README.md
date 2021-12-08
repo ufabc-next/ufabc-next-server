@@ -1,8 +1,12 @@
 # ufabc-next-server
 
-[![Build Status](https://travis-ci.com/ufabc-next/ufabc-matricula-server.svg?branch=master)](https://travis-ci.com/ufabc-next/ufabc-matricula-server)
-[![Codacy Badge](https://api.codacy.com/project/badge/Grade/c6cd37818d9c4ab6b244bfefd5b83597)](https://www.codacy.com/app/fesnt/ufabc-matricula-server?utm_source=github.com&utm_medium=referral&utm_content=ufabc-next/ufabc-matricula-server&utm_campaign=Badge_Grade)
-[![codecov](https://codecov.io/gh/ufabc-next/ufabc-matricula-server/branch/master/graph/badge.svg)](https://codecov.io/gh/ufabc-next/ufabc-matricula-server)
+<img alt="GitHub Package.json Version" src="https://img.shields.io/github/package-json/v/ufabc-next/ufabc-next-server" /> <img alt="GitHub Top Language" src="https://img.shields.io/github/languages/top/ufabc-next/ufabc-next-server" /> ![GitHub repo size](https://img.shields.io/github/repo-size/UFABCNextOps/ufabc-next-server)
+
+[![Build status](https://ci.appveyor.com/api/projects/status/lsob9vj7eyuejun2?svg=true)](https://ci.appveyor.com/project/JhonataSantana/ufabc-next-server)
+[![Codacy Badge](https://app.codacy.com/project/badge/Grade/c97a33d865fb4b35b257b538f1661ad7)](https://www.codacy.com/gh/UFABCNextOps/ufabc-next-server/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=UFABCNextOps/ufabc-next-server&amp;utm_campaign=Badge_Grade)
+[![codecov](https://codecov.io/gh/UFABCNextOps/ufabc-next-server/branch/master/graph/badge.svg?token=NTRX2LN5T0)](https://codecov.io/gh/UFABCNextOps/ufabc-next-server)
+
+<img alt="Github License" src="https://img.shields.io/github/license/ufabc-next/ufabc-next-server" />
 
 ### Para executar o server 
 
