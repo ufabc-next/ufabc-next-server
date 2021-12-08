@@ -1,8 +1,8 @@
-const _ = require("lodash");
+const app = require("@/app");
 const assert = require("assert");
-const pickFields = require("./pickFields");
+const pickles = require("./pickles");
 
-describe("helpers/parse/pickFields", async function () {
+describe("helpers/parse/pickles", async function () {
   describe("should return valid fields", async function () {
     it("with plain object", async function () {
       const payload = {
@@ -10,9 +10,9 @@ describe("helpers/parse/pickFields", async function () {
         invalid: "invalid",
       };
 
-      const fields = ["valid"];
+      const fields = { public: ["valid"] };
 
-      const afterPickPayload = pickFields(payload, fields);
+      const afterPickPayload = pickles(payload, fields);
 
       assert(afterPickPayload.valid);
       assert(!afterPickPayload.invalid);
@@ -27,9 +27,9 @@ describe("helpers/parse/pickFields", async function () {
         invalid: "invalid",
       };
 
-      const fields = ["valid", "nested.valid"];
+      const fields = { public: ["valid", "nested.valid"] };
 
-      const afterPickPayload = pickFields(payload, fields);
+      const afterPickPayload = pickles(payload, fields);
 
       assert(afterPickPayload.valid);
       assert(!afterPickPayload.invalid);
@@ -52,9 +52,12 @@ describe("helpers/parse/pickFields", async function () {
         invalid: "invalid",
       };
 
-      const fields = ["valid", "nested.valid", "nested.array.valid"];
+      const fields = {
+        public: ["valid", "nested"],
+        nested: { public: ["valid", "array"], array: { public: ["valid"] } },
+      };
 
-      const afterPickPayload = pickFields(payload, fields);
+      const afterPickPayload = pickles(payload, fields);
 
       assert(afterPickPayload.valid);
       assert(!afterPickPayload.invalid);
@@ -81,9 +84,12 @@ describe("helpers/parse/pickFields", async function () {
         },
       ];
 
-      const fields = ["valid", "nested.valid", "nested.array.valid"];
+      const fields = {
+        public: ["valid", "nested"],
+        nested: { public: ["valid", "array"], array: { public: ["valid"] } },
+      };
 
-      const afterPickPayload = pickFields(payload, fields);
+      const afterPickPayload = pickles(payload, fields);
 
       assert(afterPickPayload[0].valid);
       assert(!afterPickPayload[0].invalid);
@@ -91,6 +97,22 @@ describe("helpers/parse/pickFields", async function () {
       assert(!afterPickPayload[0].nested.invalid);
       assert(afterPickPayload[0].nested.array[0].valid);
       assert(!afterPickPayload[0].nested.array[0].invalid);
+    });
+    it("with an mongoose object", async function () {
+      const Disciplinas = app.models.disciplinas;
+      const disciplina = new Disciplinas({
+        alunos_matriculados: [1, 2, 3, 4, 5],
+      });
+
+      const fields = { public: ["requisicoes"] };
+
+      const afterPickPayload = pickles(disciplina, fields);
+
+      assert.equal(
+        afterPickPayload.requisicoes,
+        disciplina.alunos_matriculados.length
+      );
+      assert(!afterPickPayload.alunos_matriculados);
     });
   });
 });
