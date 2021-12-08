@@ -1,7 +1,7 @@
 const assert = require('assert')
 const transformMatriculas = require('./transformMatriculas.js')
 
-describe('helpers.transform.transformMatriculas', function() {
+describe('helpers.transform.transformMatriculas ', function() {
 
   it('Should concat student id in class', function () {
     const disciplinas = {
