@@ -1,7 +1,7 @@
 const assert = require('assert')
 const resolveProfessor = require('./resolveProfessor.js')
 
-describe.only('helpers.transform.resolveProfessor', function() {
+describe('helpers.transform.resolveProfessor', function() {
 
   it('Should return Missing Teacher error', function () {
     const professor = {'name': 'Paulo Meirelles'}
