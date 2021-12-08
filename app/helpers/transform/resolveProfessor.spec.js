@@ -17,7 +17,7 @@ describe.only('helpers.transform.resolveProfessor', function() {
     assert.equal(nullVariable, null)
   })
 
-  it('Should return a professor', function () {
+  it('Should return a professor ', function () {
     const professores = [
       {name: 'Paulo Meirelles'}, {name: 'Joaquin Melo'},
       {name: 'Fabio Carneiro'}, {name: 'Andre Rodrigues'},
