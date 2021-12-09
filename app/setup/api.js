@@ -32,6 +32,8 @@ module.exports = async (app) => {
     '/histories/courses',
     '/users/me/relationships',
     '/graduation',
+    '/graduations/me',
+    '/intendedGraduation',
     '/subjectGraduations',
     '/historiesGraduations',
     '/students/aluno_id'
