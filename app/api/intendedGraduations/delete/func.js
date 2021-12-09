@@ -16,5 +16,5 @@ module.exports = async function(context){
 
   await intendedGraduation.save()
 
-  return { status: 'ok', message: 'Foi bom te ter aqui =)'}
+  return { status: 'ok', message: 'Intended graduation inactivated for this user on database.'}
 }
