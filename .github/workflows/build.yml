@@ -1,0 +1,29 @@
+name: Build/release
+
+on: push
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v1
+      - run: cd app && yarn test
+
+  release:
+    needs: test
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/master'
+
+    steps:
+      - name: Check out Git repository
+        uses: actions/checkout@v1
+
+      - name: Set branch
+        run: git branch ${GITHUB_REF#refs/heads/}
+
+      - name: Deploy
+        uses: AlexxNB/caprover-action@v1
+        with:
+          server: 'https://captain.sv.ufabcnext.com'
+          password: '${{ secrets.CAPROVER_PASSWORD }}'
+          appname: 'api'
