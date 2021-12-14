@@ -2,7 +2,7 @@ const app = require('@/app')
 const errors = require('@/errors')
 
 module.exports = async function(context){
-  let { graduationId } = context.params;
+  let { graduationId } = context.params
   let intendedGraduation = await app.models.intendedGraduation.findOne({
      graduation: graduationId,
      user: context.user._id,
