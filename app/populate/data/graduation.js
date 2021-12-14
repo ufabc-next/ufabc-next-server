@@ -10,7 +10,7 @@ module.exports = function () {
       "creditsBreakdown": [{
           "year": 1,
           'quad': 1,
-          "choosableCredits": 0
+      "choosableCredits": 0
       }, {
           "year": 1,
           "quad": 2,
