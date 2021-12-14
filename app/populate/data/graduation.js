@@ -1,6 +1,6 @@
 module.exports = function () {
   return  [{      
-      "curso": "Bacharelado em Ciência e Tecnologia",
+      'curso': "Bacharelado em Ciência e Tecnologia",
       "grade": "2017",
       "credits_total": 190,
       "free_credits_number": 43,
