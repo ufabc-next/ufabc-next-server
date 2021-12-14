@@ -7,7 +7,7 @@ module.exports = async function(context){
      graduation: graduationId,
      user: context.user._id,
      active: true 
-    })
+  })
 
 
   if(!intendedGraduation) throw new errors.BadRequest(`Intended graduation not found (or inactive) for user.`)
