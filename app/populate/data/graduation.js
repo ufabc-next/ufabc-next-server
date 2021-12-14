@@ -9,7 +9,7 @@ module.exports = function () {
       "mandatory_credits_number": 90,
       "creditsBreakdown": [{
           "year": 1,
-          "quad": 1,
+          'quad': 1,
           "choosableCredits": 0
       }, {
           "year": 1,
