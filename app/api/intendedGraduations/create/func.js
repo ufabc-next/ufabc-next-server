@@ -14,7 +14,7 @@ module.exports = async function (context) {
 
   const newintendedGraduation = await app.models.intendedGraduation.create({
     graduation: graduationId,
-      user: context.user
+    user: context.user
     }
   )
 
