@@ -44,6 +44,6 @@ module.exports = function () {
           "quad": 3,
           "choosableCredits": 24
       }]
-    }
+  }
   ]
 }
