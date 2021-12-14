@@ -32,7 +32,7 @@ module.exports = function () {
           "quad": 3,
           "choosableCredits": 16
       }, {
-          "year": 3,
+          'year': 3,
           "quad": 1,
           "choosableCredits": 24
       }, {
