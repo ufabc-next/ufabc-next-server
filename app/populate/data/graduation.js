@@ -13,7 +13,7 @@ module.exports = function () {
       "choosableCredits": 0
       }, {
           "year": 1,
-          "quad": 2,
+          'quad': 2,
           "choosableCredits": 0
       }, {
           "year": 1,
