@@ -36,7 +36,7 @@ module.exports = function calculateAlunoCoefficientsData(disciplinas, graduation
       for(let disciplina in hash_disciplinas[year][period]) {
         var current_disciplina = hash_disciplinas[year][period][disciplina]
         var creditos = parseInt(current_disciplina.creditos)
-        var convertable = convertLetterToNumber(current_disciplina.conceito) * creditos
+        var convertable = convertGradeToNumber(current_disciplina.conceito) * creditos
 
         const category = parseCategory(current_disciplina.categoria)
 
@@ -113,27 +113,38 @@ module.exports = function calculateAlunoCoefficientsData(disciplinas, graduation
   return hash_disciplinas
 }
 
-function isAprovado (letter) {
-  if(letter !== 'F' && letter !== '0' && letter !== 'O' && letter !== 'I') return true
+function isAprovado (grade) {
+  const disapprovingGrades = ['F', '0', 'O', 'I']
+  
+  return !disapprovingGrades.includes(grade)
 }
 
-function convertLetterToNumber(letter) {
-  if(letter === 'A') return 4
-  else if(letter === 'B') return 3
-  else if(letter === 'C') return 2
-  else if(letter === 'D') return 1
-  else if(letter === 'F') return 0
-  else if(letter === 'O') return 0
-
-  else if(letter === '-') return -1
-  else if(letter === 'E') return -1
-  else if(letter === 'I') return -1
+function convertGradeToNumber(grade) {
+  const gradeToNumberMap = {
+    'A': 4,
+    'B': 3,
+    'C': 2,
+    'D': 1,
+    'F': 0,
+    'O': 0,
+    '-': -1,
+    'E': -1,
+    'I': -1
+  }
+  
+  return gradeToNumberMap[grade]
 }
 
 function parseCategory(category) {
-  if(category === 'Livre Escolha') return 'free'
-  else if(category === 'Obrigatória') return 'mandatory'
-  else if(category === 'Opção Limitada') return 'limited'
+  const categoryParser = {
+    'Livre Escolha': 'free',
+    'Obrigatória': 'mandatory',
+    'Opção Limitada': 'limited'
+  }
 
-  return null
+  return categoryParser[category]
 }
+
+module.exports.isAprovado = isAprovado
+module.exports.convertGradeToNumber = convertGradeToNumber
+module.exports.parseCategory = parseCategory

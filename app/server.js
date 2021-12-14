@@ -1,102 +1,102 @@
 // Install tracer (must be the first thing in order to properly work)
-require("dotenv").config();
+require('dotenv').config()
 if (process.env.GCLOUD_PROJECT && process.env.GCLOUD_CREDENTIALS) {
-  console.log("trace-agent enabled");
-  require("@google-cloud/trace-agent").start({
+  console.log('trace-agent enabled')
+  require('@google-cloud/trace-agent').start({
     projectId: process.env.GCLOUD_PROJECT,
     credentials: JSON.parse(process.env.GCLOUD_CREDENTIALS),
     // Enable Mongo Reporting
     enhancedDatabaseReporting: true,
     // Don't trace status requests
-    ignoreUrls: ["/v1/status"],
-  });
+    ignoreUrls: ['/v1/status'],
+  })
 }
 
-const chalk = require("chalk");
+const chalk = require('chalk')
 
-const app = require("./app");
+const app = require('./app')
 
-const TAG = "[server]";
+const TAG = '[server]'
 
 // Order of execution for setup steps
 const pipeline = [
   // package.json information
-  "package",
+  'package',
   // Global configurations
-  "config",
+  'config',
   // Load app.helpers
-  "helpers",
+  'helpers',
   // Load mongo
-  "mongo",
+  'mongo',
   // Load models
-  "models",
+  'models',
   // Load Redis,
-  "redis",
+  'redis',
   // Load Agenda
-  "agenda",
+  'agenda',
   // Create base express server
-  "server",
+  'server',
   // Add redirection behavior
-  "redirect",
+  'redirect',
   // Create web app
-  "static",
+  'static',
   // Generater Router for Restify
-  "router",
+  'router',
   // Create api (/v1) routes and middlewares
-  "api",
+  'api',
   // Create oauth helpers
-  "oauth",
+  'oauth',
   // Bind to port and lift http app
-  "lift",
-];
+  'lift',
+]
 
 async function serve() {
-  console.info(TAG, chalk.dim("lifting..."));
+  console.info(TAG, chalk.dim('lifting...'))
 
-  await app.bootstrap(pipeline);
+  await app.bootstrap(pipeline)
 
-  console.info(TAG, "       version:", chalk.white(app.package.version));
-  console.info(TAG, "          port:", chalk.white(app.config.PORT));
-  console.info(TAG, "           env:", chalk.white(app.config.ENV));
+  console.info(TAG, '       version:', chalk.white(app.package.version))
+  console.info(TAG, '          port:', chalk.white(app.config.PORT))
+  console.info(TAG, '           env:', chalk.white(app.config.ENV))
 
   try {
-    let mongoUrl = new (require("url").URL)(app.config.MONGO_URL);
-    console.info(TAG, "    mongo host:", chalk.white(mongoUrl.hostname));
-    console.info(TAG, "    mongo   db:", chalk.white(mongoUrl.pathname));
+    let mongoUrl = new (require('url').URL)(app.config.MONGO_URL)
+    console.info(TAG, '    mongo host:', chalk.white(mongoUrl.hostname))
+    console.info(TAG, '    mongo   db:', chalk.white(mongoUrl.pathname))
   } catch (e) {
-    console.error(e);
+    console.error(e)
   }
 
-  if (process.env.SHUTDOWN_ON_LIFT) process.exit(0);
+  if (process.env.SHUTDOWN_ON_LIFT) process.exit(0)
 }
 
 // Listen for Application wide errors
-process.on("SIGTERM", shutdown);
-process.on("SIGINT", shutdown);
-process.on("unhandledRejection", handleError);
-process.on("uncaughtException", handleError);
+process.on('SIGTERM', shutdown)
+process.on('SIGINT', shutdown)
+process.on('unhandledRejection', handleError)
+process.on('uncaughtException', handleError)
 
 function shutdown() {
   app.agenda.stop(function () {
-    process.exit(0);
-  });
+    process.exit(0)
+  })
 }
 
 function handleError(e) {
-  console.error("Fatal Error");
-  console.error(e.stack);
+  console.error('Fatal Error')
+  console.error(e.stack)
 
   if (app.reporter) {
-    console.error("Reporting...");
+    console.error('Reporting...')
     app.reporter.report(e, () => {
-      console.error("Reported. Exiting.");
-      process.exit(1);
-    });
-    return;
+      console.error('Reported. Exiting.')
+      process.exit(1)
+    })
+    return
   }
 
-  console.error("Exiting.");
-  process.exit(1);
+  console.error('Exiting.')
+  process.exit(1)
 }
 
-serve();
+serve()

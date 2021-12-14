@@ -1,0 +1,60 @@
+name: Unit tests & lint
+
+on:
+  push:
+    branches:
+    - master
+  pull_request:
+    types:
+      - opened
+      - edited
+      - synchronize
+
+jobs:
+  lint:
+    timeout-minutes: 5
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v1
+
+    - name: Install node
+      uses: actions/setup-node@v1
+      with:
+        node-version: 16.x
+
+    - name: Install dependencies
+      run: npm install
+
+    - name: Check lint
+      run: npm run lint
+
+  unit-tests:
+    timeout-minutes: 10
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v1
+
+    - name: Install Yarn
+      run: npm install -g yarn
+
+    - name: Start docker containers
+      run: cd app && docker-compose -f "docker-compose.yaml" up -d --build
+
+    - name: Install node
+      uses: actions/setup-node@v1
+      with:
+        node-version: 16.x
+
+    - name: Install dependencies
+      run: cd app && yarn install
+
+    - name: Run unit tests
+      run: cd app && yarn run test
+
+    - name: Stop docker containers
+      if: always()
+      run: cd app && docker-compose -f "docker-compose.yaml" down
