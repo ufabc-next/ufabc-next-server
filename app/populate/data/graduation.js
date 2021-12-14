@@ -3,7 +3,7 @@ module.exports = function () {
       'curso': "Bacharelado em Ciência e Tecnologia",
       "grade": "2017",
       "credits_total": 190,
-      "free_credits_number": 43,
+      'free_credits_number': 43,
       "limited_credits_number": 57,
     "locked": true,
       "mandatory_credits_number": 90,
