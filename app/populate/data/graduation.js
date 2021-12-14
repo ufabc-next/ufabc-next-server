@@ -7,7 +7,7 @@ module.exports = function () {
       "limited_credits_number": 57,
     "locked": true,
       "mandatory_credits_number": 90,
-      "creditsBreakdown": [{
+    "creditsBreakdown": [{
           "year": 1,
           'quad': 1,
       "choosableCredits": 0
