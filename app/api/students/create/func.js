@@ -59,7 +59,14 @@ module.exports = async (context) => {
       cpTotal = Number((cpLastQuadAfterFreeze - cpFreezed).toFixed(3))
     }
 
-    const finalCP = Math.min(Number((cpLastQuad + cpTotal).toFixed(3)), 1)
+    let finalCP = null;
+    // If student enter after 2019.3
+    if(!cpLastQuad) {
+      finalCP = Math.min(Number((cpTotal).toFixed(3)), 1)
+    } else {
+      finalCP = Math.min(Number((cpLastQuad + cpTotal).toFixed(3)), 1)
+    }
+    
     c.cr = _.isFinite(c.cr) ? app.helpers.parse.toNumber(c.cr) : 0;
     c.cp = _.isFinite(c.cp) ? app.helpers.parse.toNumber(finalCP) : 0;
     c.quads = _.isFinite(c.quads) ? app.helpers.parse.toNumber(c.quads) : 0;
