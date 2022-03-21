@@ -35,6 +35,9 @@ module.exports = async (context) => {
   const cursos = (context.body.cursos || []).map(async (c) => {
     let courseCleaned = c.curso.trim().replace("↵", "").replace(/\s+/g, " ");
     let cpLastQuad = null;
+    let cpFreezed = null;
+    let cpLastQuadAfterFreeze = null;
+    let cpTotal = null;
     if (
       season == "2020:2" ||
       season == "2020:3" ||
@@ -49,10 +52,15 @@ module.exports = async (context) => {
         curso: courseCleaned,
       });
       cpLastQuad = _.get(history, "coefficients.2019.3.cp_acumulado", c.cp);
+      
+      
+      cpFreezed = _.get(history, "coefficients.2021.2.cp_acumulado", null);
+      cpLastQuadAfterFreeze = _.get(history, "coefficients.2021.3.cp_acumulado", null);
+      cpTotal = cpLastQuadAfterFreeze - cpFreezed
     }
 
     c.cr = _.isFinite(c.cr) ? app.helpers.parse.toNumber(c.cr) : 0;
-    c.cp = _.isFinite(c.cp) ? app.helpers.parse.toNumber(cpLastQuad) : 0;
+    c.cp = _.isFinite(c.cp) ? app.helpers.parse.toNumber(cpLastQuad + cpTotal) : 0;
     c.quads = _.isFinite(c.quads) ? app.helpers.parse.toNumber(c.quads) : 0;
     c.nome_curso = courseCleaned;
     c.ind_afinidade = 0.07 * c.cr + 0.63 * c.cp + 0.005 * c.quads;
