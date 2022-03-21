@@ -55,7 +55,7 @@ module.exports = async function (context) {
     return _.extend(
       {
         aluno_id: s.aluno_id,
-        cr: s.cursos.cr,
+        cr: "-",
         cp: s.cursos.cp,
         ik: reserva ? s.cursos.ind_afinidade : 0,
         reserva: reserva,
