@@ -51,7 +51,7 @@ module.exports = async (context) => {
         ra: ra,
         curso: courseCleaned,
       });
-      cpLastQuad = _.get(history, "coefficients.2019.3.cp_acumulado", c.cp);
+      cpLastQuad = _.get(history, "coefficients.2019.3.cp_acumulado", null);
       
       // Sum cp before pandemic + cp after freezed
       cpFreezed = _.get(history, "coefficients.2021.2.cp_acumulado", null);
