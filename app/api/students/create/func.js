@@ -34,9 +34,7 @@ module.exports = async (context) => {
 
   const cursos = (context.body.cursos || []).map(async (c) => {
     let courseCleaned = c.curso.trim().replace("↵", "").replace(/\s+/g, " ");
-    let cpLastQuad = null;
-    let cpFreezed = null;
-    let cpLastQuadAfterFreeze = null;
+    let cpBeforePandemic = null;
     let cpTotal = null;
     if (
       season == "2020:2" ||
@@ -51,20 +49,23 @@ module.exports = async (context) => {
         ra: ra,
         curso: courseCleaned,
       });
-      cpLastQuad = _.get(history, "coefficients.2019.3.cp_acumulado", null);
+      cpBeforePandemic = _.get(history, "coefficients.2019.3.cp_acumulado", null);
       
       // Sum cp before pandemic + cp after freezed
-      cpFreezed = _.get(history, "coefficients.2021.2.cp_acumulado", null);
-      cpLastQuadAfterFreeze = _.get(history, "coefficients.2021.3.cp_acumulado", null);
-      cpTotal = Number((cpLastQuadAfterFreeze - cpFreezed).toFixed(3))
+      let cpFreezed = _.get(history, "coefficients.2021.2.cp_acumulado", null);
+      let cpLastQuadAfterFreeze = _.get(history, "coefficients.2021.3.cp_acumulado", null);
+
+      if(cpLastQuadAfterFreeze) {
+        cpTotal = cpLastQuadAfterFreeze - cpFreezed
+      }
     }
 
     let finalCP = null;
     // If student enter after 2019.3
-    if(!cpLastQuad) {
-      finalCP = Math.min(Number((cpTotal).toFixed(3)), 1)
+    if(!cpBeforePandemic) {
+      finalCP = Math.min(Number((cpTotal || c.cp).toFixed(3)), 1)
     } else {
-      finalCP = Math.min(Number((cpLastQuad + cpTotal).toFixed(3)), 1)
+      finalCP = Math.min(Number((cpBeforePandemic + cpTotal).toFixed(3)), 1)
     }
     
     c.cr = _.isFinite(c.cr) ? app.helpers.parse.toNumber(c.cr) : 0;
