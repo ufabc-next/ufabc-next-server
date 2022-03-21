@@ -44,7 +44,7 @@ module.exports = async function (context) {
 
   const interIds = [
     await findId("Bacharelado em Ciência e Tecnologia", season),
-    await findId("Bacharelado em Ciência e Humanidades", season),
+    await findId("Bacharelado em Ciências e Humanidades", season),
   ];
 
   const obrigatorias = _.pull(disciplina.obrigatorias, ...interIds);

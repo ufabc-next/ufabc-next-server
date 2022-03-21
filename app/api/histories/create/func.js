@@ -1,19 +1,24 @@
-const app = require('@/app')
-const moment = require('moment')
+const app = require('@/app');
+const errors = require('@/errors');
+const moment = require('moment');
 
 module.exports = async function (context) {
   const { 
     ra, 
-    curso, 
     grade, 
     mandatory_credits_number, 
     limited_credits_number, 
     free_credits_number, 
     credits_total 
   } = context.body
+  let { curso } = context.body
 
   if(!ra) {
-    return
+    throw new errors.BadRequest.MissingParameter("ra");
+  }
+
+  if(curso == "Bacharelado em CIências e Humanidades") {
+    curso = "Bacharelado em Ciências e Humanidades"
   }
 
   if(curso && grade) {  

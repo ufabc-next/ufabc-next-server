@@ -20,7 +20,7 @@ module.exports = async function getDisciplinaStats(context) {
     // get ids of inter courses
     const interIds = [
       await findId('Bacharelado em Ciência e Tecnologia', season),
-      await findId('Bacharelado em Ciência e Humanidades', season),
+      await findId('Bacharelado em Ciências e Humanidades', season),
     ]
 
     match.obrigatorias = { $in: [curso_id] }
