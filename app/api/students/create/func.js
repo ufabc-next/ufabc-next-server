@@ -59,8 +59,9 @@ module.exports = async (context) => {
       cpTotal = Number((cpLastQuadAfterFreeze - cpFreezed).toFixed(3))
     }
 
+    const finalCP = Math.min(Number((cpLastQuad + cpTotal).toFixed(3)), 1)
     c.cr = _.isFinite(c.cr) ? app.helpers.parse.toNumber(c.cr) : 0;
-    c.cp = _.isFinite(c.cp) ? app.helpers.parse.toNumber(Math.min((cpLastQuad + cpTotal), 1)) : 0;
+    c.cp = _.isFinite(c.cp) ? app.helpers.parse.toNumber(finalCP) : 0;
     c.quads = _.isFinite(c.quads) ? app.helpers.parse.toNumber(c.quads) : 0;
     c.nome_curso = courseCleaned;
     c.ind_afinidade = 0.07 * c.cr + 0.63 * c.cp + 0.005 * c.quads;
