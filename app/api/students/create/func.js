@@ -59,7 +59,7 @@ module.exports = async (context) => {
       cpTotal = Number((cpLastQuadAfterFreeze - cpFreezed).toFixed(3))
     }
 
-    c.cr = _.isFinite(c.cr) ? app.helpers.parse.toNumber(c.cr) : 0;
+    c.cr = "-"//_.isFinite(c.cr) ? app.helpers.parse.toNumber(c.cr) : 0;
     c.cp = _.isFinite(c.cp) ? app.helpers.parse.toNumber(cpLastQuad + cpTotal) : 0;
     c.quads = _.isFinite(c.quads) ? app.helpers.parse.toNumber(c.quads) : 0;
     c.nome_curso = courseCleaned;
