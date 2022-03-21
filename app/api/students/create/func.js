@@ -53,10 +53,10 @@ module.exports = async (context) => {
       });
       cpLastQuad = _.get(history, "coefficients.2019.3.cp_acumulado", c.cp);
       
-      
+      // Sum cp before pandemic + cp after freezed
       cpFreezed = _.get(history, "coefficients.2021.2.cp_acumulado", null);
       cpLastQuadAfterFreeze = _.get(history, "coefficients.2021.3.cp_acumulado", null);
-      cpTotal = cpLastQuadAfterFreeze - cpFreezed
+      cpTotal = (cpLastQuadAfterFreeze - cpFreezed).toFixed(3)
     }
 
     c.cr = _.isFinite(c.cr) ? app.helpers.parse.toNumber(c.cr) : 0;
