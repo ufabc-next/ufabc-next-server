@@ -48,6 +48,8 @@ module.exports = async (context) => {
       const history = await app.models.historiesGraduations.findOne({
         ra: ra,
         curso: courseCleaned,
+      }).sort({
+        updatedAt: -1,
       });
       cpBeforePandemic = _.get(history, "coefficients.2019.3.cp_acumulado", null);
       
