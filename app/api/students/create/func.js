@@ -23,7 +23,7 @@ module.exports = async (context) => {
 
   if (
     (context.body.cursos || []).some(
-      (curso) => !curso.curso_id || curso.curso_id == "null" && curso.curso != "Bacharelado em Ciências e Humanidades"
+      (curso) => (!curso.curso_id || curso.curso_id == "null") && (curso.curso != "Bacharelado em CIências e Humanidades" || "Bacharelado em Ciências e Humanidades")
     ) ||
     !ra
   ) {
@@ -34,6 +34,10 @@ module.exports = async (context) => {
 
   const cursos = (context.body.cursos || []).map(async (c) => {
     let courseCleaned = c.curso.trim().replace("↵", "").replace(/\s+/g, " ");
+    if(courseCleaned == "Bacharelado em CIências e Humanidades") {
+      courseCleaned = "Bacharelado em Ciências e Humanidades"
+    }
+
     let cpBeforePandemic = null;
     let cpTotal = null;
     if (
