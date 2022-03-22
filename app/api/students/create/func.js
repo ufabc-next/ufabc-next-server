@@ -39,7 +39,7 @@ module.exports = async (context) => {
     }
 
     let cpBeforePandemic = null;
-    let cpTotal = null;
+    let cpTotal = c.cp;
     if (
       season == "2020:2" ||
       season == "2020:3" ||
