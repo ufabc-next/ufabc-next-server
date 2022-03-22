@@ -23,7 +23,7 @@ module.exports = async (context) => {
 
   if (
     (context.body.cursos || []).some(
-      (curso) => !curso.curso_id || curso.curso_id == "null"
+      (curso) => !curso.curso_id || curso.curso_id == "null" && curso.curso != "Bacharelado em Ciências e Humanidades"
     ) ||
     !ra
   ) {
@@ -75,7 +75,11 @@ module.exports = async (context) => {
     c.quads = _.isFinite(c.quads) ? app.helpers.parse.toNumber(c.quads) : 0;
     c.nome_curso = courseCleaned;
     c.ind_afinidade = 0.07 * c.cr + 0.63 * c.cp + 0.005 * c.quads;
-    c.id_curso = c.curso_id;
+    if(!c.curso_id && c.curso == "Bacharelado em Ciências e Humanidades") {
+      c.id_curso = 25;
+    } else {
+      c.id_curso = c.curso_id;
+    }
     return c;
   });
 
