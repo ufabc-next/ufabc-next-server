@@ -23,7 +23,7 @@ module.exports = async (context) => {
 
   if (
     (context.body.cursos || []).some(
-      (curso) => (!curso.curso_id || curso.curso_id == "null") && (curso.curso != "Bacharelado em CIências e Humanidades" || "Bacharelado em Ciências e Humanidades")
+      (curso) => (!curso.curso_id || curso.curso_id == "null") && (curso.curso != "Bacharelado em CIências e Humanidades" && "Bacharelado em Ciências e Humanidades")
     ) ||
     !ra
   ) {
