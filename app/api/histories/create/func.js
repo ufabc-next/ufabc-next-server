@@ -19,6 +19,7 @@ module.exports = async function (context) {
 
   if(curso == "Bacharelado em CIências e Humanidades") {
     curso = "Bacharelado em Ciências e Humanidades"
+    context.body.curso = "Bacharelado em Ciências e Humanidades"
   }
 
   if(curso && grade) {  
