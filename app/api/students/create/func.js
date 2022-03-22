@@ -39,7 +39,7 @@ module.exports = async (context) => {
     }
 
     let cpBeforePandemic = null;
-    let cpTotal = c.cp;
+    let cpTotal = null;
     if (
       season == "2020:2" ||
       season == "2020:3" ||
@@ -61,7 +61,7 @@ module.exports = async (context) => {
       let cpFreezed = _.get(history, "coefficients.2021.2.cp_acumulado", null);
       let cpLastQuadAfterFreeze = _.get(history, "coefficients.2021.3.cp_acumulado", null);
 
-      if(cpLastQuadAfterFreeze) {
+      if(cpLastQuadAfterFreeze && cpFreezed) {
         cpTotal = cpLastQuadAfterFreeze - cpFreezed
       }
     }
@@ -69,6 +69,9 @@ module.exports = async (context) => {
     let finalCP = null;
     // If student enter after 2019.3
     if(!cpBeforePandemic) {
+      if(!cpTotal) {
+        cpTotal = c.cp
+      }
       finalCP = Math.min(Number((cpTotal).toFixed(3)), 1)
     } else {
       finalCP = Math.min(Number((cpBeforePandemic + cpTotal).toFixed(3)), 1)
