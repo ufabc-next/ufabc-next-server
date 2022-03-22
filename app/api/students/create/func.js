@@ -65,7 +65,7 @@ module.exports = async (context) => {
     let finalCP = null;
     // If student enter after 2019.3
     if(!cpBeforePandemic) {
-      finalCP = Math.min(Number((cpTotal || c.cp).toFixed(3)), 1)
+      finalCP = Math.min(Number((cpTotal).toFixed(3)), 1)
     } else {
       finalCP = Math.min(Number((cpBeforePandemic + cpTotal).toFixed(3)), 1)
     }
