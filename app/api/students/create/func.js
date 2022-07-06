@@ -47,7 +47,8 @@ module.exports = async (context) => {
       season == "2021:2" ||
       season == "2021:3" ||
       season == "2022:1" ||
-      season == "2022:2"
+      season == "2022:2" ||
+      season == "2022:3"
     ) {
       const history = await app.models.historiesGraduations.findOne({
         ra: ra,
@@ -59,7 +60,7 @@ module.exports = async (context) => {
       
       // Sum cp before pandemic + cp after freezed
       let cpFreezed = _.get(history, "coefficients.2021.2.cp_acumulado", null);
-      let cpLastQuadAfterFreeze = _.get(history, "coefficients.2021.3.cp_acumulado", null);
+      let cpLastQuadAfterFreeze = _.get(history, "coefficients.2022.1.cp_acumulado", null);
 
       if(cpLastQuadAfterFreeze && cpFreezed) {
         cpTotal = cpLastQuadAfterFreeze - cpFreezed
