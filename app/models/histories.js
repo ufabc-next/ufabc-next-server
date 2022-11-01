@@ -33,6 +33,6 @@ Model.pre('findOneAndUpdate', async function () {
 })
 
 Model.post('save', async function () {
-  app.agenda.now('updateUserEnrollments', this.toObject({ virtuals: true }))
+  app.config.isProduction && app.agenda.now('updateUserEnrollments', this.toObject({ virtuals: true }))
 })
 

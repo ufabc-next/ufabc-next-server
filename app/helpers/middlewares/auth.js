@@ -12,6 +12,16 @@ module.exports = async (req, res, next) => {
     if (authorization && authorization.startsWith('Bearer ')) {
       let tokenString = req.headers.authorization.replace('Bearer ', '')
 
+      // bypass authentication development enviroment
+      if (tokenString == app.config.TOKEN_DEVELOPMENT && app.config.isDev){
+        req.user = await app.models.users.findOne({ ra : "999999" })
+        if(!req.user || !req.user.active) {
+          throw new errors.BadRequest('Você precisa executar o comando populate.')
+        }
+
+        return next()
+      }
+
       // verify user
       await jwt.verify(tokenString, app.config.JWT_SECRET)
       let user = jwt.decode(tokenString, { complete: true }) || {}
@@ -21,6 +31,7 @@ module.exports = async (req, res, next) => {
       if(!req.user.active) {
         throw new errors.BadRequest('Essa conta foi desativada')
       }
+
       
       // if(!req.user.confirmed) {
       //   throw new errors.Unauthorized('Usuário ainda não foi confirmado')

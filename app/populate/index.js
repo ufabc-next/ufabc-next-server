@@ -124,7 +124,7 @@ _.mixin({
 // it is necessary because some models needs ids (or models) from another models
 const modelPriority = {
   teachers: 1,
-  subjects: 2
+  subjects: 2,
 }
 
 async function createDatabases(app, COMMUNITY, only, until){
@@ -153,11 +153,6 @@ async function createDatabases(app, COMMUNITY, only, until){
       })
     }
 
-    // avoid wrong pendency creation on on dev environment
-    if(app.config.ENV == 'dev' && model == 'pendency') {
-      continue
-    }
-
     let Model, resp
 
     Model = app.models[model].bySeason(app.helpers.season.findSeasonKey())
@@ -171,6 +166,7 @@ async function createDatabases(app, COMMUNITY, only, until){
     let saved = dataModels.map(data => {
       return new Promise(function (resolve) {
         Model.create(data, (err, model) => {
+          console.log(err);
           if(err){
             throw new Error(err)
           }

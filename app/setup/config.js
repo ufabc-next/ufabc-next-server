@@ -44,6 +44,10 @@ module.exports = async () => {
     "DISCIPLINAS_URL",
     "http://localhost:8011/snapshot/assets/todasDisciplinas.js"
   );
+  config.TOKEN_DEVELOPMENT = getEnv(
+    "TOKEN_DEVELOPMENT",
+    "DEVTOKEN"
+    )
 
   // Static assets (dist) configs
   config.distFolder = getEnv("DIST_FOLDER", path.join(__dirname, "../../dist"));
