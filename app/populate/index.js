@@ -18,7 +18,6 @@ if (module.parent) {
     try {
       return await populate(...arguments)
     } catch (e) {
-      console.error(e)
       process.exit(1)
     }
   })
