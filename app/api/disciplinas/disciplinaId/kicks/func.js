@@ -80,7 +80,8 @@ function kickRule(disciplina) {
     season == "2021:3" ||
     season == "2022:1" ||
     season == "2022:2" ||
-    season == "2022:3"
+    season == "2022:3" ||
+    season == "2023:1"
   ) {
     coeffRule = ["cp", "cr"];
   } else {
