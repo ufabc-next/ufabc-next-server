@@ -4,6 +4,7 @@ const errors = require('@/errors')
 module.exports = async(context) => {
   let { token } = context.body
 
+
   if(!token) {
     throw new errors.BadRequest.MissingParameter('token')
   }
