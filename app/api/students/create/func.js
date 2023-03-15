@@ -40,33 +40,21 @@ module.exports = async (context) => {
 
     let cpBeforePandemic = null;
     let cpTotal = null;
-    if (
-      season == "2020:2" ||
-      season == "2020:3" ||
-      season == "2021:1" ||
-      season == "2021:2" ||
-      season == "2021:3" ||
-      season == "2022:1" ||
-      season == "2022:2" ||
-      season == "2022:3" ||
-      season == "2023:1" ||
-      season == "2023:2"
-    ) {
-      const history = await app.models.historiesGraduations.findOne({
-        ra: ra,
-        curso: courseCleaned,
-      }).sort({
-        updatedAt: -1,
-      });
-      cpBeforePandemic = _.get(history, "coefficients.2019.3.cp_acumulado", null);
-      
-      // Sum cp before pandemic + cp after freezed
-      let cpFreezed = _.get(history, "coefficients.2021.2.cp_acumulado", null);
-      let cpLastQuadAfterFreeze = _.get(history, "coefficients.2022.1.cp_acumulado", null);
+    const lastSeason = app.helpers.season.findLastSeason();
+    const history = await app.models.historiesGraduations.findOne({
+      ra: ra,
+      curso: courseCleaned,
+    }).sort({
+      updatedAt: -1,
+    });
+    cpBeforePandemic = _.get(history, "coefficients.2019.3.cp_acumulado", null);
+    
+    // Sum cp before pandemic + cp after freezed
+    let cpFreezed = _.get(history, "coefficients.2021.2.cp_acumulado", null);
+    let cpLastQuadAfterFreeze = _.get(history, `coefficients.${lastSeason.year}.${lastSeason.quad}.cp_acumulado`, null);
 
-      if(cpLastQuadAfterFreeze && cpFreezed) {
-        cpTotal = cpLastQuadAfterFreeze - cpFreezed
-      }
+    if(cpLastQuadAfterFreeze && cpFreezed) {
+      cpTotal = cpLastQuadAfterFreeze - cpFreezed
     }
 
     let finalCP = null;
