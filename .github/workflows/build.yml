@@ -39,4 +39,4 @@ jobs:
         run: npm install -g caprover
 
       - name: Caprover Deploy
-        run: caprover deploy -h 'https://captain.sv.ufabcnext.com' -p '${{ secrets.CAPROVER_PASSWORD }}' -b 'master' -a 'api
+        run: caprover deploy -h 'https://captain.sv.ufabcnext.com' -p '${{ secrets.CAPROVER_PASSWORD }}' -b 'master' -a 'api'
