@@ -76,6 +76,7 @@ Model.method('generateJWT', function () {
     'ra',
     'confirmed',
     'email',
+    'permissions'
   ]), app.config.JWT_SECRET)
 })
 
