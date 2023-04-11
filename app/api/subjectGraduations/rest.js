@@ -11,7 +11,6 @@ restify.serve(app.router, app.models.subjectGraduations, {
   preRead: [app.helpers.rest.paginate],
   preCreate: guard.check([['admin'],['subjectsGraduations:write']]),
   preUpdate: guard.check([['admin'],['subjectsGraduations:write']]),
-  // preDelete: guard.check('users:write'),
-  outputFn: app.helpers.rest.outputFn,
-  only: ['list', 'get', 'create', 'update']
+  preDelete: guard.check([['admin'],['subjectsGraduations:write']]),
+  outputFn: app.helpers.rest.outputFn
 })
