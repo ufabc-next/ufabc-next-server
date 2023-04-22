@@ -50,7 +50,7 @@ async function validateRules(reaction){
   const Comment = app.models.comments
 
   if(reaction.kind == 'recommendation') {
-    const isValidId = mongoose.Types.ObjectId.isValid
+    const isValidId = mongoose.isObjectIdOrHexString
 
     const user = isValidId(reaction.user) ? await User.findById(reaction.user) : reaction.user
 

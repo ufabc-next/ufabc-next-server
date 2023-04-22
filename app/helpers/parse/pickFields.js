@@ -49,7 +49,7 @@ module.exports = function pickFields(obj, fields, payload) {
   JSON.stringify(obj)
 
   // parse object Id to string
-  if(_.isObject(obj) && mongoose.Types.ObjectId.isValid(obj)){
+  if (_.isObject(obj) && mongoose.isObjectIdOrHexString(obj)) {
     return obj.toString()
   }
 
