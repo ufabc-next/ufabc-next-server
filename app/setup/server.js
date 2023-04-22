@@ -17,7 +17,7 @@ module.exports = async (app) => {
   let server = express()
 
   // Config Sentry
-  if (app.config.isProduction()) {
+  if (app.config.isProduction) {
     Sentry.init({ dsn: app.config.SENTRY, tracesSampleRate: 1.0 })
   }
 
