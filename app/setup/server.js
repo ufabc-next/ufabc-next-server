@@ -1,12 +1,10 @@
 const Raven = require('raven')
 const morgan = require('morgan')
-const cors = require('cors')
 const express = require('express')
 const bodyParser = require('body-parser')
 const compression = require('compression')
-const requireAll = require('require-all')
-const Liana = require('forest-express-mongoose')
-const path = require('path')
+const { createAgent } = require('@forestadmin/agent')
+const { createMongooseDataSource } = require('@forestadmin/datasource-mongoose')
 const methodOverride = require('method-override')
 
 const logFormat = '[server] [:date[iso]] :status :res[content-length] :response-time ms :method :url :remote-addr'
@@ -24,7 +22,7 @@ module.exports = async (app) => {
   server.use(compression())
 
   // Configure body-parsing
-  server.use(bodyParser.json({ limit: '30mb', extended: true }))
+  server.use('^(?!forest).+$', bodyParser.json({ limit: '30mb', extended: true }))
   server.use(bodyParser.urlencoded({ limit: '30mb', extended: true }))
 
   // For browsers that don't make advanced HTTP Method calls
@@ -49,31 +47,14 @@ module.exports = async (app) => {
     next()
   })
 
-  // Install forest
-  server.use('/forest', await Liana.init({
-    configDir: __dirname + '/../forest',
-    envSecret: process.env.FOREST_ENV_SECRET,
+  createAgent({
     authSecret: process.env.FOREST_AUTH_SECRET,
-    objectMapping: require('mongoose'),
-    connections: { 'default': app.mongo }
-  }))
-
-  server.use('^(?!forest/?$).*', cors({
-    origin: [/\.forestadmin\.com$/, /localhost:\d{4}$/],
-    allowedHeaders: ['Forest-Context-Url', 'Authorization', 'X-Requested-With', 'Content-Type'],
-    maxAge: 86400, // 1 day
-    credentials: true
-  }))
-  
-  // Allow cors
-  server.use(app.helpers.middlewares.cors)
-
-  requireAll({
-    dirname: path.join(__dirname, '../api/forest'),
-    recursive: true,
-    resolve: Module => server.use('/forest', Module)
+    envSecret: process.env.FOREST_ENV_SECRET,
+    isProduction: process.env.NODE_ENV === 'production'
   })
-  
+    .addDataSource(createMongooseDataSource(app.mongo))
+    .mountOnExpress(server)
+    .start()
 
   return server
 }
