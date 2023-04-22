@@ -61,6 +61,8 @@ module.exports = async (app) => {
   } catch (e) {
     Raven.captureException(e)
   }
+
+  server.use('*', app.helpers.middlewares.cors)
   
 
   return server
