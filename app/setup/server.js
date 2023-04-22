@@ -1,9 +1,11 @@
 const Raven = require('raven')
 const morgan = require('morgan')
+const cors = require('cors')
 const express = require('express')
 const bodyParser = require('body-parser')
 const compression = require('compression')
 const requireAll = require('require-all')
+const Liana = require('forest-express-mongoose')
 const path = require('path')
 const methodOverride = require('method-override')
 
@@ -48,13 +50,20 @@ module.exports = async (app) => {
   })
 
   // Install forest
-  const forestRouter = express.Router()
-  require('lumber-forestadmin').run(forestRouter, {
+  server.use('/forest', await Liana.init({
+    configDir: __dirname + '/../forest',
     envSecret: process.env.FOREST_ENV_SECRET,
     authSecret: process.env.FOREST_AUTH_SECRET,
-    mongoose: app.mongo,
-  })
-  server.use('/forest', forestRouter)
+    objectMapping: require('mongoose'),
+    connections: { 'default': app.mongo }
+  }))
+
+  server.use('^(?!forest/?$).*', cors({
+    origin: [/\.forestadmin\.com$/, /localhost:\d{4}$/],
+    allowedHeaders: ['Forest-Context-Url', 'Authorization', 'X-Requested-With', 'Content-Type'],
+    maxAge: 86400, // 1 day
+    credentials: true
+  }))
   
   // Allow cors
   server.use(app.helpers.middlewares.cors)
