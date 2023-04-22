@@ -1,4 +1,4 @@
-const Raven = require('raven')
+const Sentry = require('@sentry/node')
 const morgan = require('morgan')
 const express = require('express')
 const bodyParser = require('body-parser')
@@ -17,7 +17,9 @@ module.exports = async (app) => {
   let server = express()
 
   // Config Sentry
-  app.config.isProduction ? Raven.config(app.config.SENTRY).install() : null
+  if (app.config.isProduction()) {
+    Sentry.init({ dsn: app.config.SENTRY, tracesSampleRate: 1.0 })
+  }
 
   // Configure compression
   server.use(compression())
@@ -59,7 +61,7 @@ module.exports = async (app) => {
       .mountOnExpress(server)
       .start()
   } catch (e) {
-    Raven.captureException(e)
+    Sentry.captureException(e)
   }
 
   server.use('*', app.helpers.middlewares.cors)

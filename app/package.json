@@ -17,6 +17,7 @@
   "dependencies": {
     "@forestadmin/agent": "^1.8.9",
     "@forestadmin/datasource-mongoose": "^1.3.5",
+    "@sentry/node": "^7.49.0",
     "agenda": "^2.0.2",
     "api-query-params": "^4.5.1",
     "apidoc": "^0.17.6",
@@ -53,7 +54,6 @@
     "morgan": "^1.8.2",
     "ms": "^2.1.1",
     "nyc": "^13.1.0",
-    "raven": "^2.6.3",
     "redis": "^2.8.0",
     "require-all": "^3.0.0",
     "require-smart": "^1.1.2",

@@ -1,4 +1,4 @@
-const Raven = require('raven')
+const Sentry = require('@sentry/node')
 
 module. exports = (fn) => {
   return async (job, done) => {
@@ -6,7 +6,7 @@ module. exports = (fn) => {
       job.attrs.result = await fn(job.attrs.data)
       done()
     } catch (e) {
-      Raven.captureException(e)
+      Sentry.captureException(e)
       done(e)
     }
   }

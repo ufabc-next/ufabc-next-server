@@ -1,6 +1,6 @@
 const _ = require('lodash')
 const app = require('@/app')
-const Raven = require('raven')
+const Sentry = require('@sentry/node')
 const parser = require('ua-parser-js')
 
 module.exports = (err, req, res, next) => {
@@ -31,7 +31,7 @@ module.exports = (err, req, res, next) => {
       ua.os.name = ua.os.name.replace('Mac OS', 'Mac OS X')
     }
 
-    Raven.captureException(err, { contexts: ua })
+    Sentry.captureException(err, { contexts: ua })
   }
 
   if (!app.config.isProduction && body.status == 500) {
