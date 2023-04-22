@@ -10,7 +10,8 @@
     "start": "node app/server.js",
     "deepinstall": "npm run install-app",
     "deploy": "caprover deploy",
-    "lint": "eslint app"
+    "lint": "eslint app",
+    "lint:fix": "eslint app --fix"
   },
   "engines": {
     "node": ">= 8.0.0",

@@ -23,8 +23,8 @@ async function updateUserEnrollments(doc) {
   
   doc.coefficients = app.helpers.calculate.coefficients(doc.disciplinas, graduation)
 
-  if(doc.curso == "Bacharelado em CIências e Humanidades") {
-    doc.curso = "Bacharelado em Ciências e Humanidades"
+  if(doc.curso == 'Bacharelado em CIências e Humanidades') {
+    doc.curso = 'Bacharelado em Ciências e Humanidades'
   }
   
   await app.models.historiesGraduations.findOneAndUpdate({

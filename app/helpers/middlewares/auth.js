@@ -14,7 +14,7 @@ module.exports = async (req, res, next) => {
 
       // bypass authentication development enviroment
       if (tokenString == app.config.TOKEN_DEVELOPMENT && app.config.isDev){
-        req.user = await app.models.users.findOne({ ra : "999999" })
+        req.user = await app.models.users.findOne({ ra : '999999' })
         if(!req.user || !req.user.active) {
           throw new errors.BadRequest('Você precisa executar o comando populate.')
         }

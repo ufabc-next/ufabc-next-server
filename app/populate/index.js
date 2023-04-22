@@ -165,7 +165,7 @@ async function createDatabases(app, COMMUNITY, only, until){
     let saved = dataModels.map(data => {
       return new Promise(function (resolve) {
         Model.create(data, (err, model) => {
-          console.log(err);
+          console.log(err)
           if(err){
             throw new Error(err)
           }

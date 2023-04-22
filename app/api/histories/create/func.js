@@ -1,6 +1,6 @@
-const app = require('@/app');
-const errors = require('@/errors');
-const moment = require('moment');
+const app = require('@/app')
+const errors = require('@/errors')
+const moment = require('moment')
 
 module.exports = async function (context) {
   const { 
@@ -14,12 +14,12 @@ module.exports = async function (context) {
   let { curso } = context.body
 
   if(!ra) {
-    throw new errors.BadRequest.MissingParameter("ra");
+    throw new errors.BadRequest.MissingParameter('ra')
   }
 
-  if(curso == "Bacharelado em CIências e Humanidades") {
-    curso = "Bacharelado em Ciências e Humanidades"
-    context.body.curso = "Bacharelado em Ciências e Humanidades"
+  if(curso == 'Bacharelado em CIências e Humanidades') {
+    curso = 'Bacharelado em Ciências e Humanidades'
+    context.body.curso = 'Bacharelado em Ciências e Humanidades'
   }
 
   if(curso && grade) {  

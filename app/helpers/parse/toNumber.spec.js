@@ -19,13 +19,13 @@ describe('toNumber', function () {
     })
 
     it('should parse comma value correctly', function () {
-        assert.equal(1000, toNumber('1000,00'))
-        assert.equal(6213.99, toNumber('6213,99'))
+      assert.equal(1000, toNumber('1000,00'))
+      assert.equal(6213.99, toNumber('6213,99'))
     })
 
     it('should parse point value correctly', function () {
-        assert.equal(10, toNumber('10.00'))
-        assert.equal(767.35, toNumber('767.35'))
+      assert.equal(10, toNumber('10.00'))
+      assert.equal(767.35, toNumber('767.35'))
     })
   })
 }) 
