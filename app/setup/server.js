@@ -2,6 +2,7 @@ const Raven = require('raven')
 const morgan = require('morgan')
 const express = require('express')
 const bodyParser = require('body-parser')
+const path = require('path')
 const compression = require('compression')
 const { createAgent } = require('@forestadmin/agent')
 const { createMongooseDataSource } = require('@forestadmin/datasource-mongoose')
@@ -51,7 +52,8 @@ module.exports = async (app) => {
     createAgent({
       authSecret: process.env.FOREST_AUTH_SECRET,
       envSecret: process.env.FOREST_ENV_SECRET,
-      isProduction: process.env.NODE_ENV === 'production'
+      isProduction: process.env.NODE_ENV === 'production',
+      schemaPath: path.join(__dirname, '../.forestadmin-schema.json')
     })
       .addDataSource(createMongooseDataSource(app.mongo))
       .mountOnExpress(server)
