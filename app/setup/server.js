@@ -47,14 +47,19 @@ module.exports = async (app) => {
     next()
   })
 
-  createAgent({
-    authSecret: process.env.FOREST_AUTH_SECRET,
-    envSecret: process.env.FOREST_ENV_SECRET,
-    isProduction: process.env.NODE_ENV === 'production'
-  })
-    .addDataSource(createMongooseDataSource(app.mongo))
-    .mountOnExpress(server)
-    .start()
+  try {
+    createAgent({
+      authSecret: process.env.FOREST_AUTH_SECRET,
+      envSecret: process.env.FOREST_ENV_SECRET,
+      isProduction: process.env.NODE_ENV === 'production'
+    })
+      .addDataSource(createMongooseDataSource(app.mongo))
+      .mountOnExpress(server)
+      .start()
+  } catch (e) {
+    Raven.captureException(e)
+  }
+  
 
   return server
 }
