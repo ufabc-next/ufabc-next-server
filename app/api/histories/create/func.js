@@ -14,7 +14,7 @@ module.exports = async function (context) {
   let { curso } = context.body
 
   console.log('🚀 ~ file: func.js:15 ~ context.body:', context.body)
-  console.log('verify error'); 
+  console.log('verify error') 
   console.log('🚀 ~ file: func.js:19 ~ ra:', ra)
 
 
