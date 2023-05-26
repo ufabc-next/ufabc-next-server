@@ -25,7 +25,6 @@ module.exports = (maybeError) => {
     return
   }
 
-  console.log("teste")
   if (maybeError.name == 'ValidationError') {
     throw new errors.BadRequest.InvalidParameter(maybeError.message)
   }
