@@ -1,3 +1,4 @@
+/* eslint-disable quotes */
 const app = require('@/app')
 const errors = require('@/errors')
 const moment = require('moment')
