@@ -6,7 +6,7 @@ const moment = require('moment')
 module.exports = async function (context) {
   console.log("🚀 ~ file: func.js:6 ~ context:", context)
   console.log('🚀 ~ file: func.js:15 ~ context.body:', context.body)
-  console.log("before destructuring");
+  console.log("before destructuring")
   const { 
     ra, 
     grade, 
