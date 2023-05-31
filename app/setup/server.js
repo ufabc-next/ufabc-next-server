@@ -27,7 +27,7 @@ module.exports = async (app) => {
   // Configure body-parsing
   server.use('^(?!forest).+$', bodyParser.json({ limit: '30mb', extended: true }))
   server.use(bodyParser.urlencoded({ limit: '30mb', extended: true }))
-  server.use(bodyParser.json())
+  server.use('/v1/', bodyParser.json())
 
   // For browsers that don't make advanced HTTP Method calls
   server.use(methodOverride('_method'))
