@@ -10,24 +10,27 @@ module.exports = async function send(emails, sender = {}, templateId) {
     region: app.config.AWS_REGION,
   })
 
+  const escapeString = (str) => `\"${str.replace(/\//g, '\\/')}\"`
+
+  let TemplateData
+
+  if (templateId === 'Confirmation') {
+    TemplateData = `{ \"url\":${escapeString(emails.body.url)} }`
+  } else {
+    TemplateData = `{ \"recovery_facebook\": ${escapeString(
+      emails.body.recovery_facebook
+    )}, \"recovery_google\": ${escapeString(emails.body.recovery_google)} }`
+  }
+
   const personalizations = _.castArray(emails).map((e) =>
     ses
-      .sendEmail({
+      .sendTemplatedEmail({
         Source: app.config.mailer.EMAIL,
         Destination: {
           ToAddresses: [e.recipient],
         },
         Template: templateId,
-        TemplateData:
-          templateId === 'Confirmation'
-            ? `{ \"url\":\"${e.body.url.replace(/\//g, '\\/')}\" }`
-            : `{ \"recovery_facebook\": \"${e.body.recovery_facebook.replace(
-                /\//g,
-                "\\/"
-              )} \",recovery_google: \"${e.body.recovery_google.replace(
-                /\//g,
-                '\\/'
-              )}\" }`,
+        TemplateData: TemplateData,
       })
       .promise()
   )
