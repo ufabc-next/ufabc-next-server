@@ -5,21 +5,27 @@ const errors = require('@/errors')
 module.exports = async(context) => {
   const { user } = context
 
-  let history = await app.models.histories.findOne({ ra : user.ra })
+  //This code is necessary for show data to performance page - get the coefficients from the last history
+  //Example: users with BCT concluded and BCC in progress will have the BCC coefficients showed on the performance screen.
+  const lastHistory = await app.models.historiesGraduations.findOne({ra: user.ra}).sort({createdAt: -1})
 
-  if(!history) {
+  //Next step 
+  //Needs to add a querie to get the coefficients from the first historyGraduatiation and show that on the performance screen.
+
+
+  if(!lastHistory) {
     throw new errors.NotFound('history')
   }
 
   let graduation = null
-  if(history.curso && history.grade) {
+  if(lastHistory.curso && lastHistory.grade) {
     graduation = await app.models.graduation.findOne({
-      curso: history.curso,
-      grade: history.grade,
+      curso: lastHistory.curso,
+      grade: lastHistory.grade,
     }).lean(true)
   }
 
-  const coefficients = history.coefficients || app.helpers.calculate.coefficients(history.disciplinas || [], graduation)
+  const coefficients = lastHistory.coefficients || app.helpers.calculate.coefficients(lastHistory.disciplinas || [], graduation)
 
   return normalizeHistory(coefficients)
 }
