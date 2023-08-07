@@ -1,10 +1,10 @@
 const errors = require('@/errors')
 
-module.exports = async function(context) {
+module.exports = async function (context) {
   const { user } = context
   const { deviceId } = context.params
 
-  if(!deviceId) {
+  if (!deviceId) {
     throw new errors.BadRequest.MissingParameter('deviceId')
   }
 
@@ -12,15 +12,16 @@ module.exports = async function(context) {
     throw new errors.NotFound('Usuário não encontrado')
   }
 
-  const isValidDevice = user.devices.find(device => device.deviceId == deviceId)
+  const isValidDevice = user.devices.find(
+    (device) => device.deviceId == deviceId
+  )
 
-  if(!isValidDevice) {
+  if (!isValidDevice) {
     throw new errors.BadRequest(`Invalid deviceId: ${deviceId}`)
   }
-
-  user.removeDevice(deviceId)
+  const response = user.removeDevice(deviceId)
 
   await user.save()
 
-  return user.devices
+  return response
 }
