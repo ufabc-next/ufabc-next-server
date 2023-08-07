@@ -58,8 +58,13 @@ Model.method('addDevice', function(device) {
   this.devices = _.uniqBy(this.devices, 'deviceId')
 })
 
-Model.method('removeDevice', function(deviceId) {
-  this.devices = _.remove(this.devices,  { deviceId })
+Model.method('removeDevice', function(deviceId) { 
+  const removedDevice = _.remove(this.devices,  { deviceId })
+  this.devices.pop(removedDevice)
+
+  return {
+    message:`device ${removedDevice[0].phone} was removed`
+  }
 })
 
 Model.method('sendNotification', async function(title, body) {
