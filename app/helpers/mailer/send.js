@@ -1,37 +1,43 @@
 const _ = require('lodash')
 const app = require('@/app')
-const Axios = require('axios')
 const errors = require('@/errors')
+const SES = require('aws-sdk/clients/ses')
 
 module.exports = async function send(emails, sender = {}, templateId) {
-  const personalizations = _.castArray(emails).map(e => ({
-    to: [{ email: e.recipient }],
-    dynamic_template_data: e.body || {}
-  }))
+  const ses = new SES({
+    accessKeyId: app.config.AWS_ACCESS_KEY_ID,
+    secretAccessKey: app.config.AWS_SECRET_ACCESS_KEY,
+    region: app.config.AWS_REGION,
+  })
 
-  const headers = {
-    'Content-Type' : 'application/json',
-    'Authorization' : `Bearer ${app.config.mailer.API_KEY}`
+  const escapeString = (str) => `\"${str.replace(/\//g, '\\/')}\"`
+
+  let TemplateData
+
+  if (templateId === 'Confirmation') {
+    TemplateData = `{ \"url\":${escapeString(emails.body.url)} }`
+  } else {
+    TemplateData = `{ \"recovery_facebook\": ${escapeString(
+      emails.body.recovery_facebook
+    )}, \"recovery_google\": ${escapeString(emails.body.recovery_google)} }`
   }
 
-  const payload = {
-    'personalizations': personalizations,
-    'from': {
-      'email': app.config.mailer.EMAIL,
-      'name':  sender.name || 'UFABC next'
-    },
-    'reply_to': {
-      'email': sender.email || app.config.mailer.EMAIL,
-      'name': sender.name || 'UFABC next'
-    },
-    'template_id': templateId
-  }
+  const personalizations = _.castArray(emails).map((e) =>
+    ses
+      .sendTemplatedEmail({
+        Source: app.config.mailer.EMAIL,
+        Destination: {
+          ToAddresses: [e.recipient],
+        },
+        Template: templateId,
+        TemplateData: TemplateData,
+      })
+      .promise()
+  )
 
   try {
-    await Axios.post(app.config.mailer.ENDPOINT, payload, {
-      headers: headers,
-    })
+    await Promise.all(personalizations)
   } catch (err) {
-    throw new errors.Unprocessable(err.response.data)
+    throw new errors.Unprocessable(err.message)
   }
 }

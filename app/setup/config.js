@@ -76,6 +76,10 @@ module.exports = async () => {
     },
   }
 
+  // AWS
+  config.AWS_ACCESS_KEY_ID = getEnv("AWS_ACCESS_KEY_ID", "")
+  config.AWS_SECRET_ACCESS_KEY = getEnv("AWS_SECRET_ACCESS_KEY", "")
+
   config.RECOVERY_URL = getEnv('RECOVERY_URL', 'http://localhost:8011/connect');
 
   (config.GRANT_SECRET = getEnv('GRANT_SECRET', 'SOME_RANDOM_SECRET')),
