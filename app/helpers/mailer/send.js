@@ -10,16 +10,15 @@ module.exports = async function send(emails, sender = {}, templateId) {
     region: app.config.AWS_REGION,
   })
 
-  const escapeString = (str) => `\"${str.replace(/\//g, '\\/')}\"`
-
   let TemplateData
 
   if (templateId === 'Confirmation') {
-    TemplateData = `{ \"url\":${escapeString(emails.body.url)} }`
+    TemplateData = JSON.stringify({ url: emails.body.url });
   } else {
-    TemplateData = `{ \"recovery_facebook\": ${escapeString(
-      emails.body.recovery_facebook
-    )}, \"recovery_google\": ${escapeString(emails.body.recovery_google)} }`
+    TemplateData = JSON.stringify({
+      recovery_facebook: emails.body.recovery_facebook,
+      recovery_google: emails.body.recovery_google,
+    });
   }
 
   const personalizations = _.castArray(emails).map((e) =>
@@ -30,7 +29,7 @@ module.exports = async function send(emails, sender = {}, templateId) {
           ToAddresses: [e.recipient],
         },
         Template: templateId,
-        TemplateData: TemplateData,
+        TemplateData,
       })
       .promise()
   )
