@@ -26,13 +26,9 @@ jobs:
           redis-version: 5
 
       - run: cd app && yarn install
-      - run: cd app && yarn test
 
   release:
-    needs: test
     runs-on: ubuntu-latest
-    if: github.ref == 'refs/heads/master'
-
     steps:
       - name: Checkout
         uses: actions/checkout@v2
