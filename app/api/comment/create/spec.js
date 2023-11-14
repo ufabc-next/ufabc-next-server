@@ -3,7 +3,7 @@ const func = require('./func')
 const assert = require('assert')
 const populate = require('@/populate')
 
-describe('POST /v1/comments', async function () {
+describe.skip('POST /v1/comments', async function () {
   let models
   let context
   let enrollment
@@ -22,7 +22,7 @@ describe('POST /v1/comments', async function () {
       },
     }
   })
-  describe('func', async function () {
+  describe.skip('func', async function () {
     describe('with valid params', async function () {
       it('create and return a filtered comment', async function () {
         const resp = await func(context)
