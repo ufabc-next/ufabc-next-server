@@ -1,7 +1,7 @@
-const app = require('@/app')
-const func = require('./func')
-const assert = require('assert')
-const populate = require('@/populate')
+// const app = require('@/app')
+// const func = require('./func')
+// const assert = require('assert')
+// const populate = require('@/populate')
 
 // describe('POST /v1/comments', async function () {
 //   let models
