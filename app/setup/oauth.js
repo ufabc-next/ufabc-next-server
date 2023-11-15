@@ -15,7 +15,7 @@ module.exports = async (app) => {
 
 async function facebook (context) {
   const { inApp = '', userId = '', env = '' } = _.get(context.session, 'grant.dynamic', {})
-  console.log('this is the context', context)
+  console.log('this is the context', context.query)
   const accessToken = context.query.access_token
   const url = `https://graph.facebook.com/v18.0/me?fields=id,email&access_token=${accessToken}`
   const resp = await Axios.get(url)
