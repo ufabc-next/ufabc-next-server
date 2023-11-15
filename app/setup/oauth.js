@@ -17,7 +17,7 @@ async function facebook (context) {
   const { inApp = '', userId = '', env = '' } = _.get(context.session, 'grant.dynamic', {})
 
   const accessToken = context.query.access_token
-  const url = `https://graph.facebook.com/v18.0/me?fields=id,name,email,picture.width(640)&metadata=1&access_token=${accessToken}`
+  const url = `https://graph.facebook.com/v18.0/me?fields=id,email&access_token=${accessToken}`
   const resp = await Axios.get(url)
 
   const faceUser = resp.data
