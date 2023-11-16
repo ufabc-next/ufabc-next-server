@@ -5,9 +5,8 @@ module.exports = async (context) => {
 
   const user = await app.models.users.findOne({ ra, email })
 
-  const { _id } = user
-
   if (user) {
+    const { _id } = user
     return { userId: _id }
   }
 
