@@ -19,7 +19,7 @@ async function sendConfirmation (user) {
 
   // send email
   const TEMPLATE_ID = app.config.mailer.TEMPLATES.CONFIRMATION
-  await app.helpers.mailer.send(email, {}, TEMPLATE_ID)
+  await app.helpers.mailer.send(email, TEMPLATE_ID)
 }
 
 module.exports.sendConfirmation = sendConfirmation

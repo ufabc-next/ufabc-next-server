@@ -1,6 +1,6 @@
 {
   "name": "ufabc-matricula",
-  "version": "1.0.0",
+  "version": "1.0.2",
   "description": "Back-end of ufabc next app",
   "main": "index.js",
   "author": "Felipe Augusto",

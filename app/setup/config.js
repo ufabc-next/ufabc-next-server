@@ -77,8 +77,9 @@ module.exports = async () => {
   }
 
   // AWS
-  config.AWS_ACCESS_KEY_ID = getEnv("AWS_ACCESS_KEY_ID", "")
-  config.AWS_SECRET_ACCESS_KEY = getEnv("AWS_SECRET_ACCESS_KEY", "")
+  config.AWS_ACCESS_KEY_ID = getEnv('AWS_ACCESS_KEY_ID', '')
+  config.AWS_SECRET_ACCESS_KEY = getEnv('AWS_SECRET_ACCESS_KEY', '')
+  config.AWS_REGION = getEnv('us-east-1', 'us-east-1')
 
   config.RECOVERY_URL = getEnv('RECOVERY_URL', 'http://localhost:8011/connect');
 
