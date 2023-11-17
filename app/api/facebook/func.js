@@ -7,7 +7,6 @@ module.exports = async (context) => {
 
   const user = await app.models.users.findOne({ ra, email })
 
-  
   if (!user) {
     return {
       error: user,
@@ -16,6 +15,6 @@ module.exports = async (context) => {
   }
 
   return {
-    _redirect: `${WEB_URL}/login?token=${user.generateJWT()}`
+    token: user.generateJWT()
   }
 }
