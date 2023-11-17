@@ -3,9 +3,8 @@ const app = require('@/app')
 module.exports = async (context) => {
   const { ra, email } = context.body
 
-
-  const user = await app.models.users.findOne({ ra, email })
-
+  const user = await app.models.users.findOne({ ra, 'oauth.emailFacebook': email })
+  
   if (!user) {
     return {
       error: user,
