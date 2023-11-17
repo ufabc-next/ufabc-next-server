@@ -6,10 +6,7 @@ module.exports = async (context) => {
   const user = await app.models.users.findOne({ ra, 'oauth.emailFacebook': email })
   
   if (!user) {
-    return {
-      error: user,
-      msg: 'User does not exist'
-    }
+    throw new Error('User does not exists')
   }
 
   return {
