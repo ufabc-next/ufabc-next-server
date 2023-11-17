@@ -1,14 +1,21 @@
 const app = require('@/app')
 
 module.exports = async (context) => {
-  let { ra, email } = context.body.ra
+  const { ra, email } = context.body
+
+  const WEB_URL = app.config.WEB_URL
 
   const user = await app.models.users.findOne({ ra, email })
 
-  if (user) {
-    const { _id } = user
-    return { userId: _id }
+  
+  if (!user) {
+    return {
+      error: user,
+      msg: 'User does not exist'
+    }
   }
 
-  return null
+  return {
+    _redirect: `${WEB_URL}/login?token=${user.generateJWT()}`
+  }
 }
