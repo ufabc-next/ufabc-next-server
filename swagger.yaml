@@ -1,0 +1,738 @@
+swagger: "2.0"
+info:
+  version: "1.0.0"
+  title: Next API Documentation
+
+paths:
+  /comments/{commentId}:
+    delete:
+      summary: Delete a comment
+      parameters:
+        - name: commentId
+          in: path
+          description: ID of the comment
+          required: true
+          type: string
+      responses:
+        200:
+          description: Comment deleted successfully
+    put:
+      summary: Update a comment
+      parameters:
+        - name: commentId
+          in: path
+          required: true
+          type: string
+          description: ID of the comment to be updated.
+          schema:
+            type: object
+            required: true
+            properties:
+              commentId:
+                type: string
+      responses:
+        200:
+          description: Comment updated successfully
+          schema:
+            $ref: '#/definitions/Comment'
+  /comments:
+    post:
+      summary: Create a new comment
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - in: body
+          name: comment
+          description: Comment object
+          required: true
+          schema:
+            $ref: '#/definitions/CreateCommentRequestBody'
+      responses:
+        200:
+          description: Comment created successfully
+          schema:
+            $ref: '#/definitions/Comment'
+
+  /comments/{userId}/missing:
+    get:
+      summary: Get missing comments for a user
+      parameters:
+      - name: userId
+        in: path
+        description: ID of the user
+        required: true
+        type: string
+      responses:
+        200:
+          description: Successful operation
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Enrollment'
+
+  /comments/{teacherId}:
+    get:
+      summary: Get comments for a teacher
+      parameters:
+      
+      - name: teacherId
+        in: path
+        required: true
+        type: string
+        
+      - name: limit
+        in: query
+        required: false
+        type: integer
+        default: 10
+        
+      - name: page
+        in: query
+        required: false
+        type: integer
+        default: 0
+        
+      responses:
+        200:
+          description: Comments retrieved successfully
+
+  /comments/{teacherId}/{subjectId}:
+    get:
+      summary: Get comments for a teacher and subject
+      parameters:
+        - name: teacherId
+          in: path
+          required: true
+          type: string
+        - name: subjectId
+          in: path
+          required: true
+          type: string
+        - name: limit
+          in: query
+          required: false
+          type: integer
+          default: 10
+        - name: page
+          in: query
+          required: false
+          type: integer
+          default: 0
+      responses:
+        200:
+          description: Comments retrieved successfully
+
+  /private/disciplinas/clear:
+    get:
+      summary: Clear private disciplinas
+      responses:
+        200:
+          description: Private disciplinas cleared successfully
+
+  /disciplinas/{disciplinaId}/kicks:
+    get:
+      summary: Get kicks for a disciplina
+      parameters:
+      - name: disciplinaId
+        in: path
+        required: true
+        type: string
+      - name: sort
+        in: query
+        required: false
+        type: string
+      - name: aluno_id
+        in: query
+        required: false
+        type: string  
+      responses:
+        200:
+          description: Kicks retrieved successfully
+
+  /disciplinas:
+    get:
+      summary: Get all disciplinas
+      responses:
+        200:
+          description: Disciplinas retrieved successfully
+
+  /private/disciplinas/sync:
+    post:
+      summary: Sync private disciplinas
+      
+      responses:
+        200:
+          description: Private disciplinas synced successfully
+
+  /disciplinas/teachers:
+    put:
+      summary: Update teachers for disciplinas
+      parameters:
+      - name: mappings
+        in: body
+        required: true
+        schema:
+        type: object
+      - name: hash
+        in: body
+        required: true
+        type: string
+      - name: season
+        in: body
+        required: false
+        type: string
+      responses:
+        200:
+          description: Teachers updated successfully
+
+  /enrollments:
+    post:
+      summary: Create a new enrollment
+      responses:
+        200:
+          description: Enrollment created successfully
+
+  /enrollments/{enrollmentId}:
+    get:
+      summary: Get an enrollment by ID
+      parameters:
+      
+      - name: enrollmentId
+        in: path
+        required: true
+        type: string
+        
+      - name: ra
+        in: header
+        required: false
+        type: string
+        
+      responses:
+        200:
+          description: Enrollment retrieved successfully
+
+  /enrollments/:
+    get:
+      summary: Get all enrollments
+      responses:
+        200:
+          description: Enrollments retrieved successfully
+          
+  /enrollments/student:
+    get:
+      summary: Get all enrollments by student
+      parameters:
+      
+      - name: ra
+        in: header
+        required: false
+        type: string
+        
+      responses:
+        200:
+          description: Enrollments retrieved successfully     
+          
+
+  /private/enrollments/sync/pdf:
+    post:
+      summary: Sync enrollments with PDF
+      responses:
+        200:
+          description: Enrollments synced successfully
+
+  /enrollments/{identifier}:
+    put:
+      summary: Update an enrollment by identifier
+      parameters:
+      - name: identifier
+        in: path
+        required: true
+        type: string
+      responses:
+        200:
+          description: Enrollment updated successfully
+
+  /private/groups/index:
+    get:
+      summary: Get private groups index
+      responses:
+        200:
+          description: Private groups index retrieved successfully
+
+  /private/histories/courses/clear:
+    get:
+      summary: Clear cache of histories/courses
+      parameters:
+      - name: season
+        in: query
+        description: season para a qual deseja limpar o cache.
+        required: false
+        type: string
+      responses:
+        200:
+          description: Private histories courses cleared successfully
+
+  /histories/courses:
+    get:
+      summary: clear cache and find by id.
+      parameters:
+      - name: season
+        in: query
+        description: Temporada para a qual deseja limpar o cache e obter os IDs dos cursos.
+        required: false
+        type: string
+      responses:
+        200:
+          description: Sucesso. Retorna os IDs dos cursos para a temporada especificada.
+          schema:
+            type: array
+            items:
+              type: string
+
+
+  /histories/create:
+    post:
+      summary: Atualiza informações de graduação e histórico do aluno.
+      parameters:
+      - name: body
+        in: body
+        description: Dados para atualização das informações de graduação e histórico do aluno.
+        required: true
+        schema:
+          type: object
+          properties:
+            ra:
+              type: string
+              description: Número de registro acadêmico do aluno.
+            grade:
+              type: string
+              description: Grade do curso do aluno.
+            mandatory_credits_number:
+              type: integer
+              description: Número de créditos obrigatórios do aluno.
+            limited_credits_number:
+              type: integer
+              description: Número de créditos limitados do aluno.
+            free_credits_number:
+              type: integer
+              description: Número de créditos livres do aluno.
+            credits_total:
+              type: integer
+              description: Número total de créditos do aluno.
+            curso:
+              type: string
+              description: Nome do curso do aluno.
+      responses:
+        200:
+         description: Sucesso. Retorna um objeto com o timestamp da atualização.
+         schema:
+          type: object
+          properties:
+            ok:
+              type: number
+              description: Timestamp da atualização.
+
+  /private/enrollments/sync:
+    post:
+      summary: Sync enrollments privately
+      parameters:
+      - name: ra
+        in: header
+        required: false
+        type: string
+      - name: requestBody
+        in: body
+        required: true
+        schema:
+          type: object
+          properties:
+            hash:
+              type: string
+            year:
+              type: string
+            quad:
+              type: string
+          required:
+            - hash
+            - year
+            - quad
+      responses:
+        200:
+          description: Enrollments synced successfully
+
+  /matriculas/sync:
+    get:
+      summary: Sync matriculas
+      responses:
+        200:
+          description: Matriculas synced successfully
+
+  /reactions/{commentId}:
+    post:
+      summary: Add a reaction to a comment
+      responses:
+        200:
+          description: Reaction added successfully
+
+  /reactions/{commentId}/{kind}:
+    delete:
+      summary: Remove a reaction from a comment
+      responses:
+        200:
+          description: Reaction removed successfully
+
+  /help/subjects/{subjectId}:
+    get:
+      summary: Get help information for a subject
+      responses:
+        200:
+          description: Help information retrieved successfully
+
+  /reviews/subjects/{subjectId}:
+    get:
+      summary: Get reviews for a subject
+      responses:
+        200:
+          description: Reviews retrieved successfully
+
+  /help/teachers/{teacherId}:
+    get:
+      summary: Get help information for a teacher
+      responses:
+        200:
+          description: Help information retrieved successfully
+
+  /reviews/teachers/{teacherId}:
+    get:
+      summary: Get reviews for a teacher
+      responses:
+        200:
+          description: Reviews retrieved successfully
+
+  /stats/disciplinas/{action}:
+    get:
+      summary: Get statistics for disciplinas
+      responses:
+        200:
+          description: Statistics retrieved successfully
+
+  /stats/disciplinas:
+    get:
+      summary: Get statistics for all disciplinas
+      responses:
+        200:
+          description: Statistics retrieved successfully
+
+  /stats/disciplinas/students:
+    get:
+      summary: Get statistics for disciplinas students
+      responses:
+        200:
+          description: Statistics retrieved successfully
+
+  /stats/grades:
+    get:
+      summary: Get statistics for grades
+      responses:
+        200:
+          description: Statistics retrieved successfully
+
+  /stats/usage:
+    get:
+      summary: Get statistics for API usage
+      responses:
+        200:
+          description: Statistics retrieved successfully
+
+  /status:
+    get:
+      summary: Get API status
+      responses:
+        200:
+          description: API status retrieved successfully
+
+  /students:
+    post:
+      summary: Create a new student
+      responses:
+        200:
+          description: Student created successfully
+
+  /students/{aluno_id}:
+    get:
+      summary: Get student by ID
+      responses:
+        200:
+          description: Student retrieved successfully
+
+  /private/subjects/clear:
+    get:
+      summary: Clear private subjects
+      responses:
+        200:
+          description: Private subjects cleared successfully
+
+  /subjects:
+    get:
+      summary: Get all subjects
+      responses:
+        200:
+          description: Subjects retrieved successfully
+
+  /subjects/search:
+    get:
+      summary: Search for subjects
+      responses:
+        200:
+          description: Subjects searched successfully
+
+  /private/teachers/clear:
+    get:
+      summary: Clear private teachers
+      responses:
+        200:
+          description: Private teachers cleared successfully
+
+  /private/teachers:
+    post:
+      summary: Create a new private teacher
+      responses:
+        200:
+          description: Private teacher created successfully
+
+  /teachers:
+    get:
+      summary: Get all teachers
+      responses:
+        200:
+          description: Teachers retrieved successfully
+
+  /teachers/search:
+    get:
+      summary: Search for teachers
+      responses:
+        200:
+          description: Teachers searched successfully
+
+  /private/teachers/{teacherId}:
+    put:
+      summary: Update a private teacher
+      responses:
+        200:
+          description: Private teacher updated successfully
+
+  /users/complete:
+    put:
+      summary: Complete user profile
+      responses:
+        200:
+          description: User profile completed successfully
+
+  /users/info:
+    get:
+      summary: Get user information
+      responses:
+        200:
+          description: User information retrieved successfully
+
+  /users/me/confirm:
+    post:
+      summary: Confirm user identity
+      responses:
+        200:
+          description: User identity confirmed successfully
+
+  /account/confirm:
+    post:
+      summary: Confirm account
+      responses:
+        200:
+          description: Account confirmed successfully
+
+  /users/me/delete:
+    delete:
+      summary: Delete user account
+      responses:
+        200:
+          description: User account deleted successfully
+
+  /users/me/devices:
+    post:
+      summary: Add user device
+      responses:
+        200:
+          description: User device added successfully
+
+  /users/me/devices/{deviceId}:
+    delete:
+      summary: Remove user device
+      security:
+      - BearerAuth: []
+      parameters:
+        - in: path
+          name: deviceId
+          description: ID of the device to be removed
+          required: true
+          type: string
+      responses:
+        200:
+          description: User device removed successfully
+          examples:
+            application/json:
+              message: Device Galaxy-s6 Lite was removed 
+
+  /users/me/grades:
+    get:
+      summary: Get user grades
+      security:
+      - BearerAuth: []
+      responses:
+        200:
+          description: User grades retrieved successfully
+          schema:
+            type: object
+            properties:
+              ca_quad:
+                type: number
+                description: CA (Cumulative Average) for the current quarter
+              ca_acumulado:
+                type: number
+                description: Cumulative CA (Cumulative Average) up to the current quarter
+              cr_quad:
+                type: number
+                description: CR (Current Average) for the current quarter
+              cr_acumulado:
+                type: number
+                description: Cumulative CR (Current Average) up to the current quarter
+              cp_acumulado:
+                type: number
+                description: CP (Performance Coefficient) up to the current quarter
+              percentage_approved:
+                type: number
+                description: Percentage of approved courses
+              accumulated_credits:
+                type: integer
+                description: Total accumulated credits
+              period_credits:
+                type: integer
+                description: Credits earned in the current period
+              season:
+                type: string
+                description: Season in the format "year:quad"
+              quad:
+                type: integer
+                description: Academic quarter (1, 2, 3, or 4)
+              year:
+                type: integer
+                description: Academic year
+          examples:
+            application/json:
+              ca_quad: 2.6666666666666665
+              ca_acumulado: 2.5714285714285716
+              cr_quad: 2.6666666666666665
+              cr_acumulado: 2.5714285714285716
+              cp_acumulado: 0.137
+              percentage_approved: 1
+              accumulated_credits: 35
+              period_credits: 18
+              season: "2018:3"
+              quad: 3
+              year: 2018
+
+  /users/me/relationships:
+    get:
+      summary: Get user relationships <deprecated>
+      responses:
+        200:
+          description: User relationships retrieved successfully
+
+  /users/me/recover:
+   post:
+    summary: Envia um e-mail de confirmação para o usuário.
+    security:
+      - BearerAuth: []
+    parameters:
+      - in: body
+        name: email
+        description: Endereço de e-mail do usuário.
+        required: true
+        schema:
+          type: object
+          properties:
+            email:
+              type: string
+              example: gabriel.monteiro@aluno.ufabc.edu.br
+    responses:
+      200:
+        description: Sucesso. Um e-mail de confirmação foi enviado.
+      404:
+        description: Usuário não encontrado.
+         
+         
+  /users/me/resend:
+   post:
+    summary: Envia um e-mail de confirmação para o usuário.
+    security:
+      - BearerAuth: []
+    parameters:
+      - in: body
+        name: email
+        description: Endereço de e-mail do usuário.
+        required: true
+        schema:
+          type: object
+          properties:
+            email:
+              type: string
+              example: gabriel.monteiro@aluno.ufabc.edu.br
+    responses:
+      200:
+        description: Sucesso. Um e-mail de confirmação foi enviado.
+      404:
+        description: Usuário não encontrado.        
+          
+securityDefinitions:
+  BearerAuth:
+    type: apiKey
+    name: Authorization
+    in: header          
+          
+definitions:
+  Enrollment:
+    type: object
+    properties:
+      id:
+        type: string
+        description: ID of the enrollment
+      ra:
+        type: string
+        description: RA of the user
+  UpdateCommentRequestBody:
+    type: object
+    properties:
+      comment:
+        type: string
+        description: Updated comment text
+  CreateCommentRequestBody:
+    type: object
+    properties:
+      enrollment:
+        type: string
+        description: ID of the enrollment
+      comment:
+        type: string
+        description: Comment text
+      type:
+        type: string
+        description: Type of comment
+  Comment:
+    type: object
+    properties:
+      id:
+        type: string
+        description: ID of the comment
+      comment:
+        type: string
+        description: Comment text
