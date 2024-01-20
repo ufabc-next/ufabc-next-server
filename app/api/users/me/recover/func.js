@@ -23,7 +23,7 @@ module.exports = async function (context) {
   const payload = {
     recipient: user.email,
     body: {
-      recovery_facebook: `${RECOVERY_URL}/facebook?userId=${user._id}`,
+      recovery_facebook: "https://api.ufabcnext.com/facebook/sync",
       recovery_google: `${RECOVERY_URL}/google?userId=${user._id}`,
     },
   };
