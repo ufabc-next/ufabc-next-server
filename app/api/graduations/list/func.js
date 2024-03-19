@@ -1,6 +1,6 @@
 const app = require('@/app')
 
-module.exports = async function func(context) {
+module.exports = async function func() {
   const Graduation = await app.models.graduation
   const graduations = await Graduation.find({}).lean()
 
