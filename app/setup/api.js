@@ -19,24 +19,28 @@ module.exports = async (app) => {
   }
 
   // Authenticate user
-  api.use([
-    '/users/info',
-    '/users/complete',
-    '/users/me/resend',
-    '/users/me/grades',
-    '/users/me/delete',
-    '/users/me/devices',
-    '/enrollments',
-    '/comments',
-    '/reactions',
-    '/histories/courses',
-    '/users/me/relationships',
-    '/graduation',
-    '/subjectGraduations',
-    '/historiesGraduations',
-    '/students/aluno_id',
-    '/subjects'
-  ], app.helpers.middlewares.auth)
+  api.use(
+    [
+      '/users/info',
+      '/users/complete',
+      '/users/me/resend',
+      '/users/me/grades',
+      '/users/me/delete',
+      '/users/me/devices',
+      '/enrollments',
+      '/comments',
+      '/reactions',
+      '/histories/courses',
+      '/users/me/relationships',
+      '/graduation',
+      '/graduations/stats',
+      '/subjectGraduations',
+      '/historiesGraduations',
+      '/students/aluno_id',
+      '/subjects',
+    ],
+    app.helpers.middlewares.auth
+  )
 
   // Protect Private routes
   api.use('/private', app.helpers.middlewares.private)
@@ -46,7 +50,7 @@ module.exports = async (app) => {
   let routerPaths = glob.sync('**/*route.js', { cwd })
 
   // Require route files
-  let routers = routerPaths.map(file => require(path.join(cwd, file)))
+  let routers = routerPaths.map((file) => require(path.join(cwd, file)))
 
   // user a temporary router to order
   let tmpRoute = express()
@@ -60,13 +64,13 @@ module.exports = async (app) => {
   app.helpers.routes.order(tmpRoute)
 
   // get ordered router and apply on api
-  tmpRoute._router.stack.forEach(function (currentRoute){
+  tmpRoute._router.stack.forEach(function (currentRoute) {
     let path = _.get(currentRoute, 'route.path')
     let stack = _.get(currentRoute, 'route.stack', [])
     let method = _.get(currentRoute, 'route.stack[0].method')
-    let functions = stack.map(s => s.handle)
+    let functions = stack.map((s) => s.handle)
 
-    if(method) {
+    if (method) {
       api[method](path, ...functions)
     }
   })
@@ -75,7 +79,7 @@ module.exports = async (app) => {
 
   // Locate express-restify-mongoose files
   let restPaths = glob.sync('**/*rest.js', { cwd })
-  restPaths.map(file => require(path.join(cwd, file)))
+  restPaths.map((file) => require(path.join(cwd, file)))
 
   // Add rest to api
   api.use(app.router)
