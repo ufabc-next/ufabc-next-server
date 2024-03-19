@@ -32,7 +32,6 @@ module.exports = async function func(context) {
   ).reduce((acc, subject) => {
     const category = subject.category
     if (!category) {
-      console.log('no category', subject)
       return acc
     }
     if (!acc[category]) {
@@ -72,12 +71,7 @@ module.exports = async function func(context) {
   const mandatories = populatedGraduation.subjects.mandatory.filter(
     (subject) => {
       return enrollments.some((enrollment) => {
-        if (!enrollment.subject) {
-          console.log('no subject', enrollment)
-          return false
-        }
-        if (!subject.subject) {
-          console.log('no subject', subject)
+        if (!enrollment.subject || !subject.subject) {
           return false
         }
         return (
@@ -89,12 +83,7 @@ module.exports = async function func(context) {
 
   const limited = populatedGraduation.subjects.limited.filter((subject) => {
     return enrollments.some((enrollment) => {
-      if (!enrollment.subject) {
-        console.log('no subject', enrollment)
-        return false
-      }
-      if (!subject.subject) {
-        console.log('no subject', subject)
+      if (!enrollment.subject || !subject.subject) {
         return false
       }
       return (
@@ -102,6 +91,8 @@ module.exports = async function func(context) {
       )
     })
   })
+
+  const invalidGrades = ['O', 'F']
 
   return {
     percentage: {
@@ -128,6 +119,9 @@ module.exports = async function func(context) {
     missing: {
       mandatories: populatedGraduation.subjects.mandatory.filter((subject) => {
         return !mandatories.some((enrollment) => {
+          const completed = !invalidGrades.includes(enrollment.conceito)
+          if (!completed) return false
+
           return (
             enrollment.subject._id.toString() === subject.subject._id.toString()
           )
@@ -135,6 +129,9 @@ module.exports = async function func(context) {
       }),
       limited: populatedGraduation.subjects.limited.filter((subject) => {
         return !limited.some((enrollment) => {
+          const completed = !invalidGrades.includes(enrollment.conceito)
+          if (!completed) return false
+
           return (
             enrollment.subject._id.toString() === subject.subject._id.toString()
           )

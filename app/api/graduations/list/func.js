@@ -28,7 +28,6 @@ module.exports = async function func() {
       ).reduce((acc, subject) => {
         const category = subject.category
         if (!category) {
-          console.log('no category', subject)
           return acc
         }
         if (!acc[category]) {
