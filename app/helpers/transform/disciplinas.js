@@ -73,7 +73,8 @@ module.exports = function convertDisciplina(d) {
   disciplina.pop()
 
   // fix disciplina
-  obj.disciplina = disciplina.join(' ').trim()
+  const rawDisciplina = disciplina.join(' ').trim()
+  obj.disciplina = toTitleCase(rawDisciplina)
 
   obj.disciplina_id = obj.id
   if(obj.codigo != null) {
@@ -123,4 +124,12 @@ function extractCampus(d) {
   }
 
   return null
+}
+
+
+function toTitleCase(str) {
+  return str.replace(
+    /\w\S*/g,
+    (txt) => txt.charAt(0).toUpperCase() + txt.substring(1).toLowerCase(),
+  );
 }
