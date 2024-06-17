@@ -1,81 +1,100 @@
-
-<!DOCTYPE html >
+<!DOCTYPE html>
 <html>
+
 <head>
   <title>Matrícula | UFABC</title>
   <style type="text/css">
     .simulacao-chutes {
       margin-bottom: 20px;
     }
-    .simulacao-chutes input{
+
+    .simulacao-chutes input {
       border: 1px solid #ccc;
       border-radius: 4px;
       height: 35px;
       padding: 0px 8px;
     }
+
     .simulacao-chutes #submit {
       background: #f0f0f0;
       height: 35px;
       width: 80px;
       border-radius: 6px;
     }
-    .simulacao-chutes > p > a {
-      color: #337ab7!important;
+
+    .simulacao-chutes>p>a {
+      color: #337ab7 !important;
     }
-  .alerta-next {
-    color: #a94442;
-    background-color: #f2dede;
-    border-color: #ebccd1;
-    padding: 15px;
-    margin-bottom: 20px;
-    border: 1px solid transparent;
-    border-radius: 4px;
-  }
-  #login {
-    background: #2e7eed;
-    height: 36px;
-    width: 154px;
-    color: #fff;
-    border-radius: 4px;
-    border: none;
-    display: flex;
-    align-items: center;
-  }
-  #login > svg {
-    margin-left: 6px;
-    margin-right: 10px;
-  }
-  #user-logged {
-    background: #215096;
-    width: 250px;
-    padding: 8px;
-    border-radius: 4px;
-    color: #fff;
-  }
-  #logOut {
-    margin: 0 auto;
-    border: none;
-    background: #64acfa;
-    margin-top: 10px;
-    width: 72px;
-    border-radius: 4px;
-  }
+
+    .alerta-next {
+      color: #a94442;
+      background-color: #f2dede;
+      border-color: #ebccd1;
+      padding: 15px;
+      margin-bottom: 20px;
+      border: 1px solid transparent;
+      border-radius: 4px;
+    }
+
+    #login {
+      background: #2e7eed;
+      height: 36px;
+      width: 154px;
+      color: #fff;
+      border-radius: 4px;
+      border: none;
+      display: flex;
+      align-items: center;
+    }
+
+    #login>svg {
+      margin-left: 6px;
+      margin-right: 10px;
+    }
+
+    #user-logged {
+      background: #215096;
+      width: 250px;
+      padding: 8px;
+      border-radius: 4px;
+      color: #fff;
+    }
+
+    #logOut {
+      margin: 0 auto;
+      border: none;
+      background: #64acfa;
+      margin-top: 10px;
+      width: 72px;
+      border-radius: 4px;
+    }
   </style>
-  <link href="https://matricula.ufabc.edu.br/stylesheets/custom.css?1469623870" media="screen" rel="stylesheet" type="text/css" />
-  <link href="https://matricula.ufabc.edu.br/stylesheets/bootstrap.min.css?1446547471" media="screen" rel="stylesheet" type="text/css" />
+  <link
+    href="https://matricula.ufabc.edu.br/assets/custom-25ab060d2f5c3f60bb78417a361e203bf22fe6388a6343cd520ea66a572d0545.css"
+    media="screen" rel="stylesheet" type="text/css" />
+  <link
+    href="https://matricula.ufabc.edu.br/assets/bootstrap.min-d8f93e64e321ac813b68174f56581ee5421b60716e52ff3bde728a3ffb5e1736.js"
+    media="screen" rel="stylesheet" type="text/css" />
 
+  <script
+    src="https://matricula.ufabc.edu.br/assets/jquery.min-799fc4cbea8b0022a7a67d972dc3e76008624cf88aa112d8f5fd490827c893e2.js"
+    type="text/javascript"></script>
+  <script
+    src="https://matricula.ufabc.edu.br/assets/bootstrap.min-d8f93e64e321ac813b68174f56581ee5421b60716e52ff3bde728a3ffb5e1736.js"
+    type="text/javascript"></script>
+  <script
+    src="https://matricula.ufabc.edu.br/assets/model-79a9b1b666887237057ec5e00b1fbe13b39d9149049edc1eb36b79d5ccaf6deb.js"
+    type="text/javascript"></script>
+  <script src="https://matricula.ufabc.edu.br/assets/controller-ab08e79c7eeefd777771853f17151ec8912b3536ae78cb0f4c58a50b16cad7e6.js
+    " type="text/javascript"></script>
 
-  <script src="https://matricula.ufabc.edu.br/javascripts/jquery.min.js?1446547508" type="text/javascript"></script>
-  <script src="https://matricula.ufabc.edu.br/javascripts/bootstrap.min.js?1446547508" type="text/javascript"></script>
-<script src="https://matricula.ufabc.edu.br/javascripts/model.js?1469623894" type="text/javascript"></script>
-<script src="https://matricula.ufabc.edu.br/javascripts/controller.js?1458838949" type="text/javascript"></script>
-<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/lodash@4.17.19/lodash.min.js"></script>
+  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/lodash@4.17.19/lodash.min.js"></script>
 
-  <meta name="csrf-param" content="authenticity_token"/>
-<meta name="csrf-token" content="/ai2DWSakSWtrL89mY+rqDOE7UPKSP1Vdp7HbZZ8fYM="/>
+  <meta name="csrf-param" content="authenticity_token" />
+  <meta name="csrf-token" content="/ai2DWSakSWtrL89mY+rqDOE7UPKSP1Vdp7HbZZ8fYM=" />
   <meta name="description" content="UFABC - Sistema de matrículas">
-  <meta name=viewport content="width=device-width, initial-scale=1"/>
+  <meta name=viewport content="width=device-width, initial-scale=1" />
 </head>
 
 <body>
@@ -90,12 +109,12 @@
       <div class="col-md-3"></div>
     </div>
   </div>
-    
+
   <div class="container-fluid">
     <div class="row-fluid">
       <div class="col-md-12">
-          <div id="wrapper-barra-brasil"> </div>          
-          </div>
+        <div id="wrapper-barra-brasil"> </div>
+      </div>
     </div>
   </div>
 
@@ -106,80 +125,80 @@
           <a href="backup.html" style="color: #FFF !important;">Backup</a>
         </div>
         <div class="col-md-12">
-          <h1>Sistema de Matrículas</h1> 
+          <h1>Sistema de Matrículas</h1>
           <p id="ufabc">Universidade Federal do ABC</p>
         </div>
-      
+
         <div class="sobre"> </div>
       </div>
     </div>
   </header>
-      
-      
-      <div id="menu">
-        
-      </div>
 
-      <!-- Usuário logado -->
-      <span id="usuario_top">
-        
-      
-        <b><span id="nome_aluno">nome_aluno</span> |
-        <a href="/logout">(sair)</a></b>
-      
-       
-       <script type="text/javascript">
-        function getQueryVariable(variable) {
-          let query = window.location.search.substring(1);
-          let vars = query.split('&');
-          for (let i = 0; i < vars.length; i++) {
-            let pair = vars[i].split('=');
-            if (decodeURIComponent(pair[0]) == variable) {
-              return decodeURIComponent(pair[1]);
-            }
+
+  <div id="menu">
+
+  </div>
+
+  <!-- Usuário logado -->
+  <span id="usuario_top">
+
+
+    <b><span id="nome_aluno">nome_aluno</span> |
+      <a href="/logout">(sair)</a></b>
+
+
+    <script type="text/javascript">
+      function getQueryVariable(variable) {
+        let query = window.location.search.substring(1);
+        let vars = query.split('&');
+        for (let i = 0; i < vars.length; i++) {
+          let pair = vars[i].split('=');
+          if (decodeURIComponent(pair[0]) == variable) {
+            return decodeURIComponent(pair[1]);
           }
-          return null
         }
-        function insertParam(key, value) {
-          key = encodeURIComponent(key);
-          value = encodeURIComponent(value);
+        return null
+      }
+      function insertParam(key, value) {
+        key = encodeURIComponent(key);
+        value = encodeURIComponent(value);
 
-          // kvp looks like ['key1=value1', 'key2=value2', ...]
-          var kvp = document.location.search.substr(1).split('&');
-          let i=0;
+        // kvp looks like ['key1=value1', 'key2=value2', ...]
+        var kvp = document.location.search.substr(1).split('&');
+        let i = 0;
 
-          for(; i<kvp.length; i++){
-              if (kvp[i].startsWith(key + '=')) {
-                  let pair = kvp[i].split('=');
-                  pair[1] = value;
-                  kvp[i] = pair.join('=');
-                  break;
-              }
+        for (; i < kvp.length; i++) {
+          if (kvp[i].startsWith(key + '=')) {
+            let pair = kvp[i].split('=');
+            pair[1] = value;
+            kvp[i] = pair.join('=');
+            break;
           }
+        }
 
-          if(i >= kvp.length){
-              kvp[kvp.length] = [key,value].join('=');
-          }
+        if (i >= kvp.length) {
+          kvp[kvp.length] = [key, value].join('=');
+        }
 
-          // can return this or...
-          let params = kvp.join('&');
+        // can return this or...
+        let params = kvp.join('&');
 
-          // reload page with new params
-          document.location.search = params;
+        // reload page with new params
+        document.location.search = params;
       }
 
-      function login(e) { 
+      function login(e) {
         e.preventDefault()
-        const newWin = window.open('https://ufabcnext.com/app/#/', 'logInPopup', 
-           `width=${600},` + 
-           `height=${700},` +
-           'status=no,scrollbars=no,resizable=no,location=yes');
+        const newWin = window.open('https://ufabcnext.com/app/#/', 'logInPopup',
+          `width=${600},` +
+          `height=${700},` +
+          'status=no,scrollbars=no,resizable=no,location=yes');
 
         window.addEventListener("message", (event) => {
-          if(event && event.origin && event.origin.indexOf('https://ufabcnext.com') == -1 && event.origin.indexOf('http://localhost:7500') == -1) return
+          if (event && event.origin && event.origin.indexOf('https://ufabcnext.com') == -1 && event.origin.indexOf('http://localhost:7500') == -1) return
 
           const token = event && event.data
-          if(token && token != 'null') {
+          if (token && token != 'null') {
             newWin.close()
             localStorage.setItem('token', token)
             fetch()
@@ -187,562 +206,598 @@
         }, false);
       }
 
-      </script>
-      <script src="https://matricula.ufabc.edu.br/javascripts/carregamento.js?1446547508" type="text/javascript"></script>
+    </script>
+    <script
+      src="https://matricula.ufabc.edu.br/assets/carregamento-9f802841ef0f15e8adc3560e58d6a798286b4a0c0717fa2316aa527ddbeb2e7f.js"
+      type="text/javascript"></script>
 
-      </span>
-     
+  </span>
+
   <div id="meio">
-      <div id="sessao"></div>
-<script src="https://matricula.ufabc.edu.br/cache/todasDisciplinas.js?1479396461" type="text/javascript"></script>
-<script src="https://matricula.ufabc.edu.br/cache/matriculas.js?1479842273" type="text/javascript"></script>
-<script src="https://matricula.ufabc.edu.br/cache/contagemMatriculas.js?1479842272" type="text/javascript"></script>
+    <div id="sessao"></div>
+    <script src="https://matricula.ufabc.edu.br/cache/todasDisciplinas.js" type="text/javascript"></script>
+    <script src="https://matricula.ufabc.edu.br/cache/matriculas.js" type="text/javascript"></script>
+    <script src="https://matricula.ufabc.edu.br/cache/contagemMatriculas.js" type="text/javascript"></script>
 
-  <script src="https://matricula.ufabc.edu.br/cache/contagemMatriculasIngressantes.js?1479842272" type="text/javascript"></script>
+    <script src="https://matricula.ufabc.edu.br/cache/contagemMatriculasIngressantes.js"
+      type="text/javascript"></script>
 
-<script language='javascript'>
-  cursoAluno = null;
-  todasMatriculas = matriculas[ALUNO_ID_HERE];
-  alunoIngressante = false;
-  periodoMatricula = true;
-  periodoSegundoQuadrimestre = false;
-  var matriculaFixa = [];
+    <script language='javascript'>
+      cursoAluno = null;
+      todasMatriculas = matriculas[ALUNO_ID_HERE];
+      alunoIngressante = false;
+      periodoMatricula = true;
+      periodoSegundoQuadrimestre = false;
+      var matriculaFixa = [];
 
-Effect.Pulsate('responda', { pulses: 10, duration: 8.0 });  
+      Effect.Pulsate('responda', { pulses: 10, duration: 8.0 });
 
-</script>
+    </script>
 
-<div align="right" >
-<p><a href="/matricula2">Versão Anterior</a></p>
-</div>
-
-<div class="container-fluid">
-
-  <div class="simulacao-chutes">
-    <h4>Simulação dos chutes. </h4>
-    <p>
-      Faça login no UFABC Next e utilize a <a href="https://chrome.google.com/webstore/detail/ufabc-next/gphjopenfpnlnffmhhhhdiecgdcopmhk?hl=pt-BR" target="_blank">extensão</a> para saber como foram seus chutes. (Caso você não utilizou a extensão durante o período de matrículas, não é possível realizar a simulação).
-    </p>
-    <div class="login-next">
-      <button onclick="login(event)" id="login">
-        <svg width="32" height="32" viewBox="0 0 803 647" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <g clip-path="url(#clip0)">
-        <path d="M329.774 553.136C315.001 562.409 295.73 552.163 295.105 534.703L278.66 75.7737C278.035 58.3307 296.491 46.7677 311.889 54.9549L716.611 270.144C732.009 278.331 732.809 300.132 718.052 309.396L329.774 553.136Z" fill="white" fill-opacity="0.41"/>
-        <g filter="url(#filter0_d)">
-        <path d="M143.753 553.136C128.98 562.41 109.709 552.163 109.084 534.703L92.6394 75.774C92.0144 58.331 110.47 46.768 125.868 54.9552L530.59 270.144C545.988 278.331 546.789 300.132 532.031 309.396L143.753 553.136Z" fill="white"/>
-        </g>
-        </g>
-        <defs>
-        <filter id="filter0_d" x="88.0916" y="52.2704" width="459.075" height="513.422" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
-        <feFlood flood-opacity="0" result="BackgroundImageFix"/>
-        <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"/>
-        <feOffset dy="4.5324"/>
-        <feGaussianBlur stdDeviation="2.2662"/>
-        <feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.25 0"/>
-        <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow"/>
-        <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow" result="shape"/>
-        </filter>
-        <clipPath id="clip0">
-        <rect width="802.235" height="647" fill="white"/>
-        </clipPath>
-        </defs>
-        </svg>
-        Login no Next
-      </button>
-
-      <div id="user-logged" style="display: none;">
-        <div id="ra"></div>
-        <button onclick="logOut(event)" id="logOut">Sair</button>
-      </div>
+    <div align="right">
+      <p><a href="/matricula2">Versão Anterior</a></p>
     </div>
-  </div>
 
-  <script type="text/javascript">
-    function jwtDecode(t) {
-      return JSON.parse(window.atob(t.split('.')[1]));
-    }
+    <div class="container-fluid">
 
-      function isLogged(token) {
-        const user = jwtDecode(token)
+      <div class="simulacao-chutes">
+        <h4>Simulação dos chutes. </h4>
+        <p>
+          Faça login no UFABC Next e utilize a <a
+            href="https://chrome.google.com/webstore/detail/ufabc-next/gphjopenfpnlnffmhhhhdiecgdcopmhk?hl=pt-BR"
+            target="_blank">extensão</a> para saber como foram seus chutes. (Caso você não utilizou a extensão durante o
+          período de matrículas, não é possível realizar a simulação).
+        </p>
+        <div class="login-next">
+          <button onclick="login(event)" id="login">
+            <svg width="32" height="32" viewBox="0 0 803 647" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <g clip-path="url(#clip0)">
+                <path
+                  d="M329.774 553.136C315.001 562.409 295.73 552.163 295.105 534.703L278.66 75.7737C278.035 58.3307 296.491 46.7677 311.889 54.9549L716.611 270.144C732.009 278.331 732.809 300.132 718.052 309.396L329.774 553.136Z"
+                  fill="white" fill-opacity="0.41" />
+                <g filter="url(#filter0_d)">
+                  <path
+                    d="M143.753 553.136C128.98 562.41 109.709 552.163 109.084 534.703L92.6394 75.774C92.0144 58.331 110.47 46.768 125.868 54.9552L530.59 270.144C545.988 278.331 546.789 300.132 532.031 309.396L143.753 553.136Z"
+                    fill="white" />
+                </g>
+              </g>
+              <defs>
+                <filter id="filter0_d" x="88.0916" y="52.2704" width="459.075" height="513.422"
+                  filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+                  <feFlood flood-opacity="0" result="BackgroundImageFix" />
+                  <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" />
+                  <feOffset dy="4.5324" />
+                  <feGaussianBlur stdDeviation="2.2662" />
+                  <feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.25 0" />
+                  <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow" />
+                  <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow" result="shape" />
+                </filter>
+                <clipPath id="clip0">
+                  <rect width="802.235" height="647" fill="white" />
+                </clipPath>
+              </defs>
+            </svg>
+            Login no Next
+          </button>
 
-        let raElement = document.getElementById('ra')
-        raElement.textContent = 'Você está logado com o RA ' + user.ra
+          <div id="user-logged" style="display: none;">
+            <div id="ra"></div>
+            <button onclick="logOut(event)" id="logOut">Sair</button>
+          </div>
+        </div>
+      </div>
 
-        let loginButton = document.getElementById('login')
-        loginButton.style.display = 'none'
+      <script type="text/javascript">
+        function jwtDecode(t) {
+          return JSON.parse(window.atob(t.split('.')[1]));
+        }
 
-        let userLogged = document.getElementById('user-logged')
-        userLogged.style.display = 'block'
-      }
+        function isLogged(token) {
+          const user = jwtDecode(token)
 
+          let raElement = document.getElementById('ra')
+          raElement.textContent = 'Você está logado com o RA ' + user.ra
 
-      function logOut() {
-        localStorage.setItem('token', null)
+          let loginButton = document.getElementById('login')
+          loginButton.style.display = 'none'
 
-        const loginButton = document.getElementById('login')
-        loginButton.style.display = 'flex'
-
-        const userLogged = document.getElementById('user-logged')
-        userLogged.style.display = 'none'
-
-        window.history.replaceState(null, null, window.location.pathname);
-        document.location.reload(true);
-      }
-
-      var nome_aluno = getQueryVariable('nome_aluno') || null
-      if(nome_aluno) {
-        const loginElement = document.getElementById('nome_aluno')
-        loginElement.textContent = nome_aluno
-      }
+          let userLogged = document.getElementById('user-logged')
+          userLogged.style.display = 'block'
+        }
 
 
-      let loading = false
-      async function fetch() {
-        if(loading) return
+        function logOut() {
+          localStorage.setItem('token', null)
 
-        const token = localStorage.getItem('token')
-        if (token && token != 'null') {
-          isLogged(token)
-          try {
-            loading = true
-            const { data } = await axios.get('https://api.ufabcnext.com/v1/students/aluno_id', {
-              headers: {
-                'Authorization': 'Bearer ' + token
+          const loginButton = document.getElementById('login')
+          loginButton.style.display = 'flex'
+
+          const userLogged = document.getElementById('user-logged')
+          userLogged.style.display = 'none'
+
+          window.history.replaceState(null, null, window.location.pathname);
+          document.location.reload(true);
+        }
+
+        var nome_aluno = getQueryVariable('nome_aluno') || null
+        if (nome_aluno) {
+          const loginElement = document.getElementById('nome_aluno')
+          loginElement.textContent = nome_aluno
+        }
+
+
+        let loading = false
+        async function fetch() {
+          if (loading) return
+
+          const token = localStorage.getItem('token')
+          if (token && token != 'null') {
+            isLogged(token)
+            try {
+              loading = true
+              const { data } = await axios.get('https://api.ufabcnext.com/v1/students/aluno_id', {
+                headers: {
+                  'Authorization': 'Bearer ' + token
+                }
+              })
+
+              loading = false
+
+              var aluno_id = getQueryVariable('aluno_id') || null
+              var nome_aluno = getQueryVariable('nome_aluno') || null
+
+              if (data.login && !nome_aluno) {
+                insertParam('nome_aluno', data.login)
+              } else if (data.aluno_id && !aluno_id) {
+                insertParam('aluno_id', data.aluno_id)
+              } else if (!data || !data.aluno_id || !data.login) {
+                alert("RA e Login não encontrados")
               }
-            })
-
-            loading = false
-
-            var aluno_id = getQueryVariable('aluno_id') || null
-            var nome_aluno = getQueryVariable('nome_aluno') || null
-
-            if(data.login && !nome_aluno) {
-              insertParam('nome_aluno', data.login)
-            } else if (data.aluno_id && !aluno_id) {
-              insertParam('aluno_id', data.aluno_id)
-            } else if(!data || !data.aluno_id || !data.login){
-              alert("RA e Login não encontrados")
+            } catch (err) {
+              loading = false
+              alert("Falha ao carregar seus dados")
+              // alert("Você não está logado")
             }
-          } catch (err) {
-            loading = false
-            alert("Falha ao carregar seus dados")
-            // alert("Você não está logado")
           }
         }
-      }
 
-      fetch()
+        fetch()
 
-  </script>
+      </script>
 
-  <div class="alerta-next">
-    <b>Atenção:</b> Essa NÃO é a versão oficial do sistema de matrículas. 
-    <br /><br />
-  Essa página serve para acompanhar o status das matrículas quando o sistema oficial está fechado, ou seja, quando a matrícula fecha, você pode ver se a turma que você pegou está cheia ou não e quando os chutes saem, da para ver aqui também pois essa página consome informações do sistema oficial.</div>
-
-
-
-<br>
-<p>Prezado(a) aluno(a), <b>Nome do aluno da UFABC</b>,</p>
-<p>Limite de créditos: <b>∞</b></p>
-<p style="width: 99%;">
-  Selecione uma ou mais turmas, confira os horários e conflitos clicando em "Tabela de Horários" localizada no canto inferior direito da página e/ou visualizando as que acendem em vermelho ou amarelo claro, e clique em "Salvar" para dar procedimento à sua solicitação de matrícula.
-</p>
-  <article class="col-md-12">
-
-  
-
-  <div class="container-fluid">
-  <div class="row">
-    <div class=" botao col-md-4 col-md-offset-4"><div class="botao alert alert-danger" role="alert" onclick="avisosimportantes()">Ver avisos
-
-importantes</div>
-  <div class="avisosimportantes">
-  
-<p> Disciplinas  que terão turmas ministradas na modalidade <u><b>semi-presencial</b></u>:</p>  
-<p> - <b>DSBCM0505-15SA</b> - Processamento da Informação S-diurno (Santo André)</p>
-<p> - <b>DSBCM0505-15SB</b> - Processamento da Informação S-diurno (São Bernardo do Campo)</p>
-
-<p> Serão ministradas em <u><b>inglês</b></u> as turmas:</p>
-<p> - <b>DA1BCJ0205-15SA</b> - Fenômenos Térmicos A1-diurno (Santo André)</p>
-<p> - <b>DA2BCJ0205-15SA</b> - Fenômenos Térmicos A2-diurno (Santo André)</p>
-<p> - <b>DA3BCJ0205-15SA</b> - Fenômenos Térmicos A3-diurno (Santo André)</p>
-<p> - <b>DA2BCN0407-15SA</b> - Funções de Várias Variáveis A2-diurno (Santo André)</p>
-<p> - <b>DB1BCK0104-15SA</b> - Interações Atômicas e Moleculares B1-diurno (Santo André)</p>
-<p> - <b>DAESZT006-13SB</b> - Mercado Imobiliário A-diurno (São Bernardo do Campo)</p>
-<p> - <b>DA1BCL0307-15SA</b> - Transformações Químicas A1-diurno (Santo André)</p>
-<p> - <b>DA2BCL0307-15SA</b> - Transformações Químicas A2-diurno (Santo André)</p>
-<p> - <b>DA3BCL0307-15SA</b> - Transformações Químicas A3-diurno (Santo André)</p>
-  </div>
-</div>
-    <div class="col-md-12">
-    
-      <label id="escolha" for="curso">Escolha o curso</label>
-    
-      <select class="form-control" id="curso" name="curso" onchange="organizaDisciplinas()">
-        <option value="null" selected="selected">Bacharelado em Ciência da Computação</option>
-        <option value="null">Bacharelado em Ciência e Tecnologia</option>
-        <option value="null">Bacharelado em Ciências Biológicas</option>
-        <option value="null">Bacharelado em Ciências Econômicas</option>
-        <option value="null">Bacharelado em Ciências e Humanidades</option>
-        <option value="null">Bacharelado em Filosofia</option>
-        <option value="null">Bacharelado em Física</option>
-        <option value="null">Bacharelado em Matemática</option>
-        <option value="null">Bacharelado em Neurociência</option>
-        <option value="null">Bacharelado em Planejamento Territorial</option>
-        <option value="null">Bacharelado em Políticas Públicas</option>
-        <option value="null">Bacharelado em Políticas Públicas</option>
-        <option value="null">Bacharelado em Química</option>
-        <option value="null">Bacharelado em Relações Internacionais</option>
-        <option value="null">Engenharia Aeroespacial</option>
-        <option value="null">Engenharia Ambiental e Urbana</option>
-        <option value="null">Engenharia Biomédica</option>
-        <option value="null">Engenharia de Energia</option>
-        <option value="null">Engenharia de Gestão</option>
-        <option value="null">Engenharia de Informação</option>
-        <option value="null">Engenharia de Instrumentação, Automação e Robótica</option>
-        <option value="null">Engenharia de Materiais</option>
-        <option value="null">ENGENHARIAS</option>
-        <option value="null">Licenciatura em Ciências Biológicas</option>
-        <option value="null">Licenciatura em Filosofia</option>
-        <option value="null">Licenciatura em Física</option>
-        <option value="null">Licenciatura em Matemática</option>
-        <option value="null">Licenciatura em Química</option></select>
-
-    </div>
-  </div>
-  <div class="row" style="display: none;">
-  <div class="col-md-2 mostrarfiltros">
-  <span id="mostrarfiltros" class="btn btn-success" onclick="mostrarfiltros()">Mostrar filtros</span>
-  </div>
-  <div class="col-md-10"></div>
-  </div>
-  </div>
-
-  <div class="container-fluid" id="filtros">
-  <p class="bg-success">Os filtros podem ser utilizados simultaneamente.</p>
-  <p class="bg-warning">Em computadores antigos ou dispositivos com baixo processamento, aplicar os filtros pode demorar um pouco.</p>
-  <div class="row">
-
-    
-  </div>
-  <div class="row">
-  <div class="col-md-2 busca">
-    <label for="busca">Buscar por nome</label>
-    <input type="text" class="form-control" id="busca">
-  </div>
-  <div class="col-md-2">
-    <label for="filtracampus">Filtrar por câmpus</label><br>
-    <input type="checkbox" id="sa">Santo André<br>
-    <input type="checkbox" id="sbc">São Bernardo do Campo
-
-  </div>
-  <div class="col-md-2">
-        <label for="filtraturno">Filtrar por turno</label><br>
-        <input type="checkbox" id="matutino">Matutino<br>
-        <input type="checkbox" id="noturno">Noturno
-  </div>
-  <div class="col-md-6">
-    <input type="checkbox" id="maisvagas">
-    <label for="maisvagas">Mostrar apenas disciplinas com mais vagas do que requisições
-    </label>
-
-  </div>
-  <div class="col-md-2">
-    
-  </div>
-  </div>
-  <div class="row">
-  <div class="col-md-1">
-  <span id="aplicarfiltros" class="btn btn-success" onclick="aplicarfiltros()">Aplicar filtros</span>
-  </div>
-  <div class="col-md-11"></div>
-    
-  </div>
-  
-  </div>
-  
-  
-  <br>
-  <p class="bg-danger">Devido ao processo de cadastramento dos novos projetos pedagógicos, algumas disciplinas estão aparecendo com a categoria incorreta. Considere o que está no projeto de seu curso.</p>
-
-
-  <form action="https://matricula.ufabc.edu.br/matricula" method="post"><div style="margin:0;padding:0;display:inline"><input name="authenticity_token" type="hidden" value="/ai2DWSakSWtrL89mY+rqDOE7UPKSP1Vdp7HbZZ8fYM=" /></div>
-
-      <h2>Disciplinas Obrigatórias</h2>
-      
-      <div id="disciplinasobrigatorias" class="">
-
-        <table class="table" id="tabeladisciplinas">
-          
-          <tr>
-            <th style="width:20px">Selecionar</th>
-            <th style="width:100px">Código</th>
-            <th>Discipina (Campus)</th>
-            <th style="width: 30px">Vagas</th>
-            <th style="width:30px;">Requisições</th>
-            <th style="width:100px;">T-P-I</th>
-            <th style="width: 350px;">Horário</th>
-          </tr>
-
-        </table>
-        
-        
-          
-
-        
-
+      <div class="alerta-next">
+        <b>Atenção:</b> Essa NÃO é a versão oficial do sistema de matrículas.
+        <br /><br />
+        Essa página serve para acompanhar o status das matrículas quando o sistema oficial está fechado, ou seja, quando
+        a matrícula fecha, você pode ver se a turma que você pegou está cheia ou não e quando os chutes saem, da para
+        ver aqui também pois essa página consome informações do sistema oficial.
       </div>
 
-      <h2>Disciplinas de opção limitada</h2>
 
-      <div id="disciplinaslimitadas" class="">
 
-        <table class="table" id="tabeladisciplinas">
-          
-          <tr>
-            <th style="width:20px">Selecionar</th>
-            <th style="width:100px">Código</th>
-            <th>Discipina (Campus)</th>
-            <th style="width: 30px">Vagas</th>
-            <th style="width:30px;">Requisições</th>
-            <th style="width:100px;">T-P-I</th>
-            <th style="width: 350px;">Horário</th>
-          </tr>
-
-        </table>
-        
-        
-          
-
-        
-
-      </div>
-      <h2>Disciplinas livres</h2>
-      <div id="disciplinaslivres" class="">
-
-
-        <table class="table" id="tabeladisciplinas">
-          
-          <tr>
-            <th style="width:20px">Selecionar</th>
-            <th style="width:100px">Código</th>
-            <th>Discipina (Campus)</th>
-            <th style="width: 30px">Vagas</th>
-            <th style="width:30px;">Requisições</th>
-            <th style="width:100px;">T-P-I</th>
-            <th style="width: 350px;">Horário</th>
-          </tr>
-
-        </table>
-        
-        
-          
-
-        
-
-      </div>
-          <input id="_ra" name="[ra]" type="hidden" value="11086610" />
-          <center><script type="text/javascript">
-  var RecaptchaOptions = {"theme": "white"};
-</script>
-<script type="text/javascript" src="http://www.google.com/recaptcha/api/challenge?k=6Leh8gsTAAAAABIZmQP1bCNXu-2evL898dNH9NAz&amp;lang="></script>
-<noscript>
-  <iframe src="http://www.google.com/recaptcha/api/noscript?k=6Leh8gsTAAAAABIZmQP1bCNXu-2evL898dNH9NAz" height="300" width="500" style="border:none;"></iframe><br/>
-  <textarea name="recaptcha_challenge_field" rows="3" cols="40"></textarea>
-  <input type="hidden" name="recaptcha_response_field" value="manual_challenge"/></noscript>
-</center>
-          
-          <input type="submit" value="Enviar" id="enviar" class="btn btn-success">
-          
-
-    </form>
-    
-
-    <div id="chamarcalendario">
-      <div id="btncalendario" onclick="clicar()"><p> Tabela de horários </p></div>
-        <div id="disciplinaspegas" style="display: none;"><p id="limite">Seu limite é: <span id="limite">27</span> créditos</p><p id="pegas">Você selecionou: <span id="atualiza"></span> créditos</p></div>
-        <div id="calendario" style="display: none;">
-    
-            <table id="calendario1quinzenal" style="float: left;">
-            <tbody id="segundo" style="">
-              <tr><th style="background-color: #ccc; border-top: 2px solid black !important; border-bottom: 2px solid black !important; " colspan="7">Primeira quinzena</th>
-              </tr>
-              <tr>
-              <th></th>
-              <th>2ª</th>
-              <th>3ª</th>
-              <th>4ª</th>
-              <th>5ª</th>
-              <th>6ª</th>
-              <th>Sáb</th>
-              </tr>
-              <tr>
-            </tbody>
-          </table>
-          <table id="calendario2quinzenal" style="float: right;">
-            <tbody id="terceiro" style="">
-              <tr><th style="background-color: #ccc; border-top: 2px solid black !important; border-bottom: 2px solid black !important; " colspan="7">Segunda quinzena</th>
-              </tr>
-              <tr>
-              <th></th>
-              <th>2ª</th>
-              <th>3ª</th>
-              <th>4ª</th>
-              <th>5ª</th>
-              <th>6ª</th>
-              <th>Sáb</th>
-
-              
-              </tr>             
-            </tbody>
-          </table>
-        <p id="mudarcalendario" class="btn btn-success" onclick="quinzenal()" style="display: none;">Alterar para visualização quinzenal</p>
-        
-      </div>
-    </div>
-
-
-  </article>
-
-</div>
-
-
-<script type="text/javascript">
-//Contador
-
-var tempo = new Number();
-
-// Tempo em segundos
-
-tempo = Infinity //'1118.0' ;
-
- 
-
-function startCountdown(){
-
- 
-
-    // Se o tempo não for zerado
-
-    if((tempo - 1) >= 0){
-
- 
-
-        // Pega a parte inteira dos minutos
-
-        var min = parseInt(tempo/60);
-
-        // Calcula os segundos restantes
-
-        var seg = tempo%60;
-
- 
-
-        // Formata o número menor que dez, ex: 08, 07, ...
-
-        if(min < 10){
-
-            min = "0"+min;
-
-            min = min.substr(0, 2);
-
-        }
-
-        if(seg <=9){
-
-            seg = "0"+seg;
-
-        }
-
- 
-
-        // Cria a variável para formatar no estilo hora/cronômetro
-
-        horaImprimivel = /*'00:' +*/ min + ':' + seg;
-
-        //JQuery pra setar o valor
-
-        // $("#sessao").html('<p class="tempo">' +"Tempo restante" + '</p>' + horaImprimivel);
-
- 
-
-        // Define que a função será executada novamente em 1000ms = 1 segundo
-
-        setTimeout('startCountdown()',1000);
-
- 
-
-        // diminui o tempo
-
-        tempo--;
-
- 
-
-    // Quando o contador chegar a zero faz esta ação
-
-    } else {
-
-        $('body')[0].innerHTML = "";
-        $('body')[0].innerHTML = '<div class="sessaoencerrada col-md-offset-4 col-md-4">Sua conexão expirou.<br><a href="https://matricula.ufabc.edu.br/">Faça o login novamente.</a> </div>'
-
-    }
-    
-
- 
-
-}
-
- 
-
-// Chama a função ao carregar a tela
-
-startCountdown();
-
-function avisosimportantes() {
-
-if($('div.avisosimportantes')[0].style.display == "") {
-
-$('div.avisosimportantes')[0].style.display = "block";
-
-}
-
-else if($('div.avisosimportantes')[0].style.display == "block") {
-
-
-$('div.avisosimportantes')[0].style.display = "";
-
-}
-
-
-
-}
-
-    
-</script>
-
-
-  </div>
-<!-- Rodape -->
-<footer>
-  <div class="container-fluid">
-    <div class="row">
-      <div class="footerpreferences">
-      </div>
-      </div>
-    </div>
-  </div>
-</footer>
-    </div>
-    
-    <div id="bg_bottom">
+      <br>
+      <p>Prezado(a) aluno(a), <b>Nome do aluno da UFABC</b>,</p>
+      <p>Limite de créditos: <b>∞</b></p>
+      <p style="width: 99%;">
+        Selecione uma ou mais turmas, confira os horários e conflitos clicando em "Tabela de Horários" localizada no
+        canto inferior direito da página e/ou visualizando as que acendem em vermelho ou amarelo claro, e clique em
+        "Salvar" para dar procedimento à sua solicitação de matrícula.
+      </p>
+      <article class="col-md-12">
+
+
+
+        <div class="container-fluid">
+          <div class="row">
+            <div class=" botao col-md-4 col-md-offset-4">
+              <div class="botao alert alert-danger" role="alert" onclick="avisosimportantes()">Ver avisos
+
+                importantes</div>
+              <div class="avisosimportantes">
+
+                <p> Disciplinas que terão turmas ministradas na modalidade <u><b>semi-presencial</b></u>:</p>
+                <p> - <b>DSBCM0505-15SA</b> - Processamento da Informação S-diurno (Santo André)</p>
+                <p> - <b>DSBCM0505-15SB</b> - Processamento da Informação S-diurno (São Bernardo do Campo)</p>
+
+                <p> Serão ministradas em <u><b>inglês</b></u> as turmas:</p>
+                <p> - <b>DA1BCJ0205-15SA</b> - Fenômenos Térmicos A1-diurno (Santo André)</p>
+                <p> - <b>DA2BCJ0205-15SA</b> - Fenômenos Térmicos A2-diurno (Santo André)</p>
+                <p> - <b>DA3BCJ0205-15SA</b> - Fenômenos Térmicos A3-diurno (Santo André)</p>
+                <p> - <b>DA2BCN0407-15SA</b> - Funções de Várias Variáveis A2-diurno (Santo André)</p>
+                <p> - <b>DB1BCK0104-15SA</b> - Interações Atômicas e Moleculares B1-diurno (Santo André)</p>
+                <p> - <b>DAESZT006-13SB</b> - Mercado Imobiliário A-diurno (São Bernardo do Campo)</p>
+                <p> - <b>DA1BCL0307-15SA</b> - Transformações Químicas A1-diurno (Santo André)</p>
+                <p> - <b>DA2BCL0307-15SA</b> - Transformações Químicas A2-diurno (Santo André)</p>
+                <p> - <b>DA3BCL0307-15SA</b> - Transformações Químicas A3-diurno (Santo André)</p>
+              </div>
+            </div>
+            <div class="col-md-12">
+
+              <label id="escolha" for="curso">Escolha o curso</label>
+
+              <select class="form-control" id="curso" name="curso" onchange="organizaDisciplinas()">
+                <option value="null" selected="selected">Bacharelado em Ciência da Computação</option>
+                <option value="null">Bacharelado em Ciência e Tecnologia</option>
+                <option value="null">Bacharelado em Ciências Biológicas</option>
+                <option value="null">Bacharelado em Ciências Econômicas</option>
+                <option value="null">Bacharelado em Ciências e Humanidades</option>
+                <option value="null">Bacharelado em Filosofia</option>
+                <option value="null">Bacharelado em Física</option>
+                <option value="null">Bacharelado em Matemática</option>
+                <option value="null">Bacharelado em Neurociência</option>
+                <option value="null">Bacharelado em Planejamento Territorial</option>
+                <option value="null">Bacharelado em Políticas Públicas</option>
+                <option value="null">Bacharelado em Políticas Públicas</option>
+                <option value="null">Bacharelado em Química</option>
+                <option value="null">Bacharelado em Relações Internacionais</option>
+                <option value="null">Engenharia Aeroespacial</option>
+                <option value="null">Engenharia Ambiental e Urbana</option>
+                <option value="null">Engenharia Biomédica</option>
+                <option value="null">Engenharia de Energia</option>
+                <option value="null">Engenharia de Gestão</option>
+                <option value="null">Engenharia de Informação</option>
+                <option value="null">Engenharia de Instrumentação, Automação e Robótica</option>
+                <option value="null">Engenharia de Materiais</option>
+                <option value="null">ENGENHARIAS</option>
+                <option value="null">Licenciatura em Ciências Biológicas</option>
+                <option value="null">Licenciatura em Filosofia</option>
+                <option value="null">Licenciatura em Física</option>
+                <option value="null">Licenciatura em Matemática</option>
+                <option value="null">Licenciatura em Química</option>
+              </select>
+
+            </div>
+          </div>
+          <div class="row" style="display: none;">
+            <div class="col-md-2 mostrarfiltros">
+              <span id="mostrarfiltros" class="btn btn-success" onclick="mostrarfiltros()">Mostrar filtros</span>
+            </div>
+            <div class="col-md-10"></div>
           </div>
         </div>
 
+        <div class="container-fluid" id="filtros">
+          <p class="bg-success">Os filtros podem ser utilizados simultaneamente.</p>
+          <p class="bg-warning">Em computadores antigos ou dispositivos com baixo processamento, aplicar os filtros pode
+            demorar um pouco.</p>
+          <div class="row">
+
+
+          </div>
+          <div class="row">
+            <div class="col-md-2 busca">
+              <label for="busca">Buscar por nome</label>
+              <input type="text" class="form-control" id="busca">
+            </div>
+            <div class="col-md-2">
+              <label for="filtracampus">Filtrar por câmpus</label><br>
+              <input type="checkbox" id="sa">Santo André<br>
+              <input type="checkbox" id="sbc">São Bernardo do Campo
+
+            </div>
+            <div class="col-md-2">
+              <label for="filtraturno">Filtrar por turno</label><br>
+              <input type="checkbox" id="matutino">Matutino<br>
+              <input type="checkbox" id="noturno">Noturno
+            </div>
+            <div class="col-md-6">
+              <input type="checkbox" id="maisvagas">
+              <label for="maisvagas">Mostrar apenas disciplinas com mais vagas do que requisições
+              </label>
+
+            </div>
+            <div class="col-md-2">
+
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-1">
+              <span id="aplicarfiltros" class="btn btn-success" onclick="aplicarfiltros()">Aplicar filtros</span>
+            </div>
+            <div class="col-md-11"></div>
+
+          </div>
+
+        </div>
+
+
+        <br>
+        <p class="bg-danger">Devido ao processo de cadastramento dos novos projetos pedagógicos, algumas disciplinas
+          estão aparecendo com a categoria incorreta. Considere o que está no projeto de seu curso.</p>
+
+
+        <form action="https://matricula.ufabc.edu.br/matricula" method="post">
+          <div style="margin:0;padding:0;display:inline"><input name="authenticity_token" type="hidden"
+              value="/ai2DWSakSWtrL89mY+rqDOE7UPKSP1Vdp7HbZZ8fYM=" /></div>
+
+          <h2>Disciplinas Obrigatórias</h2>
+
+          <div id="disciplinasobrigatorias" class="">
+
+            <table class="table" id="tabeladisciplinas">
+
+              <tr>
+                <th style="width:20px">Selecionar</th>
+                <th style="width:100px">Código</th>
+                <th>Discipina (Campus)</th>
+                <th style="width: 30px">Vagas</th>
+                <th style="width:30px;">Requisições</th>
+                <th style="width:100px;">T-P-I</th>
+                <th style="width: 350px;">Horário</th>
+              </tr>
+
+            </table>
+
+
+
+
+
+
+          </div>
+
+          <h2>Disciplinas de opção limitada</h2>
+
+          <div id="disciplinaslimitadas" class="">
+
+            <table class="table" id="tabeladisciplinas">
+
+              <tr>
+                <th style="width:20px">Selecionar</th>
+                <th style="width:100px">Código</th>
+                <th>Discipina (Campus)</th>
+                <th style="width: 30px">Vagas</th>
+                <th style="width:30px;">Requisições</th>
+                <th style="width:100px;">T-P-I</th>
+                <th style="width: 350px;">Horário</th>
+              </tr>
+
+            </table>
+
+
+
+
+
+
+          </div>
+          <h2>Disciplinas livres</h2>
+          <div id="disciplinaslivres" class="">
+
+
+            <table class="table" id="tabeladisciplinas">
+
+              <tr>
+                <th style="width:20px">Selecionar</th>
+                <th style="width:100px">Código</th>
+                <th>Discipina (Campus)</th>
+                <th style="width: 30px">Vagas</th>
+                <th style="width:30px;">Requisições</th>
+                <th style="width:100px;">T-P-I</th>
+                <th style="width: 350px;">Horário</th>
+              </tr>
+
+            </table>
+
+
+
+
+
+
+          </div>
+          <input id="_ra" name="[ra]" type="hidden" value="11086610" />
+          <center>
+            <!-- <script type="text/javascript">
+              var RecaptchaOptions = { "theme": "white" };
+            </script>
+            <script type="text/javascript"
+              src="http://www.google.com/recaptcha/api/challenge?k=6Leh8gsTAAAAABIZmQP1bCNXu-2evL898dNH9NAz&amp;lang="></script>
+            <noscript>
+              <iframe src="http://www.google.com/recaptcha/api/noscript?k=6Leh8gsTAAAAABIZmQP1bCNXu-2evL898dNH9NAz"
+                height="300" width="500" style="border:none;"></iframe><br />
+              <textarea name="recaptcha_challenge_field" rows="3" cols="40"></textarea>
+              <input type="hidden" name="recaptcha_response_field" value="manual_challenge" /></noscript> -->
+          </center>
+
+          <input type="submit" value="Enviar" id="enviar" class="btn btn-success">
+
+
+        </form>
+
+
+        <div id="chamarcalendario">
+          <div id="btncalendario" onclick="clicar()">
+            <p> Tabela de horários </p>
+          </div>
+          <div id="disciplinaspegas" style="display: none;">
+            <p id="limite">Seu limite é: <span id="limite">27</span> créditos</p>
+            <p id="pegas">Você selecionou: <span id="atualiza"></span> créditos</p>
+          </div>
+          <div id="calendario" style="display: none;">
+
+            <table id="calendario1quinzenal" style="float: left;">
+              <tbody id="segundo" style="">
+                <tr>
+                  <th
+                    style="background-color: #ccc; border-top: 2px solid black !important; border-bottom: 2px solid black !important; "
+                    colspan="7">Primeira quinzena</th>
+                </tr>
+                <tr>
+                  <th></th>
+                  <th>2ª</th>
+                  <th>3ª</th>
+                  <th>4ª</th>
+                  <th>5ª</th>
+                  <th>6ª</th>
+                  <th>Sáb</th>
+                </tr>
+                <tr>
+              </tbody>
+            </table>
+            <table id="calendario2quinzenal" style="float: right;">
+              <tbody id="terceiro" style="">
+                <tr>
+                  <th
+                    style="background-color: #ccc; border-top: 2px solid black !important; border-bottom: 2px solid black !important; "
+                    colspan="7">Segunda quinzena</th>
+                </tr>
+                <tr>
+                  <th></th>
+                  <th>2ª</th>
+                  <th>3ª</th>
+                  <th>4ª</th>
+                  <th>5ª</th>
+                  <th>6ª</th>
+                  <th>Sáb</th>
+
+
+                </tr>
+              </tbody>
+            </table>
+            <p id="mudarcalendario" class="btn btn-success" onclick="quinzenal()" style="display: none;">Alterar para
+              visualização quinzenal</p>
+
+          </div>
+        </div>
+
+
+      </article>
+
+    </div>
+
+
+    <script type="text/javascript">
+      //Contador
+
+      var tempo = new Number();
+
+      // Tempo em segundos
+
+      tempo = Infinity //'1118.0' ;
+
+
+
+      function startCountdown() {
+
+
+
+        // Se o tempo não for zerado
+
+        if ((tempo - 1) >= 0) {
+
+
+
+          // Pega a parte inteira dos minutos
+
+          var min = parseInt(tempo / 60);
+
+          // Calcula os segundos restantes
+
+          var seg = tempo % 60;
+
+
+
+          // Formata o número menor que dez, ex: 08, 07, ...
+
+          if (min < 10) {
+
+            min = "0" + min;
+
+            min = min.substr(0, 2);
+
+          }
+
+          if (seg <= 9) {
+
+            seg = "0" + seg;
+
+          }
+
+
+
+          // Cria a variável para formatar no estilo hora/cronômetro
+
+          horaImprimivel = /*'00:' +*/ min + ':' + seg;
+
+          //JQuery pra setar o valor
+
+          // $("#sessao").html('<p class="tempo">' +"Tempo restante" + '</p>' + horaImprimivel);
+
+
+
+          // Define que a função será executada novamente em 1000ms = 1 segundo
+
+          setTimeout('startCountdown()', 1000);
+
+
+
+          // diminui o tempo
+
+          tempo--;
+
+
+
+          // Quando o contador chegar a zero faz esta ação
+
+        } else {
+
+          $('body')[0].innerHTML = "";
+          $('body')[0].innerHTML = '<div class="sessaoencerrada col-md-offset-4 col-md-4">Sua conexão expirou.<br><a href="https://matricula.ufabc.edu.br/">Faça o login novamente.</a> </div>'
+
+        }
+
+
+
+
+      }
+
+
+
+      // Chama a função ao carregar a tela
+
+      startCountdown();
+
+      function avisosimportantes() {
+
+        if ($('div.avisosimportantes')[0].style.display == "") {
+
+          $('div.avisosimportantes')[0].style.display = "block";
+
+        }
+
+        else if ($('div.avisosimportantes')[0].style.display == "block") {
+
+
+          $('div.avisosimportantes')[0].style.display = "";
+
+        }
+
+
+
+      }
+
+
+    </script>
+
+
+  </div>
+  <!-- Rodape -->
+  <footer>
+    <div class="container-fluid">
+      <div class="row">
+        <div class="footerpreferences">
+        </div>
       </div>
     </div>
-   
-  </body>
+    </div>
+  </footer>
+  </div>
+
+  <div id="bg_bottom">
+  </div>
+  </div>
+
+  </div>
+  </div>
+
+</body>
 
 </html>
-
