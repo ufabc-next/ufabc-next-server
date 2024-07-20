@@ -2,6 +2,7 @@ const _ = require('lodash')
 const Schema = require('mongoose').Schema
 const jwt = require('jsonwebtoken')
 const app = require('@/app')
+const errors = require('@/errors')
 
 const Model = module.exports = Schema({
   oauth: {
@@ -15,7 +16,7 @@ const Model = module.exports = Schema({
   ra: {
     type: Number,
     unique: true,
-    partialFilterExpression: { ra: { $exists: true }}
+    partialFilterExpression: { ra: { $exists: true } }
   },
   email: {
     type: String,
@@ -24,7 +25,7 @@ const Model = module.exports = Schema({
       message: props => `${props.value} não é um e-mail válido`
     },
     unique: true,
-    partialFilterExpression: { email: { $exists: true }}
+    partialFilterExpression: { email: { $exists: true } }
   },
   confirmed: {
     type: Boolean,
@@ -38,7 +39,7 @@ const Model = module.exports = Schema({
 
   devices: [{
     phone: String,
-    token:  {
+    token: {
       type: String,
       required: true
     },
@@ -53,16 +54,16 @@ Model.virtual('isFilled').get(function () {
   return this.ra && this.email
 })
 
-Model.method('addDevice', function(device) {
+Model.method('addDevice', function (device) {
   this.devices.unshift(device)
   this.devices = _.uniqBy(this.devices, 'deviceId')
 })
 
-Model.method('removeDevice', function(deviceId) {
-  this.devices = _.remove(this.devices,  { deviceId })
+Model.method('removeDevice', function (deviceId) {
+  this.devices = _.remove(this.devices, { deviceId })
 })
 
-Model.method('sendNotification', async function(title, body) {
+Model.method('sendNotification', async function (title, body) {
   const sendNotification = app.helpers.notification.sendNotification
 
   const devicesTokens = this.devices.map(device => device.token)
@@ -85,8 +86,13 @@ Model.method('sendConfirmation', async function () {
   app.agenda.now('sendConfirmation', this.toObject({ virtuals: true }))
 })
 
-Model.pre('save', async function () {
-  if(this.isFilled && !this.confirmed) {
+Model.pre('save', async function (email) {
+  if (this.email === email) {
+    throw new errors.Conflict('E-mail já cadastrado, realize seu login via Facebook ou entre em contato com nosso suporte')
+  }
+
+
+  if ((this.isFilled && !this.confirmed)) {
     this.sendConfirmation()
   }
 })

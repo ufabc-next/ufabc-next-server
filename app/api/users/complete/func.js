@@ -3,7 +3,7 @@ const app = require('@/app')
 const errors = require('@/errors')
 const Fields = require('../fields')
 
-module.exports = async(context) => {
+module.exports = async (context) => {
   const { user } = context
 
   if (!user) {
@@ -11,10 +11,10 @@ module.exports = async(context) => {
   }
 
   user.set(_.pick(context.body, Fields.update))
-  
+
   // Save
   try {
-    await user.save()
+    await user.save(context.body.email)
   } catch (e) {
     app.helpers.validate.mongoError(e)
   }
