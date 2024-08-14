@@ -19,7 +19,7 @@ module.exports = async () => {
   config.JWT_SECRET = getEnv('JWT_SECRET', 'DEV_JWT_KEY')
   config.MONGO_URL = getEnv(
     'MONGO_URL',
-    `mongodb://localhost:27017/ufabc-matricula-extension-${config.ENV}`
+    `mongodb://localhost:27017/local`
   )
   config.MONGO_URI = config.MONGO_URL
 

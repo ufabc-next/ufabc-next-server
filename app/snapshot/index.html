@@ -135,72 +135,46 @@
   </header>
 
 
-  <div id="menu">
-
-  </div>
-
   <!-- Usuário logado -->
   <span id="usuario_top">
-
-
     <b><span id="nome_aluno">nome_aluno</span> |
       <a href="/logout">(sair)</a></b>
 
 
     <script type="text/javascript">
       function getQueryVariable(variable) {
-        let query = window.location.search.substring(1);
-        let vars = query.split('&');
-        for (let i = 0; i < vars.length; i++) {
-          let pair = vars[i].split('=');
-          if (decodeURIComponent(pair[0]) == variable) {
-            return decodeURIComponent(pair[1]);
-          }
-        }
-        return null
+        const params = new URLSearchParams(window.location.search);
+        params.get(variable)
       }
+      
       function insertParam(key, value) {
-        key = encodeURIComponent(key);
-        value = encodeURIComponent(value);
-
-        // kvp looks like ['key1=value1', 'key2=value2', ...]
-        var kvp = document.location.search.substr(1).split('&');
-        let i = 0;
-
-        for (; i < kvp.length; i++) {
-          if (kvp[i].startsWith(key + '=')) {
-            let pair = kvp[i].split('=');
-            pair[1] = value;
-            kvp[i] = pair.join('=');
-            break;
-          }
-        }
-
-        if (i >= kvp.length) {
-          kvp[kvp.length] = [key, value].join('=');
-        }
-
-        // can return this or...
-        let params = kvp.join('&');
-
-        // reload page with new params
-        document.location.search = params;
+        const params = new URLSearchParams(window.location.search);
+        // Set or update the key-value pair
+        params.set(key, value);
+        // Update the URL with the new parameters
+        const newUrl = `${window.location.pathname}?${params.toString()}`;
+        window.history.replaceState(null, '', newUrl);
       }
 
-      function login(e) {
+      function login(e) {        
         e.preventDefault()
+        const localFrontendPath = ''
         const newWin = window.open('https://ufabcnext.com/app/#/', 'logInPopup',
-          `width=${600},` +
-          `height=${700},` +
+          `width=${500},` +
+          `height=${350},` +
           'status=no,scrollbars=no,resizable=no,location=yes');
 
         window.addEventListener("message", (event) => {
-          if (event && event.origin && event.origin.indexOf('https://ufabcnext.com') == -1 && event.origin.indexOf('http://localhost:7500') == -1) return
-
-          const token = event && event.data
-          if (token && token != 'null') {
+          const allowedOrigins = ['https://ufabcnext.com', 'http://localhost:7500', 'http://localhost:3000', 'https://api.ufabcnext.com', 'http://localhost:8011']
+          if (event?.origin && !allowedOrigins.includes(event.origin)) {
+            return
+          }
+          const token = event.data
+          console.log(event)
+          if (token != 'null' && token != null) {
+            console.log(event)
             newWin.close()
-            localStorage.setItem('token', token)
+            // localStorage.setItem('token', token)
             fetch()
           }
         }, false);
@@ -218,7 +192,6 @@
     <script src="https://matricula.ufabc.edu.br/cache/todasDisciplinas.js" type="text/javascript"></script>
     <script src="https://matricula.ufabc.edu.br/cache/matriculas.js" type="text/javascript"></script>
     <script src="https://matricula.ufabc.edu.br/cache/contagemMatriculas.js" type="text/javascript"></script>
-
     <script src="https://matricula.ufabc.edu.br/cache/contagemMatriculasIngressantes.js"
       type="text/javascript"></script>
 
@@ -228,18 +201,10 @@
       alunoIngressante = false;
       periodoMatricula = true;
       periodoSegundoQuadrimestre = false;
-      var matriculaFixa = [];
-
-      Effect.Pulsate('responda', { pulses: 10, duration: 8.0 });
-
+      var matriculaFixa = []
     </script>
 
-    <div align="right">
-      <p><a href="/matricula2">Versão Anterior</a></p>
-    </div>
-
     <div class="container-fluid">
-
       <div class="simulacao-chutes">
         <h4>Simulação dos chutes. </h4>
         <p>
@@ -288,21 +253,25 @@
       </div>
 
       <script type="text/javascript">
-        function jwtDecode(t) {
-          return JSON.parse(window.atob(t.split('.')[1]));
+        function jwtDecode(token) {
+          const base64Url = token.split('.')[1];
+          console.log(base64Url)
+          const base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
+          const paddedBase64 = base64.padEnd(base64.length + (base64.length % 4), '=');
+          return JSON.parse(window.atob(paddedBase64));
         }
 
         function isLogged(token) {
-          const user = jwtDecode(token)
+          // const user = jwtDecode(token)
+          console.log(token)
+          // let raElement = document.getElementById('ra')
+          // raElement.textContent = 'Você está logado com o RA ' + user.ra
 
-          let raElement = document.getElementById('ra')
-          raElement.textContent = 'Você está logado com o RA ' + user.ra
+          // let loginButton = document.getElementById('login')
+          // loginButton.style.display = 'none'
 
-          let loginButton = document.getElementById('login')
-          loginButton.style.display = 'none'
-
-          let userLogged = document.getElementById('user-logged')
-          userLogged.style.display = 'block'
+          // let userLogged = document.getElementById('user-logged')
+          // userLogged.style.display = 'block'
         }
 
 
@@ -319,46 +288,49 @@
           document.location.reload(true);
         }
 
-        var nome_aluno = getQueryVariable('nome_aluno') || null
-        if (nome_aluno) {
+        const studentName = getQueryVariable('nome_aluno') || null
+        if (studentName) {
           const loginElement = document.getElementById('nome_aluno')
-          loginElement.textContent = nome_aluno
+          loginElement.textContent = studentName
         }
 
 
         let loading = false
         async function fetch() {
-          if (loading) return
+          if (loading) {
+            return;
+          }
 
           const token = localStorage.getItem('token')
-          if (token && token != 'null') {
-            isLogged(token)
-            try {
-              loading = true
-              const { data } = await axios.get('https://api.ufabcnext.com/v1/students/aluno_id', {
-                headers: {
-                  'Authorization': 'Bearer ' + token
-                }
-              })
 
-              loading = false
-
-              var aluno_id = getQueryVariable('aluno_id') || null
-              var nome_aluno = getQueryVariable('nome_aluno') || null
-
-              if (data.login && !nome_aluno) {
-                insertParam('nome_aluno', data.login)
-              } else if (data.aluno_id && !aluno_id) {
-                insertParam('aluno_id', data.aluno_id)
-              } else if (!data || !data.aluno_id || !data.login) {
-                alert("RA e Login não encontrados")
-              }
-            } catch (err) {
-              loading = false
-              alert("Falha ao carregar seus dados")
-              // alert("Você não está logado")
-            }
+          if (!token) {
+            return
           }
+          isLogged(token)
+          try {
+            loading = true
+            const { data } = await axios.get('https://api.ufabcnext.com/v1/students/aluno_id', {
+              headers: {
+                'Authorization': 'Bearer ' + token
+              }
+            })
+            loading = false
+            const studentId = getQueryVariable('aluno_id') 
+            const studentName = getQueryVariable('nome_aluno')
+
+
+            if (data.login && !studentName) {
+              insertParam('nome_aluno', data.login)
+            } else if (data.aluno_id && !aluno_id) {
+              insertParam('aluno_id', data.aluno_id)
+            } else if (!data || !data.aluno_id || !data.login) {
+              alert("RA e Login não encontrados")
+            }
+          } catch (err) {
+            loading = false
+            alert("Falha ao carregar seus dados")
+          }
+    
         }
 
         fetch()
@@ -576,27 +548,8 @@
               </tr>
 
             </table>
-
-
-
-
-
-
           </div>
           <input id="_ra" name="[ra]" type="hidden" value="11086610" />
-          <center>
-            <!-- <script type="text/javascript">
-              var RecaptchaOptions = { "theme": "white" };
-            </script>
-            <script type="text/javascript"
-              src="http://www.google.com/recaptcha/api/challenge?k=6Leh8gsTAAAAABIZmQP1bCNXu-2evL898dNH9NAz&amp;lang="></script>
-            <noscript>
-              <iframe src="http://www.google.com/recaptcha/api/noscript?k=6Leh8gsTAAAAABIZmQP1bCNXu-2evL898dNH9NAz"
-                height="300" width="500" style="border:none;"></iframe><br />
-              <textarea name="recaptcha_challenge_field" rows="3" cols="40"></textarea>
-              <input type="hidden" name="recaptcha_response_field" value="manual_challenge" /></noscript> -->
-          </center>
-
           <input type="submit" value="Enviar" id="enviar" class="btn btn-success">
 
 
