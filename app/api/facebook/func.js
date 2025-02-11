@@ -15,8 +15,8 @@ module.exports = async (context) => {
   }
 
   const userEmails = [
-    user.oauth?.emailFacebook,
-    user.oauth?.email,
+    user.oauth.emailFacebook,
+    user.oauth.email,
   ].filter(Boolean);
 
   if (!userEmails.includes(email)) {
