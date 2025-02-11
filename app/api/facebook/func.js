@@ -4,7 +4,11 @@ module.exports = async (context) => {
   const { ra, email } = context.body;
 
   // Find user by RA first
-  const user = await app.models.users.findOne({ ra, 'oauth.facebook': { $exists: true } });
+  const user = await app.models.users.findOne({ 
+    ra,
+    $or: [{ "oauth.facebookEmail": email }, { "oauth.email": email }], 
+    'oauth.facebook': { $exists: true } 
+  });
 
   if (!user) {
     throw new Error('User does not exist');
