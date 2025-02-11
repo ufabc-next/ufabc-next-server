@@ -4,8 +4,8 @@ const express = require('express')
 const bodyParser = require('body-parser')
 const path = require('path')
 const compression = require('compression')
-const { createAgent } = require('@forestadmin/agent')
-const { createMongooseDataSource } = require('@forestadmin/datasource-mongoose')
+// const { createAgent } = require('@forestadmin/agent')
+// const { createMongooseDataSource } = require('@forestadmin/datasource-mongoose')
 const methodOverride = require('method-override')
 
 const logFormat = '[server] [:date[iso]] :status :res[content-length] :response-time ms :method :url :remote-addr'
@@ -25,7 +25,7 @@ module.exports = async (app) => {
   server.use(compression())
 
   // Configure body-parsing
-  server.use('^(?!forest).+$', bodyParser.json({ limit: '30mb', extended: true }))
+  // server.use('^(?!forest).+$', bodyParser.json({ limit: '30mb', extended: true }))
   server.use(bodyParser.urlencoded({ limit: '30mb', extended: true }))
   server.use('/v1/', bodyParser.json())
 
@@ -50,20 +50,6 @@ module.exports = async (app) => {
 
     next()
   })
-
-  try {
-    createAgent({
-      authSecret: process.env.FOREST_AUTH_SECRET,
-      envSecret: process.env.FOREST_ENV_SECRET,
-      isProduction: process.env.NODE_ENV === 'production',
-      schemaPath: path.join(__dirname, '../.forestadmin-schema.json')
-    })
-      .addDataSource(createMongooseDataSource(app.mongo))
-      .mountOnExpress(server)
-      .start()
-  } catch (e) {
-    Sentry.captureException(e)
-  }
 
   server.use('*', app.helpers.middlewares.cors)
   
